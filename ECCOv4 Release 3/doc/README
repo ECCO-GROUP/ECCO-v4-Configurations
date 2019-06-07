@@ -1,0 +1,50 @@
+
+-------------------------------------------------------------------------------------------------------------
+ECCO Version 4: Third Release       [ECCO v4-r3] [ftp://ecco.jpl.nasa.gov/Version4/Release3/]
+-------------------------------------------------------------------------------------------------------------
+
+- This directory contains the 'ECCO version 4, release 3' documentation files:
+  README                            This file
+  v4r3_estimation_synopsis.pdf      Synopsis of V4r3 estimation
+  v4r3_output_fields.pdf            Overview of V4r3 files
+  v4r3_overview_plots.pdf           Plots of V4r3
+  v4r3_input_data.pdf               Data used in V4r3
+  v4r3_budgets_howto.pdf            Calculating budgets with V4r3 output
+  v4r3_reproduction_howto.pdf       Reproducing V4r3 results with MITgcm
+  available_diagnostics.log         A full list of available diagnostics with a short description. 
+                                    For a slightly more detailed description of diagnostics, check 
+                                    out ftp://ecco.jpl.nasa.gov/Version4/Release3/nctiles_monthly/README.
+  costfunction0059                  costs with the grid size factor (gamma, Cf. v4r3_summary.pdf for an explanation of gamma)
+  costfunction0059_nogamma          costs without the grid size factor (gamma)
+  STDOUT.0000                       Model standard output
+
+- References:
+  Fukumori, I., O. Wang, I. Fenty, G. Forget, P. Heimbach, and R. M. Ponte, 2017:
+   ECCO Version 4 Release 3, http://hdl.handle.net/1721.1/110380, doi:1721.1/110380.
+   Available at ftp://ecco.jpl.nasa.gov/Version4/Release3/doc/v4r3_estimation_synopsis.pdf
+  Forget, G., J.-M. Campin, P. Heimbach, C. N. Hill, R. M. Ponte, and C. Wunsch, 2015:
+   ECCO version 4: an integrated framework for non-linear inverse modeling and global ocean
+   state estimation. Geoscientific Model Development, 8, 3071-3104, doi:10.5194/gmd-8-3071-2015
+
+- Software:
+  The ECCO v4-r3 files were produced using the ’checkpoint65p’ versions of the general circulation 
+   model (MITgcm and ECCO v4 settings) and Matlab analysis toolboxes (gcmfaces and MITprof).
+  These software versions are available at http://mitgcm.org/download/other_checkpoints/
+   and http://mit.ecco-group.org/opendap/ecco_for_las/version_4/checkpoints/contents.html
+
+- Contact Us:
+ ecco-support@mit.edu (please subscribe via http://mailman.mit.edu/mailman/listinfo/ecco-support)
+
+-----------------------------
+README file revision history:
+-----------------------------
+
+- Add v4r3_input_data.pdf                          [Ou Wang] [2018/01/29]
+- Add available_diagnostics.log.                   [Ou Wang] [2018/01/11]
+- Add v4r3_output_fields.pdf                       [Ou Wang] [2017/11/02]
+- Update v4r3_overview_plots.pdf                   [Ou Wang] [2017/10/19]
+- Update v4r3_estimation_synopsis.pdf              [Ou Wang] [2017/06/29]
+- Add v4r3_estimation_synopsis.pdf                 [Ou Wang] [2017/06/14] 
+- Add v4r3_reproduction_howto.pdf                  [Ou Wang] [2017/06/13] 
+- Add v4r3_budgets_howto.pdf                       [Ou Wang] [2017/05/16] 
+- README file creation                             [Ou Wang] [2016/08/02]

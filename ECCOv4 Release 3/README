@@ -1,0 +1,46 @@
+
+-------------------------------------------------------------------------------------------------------------
+ECCO Version 4: Third Release       [ECCO v4-r3] [ftp://ecco.jpl.nasa.gov/Version4/Release3/]
+-------------------------------------------------------------------------------------------------------------
+
+- This directory contains the 'ECCO version 4, release 3' state estimate files:
+  README                              This file
+  doc                                 documentation for the state estimate including 
+                                      a. instructions for reproducing the model simulation
+                                      b. a summary of the observational data used in the model-data synthesis
+                                      c. instructions for evaluating budgets
+                                      d. overview figures of the solution
+                                      e. summary of differences between ECCOv4 release 3 and release 2.
+
+  namelist                            namelist files (run-time parameters) needed to re-run the state estimate
+
+  code                                updated and/or new fortran codes and header files that are required to compile the MITgcm in the ECCOv4 configuration
+  
+
+- References:
+  Fukumori, I., O. Wang, I. Fenty, G. Forget, P. Heimbach, and R. M. Ponte, 2017: 
+   ECCO Version 4 Release 3, http://hdl.handle.net/1721.1/110380, doi:1721.1/110380. 
+   Available at ftp://ecco.jpl.nasa.gov/Version4/Release3/doc/v4r3_estimation_synopsis.pdf                                      
+  Forget, G., J.-M. Campin, P. Heimbach, C. N. Hill, R. M. Ponte, and C. Wunsch, 2015: 
+   ECCO version 4: an integrated framework for non-linear inverse modeling and global ocean 
+   state estimation. Geoscientific Model Development, 8, 3071-3104, doi:10.5194/gmd-8-3071-2015
+ 
+- Software:
+  The ECCO v4-r3 files were produced using the ’checkpoint65u’ versions of the general circulation 
+   model (MITgcm and ECCO v4 settings) and Matlab analysis toolboxes (gcmfaces and MITprof).
+  These software versions are available at http://mitgcm.org/download/other_checkpoints/
+   and http://mit.ecco-group.org/opendap/ecco_for_las/version_4/checkpoints/contents.html
+
+- Contact Us:
+  ecco-support@mit.edu (please subscribe via http://mailman.mit.edu/mailman/listinfo/ecco-support)
+
+-----------------------------
+README file revision history:
+-----------------------------
+
+- Update for github                                [Ian Fenty] [2019/06/06]
+- Add the "interp_climatology" directory           [Ou Wang] [2018/03/02]
+- Add the "nctiles_climatology" directory          [Ou Wang] [2018/03/01]
+- Add the "other" directory                        [Ou Wang] [2017/05/08]
+- Add the "nctiles_daily" directory                [Ou Wang] [2017/05/03]
+- README file creation                             [Ou Wang] [2016/08/02]

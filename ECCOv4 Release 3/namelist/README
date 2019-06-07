@@ -1,0 +1,47 @@
+
+-------------------------------------------------------------------------------------------------------------
+ECCO Version 4: Third Release       [ECCO v4-r3] [ftp://ecco.jpl.nasa.gov/Version4/Release3/]
+-------------------------------------------------------------------------------------------------------------
+
+- This directory contains binary files needed to initialize MITgcm to run 'ECCO version 4, release 3':
+  README                               This file
+  *data*                               namelists
+
+- Notes:
+  These files are directly readable by the MITgcm when using the LLC90 setup to 
+   re-run the ECCO v4 ocean state estimate (see 
+   ftp://ecco.jpl.nasa.gov/Version4/Release3/doc/ECCOv4r3_reproduction.pdf).
+   There are multiple files with the same prefix of data.diagnostics that output 
+   different diagnostics for different purposes. For instance, data.diagnostics 
+   specifies a set of core diagnostics that can close budgets for heat, salt, 
+   momentum, and volume, while data.diagnostics_standardanalysis is the one 
+   used to generate necessary diagnostics for the standard analysis 
+   figures shown in ftp://ecco.jpl.nasa.gov/Version4/Release3/doc/v4r3_depiction.pdf.
+   For information about how to create customized data.diagnostics, check 
+   out Chapter 7, the MITgcm manual, titled "Diagnostics and I/O - Packages II, 
+   and Post-Processing Utilities" at e.g.
+   http://mitgcm.org/public/r2_manual/latest/online_documents/node264.html.
+
+- References:
+  Fukumori, I., O. Wang, I. Fenty, G. Forget, P. Heimbach, and R. M. Ponte, 2017:
+   ECCO Version 4 Release 3, http://hdl.handle.net/1721.1/110380, doi:1721.1/110380.
+   Available at ftp://ecco.jpl.nasa.gov/Version4/Release3/doc/v4r3_estimation_synopsis.pdf
+  Forget, G., J.-M. Campin, P. Heimbach, C. N. Hill, R. M. Ponte, and C. Wunsch, 2015:
+   ECCO version 4: an integrated framework for non-linear inverse modeling and global ocean
+   state estimation. Geoscientific Model Development, 8, 3071-3104, doi:10.5194/gmd-8-3071-2015
+ 
+- Software:
+  The ECCO v4-r3 files were produced using the ’checkpoint65u’ versions of the general circulation 
+   model (MITgcm and ECCO v4 settings) and Matlab analysis toolboxes (gcmfaces and MITprof).
+  These software versions are available at http://mitgcm.org/download/other_checkpoints/
+   and http://mit.ecco-group.org/opendap/ecco_for_las/version_4/checkpoints/contents.html
+
+- Contact Us:
+  ecco-support@mit.edu (please subscribe via http://mailman.mit.edu/mailman/listinfo/ecco-support)
+
+-----------------------------
+README file revision history:
+-----------------------------
+
+- README file creation                             [Ou Wang] [2017/06/07]
+
