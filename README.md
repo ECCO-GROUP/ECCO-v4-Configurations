@@ -21,6 +21,9 @@ ECCO version 4 release 2 is a minor update of the original ECCO version 4 soluti
 
 ECCO version 4 release 3 extends the estimation time period through 2015, includes new observational data including Aquarius, GRACE, Arctic T, S profiles, sea-ice concentration, global mean sea level & ocean mass.  Model controls now include initial u, v, ssh.  In addition, atmospheric model controls are separated into time-invariant & time-dependent variables.  See [v4r3_summary.pdf](https://github.com/ECCO-GROUP/ECCOv4-Configurations/blob/master/ECCOv4%20Release%203/doc/v4r3_summary.pdf) for more details.
 
+### devel: 
+The devel directory contains pieces of code that are useful, but not checked into the main MITgcm repository. 
+
 ## Support
 
 If user support is needed, please contact ecco-support@mit.edu or  mitgcm-support@mit.edu.
