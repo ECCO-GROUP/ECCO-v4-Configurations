@@ -1,0 +1,12 @@
+- This directory contains pieces of code that are useful, but not checked into the main MITgcm repository. 
+  README                              This file
+  icefront_iceshelf                   Merged ice-front and ice-shelf code
+
+- Contact Us:
+  ecco-support@mit.edu (please subscribe via http://mailman.mit.edu/mailman/listinfo/ecco-support)
+
+-----------------------------
+README file revision history:
+-----------------------------
+
+- README file creation                             [Ou Wang] [2019/06/25]
