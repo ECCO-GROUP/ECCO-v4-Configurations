@@ -1,0 +1,32 @@
+#
+#
+# ******************
+# ECCO cost function
+# ******************
+#
+ &ECCO_COST_NML
+#
+ data_errfile    = 'data.err',
+ temp0errfile     = 'Theta_sigma_smoothed_method_02_masked_merged_capped_areascaled.bin',
+ salt0errfile     = 'Salt_sigma_smoothed_method_02_masked_merged_capped_areascaled.bin',
+ cost_iprec  = 32,
+ cost_yftype = 'RL',
+#
+ /
+#
+ &ECCO_GENCOST_NML
+#
+  gencost_avgperiod(4)  = 'month',
+  gencost_barfile(4) = 'm_shifwflxmon',
+  gencost_datafile(4) = 'Rignot_meltrates_kgpersec_m2_12samerecv3.bin',
+  gencost_errfile(4) = 'sigma_half_areascaled.bin',
+  gencost_name(4) = 'shifwflxmean',
+  gencost_spmin(4) = -999.,
+  gencost_spmax(4) = 999.,
+  gencost_spzero(4) = 0.,
+  gencost_preproc(1,4)='mean',
+  gencost_outputlevel(4)=1,
+  mult_gencost(4) = 4.e11,
+#
+ /
+#

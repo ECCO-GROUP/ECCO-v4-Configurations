@@ -1,4 +1,4 @@
-C $Header: /u/gcmpack/MITgcm_contrib/gael/verification/global_oce_llc90/code/CPP_OPTIONS.h,v 1.5 2014/10/20 03:29:00 gforget Exp $
+C $Header: /u/gcmpack/MITgcm_contrib/ecco_utils/ecco_v4_release3_devel/code/CPP_OPTIONS.h,v 1.1 2017/05/04 17:46:37 ou.wang Exp $
 C $Name:  $
 
 #ifndef CPP_OPTIONS_H
@@ -17,6 +17,9 @@ C *==================================================================*
 CEOP
 
 C CPP flags controlling particular source code features
+
+C use 3d shiTransCoeffT and shiTransCoeffS
+#define ALLOW_shiTransCoeff_3d
 
 C o Shortwave heating as extra term in external_forcing.F
 C Note: this should be a run-time option

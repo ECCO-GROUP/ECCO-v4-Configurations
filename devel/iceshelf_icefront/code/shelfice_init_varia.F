@@ -42,10 +42,16 @@ CEOP
           shelficeForcingS      (i,j,bi,bj) = 0. _d 0
           shelficeHeatFlux      (i,j,bi,bj) = 0. _d 0
           shelficeFreshWaterFlux(i,j,bi,bj) = 0. _d 0
+#ifndef ALLOW_shiTransCoeff_3d
           shiTransCoeffT        (i,j,bi,bj) = 0. _d 0
           shiTransCoeffS        (i,j,bi,bj) = 0. _d 0
+#endif
           shelficeMass          (i,j,bi,bj) = 0. _d 0
           DO k = 1, NR
+#ifdef ALLOW_shiTransCoeff_3d
+             shiTransCoeffT        (i,j,k,bi,bj) = 0. _d 0
+             shiTransCoeffS        (i,j,k,bi,bj) = 0. _d 0
+#endif
             iceFrontHeatFlux(i,j,k,bi,bj)       = 0. _d 0
             iceFrontFreshWaterFlux(i,j,k,bi,bj) = 0. _d 0
             iceFrontForcingT(i,j,k,bi,bj)       = 0. _d 0
@@ -57,15 +63,29 @@ CEOP
       ENDDO
       IF ( .NOT. SHELFICEuseGammaFrict ) THEN
        IF ( SHELFICETransCoeffTFile .NE. ' ' ) THEN
+#ifndef ALLOW_shiTransCoeff_3d
         CALL READ_FLD_XY_RL( SHELFICETransCoeffTFile, ' ',
      &                       shiTransCoeffT, 0, myThid )
         _EXCH_XY_RL( shiTransCoeffT, myThid )
+#else 
+        CALL READ_FLD_XYZ_RL( SHELFICETransCoeffTFile, ' ',
+     &                       shiTransCoeffT, 0, myThid )
+        _EXCH_XYZ_RL( shiTransCoeffT, myThid )
+#endif
+
         DO bj = myByLo(myThid), myByHi(myThid)
          DO bi = myBxLo(myThid), myBxHi(myThid)
           DO j = 1-OLy, sNy+OLy
            DO i = 1-OLx, sNx+OLx
+#ifndef ALLOW_shiTransCoeff_3d
             shiTransCoeffS(i,j,bi,bj) = 5.05 _d -3 *
      &                                  shiTransCoeffT(i,j,bi,bj)
+#else
+            DO k = 1, Nr
+             shiTransCoeffS(i,j,k,bi,bj) = 5.05 _d -3 *
+     &                                  shiTransCoeffT(i,j,k,bi,bj)
+            ENDDO
+#endif
            ENDDO
           ENDDO
          ENDDO
@@ -76,8 +96,15 @@ C     set coefficients to constant values
          DO bi = myBxLo(myThid), myBxHi(myThid)
           DO j = 1-OLy, sNy+OLy
            DO i = 1-OLx, sNx+OLx
+#ifndef ALLOW_shiTransCoeff_3d
             shiTransCoeffT(i,j,bi,bj) = SHELFICEheatTransCoeff
             shiTransCoeffS(i,j,bi,bj) = SHELFICEsaltTransCoeff
+#else
+            DO k = 1, Nr
+            shiTransCoeffT(i,j,k,bi,bj) = SHELFICEheatTransCoeff
+            shiTransCoeffS(i,j,k,bi,bj) = SHELFICEsaltTransCoeff
+            ENDDO
+#endif
            ENDDO
           ENDDO
          ENDDO

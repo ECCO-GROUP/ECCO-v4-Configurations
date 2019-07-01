@@ -141,8 +141,13 @@ CEOP
       _RL shelficeLoadAnomaly   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL shelficeForcingT      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL shelficeForcingS      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#ifndef ALLOW_shiTransCoeff_3d
       _RL shiTransCoeffT        (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL shiTransCoeffS        (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#else
+      _RL shiTransCoeffT     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RL shiTransCoeffS     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+#endif
       _RL iceFrontForcingT   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL iceFrontForcingS   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 
@@ -151,24 +156,48 @@ CEOP
      &     shelficeHeatFlux,
      &     shelfIceFreshWaterFlux,
      &     shelfIceMassDynTendency,
-     &     iceFrontHeatFlux, iceFrontFreshWaterFlux
+     &     iceFrontHeatFlux, iceFrontFreshWaterFlux,
+     &     SHIICFHeatFlux, SHIICFFreshWaterFlux
 
       _RL R_shelfIce            (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL shelficeHeatFlux      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL shelficeFreshWaterFlux(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL SHIICFHeatFlux      
+     &  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL SHIICFFreshWaterFlux
+     &  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+
       _RL shelfIceMassDynTendency
      &  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL iceFrontHeatFlux      
      &  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr, nSx,nSy)
       _RL iceFrontFreshWaterFlux
      &  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr, nSx,nSy)
-      
-     
 
 #ifdef ALLOW_SHIFWFLX_CONTROL
       COMMON /SHELFICE_MASKS_CTRL/ maskSHI
       _RS maskSHI  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 #endif /* ALLOW_SHIFWFLX_CONTROL */
+
+C ow - 06/29/2018
+C ow - maskSHI above is not consistent with the spirit of gencost. 
+C ow -   Use the following masks below instead. 
+C ow - mask2dSHIICF: 2d shelf-ice & ice-front mask: 
+C         1 for having shelf-ice and/or ice-front at one or more vertical levels
+C         and 0 otherwise.
+C      mask3dSHIICF: 3d shelf-ice & ice-front mask.
+C      mask2dSHI: 2d shelf-ice mask
+C      mask3dSHI: 3d shelf-ice mask
+C      mask2dICF: 2d ice-front mask: 1 for having ice-front at one or more vertical levels.
+C      mask3dICF: 3d ice-front mask
+      COMMON /SHELFICE_MASKS/ mask2dSHIICF, mask3dSHIICF, 
+     &        mask2dSHI, mask3dSHI, mask2dICF, mask3dICF
+      _RS mask2dSHIICF  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS mask3dSHIICF  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RS mask2dSHI  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS mask3dSHI  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RS mask2dICF  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS mask3dICF  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 
       LOGICAL SHELFICEisOn
       LOGICAL useISOMIPTD

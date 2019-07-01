@@ -9,4 +9,6 @@
 README file revision history:
 -----------------------------
 
+- Update code and add namelist etc.                [Ou Wang] [2019/07/01] 
+- Merged ice-shelf and front code as of 2017       [Ou Wang] [2019/07/01]
 - README file creation                             [Ou Wang] [2019/06/25]
