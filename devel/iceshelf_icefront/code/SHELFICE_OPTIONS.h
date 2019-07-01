@@ -30,5 +30,8 @@ C     in uStar expression, use wet-point method to average velocity
 C     at grid-cell center
 #undef SHI_USTAR_WETPOINT
 
+CC use 3d shiTransCoeffT and shiTransCoeffS
+C#define ALLOW_shiTransCoeff_3d
+
 #endif /* ALLOW_SHELFICE */
 #endif /* SHELFICE_OPTIONS_H */

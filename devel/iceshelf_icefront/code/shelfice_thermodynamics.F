@@ -82,15 +82,15 @@ C     iceFrontWidth    :: the width of the ice front.
       INTEGER bi,bj
       INTEGER CURI, CURJ, FRONT_K
 
-      _RL tLoc(1:sNx,1:sNy)
-      _RL sLoc(1:sNx,1:sNy)
-      _RL pLoc(1:sNx,1:sNy)
+      _RL tLoc
+      _RL sLoc
+      _RL pLoc
 
 #ifndef SHI_USTAR_WETPOINT
-      _RL uLoc(1:sNx,1:sNy)
-      _RL vLoc(1:sNx,1:sNy)
+      _RL uLoc(1-olx:snx+olx,1-oly:sny+oly)
+      _RL vLoc(1-olx:snx+olx,1-oly:sny+oly)
 #endif
-      _RL velSq(1:sNx,1:sNy)
+      _RL velSq(1-olx:snx+olx,1-oly:sny+oly)
       
       _RL freshWaterFlux
        
@@ -103,6 +103,7 @@ C     iceFrontWidth    :: the width of the ice front.
       _RL thermalConductionDistance, thermalConductionTemp
       _RL tmpHeatFlux, tmpFWFLX
       _RL tmpForcingT, tmpForcingS
+      _RL tmpFac, icfgridareaFrac
       INTEGER SI
 
 #ifdef ALLOW_DIAGNOSTICS
@@ -124,6 +125,7 @@ C--   wet for exchange to happen
 C--   hard coded for now.
       thermalConductionDistance = 100.0 _d 0
       thermalConductionTemp     = -20.0 _d 0
+      icfgridareaFrac = 1.0 _d 0
 
 C     heat flux into the ice shelf, default is diffusive flux
 C     (Holland and Jenkins, 1999, eq.21)
@@ -134,10 +136,19 @@ C     (Holland and Jenkins, 1999, eq.21)
             DO I = 1-OLx,sNx+OLx
               shelfIceHeatFlux      (I,J,bi,bj) = 0. _d 0
               shelfIceFreshWaterFlux(I,J,bi,bj) = 0. _d 0
+              SHIICFHeatFlux      (I,J,bi,bj) = 0. _d 0
+              SHIICFFreshWaterFlux(I,J,bi,bj) = 0. _d 0
               shelficeForcingT      (I,J,bi,bj) = 0. _d 0
               shelficeForcingS      (I,J,bi,bj) = 0. _d 0
-          
+#ifndef ALLOW_shiTransCoeff_3d
+              shiTransCoeffS(I,J,bi,bj) = 5.05 _d -3 * 
+     &              shiTransCoeffT(I,J,bi,bj)
+#endif
               DO K = 1, NR
+#ifdef ALLOW_shiTransCoeff_3d
+                shiTransCoeffS(I,J,K,bi,bj) = 5.05 _d -3 * 
+     &                shiTransCoeffT(I,J,K,bi,bj)
+#endif
                 iceFrontHeatFlux(I,J,K,bi,bj)       = 0. _d 0
                 iceFrontFreshWaterFlux(I,J,K,bi,bj) = 0. _d 0
                 iceFrontForcingT(I,J,K,bi,bj)       = 0. _d 0
@@ -195,7 +206,9 @@ C--   Looking to south
 C--                 cell depth describes the average distance 
 C--                 perpendicular to the ice front fact
 
-                    iceFrontCellThickness = RA(CURI,CURJ,bi,bj)
+                    iceFrontCellThickness = 0. _d 0
+                    IF(iceFrontWidth.NE.0. _d 0)
+     &              iceFrontCellThickness = RA(CURI,CURJ,bi,bj)
      &                                  /iceFrontWidth
                     iceFrontFaceArea  = DRF(K)*iceFrontWidth
 
@@ -282,7 +295,6 @@ C--   Only proceed if iceFrontVertContactFrac is > 0, the
 C--   ice draft at (I,J) 
 C--   is in contact with some water in the neighboring grid cell.
                       IF (iceFrontVertContactFrac .GT. epsilon_H) THEN
-                        
                         tLoc = theta(CURI,CURJ,K,bi,bj)
                         sLoc = MAX(salt(CURI,CURJ,K,bi,bj), zeroRL)
 
@@ -294,8 +306,13 @@ C--   open water.
                     
                         CALL SHELFICE_SOLVE4FLUXES(
      I                    tLoc, sLoc, pLoc, 
+#ifndef ALLOW_shiTransCoeff_3d
      I                    shiTransCoeffT(CURI,CURJ,bi,bj), 
      I                    shiTransCoeffS(CURI,CURJ,bi,bj),
+#else
+     I                    shiTransCoeffT(CURI,CURJ,K,bi,bj), 
+     I                    shiTransCoeffS(CURI,CURJ,K,bi,bj),
+#endif
      I                    thermalConductionDistance, 
      I                    thermalConductionTemp,
      O                    tmpHeatFlux, tmpFWFLX,
@@ -322,12 +339,33 @@ C     In units of kg/s/m^2
      &                    iceFrontFreshWaterFlux(CURI,CURJ,K,bi,bj) + 
      &                    tmpFWFLX*iceFrontVertContactFrac
 
+C ow - 06/29/2018  
+C ow - Verticallly sum up the 3D icefront heat and freshwater fluxes to 
+C ow -  compute the total flux for the water column. The shelfice fluxes,
+C ow -  which are 2D, will be added later. NOTE that only
+C ow -  ice-front melts below shelf-ice are included to be consistent 
+C ow -  with Rignot's data 
+                  if(k.GE.kTopC(I,J,bi,bj))then
+                   if(RA(CURI,CURJ,bi,bj).NE.0. _d 0)then
+                        icfgridareaFrac = 
+     &                   iceFrontFaceArea/RA(CURI,CURJ,bi,bj) 
+                        SHIICFHeatFlux(CURI,CURJ,bi,bj) = 
+     &                   SHIICFHeatFlux(CURI,CURJ,bi,bj) + 
+     &                   iceFrontHeatFlux(CURI,CURJ,K,bi,bj)
+     &                   * icfgridareaFrac 
+                        SHIICFFreshWaterFlux(CURI,CURJ,bi,bj) = 
+     &                   SHIICFFreshWaterFlux(CURI,CURJ,bi,bj) + 
+     &                   iceFrontFreshWaterFlux(CURI,CURJ,K,bi,bj)
+     &                   * icfgridareaFrac
+                   endif
+                  endif
 C     iceFrontForcing[T,S] X m/s but these rates only apply to the 
 C--   fraction of the grid cell that has ice in contact with seawater.
 C--   we must scale by iceFrontVertContactFrac to get to the average
 C--   fluxes in this grid cell.  We must also divide the by the length 
 C--   of the grid cell perpendicular to the face.
 
+                       IF (iceFrontCellThickness .NE. 0. _d 0) THEN
 C     In units of K / s 
                         iceFrontForcingT(CURI,CURJ,K,bi,bj) = 
      &                    iceFrontForcingT(CURI,CURJ,K,bi,bj) + 
@@ -340,13 +378,15 @@ C     In units of psu /s
      &                    tmpForcingS/iceFrontCellThickness*
      &                    iceFrontVertContactFrac
 
+                       ENDIF /* iceFrontCellThickness */
 C     In units of kg /s     
                          addMass(CURI,CURJ,K,bi,bj) = 
      &                     addMass(CURI,CURJ,K,bi,bj) - 
-     &                     tmpFWFLX*RA(CURI,CURJ,bi,bj)
-                        ENDIF /* iceFrontCellThickness */
-                      ENDIF /* hFacC(CURI,CURJ,K,bi,bj) */
-                    ENDDO /* SI loop for adjacent cells */
+     &                     tmpFWFLX*iceFrontFaceArea*
+     &                     iceFrontVertContactFrac 
+                      ENDIF /* iceFrontVertContactFrac */
+                    ENDIF /* hFacC(CURI,CURJ,K,bi,bj) */
+                  ENDDO /* SI loop for adjacent cells */
                 ENDDO /* K LOOP */
               ENDIF /* FRONT K */
 
@@ -373,8 +413,13 @@ C--   base of the ice shelf, top of the cavity.
 
                 CALL SHELFICE_SOLVE4FLUXES(
      I            tLoc, sLoc, pLoc, 
+#ifndef ALLOW_shiTransCoeff_3d
      I            shiTransCoeffT(I,J,bi,bj), 
      I            shiTransCoeffS(I,J,bi,bj),
+#else
+     I            shiTransCoeffT(I,J,K,bi,bj), 
+     I            shiTransCoeffS(I,J,K,bi,bj),
+#endif
      I            pLoc, thermalConductionTemp,
      O            tmpHeatFlux, tmpFWFLX,
      O            tmpForcingT, tmpForcingS,                
@@ -385,6 +430,14 @@ C     In units of W/m^2
 C     In units of kg/m^2/s 
                 shelfIceFreshWaterFlux(I,J,bi,bj) = tmpFWFLX
 
+C ow - 06/29/2018  
+C ow - Now add shelfice heat and freshwater fluxes 
+                        SHIICFHeatFlux(i,j,bi,bj) = 
+     &                   SHIICFHeatFlux(i,j,bi,bj) + 
+     &                   shelficeHeatFlux(i,j,bi,bj)
+                        SHIICFFreshWaterFlux(i,j,bi,bj) = 
+     &                   SHIICFFreshWaterFlux(i,j,bi,bj) + 
+     &                   shelfIceFreshWaterFlux(i,j,bi,bj)
 C     In units of K/s -- division by drF required first
                 shelficeForcingT(I,J,bi,bj) = tmpForcingT*
      &              recip_drF(K)* _recip_hFacC(i,j,K,bi,bj)                            
@@ -417,6 +470,60 @@ c     IF ( SHELFICEloadAnomalyFile .EQ. ' ' ) THEN
 c     ENDIF
 #endif /* ndef ALLOW_AUTODIFF */
 
+#ifdef ALLOW_DIAGNOSTICS
+      IF ( useDiagnostics ) THEN
+       CALL DIAGNOSTICS_FILL_RS(shelfIceFreshWaterFlux,'SHIfwFlx',
+     &      0,1,0,1,1,myThid)
+       CALL DIAGNOSTICS_FILL_RS(shelfIceHeatFlux,      'SHIhtFlx',
+     &      0,1,0,1,1,myThid)
+
+       CALL DIAGNOSTICS_FILL_RS(SHIICFFreshWaterFlux,'SHIICFfwFlx',
+     &      0,1,0,1,1,myThid)
+       CALL DIAGNOSTICS_FILL_RS(SHIICFHeatFlux,      'SHIICFhtFlx',
+     &      0,1,0,1,1,myThid)
+
+        CALL DIAGNOSTICS_FILL(iceFrontFreshWaterFlux, 'ICFfwFlx',
+     &      0,Nr,0,1,1,myThid)
+        CALL DIAGNOSTICS_FILL(iceFrontHeatFlux, 'ICFhtFlx',
+     &      0,Nr,0,1,1,myThid)
+
+C     SHIForcT (Ice shelf forcing for theta [W/m2], >0 increases theta)
+       tmpFac = HeatCapacity_Cp*rUnit2mass
+       CALL DIAGNOSTICS_SCALE_FILL(shelficeForcingT,tmpFac,1,
+     &      'SHIForcT',0,1,0,1,1,myThid)
+C     SHIForcS (Ice shelf forcing for salt [g/m2/s], >0 increases salt)
+       tmpFac = rUnit2mass
+       CALL DIAGNOSTICS_SCALE_FILL(shelficeForcingS,tmpFac,1,
+     &      'SHIForcS',0,1,0,1,1,myThid)
+
+C     ICFForcT (Ice front forcing for theta [W/m2], >0 increases theta)
+       tmpFac = HeatCapacity_Cp*rUnit2mass
+       CALL DIAGNOSTICS_SCALE_FILL(iceFrontForcingT,tmpFac,1,
+     &      'ICFForcT',0,Nr,0,1,1,myThid)
+C     ICFForcS (Ice front forcing for salt [g/m2/s], >0 increases salt)
+       tmpFac = rUnit2mass
+       CALL DIAGNOSTICS_SCALE_FILL(iceFrontForcingS,tmpFac,1,
+     &      'ICFForcS',0,Nr,0,1,1,myThid)
+
+C     Transfer coefficients
+#ifndef ALLOW_shiTransCoeff_3d
+       CALL DIAGNOSTICS_FILL(shiTransCoeffT,'SHIgammT',
+     &      0,1,0,1,1,myThid)
+       CALL DIAGNOSTICS_FILL(shiTransCoeffS,'SHIgammS',
+     &      0,1,0,1,1,myThid)
+#else
+       CALL DIAGNOSTICS_FILL(shiTransCoeffT,'SHIgammT',
+     &      0,Nr,0,1,1,myThid)
+       CALL DIAGNOSTICS_FILL(shiTransCoeffS,'SHIgammS',
+     &      0,Nr,0,1,1,myThid)
+#endif
+C     Friction velocity
+#ifdef SHI_ALLOW_GAMMAFRICT
+       IF ( SHELFICEuseGammaFrict )
+     &  CALL DIAGNOSTICS_FILL(uStarDiag,'SHIuStar',0,1,0,1,1,myThid)
+#endif /* SHI_ALLOW_GAMMAFRICT */
+      ENDIF
+#endif
 
 #endif /* ALLOW_SHELFICE */
       RETURN

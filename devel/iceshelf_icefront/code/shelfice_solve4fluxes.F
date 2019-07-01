@@ -127,6 +127,7 @@ C--   DEFINE SOME CONSTANTS
       eps6 = eps4 - insitutLoc
       eps7 = eps4 - thetaIceConduction
 
+      IF ( debugLevel.GE.debLevE ) THEN
       WRITE(msgBuf,'(A25,9E16.8)')
      &'ZZZ7 r2mass, Cp, gmaT,SIlh,gmaS, rhoSI, SI_Cp, Kap, ICondDis ',
      & rUnit2mass,HeatCapacity_Cp,gammaT, SHELFICElatentHeat,gammaS,
@@ -135,6 +136,7 @@ C--   DEFINE SOME CONSTANTS
 
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT , 1)
+      ENDIF
 
 C--   Default thermodynamics specify a linear T gradient
 C--   through the ice (Holland and Jenkins, 1999, Section 2.
@@ -147,13 +149,13 @@ C--   through the ice (Holland and Jenkins, 1999, Section 3.
 C--   This demands a different set of constants
       IF (SHELFICEadvDiffHeatFlux .EQV. .TRUE.) THEN
 
+      IF ( debugLevel.GE.debLevE ) THEN
       WRITE(msgBuf,'(A)')
      &   '1useSHELFICEadvDiffHeatFlux '
 
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT , 1)
-
-
+      ENDIF
 
           eps8 = rUnit2mass * gammaS * SHELFICEheatCapacity_Cp
           aqe = a0 *(eps1 - eps8)
@@ -198,11 +200,13 @@ C--   we must solve the quadratic equation using a different set of
 C--   coeffs (Holland Jenkinsm, 1999).
       IF ((SHELFICEadvDiffHeatFlux .EQV. .TRUE.) .AND. 
      &    (fwFlux .GT. zeroRL)) THEN
+      IF ( debugLevel.GE.debLevE ) THEN
       WRITE(msgBuf,'(A)')
      &   '2useSHELFICEadvDiffHeatFlux '
 
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT , 1)
+      ENDIF
           aqe = a0 *(eps1)
           bqe = eps1*eps6 - eps2 - SHELFICEsalinity*eps1*a0
           cqe = sLoc*(eps2) - SHELFICEsalinity*eps1
@@ -289,6 +293,7 @@ C--   are the turbulent fluxes.
           forcingS = gammaS * ( saltFreeze  - sLoc )
       ENDIF
 
+      IF ( debugLevel.GE.debLevE ) THEN
       WRITE(msgBuf,'(A25,7E16.8)')
      &   'ZZZ6 aqe, bqe, ceq ',
      &   aqe,bqe,cqe
@@ -302,6 +307,7 @@ C--   are the turbulent fluxes.
 
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT , 1)
+      ENDIF
 
 
       RETURN

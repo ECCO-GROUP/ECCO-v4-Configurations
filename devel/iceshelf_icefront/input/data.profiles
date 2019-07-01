@@ -1,0 +1,12 @@
+#
+# ******************
+# PROFILES cost function
+# ******************
+ &PROFILES_NML
+#
+ profilesDir='profiles',
+ profilesDoGenGrid=.TRUE.,
+#
+
+#
+ /
