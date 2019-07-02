@@ -1,6 +1,7 @@
 - This directory contains pieces of code that are useful, but not checked into the main MITgcm repository. 
   README                              This file
   icefront_iceshelf                   Merged ice-front and ice-shelf code
+  fluxforced                          Configuration for flux-forced runs
 
 - Contact Us:
   ecco-support@mit.edu (please subscribe via http://mailman.mit.edu/mailman/listinfo/ecco-support)
@@ -9,4 +10,6 @@
 README file revision history:
 -----------------------------
 
+- Add configuration for flux-forced runs          [Ou Wang] [2019/07/02]
+- Add merged ice-shelf and ice-front code          [Ou Wang] [2019/07/01]
 - README file creation                             [Ou Wang] [2019/06/25]
