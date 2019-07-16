@@ -71,8 +71,8 @@
  apressurestartdate2     = 090000,
  apressureperiod         = 21600.0,
 #
-#runofffile        = 'runoff-2d-Fekete-1deg-mon-V4-SMOOTH.bin',
-#runoffperiod      = -12,
+ runofffile        = 'runoff-2d-Fekete-1deg-mon-V4-SMOOTH.bin',
+ runoffperiod      = -12,
 #
  climsstperiod     = -12.,
  climsssperiod     = -12.,
@@ -106,7 +106,7 @@
  saltflx_interpMethod = 0,
  spflx_interpMethod = 0,
  apressure_interpMethod = 0,
-#runoff_interpMethod = 0,
+ runoff_interpMethod = 0,
  climsss_interpMethod = 0,
 #
 #

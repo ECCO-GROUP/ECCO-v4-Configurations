@@ -50,9 +50,18 @@ For llc270: use
 4) Updated namelists
 A couple of updated name lists in 
 /nobackupp7/owang/FOR_OTHERS/fluxforced/input_fluxforced/
-need be used to conduct the flux-forced runs. For all 
-other namelists that are not in the above directroy, use 
-the orginial ones from v4r3 or llc270.
+need be used to conduct the flux-forced runs: 
+data.exf: Use the pre-generated fluxes to force the model. Note that the 
+ pre-generated sfluxfile is assumed to have contained runoff and therefore 
+ runoff forcing is turned off here. Use data.exf_sflux_excl_runoff
+ if sfluxfile does NOT contain runoff. 
+data.exf_sflux_excl_runoff: If the pre-generated sfluxfile contains NO
+ runoff, then runoff forcing needs to be included here. Need to rename 
+ this file (data.exf_sflux_excl_runoff) to data.exf when run the model. 
+data.pkg: Turn off the sea-ice, profile packages.
+
+For all other namelists that are not in the above directory, use 
+the original ones from v4r3 or llc270.
 
 
 
