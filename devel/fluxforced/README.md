@@ -1,6 +1,6 @@
 # Configurations for flux-forced runs
 The configurations can be used to conduct flux-forced runs that would produce
- results very similar to ECCO v4r3 or v5 (llc270) that use bulk-formula. 
+ results very similar to ECCO v4r3 or v5 (llc270) that uses bulk-formula. 
 
 This README file describes how to conduct a flux-forced forward run 
 that would produce results equivalent to ECCO v4r3 (llc90) or v5(llc270). 
@@ -50,7 +50,7 @@ For llc270: use
 /nobackupp7/owang/FOR_OTHERS/fluxforced/code_fluxforced_llc270
 
 4) Updated namelists
-A couple of updated name lists in 
+4.1) A couple of updated name lists in 
 /nobackupp7/owang/FOR_OTHERS/fluxforced/input_fluxforced/
 need be used to conduct the flux-forced runs: 
 * data.exf: Use the pre-generated fluxes to force the model. Note that the 
@@ -62,7 +62,7 @@ need be used to conduct the flux-forced runs:
  this file (data.exf_sflux_excl_runoff) to data.exf when run the model. 
 * data.pkg: Turn off the sea-ice, profile packages.
 
-For all other namelists that are not in the above directory, use 
+4.2) For all other namelists that are not in the above directory, use 
 the original ones from v4r3 or llc270.
 
 
