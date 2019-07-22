@@ -10,14 +10,16 @@ dirout=$2
 for var1 in 'oceTAUX' 'oceTAUY' 'oceQsw' 'oceQnet' 'oceFWflx' 'oceSflux' 'oceSPflx' 'sIceLoad' 
 do
 #
-#Fake the first and last records which is necessary if one wants the 
-# flux-forced run to have the same duration as the original 
-# using bulk formula.  
+#Fake the first (two) and last (one) records so that the time-forcing duration 
+# is not smaller than the v4r3 model time-duration. 
+# The faked fields are chosen to be the fields one-day later or earlier to 
+# have the correct diurnal cycle. 
 # 
-cp -p ${dirin}/${var1}.0000000024.data ${dirout}/${var1}.0000000000.data
-cp -p ${dirin}/${var1}.0000210342.data ${dirout}/${var1}.0000210366.data
+cp -p ${dirin}/${var1}.0000000018.data ${dirin}/${var1}.-000000006.data
+cp -p ${dirin}/${var1}.0000000024.data ${dirin}/${var1}.0000000000.data
+cp -p ${dirin}/${var1}.0000210342.data ${dirin}/${var1}.0000210366.data
 
-sh -x cat_exf2yearly_fromavg.sh ${var1} ${dirin} ${dirout}  1992       0      8772
+sh -x cat_exf2yearly_fromavg.sh ${var1} ${dirin} ${dirout}  1992      -6      8772
 sh -x cat_exf2yearly_fromavg.sh ${var1} ${dirin} ${dirout}  1993    8778     17532
 sh -x cat_exf2yearly_fromavg.sh ${var1} ${dirin} ${dirout}  1994   17538     26292
 sh -x cat_exf2yearly_fromavg.sh ${var1} ${dirin} ${dirout}  1995   26298     35052

@@ -1,8 +1,8 @@
 #!/bin/bash -f
 
-dirin=$1
-dirout=$2
-var1=$3
+var1=$1
+dirin=$2
+dirout=$3
 year0=$4
 file0=$5
 file1=$6
