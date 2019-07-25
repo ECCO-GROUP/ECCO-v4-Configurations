@@ -1,0 +1,54 @@
+#
+#
+# ******************
+# ECCO cost function
+# ******************
+#
+ &ECCO_COST_NML
+#
+ data_errfile    = 'data.err',
+ temp0errfile     = 'Theta_sigma_smoothed_method_02_masked_merged_capped_areascaled.bin',
+ salt0errfile     = 'Salt_sigma_smoothed_method_02_masked_merged_capped_areascaled.bin',
+ cost_iprec  = 32,
+ cost_yftype = 'RL',
+#
+ /
+#
+ &ECCO_GENCOST_NML
+#
+  gencost_avgperiod(27)  = 'month',
+  gencost_barfile(27) = 'm_shifwflxmon',
+  gencost_datafile(27) = 'Rignot_meltrates_kgpersec_m2_72samerecv4_actual.bin',
+  gencost_errfile(27) = 'sigma_shiTransCoeffT_datacost4_actual_areascaled.bin',
+  gencost_name(27) = 'shifwflxmean',
+  gencost_spmin(27) = -999.,
+  gencost_spmax(27) = 999.,
+  gencost_spzero(27) = 0.,
+  gencost_preproc(1,27)='mean',
+  gencost_outputlevel(27)=1,
+  mult_gencost(27) = 1,
+#
+# linear trend cost (assuming data has zero trend)
+  gencost_avgperiod(28)  = 'month',
+  gencost_barfile(28) = 'm_shifwflxmon',
+  gencost_datafile(28) = 'zeros_2d',
+  gencost_errfile(28) = 'sigma_shiTransCoeffT_datacost4_actual_areascaled.bin',
+  gencost_name(28) = 'shifwflxtrend',
+  gencost_spmin(28) = -999.,
+  gencost_spmax(28) = 999.,
+  gencost_spzero(28) = -999.,
+  gencost_preproc(1,28)='trend',
+  # shifwflx_pinv_scaledby71mon.bin contains the 
+  # coefficients that are pre-computed for estimating 
+  # a linear trend problem. The coefficients have been 
+  # scaled by nrec-1 where nrec(=72) is the number of monthly 
+  # time records between 2003-2008. The size of 
+  # shifwflx_pinv_scaledby71mon.bin is 72x4 = 288 bytes
+  # for 72 single precision numbers. 
+  # The linear trend is the sum over the time records of the 
+  # product of the model melt rate and the coefficients. 
+  gencost_preproc_c(1,28)='shifwflx_pinv_scaledby71mon.bin',
+  gencost_outputlevel(28)=1,
+  mult_gencost(28) = 1,
+ /
+#
