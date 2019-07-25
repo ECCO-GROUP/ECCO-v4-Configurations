@@ -83,7 +83,7 @@ c     == local variables ==
       integer bi,bj,k2
       integer itlo,ithi
       integer jtlo,jthi
-      logical domean, doanom
+      logical domean, doanom, dotrend
 
       _RL localdifmean1  (1-olx:snx+olx,1-oly:sny+oly,Nr,nsx,nsy)
       _RL localdifmean2  (1-olx:snx+olx,1-oly:sny+oly,Nr,nsx,nsy)
@@ -112,11 +112,12 @@ c--   Initialise local variables.
       do k2 = 1, NGENPPROC
           if (preproc(k2).EQ.'mean') domean=.TRUE.
           if (preproc(k2).EQ.'anom') doanom=.TRUE.
+          if (preproc(k2).EQ.'trend') dotrend=.TRUE.
       enddo
 
 C Extra time loop to compute time-mean fields and costs
       if ( (.NOT. ( localobsfile.EQ.' ' ) ) 
-     &   .AND. ( domean .OR. doanom ) ) then
+     &   .AND. ( domean .OR. doanom .OR. dotrend) ) then
         call cost_genloop(
      &     localdifmean1,localdifmean2,.FALSE.,
      &     nnzbar, localbarfile, dummy,
@@ -133,7 +134,8 @@ C Extra time loop to compute time-mean fields and costs
 
       call ecco_zero(localdifmean1,Nr,zeroRL,myThid)
 
-      if ((.NOT.(localobsfile.EQ.' ')).AND.(.NOT.domean)) then
+      if ((.NOT.(localobsfile.EQ.' ')).AND.(.NOT.domean)
+     &    .AND.(.NOT.dotrend)) then
         call cost_genloop(
      &     localdifmean2,localdifmean1,.TRUE.,
      &     nnzbar, localbarfile, dummy,
@@ -242,8 +244,9 @@ c     == local variables ==
       integer irec, jrec
       integer il, k2
       integer localrec, obsrec
-      integer nrecloop, nrecclim, k2smooth
+      integer nrecloop, nrecclim, k2smooth, k2trend
       logical domean, doanom, dovarwei, doclim, dosmooth, dosumsq
+      logical dotrend
 
       _RL localmask  (1-olx:snx+olx,1-oly:sny+oly,Nr,nsx,nsy)
 
@@ -259,16 +262,19 @@ c     == local variables ==
       _RL localdifnum   (1-olx:snx+olx,1-oly:sny+oly,Nr,nsx,nsy)
 
       _RL fac
+      _RL fac_tmp(N1DDATA)
 
       character*(128) fname1, fname2, fname3
       character*200 msgbuf
+      integer gwunit
+      integer ilo, ihi
 
       logical exst
 
 c     == external functions ==
 
-      integer  ilnblnk
-      external ilnblnk
+      integer  ifnblnk, ilnblnk
+      external ifnblnk, ilnblnk
 
 CEOP
 
@@ -285,17 +291,26 @@ CEOP
       call ecco_zero(localdifsum,Nr,zeroRL,myThid)
       call ecco_zero(localdifnum,Nr,zeroRL,myThid)
 
+      do irec = 1, N1DDATA
+         fac_tmp(irec) = 0. _d 0 
+      enddo
+      dotrend=.FALSE.
       dosumsq=.TRUE.
       domean=.FALSE.
       doanom=.FALSE.
       dovarwei=.FALSE.
       dosmooth=.FALSE.
       k2smooth=1
+      k2trend = 0
       doclim=.FALSE.
       nrecclim=nrecloc
       fac=oneRL
 
       do k2 = 1, NGENPPROC
+          if (preproc(k2).EQ.'trend') then 
+            dotrend=.TRUE.
+            k2trend = k2
+          endif
           if (preproc(k2).EQ.'mean') domean=.TRUE.
           if (preproc(k2).EQ.'anom') doanom=.TRUE.
           if (preproc(k2).EQ.'variaweight') dovarwei=.TRUE.
@@ -312,6 +327,8 @@ CEOP
             fac=preproc_r(k2)
           endif
       enddo
+      if (dotrend .and. (domean .or. doanom .or. dovarwei .or.
+     &    doclim)) stop 777
 
 c--   Assign mask
       if ( ylocmask .EQ. 'C' .OR. ylocmask .EQ. 'c' ) then
@@ -330,6 +347,32 @@ c--   Assign mask
 
 c-- set nrecloop to nrecloc
       nrecloop=nrecloc
+
+      if ( dotrend ) then
+C
+      if ( preproc_c(k2trend) .NE. ' ' ) then
+      ilo = ifnblnk(preproc_c(k2trend))
+      ihi = ilnblnk(preproc_c(k2trend))
+
+C read in a binary file of the pseudo array (scaled by (nrec-1)). 
+      CALL READ_GLVEC_RS( preproc_c(k2trend)(ilo:ihi), ' ', 
+     O                    fac_tmp, nrecloc, 1, myThid )
+
+C had some issues for the adjoint if the model reads in an ASCII file here.
+C     CALL OPEN_COPY_DATA_FILE(
+C    I                          preproc_c(k2trend)(ilo:ihi),
+C    I                          'cost_genloop: ',
+C    O                          gwunit,
+C    I                          myThid )
+C     do irec = 1, nrecloc
+C        read(gwunit,*) fac_tmp(irec)
+C     enddo
+C     close(gwunit)
+
+      _BARRIER
+      endif
+
+      endif 
 
 c-- reset nrecloop, if needed, according to preproc
       if ( doclim ) nrecloop=MIN(nrecloop,nrecclim)
@@ -359,12 +402,21 @@ c--     load model average and observed average
         call cost_genread( fname1, localbar, localtmp, irec, nnzbar,
      &       nrecloc, preproc, preproc_c, preproc_i, preproc_r, 
      &       dummy, mythid )
+        if( dotrend ) fac = fac_tmp(irec)
         call ecco_mult(localbar,nnzbar,fac,myThid)
 
-        call ecco_zero(localobs,nnzobs,spzeroloc,myThid)
-        if ( (localrec .GT. 0).AND.(obsrec .GT. 0).AND.(exst) )
-     &  call mdsreadfield( fname2, cost_iprec, cost_yftype, nnzobs,
-     &         localobs, localrec, mythid )
+        if (.not.dotrend) then
+         call ecco_zero(localobs,nnzobs,spzeroloc,myThid)
+         if ( (localrec .GT. 0).AND.(obsrec .GT. 0).AND.(exst) )
+     &    call mdsreadfield( fname2, cost_iprec, cost_yftype, nnzobs,
+     &           localobs, localrec, mythid )
+        else 
+         if (irec.eq.1) then
+          if ( (localrec .GT. 0).AND.(obsrec .GT. 0).AND.(exst) )
+     &    call mdsreadfield( fname2, cost_iprec, cost_yftype, nnzobs,
+     &           localobs, irec, mythid )
+         endif
+        endif
 
 c--     Compute masked model-data difference
         call ecco_diffmsk( localbar, nnzbar, localobs, nnzobs,
@@ -374,7 +426,7 @@ c--     Compute masked model-data difference
         if ( doanom ) call ecco_subtract( localdifmeanIn,
      &     nnzobs, localdif, nnzobs, myThid )
 
-        if ( domean.OR.doanom )
+        if ( domean.OR.doanom.OR.dotrend )
      &    call ecco_addmask(localdif,difmask, nnzobs,localdifsum,
      &    localdifnum, nnzobs,myThid)
 
@@ -410,11 +462,12 @@ c--   End of loop over obsfile records.
 
       call ecco_zero(localdifmeanOut,Nr,zeroRL,myThid)
       call ecco_cp(localdifsum,nnzobs,localdifmeanOut,nnzobs,myThid)
-      call ecco_divfield(localdifmeanOut,nnzobs,localdifnum,myThid)
+      if (.NOT.dotrend)
+     & call ecco_divfield(localdifmeanOut,nnzobs,localdifnum,myThid)
       call ecco_cp(localdifnum,nnzobs,localdifmsk,nnzobs,myThid)
       call ecco_divfield(localdifmsk,nnzobs,localdifnum,myThid)
 
-      if ( domean ) then
+      if ( domean.OR.dotrend ) then
 c--     Compute normalized model-obs cost function
         call ecco_addcost(
      I      localdifmeanOut, localweight, localdifmsk, nnzobs, dosumsq,
@@ -430,6 +483,7 @@ c--     output model-data difference to disk
      &    WRITE_REC_XYZ_RL(fname3,localdifmeanOut,1,eccoiter,mythid)
         endif
       endif
+
       if ( outlev.GT.1 ) then
           il=ilnblnk(outname)
           write(fname3(1:128),'(2a)') 'weight_', outname(1:il)

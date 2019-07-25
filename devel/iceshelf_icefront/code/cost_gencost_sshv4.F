@@ -84,6 +84,8 @@ c mapping to gencost
       _RL offset_sum
       _RL slaoffset
       _RL slaoffset_sum
+C slaoffset2 to be removed from obs
+      _RL slaoffset2
       _RL slaoffset_weight
 
 c local arrays
@@ -1052,6 +1054,7 @@ c ----------------------------------------
 
       slaoffset     = 0. _d 0
       slaoffset_sum = 0. _d 0
+      slaoffset2     = 0. _d 0
       slaoffset_weight = 0. _d 0
 
         do bj = jtlo,jthi
@@ -1064,6 +1067,8 @@ c ----------------------------------------
                   slaoffset=slaoffset+RA(i,j,bi,bj)*
      &                      anom_psMslaobs(i,j,bi,bj)
                   slaoffset_sum=slaoffset_sum+RA(i,j,bi,bj)
+                  slaoffset2=slaoffset2+RA(i,j,bi,bj)*
+     &                      anom_slaobs(i,j,bi,bj)
 c Of interest is the total weight for an average of N indep sample (not the area weighted average of weight)
 c Since slaoffset is itself area weighted, however, the total weight is only approx the simple weight sum :
                   slaoffset_weight=slaoffset_weight+
@@ -1075,6 +1080,7 @@ c Since slaoffset is itself area weighted, however, the total weight is only app
         enddo
 
       _GLOBAL_SUM_RL( slaoffset     , mythid )
+      _GLOBAL_SUM_RL( slaoffset2    , mythid )
       _GLOBAL_SUM_RL( slaoffset_weight , mythid )
       _GLOBAL_SUM_RL( slaoffset_sum , mythid )
 
@@ -1090,8 +1096,9 @@ c        stop   '  ... stopped in cost_ssh.'
       else
         if (gencost_outputlevel(igen_gmsl).GT.0) then
         _BEGIN_MASTER( mythid )
-        write(msgbuf,'(a,3d22.15)') ' sshv4:slaoffset,sum,weight=',
-     &         slaoffset,slaoffset_sum,slaoffset_weight
+        write(msgbuf,'(a,4d22.15)') 
+     &         ' sshv4:slaoffset,sum,weight,slaoffset2=',
+     &         slaoffset,slaoffset_sum,slaoffset_weight,slaoffset2
         call print_message( msgbuf, standardmessageunit,
      &                          SQUEEZE_RIGHT , mythid)
         _END_MASTER( mythid )
@@ -1100,6 +1107,7 @@ c        stop   '  ... stopped in cost_ssh.'
 
 c--   Compute (average) slaoffset
       slaoffset = slaoffset / slaoffset_sum
+      slaoffset2 = slaoffset2 / slaoffset_sum
 
 c--   Subtract slaoffset from anom_psMslaobs
         do bj = jtlo,jthi
@@ -1112,7 +1120,7 @@ c--   Subtract slaoffset from anom_psMslaobs
                   anom_psMslaobs(i,j,bi,bj) =
      &                 anom_psMslaobs(i,j,bi,bj) - slaoffset
                   anom_slaobs(i,j,bi,bj) =
-     &                 anom_slaobs(i,j,bi,bj) - slaoffset
+     &                 anom_slaobs(i,j,bi,bj) - slaoffset2
                else
                   anom_psMslaobs(i,j,bi,bj) = 0. _d 0
                   anom_slaobs(i,j,bi,bj) = 0. _d 0
@@ -1286,7 +1294,7 @@ c time associated with this ndaysrec mean
      &       etaday(i,j,bi,bj) - tpob(i,j,bi,bj)
      &       - mean_psMslaobs(i,j,bi,bj) - slaoffset
      &       - anom_psMslaobs(i,j,bi,bj)
-         anom_tpobs(i,j,bi,bj)=tpob(i,j,bi,bj) - slaoffset
+         anom_tpobs(i,j,bi,bj)=tpob(i,j,bi,bj) - slaoffset2
      &       - anom_slaobs(i,j,bi,bj)
       endif
       if ( ersma(i,j,bi,bj)*mean_psMslaobs_MSK(i,j,bi,bj).NE.0. )
@@ -1295,7 +1303,7 @@ c time associated with this ndaysrec mean
      &       etaday(i,j,bi,bj) - ersob(i,j,bi,bj)
      &       - mean_psMslaobs(i,j,bi,bj) - slaoffset
      &       - anom_psMslaobs(i,j,bi,bj)
-         anom_ersobs(i,j,bi,bj)=ersob(i,j,bi,bj) - slaoffset
+         anom_ersobs(i,j,bi,bj)=ersob(i,j,bi,bj) - slaoffset2
      &       - anom_slaobs(i,j,bi,bj)
       endif
       if ( gfoma(i,j,bi,bj)*mean_psMslaobs_MSK(i,j,bi,bj).NE.0. )
@@ -1304,7 +1312,7 @@ c time associated with this ndaysrec mean
      &       etaday(i,j,bi,bj) - gfoob(i,j,bi,bj)
      &       - mean_psMslaobs(i,j,bi,bj) - slaoffset
      &       - anom_psMslaobs(i,j,bi,bj)
-         anom_gfoobs(i,j,bi,bj)=gfoob(i,j,bi,bj) - slaoffset
+         anom_gfoobs(i,j,bi,bj)=gfoob(i,j,bi,bj) - slaoffset2
      &       - anom_slaobs(i,j,bi,bj)
       endif
           enddo
