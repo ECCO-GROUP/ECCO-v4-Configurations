@@ -19,7 +19,13 @@ ECCO version 4 release 2 is a minor update of the original ECCO version 4 soluti
 
 ### Release 3: 1992-2015
 
-ECCO version 4 release 3 extends the estimation time period through 2015, includes new observational data including Aquarius, GRACE, Arctic T, S profiles, sea-ice concentration, global mean sea level & ocean mass.  Model controls now include initial u, v, ssh.  In addition, atmospheric model controls are separated into time-invariant & time-dependent variables.  See [v4r3_summary.pdf](https://github.com/ECCO-GROUP/ECCOv4-Configurations/blob/master/ECCOv4%20Release%203/doc/v4r3_summary.pdf) for more details.
+ECCO version 4 release 3 extends the estimation time period through 2015, includes new observational data: Aquarius, GRACE, Arctic T, S profiles, sea-ice concentration, global mean sea level & ocean mass.  Model controls now include initial u, v, ssh.  In addition, atmospheric model controls are separated into time-invariant & time-dependent variables.  See [v4r3_summary.pdf](https://github.com/ECCO-GROUP/ECCOv4-Configurations/blob/master/ECCOv4%20Release%203/doc/v4r3_summary.pdf) for more details.
+
+### Release 4: 1992-2017
+
+ECCO version 4 release 4 extends the estimation time period through 2017, includes new/updated observational data: GRACE ocean bottom pressure, altimetry sea surface height, in situ temperature/salinity profiles, Aquarius sea surface salinity, sea surface temperature, sea-ice concentration, mean dynamic topography, global mean sea level & ocean mass.
+
+The atmosphere pressure forcing is added to the estimate post optimization. The product has daily outputs of the estimate, including budget terms, to allow for daily budget calculations.
 
 ### devel: 
 The devel directory contains pieces of code that are useful, but not checked into the main MITgcm repository. 
