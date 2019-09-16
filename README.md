@@ -11,11 +11,17 @@ ECCO Version 4 is the first multidecadal global ECCO product (Forget et al., 201
 
 ### Release 1: 1992-2011
 
-The first official release of the ECCO Version 4 ocean and sea-ice state estimation system.
+The first official release of the ECCO Version 4 ocean and sea-ice state estimation system.  See Forget et al., 2015.
+For the configurations for ECCOv4 Release 1 and Release 2, please see the ECCOv4 github page:
+https://github.com/gaelforget/ECCOv4
 
 ### Release 2: 1992-2011
 
 ECCO version 4 release 2 is a minor update of the original ECCO version 4 solution (Forget et al., 2015) that benefits from a few additional corrections and improvements listed in Forget et al. (2016) including geothermal heating and an adjusted global mean precipitation to better match observed global mean sea level time-series observations. 
+
+For the configurations for ECCOv4 Release 1 and Release 2, please see the ECCOv4 github page:
+https://github.com/gaelforget/ECCOv4
+
 
 ### Release 3: 1992-2015
 
