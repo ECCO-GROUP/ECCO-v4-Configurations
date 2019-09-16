@@ -23,12 +23,9 @@ ECCO version 4 release 3 extends the estimation time period through 2015, includ
 
 ### Release 4: 1992-2017
 
-ECCO version 4 release 4 extends the estimation time period through 2017, includes new/updated observational data: 
-GRACE ocean bottom pressure, altimetry sea surface height, in situ temperature/salinity profiles, 
-Aquarius sea surface salinity, sea surface temperature, sea-ice concentration, 
-mean dynamic topography, global mean sea level & ocean mass.  
-The atmosphere pressure forcing is added to the estimate post optimization. Daily outputs 
-are generated to allow dalily budget calculations. 
+ECCO version 4 release 4 extends the estimation time period through 2017, includes new/updated observational data: GRACE ocean bottom pressure, altimetry sea surface height, in situ temperature/salinity profiles, Aquarius sea surface salinity, sea surface temperature, sea-ice concentration, mean dynamic topography, global mean sea level & ocean mass.
+
+The atmosphere pressure forcing is added to the estimate post optimization. The product has daily outputs of the estimate, including budget terms, to allow for daily budget calculations.
 
 ### devel: 
 The devel directory contains pieces of code that are useful, but not checked into the main MITgcm repository. 
