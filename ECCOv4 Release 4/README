@@ -7,9 +7,7 @@ ECCO Version 4: Fourth Release       [ECCO v4-r4] [https://ecco.jpl.nasa.gov/dri
   README                              This file
   doc                                 documentation for the state estimate including 
                                       a. overview figures of the solution
-
-  namelist                            namelist files (run-time parameters) needed to re-run the state estimate
-
+  input                               namelist files (run-time parameters) needed to re-run the state estimate
   code                                updated and/or new fortran codes and header files that are required to compile the MITgcm in the ECCOv4 configuration
   
 
@@ -23,9 +21,11 @@ ECCO Version 4: Fourth Release       [ECCO v4-r4] [https://ecco.jpl.nasa.gov/dri
  
 - Software:
   The ECCO v4-r4 files were produced using the 'checkpoint65u' versions of the general circulation 
-   model (MITgcm and ECCO v4 settings) and Matlab analysis toolboxes (gcmfaces and MITprof).
-  These software versions are available at http://mitgcm.org/download/other_checkpoints/
-   and http://mit.ecco-group.org/opendap/ecco_for_las/version_4/checkpoints/contents.html
+   model (MITgcm and ECCO v4 settings), Python package ECCOv4-py, and Matlab analysis toolboxes 
+   (gcmfaces and MITprof).
+  These software versions are available at http://mitgcm.org/download/other_checkpoints/,
+   https://github.com/ECCO-GROUP/ECCOv4-py, and 
+   http://mit.ecco-group.org/opendap/ecco_for_las/version_4/checkpoints/contents.html
 
 - Contact Us:
   ecco-support@mit.edu (please subscribe via http://mailman.mit.edu/mailman/listinfo/ecco-support)
