@@ -20,11 +20,11 @@ ECCO Version 4: Fourth Release       [ECCO v4-r4] [https://ecco.jpl.nasa.gov/dri
    state estimation. Geoscientific Model Development, 8, 3071-3104, doi:10.5194/gmd-8-3071-2015
  
 - Software:
-  The ECCO v4-r4 files were produced using the 'checkpoint65u' versions of the general circulation 
-   model (MITgcm and ECCO v4 settings), Python package ECCOv4-py, and Matlab analysis toolboxes 
-   (gcmfaces and MITprof).
+  The ECCO v4-r4 files were produced using the 'checkpoint66g' versions of the general circulation
+   model (MITgcm and ECCO v4 settings), Python analysis package (ECCOv4-py), and Matlab analysis
+   toolboxes (gcmfaces and MITprof).
   These software versions are available at http://mitgcm.org/download/other_checkpoints/,
-   https://github.com/ECCO-GROUP/ECCOv4-py, and 
+   https://github.com/ECCO-GROUP/ECCOv4-py, and
    http://mit.ecco-group.org/opendap/ecco_for_las/version_4/checkpoints/contents.html
 
 - Contact Us:
