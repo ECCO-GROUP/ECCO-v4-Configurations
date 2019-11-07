@@ -165,21 +165,23 @@ c    &                       SQUEEZE_RIGHT, myThid )
             do j = jmin,jmax
               do i =  imin,imax
                 m_eta(i,j,bi,bj)=
-     &                 etan(i,j,bi,bj)
+     &                (etan(i,j,bi,bj)
 #ifdef ATMOSPHERIC_LOADING
      &                +sIceLoad(i,j,bi,bj)*sIceLoadFac
 #endif
 #ifdef ALLOW_PSBAR_STERIC
      &                +sterGloH
 #endif
+     &                ) * maskC(i,j,1,bi,bj)
 
                 m_bp(i,j,bi,bj)=
-     &                 phiHydLow(i,j,bi,bj)
+     &                (phiHydLow(i,j,bi,bj)
 #ifdef ALLOW_PSBAR_STERIC
 C add back the correction due to the global mean steric ssh change,
 C     i.e. sterGloH computed in ecco_phys.F (units converted from m to m2/s2)
      &                 +sterGloH * gravity
 #endif
+     &                ) * maskC(i,j,1,bi,bj)
 
 #ifdef ATMOSPHERIC_LOADING
 #ifdef ALLOW_IB_CORR
@@ -191,13 +193,14 @@ C     i.e. sterGloH computed in ecco_phys.F (units converted from m to m2/s2)
      &           * maskC(i,j,1,bi,bj)
 
                 m_bp_nopabar(i,j,bi,bj)=
-     &                 phiHydLow(i,j,bi,bj)
+     &                (phiHydLow(i,j,bi,bj)
 #ifdef ALLOW_PSBAR_STERIC
 C add back the correction due to the global mean steric ssh change,
 C     i.e. sterGloH computed in ecco_phys.F (units converted from m to m2/s2)
      &                 +sterGloH * gravity
      &                 - ploadbar * recip_rhoConst
 #endif
+     &                ) * maskC(i,j,1,bi,bj)
 #endif
 #endif
               enddo
