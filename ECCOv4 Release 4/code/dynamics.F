@@ -12,6 +12,9 @@ C $Name:  $
 #ifdef ALLOW_OBCS
 # include "OBCS_OPTIONS.h"
 #endif
+#ifdef ALLOW_ECCO
+#include "ECCO_OPTIONS.h"
+#endif
 
 #undef DYNAMICS_GUGV_EXCH_CHECK
 
@@ -691,8 +694,8 @@ Cml)
 
        CALL DIAGNOSTICS_FILL(totPhihyd,'PHIHYD  ',0,Nr,0,1,1,myThid)
        CALL DIAGNOSTICS_FILL(phiHydLow,'PHIBOT  ',0, 1,0,1,1,myThid)
-       CALL DIAGNOSTICS_FILL(m_bp,'OBP     ',0, 1,0,1,1,myThid)
-       CALL DIAGNOSTICS_FILL(m_bp_nopabar,'OBPNOPAB',0, 1,0,1,1,myThid)
+       CALL DIAGNOSTICS_FILL(m_bp,'OBPGMAP',0, 1,0,1,1,myThid)
+       CALL DIAGNOSTICS_FILL(m_bp_nopabar,'OBP',0, 1,0,1,1,myThid)
 
        tmpFac = 1. _d 0
        CALL DIAGNOSTICS_SCALE_FILL(totPhihyd,tmpFac,2,

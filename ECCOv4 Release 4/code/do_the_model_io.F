@@ -58,6 +58,8 @@ C       |
 C       |-- SBO_CALC
 C       |-- SBO_OUTPUT
 C       |
+C       |-- STERGLOH_OUTPUT
+C       |
 C       |-- PABAR_OUTPUT
 C       |
 C       |-- SEAICE_OUTPUT
@@ -207,11 +209,12 @@ C     Do SBO diagnostics.
       ENDIF
 #endif
 
-#ifdef ATMOSPHERIC_LOADING
-#ifdef ALLOW_IB_CORR
-      CALL PABAR_OUTPUT( myTime, myIter, myThid )
+#ifdef ALLOW_ECCO
+      IF ( useECCO ) THEN
+        CALL STERGLOH_OUTPUT( myTime, myIter, myThid )
+        CALL PABAR_OUTPUT( myTime, myIter, myThid )
+      ENDIF
 #endif
-#endif 
 
 #ifdef  ALLOW_SEAICE
       IF ( useSEAICE ) THEN

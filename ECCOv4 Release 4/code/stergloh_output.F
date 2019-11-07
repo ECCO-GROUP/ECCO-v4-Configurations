@@ -2,15 +2,15 @@
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP
-C !ROUTINE: PABAR_OUTPUT
+C !ROUTINE: STERGLOH_OUTPUT
 
 C !INTERFACE:
-      SUBROUTINE PABAR_OUTPUT( myTime, myIter, myThid )
+      SUBROUTINE STERGLOH_OUTPUT( myTime, myIter, myThid )
 
 C !DESCRIPTION: \bv
 C     *==========================================================*
-C     | SUBROUTINE PABAR_OUTPUT
-C     | o Output the global mean air pressure.
+C     | SUBROUTINE STERGLOH_OUTPUT
+C     | o Ouput the global steric height change (Greatbatch correction) 
 C     *==========================================================*
 
 C !USES:
@@ -19,10 +19,8 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#ifdef ATMOSPHERIC_LOADING
-#ifdef ALLOW_IB_CORR
+#ifdef ALLOW_ECCO
 #include "ecco.h"
-#endif
 #endif
 
 C !INPUT PARAMETERS:
@@ -33,8 +31,8 @@ C     myThid    :: my Thread Id number
       INTEGER myIter
       INTEGER myThid
 
-#ifdef ATMOSPHERIC_LOADING
-#ifdef ALLOW_IB_CORR
+#ifdef ALLOW_ECCO
+#ifdef ALLOW_PSBAR_STERIC
 
 C !FUNCTIONS:
       LOGICAL  DIFFERENT_MULTIPLE
@@ -53,7 +51,7 @@ C     msgBuf    :: Informational/error message buffer
       _RS     dummyRS(1)
 
 C-----------------------------------------------------------------
-C     Save the global mean pabar at every time step
+C     Save the global mean steric heigt change at every time step
 C-----------------------------------------------------------------
 
       irecord      = myIter - nIter0 + 1
@@ -62,21 +60,21 @@ C-----------------------------------------------------------------
       _BEGIN_MASTER(myThid)
 C-    multi-threaded: only write it once (by master thread)
        IF ( rwSuffixType.EQ.0 ) THEN
-         WRITE(fName,'(A,I10.10)') 'Pa_global.', nIter0
+         WRITE(fName,'(A,I10.10)') 'sterGloH_global.', nIter0
        ELSE
          CALL RW_GET_SUFFIX( suff, startTime, nIter0, myThid )
-         WRITE(fName,'(A,A)') 'Pa_global.', suff
+         WRITE(fName,'(A,A)') 'sterGloH_global.', suff
        ENDIF
        ioUnit  = 0
        CALL MDS_WRITEVEC_LOC(
      I           fName, precFloat64, ioUnit,
-     I           'RL', narr, ploadbar, dummyRS,
+     I           'RL', narr, sterGloH, dummyRS,
      I           0, 0, irecord, myIter, myThid )
       _END_MASTER(myThid)
 #endif /* ALLOW_MDSIO */
 
-#endif /* ALLOW_ETA_IB */
-#endif /* ATMOSPHERIC_LOADING */ 
+#endif /* ALLOW_PSBAR_STERIC */
+#endif /* ALLOW_ECCO */
 
       RETURN
       END
