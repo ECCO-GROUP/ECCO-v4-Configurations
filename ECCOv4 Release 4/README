@@ -7,7 +7,7 @@ ECCO Version 4: Fourth Release       [ECCO v4-r4] [https://ecco.jpl.nasa.gov/dri
   README                              This file
   doc                                 documentation for the state estimate including 
                                       a. overview figures of the solution
-  input                               namelist files (run-time parameters) needed to re-run the state estimate
+  namelist                            namelist files (run-time parameters) needed to re-run the state estimate
   code                                updated and/or new fortran codes and header files that are required to compile the MITgcm in the ECCOv4 configuration
   
 
