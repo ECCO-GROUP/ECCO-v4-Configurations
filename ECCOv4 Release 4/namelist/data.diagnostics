@@ -352,20 +352,20 @@ fields(1,91) = 'SSH',
 filename(91) = 'diags/SSH_mon_mean/SSH_mon_mean',
 #---
 frequency(92) = 2635200.0,
-fields(1,92) = 'SSHIB',
-filename(92) = 'diags/SSHIB_mon_mean/SSHIB_mon_mean',
+fields(1,92) = 'SSHIBC',
+filename(92) = 'diags/SSHIBC_mon_mean/SSHIBC_mon_mean',
 #---
 frequency(93) = 2635200.0,
-fields(1,93) = 'SSHDYN',
-filename(93) = 'diags/SSHDYN_mon_mean/SSHDYN_mon_mean',
+fields(1,93) = 'SSHNOIBC',
+filename(93) = 'diags/SSHNOIBC_mon_mean/SSHNOIBC_mon_mean',
 #---
 frequency(94) = 2635200.0,
 fields(1,94) = 'OBP',
 filename(94) = 'diags/OBP_mon_mean/OBP_mon_mean',
 #---
 frequency(95) = 2635200.0,
-fields(1,95) = 'OBPNOPAB',
-filename(95) = 'diags/OBPNOPAB_mon_mean/OBPNOPAB_mon_mean',
+fields(1,95) = 'OBPGMAP',
+filename(95) = 'diags/OBPGMAP_mon_mean/OBPGMAP_mon_mean',
 #---
 frequency(96) = 2635200.0,
 fields(1,96) = 'EXFpress',
