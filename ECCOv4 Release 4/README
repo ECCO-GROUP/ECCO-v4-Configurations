@@ -9,7 +9,8 @@ ECCO Version 4: Fourth Release       [ECCO v4-r4] [https://ecco.jpl.nasa.gov/dri
                                       a. overview figures of the solution
   namelist                            namelist files (run-time parameters) needed to re-run the state estimate
   code                                updated and/or new fortran codes and header files that are required to compile the MITgcm in the ECCOv4 configuration
-  
+  scripts                             useful scripts, including Python code to generate netCDF files
+
 
 - References:
   Fukumori, I., O. Wang, I. Fenty, G. Forget, P. Heimbach, and R. M. Ponte, 2017: 
