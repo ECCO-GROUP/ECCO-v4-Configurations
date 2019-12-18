@@ -1,0 +1,73 @@
+December 18, 2019 
+Ou Wang 
+Jet Propulsion Laboratory
+
+This directory contains the updated optimization package
+ used in ECCO Version 4, Release 4. The optimization package
+ is the so-called "offline" version, where the optimization 
+ package generates ecco_ctrl for offline forward/adjoint 
+ runs. As such, the logical variable "loffline" has to be 
+ set to .TRUE. Also, one has to set numiter=1 and nfunc=1. 
+ The code will stop if numiter or nfunc is not set to one. 
+ Nothing has been tested for "online" iterations where forward/
+ adjoint runs are conducted within the optimization package.   
+
+ The main differences between this updated version and that 
+ in the MITgcm main CVS repository are
+ a) whether to overwrite OPWARMI and OPWARMD  when either 
+ of the two Wolfe conditions is not satisfied. This updated 
+ version would not overwrite OPWARMI and OPWARMD, while that 
+ in the main repository would.      
+ b) In this version, tact (step size) in the beginning is 
+    computed as (xx(i+1)-xx(i))/dd(i-1), but in the version 
+    in the main repository tact was set to 1. 
+ c) The two parameters used in Wolfe's conditions are  
+    xpara1 = 0.000001 and xpara2 = 0.99999. They were 
+    0.0001 and 0.9 in the original code.  
+
+1) Compile
+ To compile, one has to 
+ a) set MAX_INDEPEND in 
+ optim/Makefile (line 52) to the control vector length of 
+ his/her model. The control vector length can be found 
+ in the model's STDOUT.0000 by searching 
+ the string "global nvarlength for Nr". The control 
+ vector length is the last number of the line where
+ the string is.
+ b) include his/her build directory by replacing  
+  "../build/" in optim/Makefile 
+  (line 31) with the path of his/her own build directory. 
+ And then do the following:
+ cd lsopt
+ make clean
+ make 
+ cd optim
+ make clean
+ make 
+ The executable would be optim.x in optim/.
+
+2) Check for Wolfe conditions 
+ This updated version will NOT overwrite OPWARMI
+ and OPWARMD, when either of the two Wolfe 
+ conditions is NOT satisfied. The two Wolfe 
+ conditions are 1) sufficient decrease condition
+ (Armijo rule) and 2) curvature condition (cf. 
+ Wolfe [1969], [1971]). Suppose we are computing 
+ ecco_ctrl for iteration i (i>1) and we direct the 
+ print-outs to a file called op.txt. If we 
+ found 'Wolfe test 1: failed' or 'Wolfe test 2: failed'
+ in op.txt, then the previous iteration (i-1) is 
+ NOT a solution. The optimization package will still
+ generate a new ecco_ctrl file that we would use to 
+ re-do a new iteration. Note that when deriving 
+ iteration one, one would always find 
+ 'Wolfe test 1: failed' or 'Wolfe test 2: failed' 
+ for iteration zero in in op.txt and need to 
+ disregard this message, since iteration zero is 
+ always a solution. 
+
+References:
+ Wolfe, P. (1969). "Convergence Conditions for Ascent Methods". SIAM Review. 
+  11 (2): 226-235. doi:10.1137/1011036. 
+ Wolfe, P. (1971). "Convergence Conditions for Ascent Methods. II: Some Corrections". 
+  SIAM Review. 13 (2): 185-188. doi:10.1137/1013035
