@@ -1,0 +1,113 @@
+# *********************
+# External Forcing Data
+# *********************
+#
+ &EXF_NML_01
+#
+ useAtmWind        = .FALSE.,
+#NCEP VALUES:
+# exf_albedo        = 0.15,
+# exf_scal_BulkCdn  = 1.015,
+#
+#TO COMBINE WITH ALLOW_ZENITH_ANGLE:
+ exf_albedo        = 0.1,
+ useExfZenIncoming = .TRUE., 
+ select_ZenAlbedo  = 1,
+#
+ ocean_emissivity = 0.97,
+ ice_emissivity = 0.95,
+ snow_emissivity = 0.95,
+#
+ exf_iprec         = 32,
+ exf_yftype        = 'RL',
+ useExfYearlyFields= .TRUE.,
+ useExfCheckRange  = .FALSE.,
+
+ readStressOnAgrid = .FALSE.,
+ readStressOnCgrid = .TRUE.,
+ rotateStressOnAgrid = .FALSE.,
+ /
+#
+ &EXF_NML_02
+ ustressfile       = 'oceTAUX_6hourlyavg',
+ vstressfile       = 'oceTAUY_6hourlyavg',
+ hfluxfile         = 'TFLUX_6hourlyavg',
+ swfluxfile        = 'oceQsw_6hourlyavg',
+ sfluxfile         = 'oceFWflx_6hourlyavg',
+ saltflxfile       = 'oceSflux_6hourlyavg',
+ spflxfile         = 'oceSPflx_6hourlyavg',
+ apressurefile     = 'sIceLoadPatmPload_nopabar_6hourlyavg',
+#
+ ustressstartdate1   = 19920101,
+ ustressstartdate2   = 030000,
+ ustressperiod       = 21600.0,
+#
+ vstressstartdate1   = 19920101,
+ vstressstartdate2   = 030000,
+ vstressperiod       = 21600.0,
+#
+ hfluxstartdate1   = 19920101,
+ hfluxstartdate2   = 030000,
+ hfluxperiod       = 21600.0,
+#
+ swfluxstartdate1   = 19920101,
+ swfluxstartdate2   = 030000,
+ swfluxperiod       = 21600.0,
+#
+ sfluxstartdate1     = 19920101,
+ sfluxstartdate2     = 030000,
+ sfluxperiod         = 21600.0,
+#
+ saltflxstartdate1     = 19920101,
+ saltflxstartdate2     = 030000,
+ saltflxperiod         = 21600.0,
+#
+ spflxstartdate1     = 19920101,
+ spflxstartdate2     = 030000,
+ spflxperiod         = 21600.0,
+#
+#
+ apressurestartdate1     = 19920101,
+ apressurestartdate2     = 030000,
+ apressureperiod         = 21600.0,
+#
+#runofffile        = 'runoff-2d-Fekete-1deg-mon-V4-SMOOTH.bin',
+#runoffperiod      = -12,
+#
+ climsstperiod     = -12.,
+ climsssperiod     = -12.,
+ /
+#
+ &EXF_NML_03
+#NOT FOR EIG exf_offset_atemp  = 273.3971,
+ exf_offset_atemp  = 273.15,
+#NOT FOR NEW RUNOFF FIELD exf_inscal_runoff = 3.1710e-08,
+#exf_inscal_swdown = -1.0,
+#exf_inscal_lwdown = -1.0,
+ exf_inscal_hflux   = -1.0,
+ exf_inscal_swflux  = -1.0,
+ exf_inscal_sflux   = -1.d-3,
+ exf_inscal_saltflx = -1.0,
+ exf_inscal_apressure = 9.81,
+#exf_inscal_ustress = -1.0,
+#exf_inscal_vstress = -1.0,
+# to compensate for sea level rise for nlfs/realFWF
+#precip_exfremo_intercept = 1.073E-9,
+#precip_exfremo_slope = -3.340E-18,
+ /
+#
+ &EXF_NML_04
+#exf_output_interp=.TRUE.
+ ustress_interpMethod = 0,
+ vstress_interpMethod = 0,
+ hflux_interpMethod = 0,
+ swflux_interpMethod = 0,
+ sflux_interpMethod = 0,
+ saltflx_interpMethod = 0,
+ spflx_interpMethod = 0,
+ apressure_interpMethod = 0,
+#runoff_interpMethod = 0,
+ climsss_interpMethod = 0,
+#
+#
+ /
