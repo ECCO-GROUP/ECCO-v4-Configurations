@@ -1,0 +1,13 @@
+- This directory contains code that has Ian Fenty's adjointable sea-ice code.
+  README                              This file
+  code                                Patch code 
+  input                               Namelists 
+
+- Contact Us:
+  ecco-support@mit.edu (please subscribe via http://mailman.mit.edu/mailman/listinfo/ecco-support)
+
+-----------------------------
+README file revision history:
+-----------------------------
+
+- README file creation                             [Ou Wang] [2020/04/07]

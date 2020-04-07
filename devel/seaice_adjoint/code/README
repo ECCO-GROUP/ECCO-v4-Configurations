@@ -1,0 +1,24 @@
+20180205
+/nobackupp7/owang/v4_release2/FROM_CVS_NEWEST_20170606/MITgcm/verification/release3/code06
+
+modfified from 
+/nobackupp7/owang/v4_release2/FROM_CVS_NEWEST_20170606/MITgcm/verification/release3/code04bulk
+
+To test if the merged shelfice and icefront package works or not. 
+
+20180206
+1) copy files under 
+ /nobackupp7/owang/v4_release2/FROM_CVS_NEWEST_SHELFICE/MITgcm/verification/1D_ocean_ice_column_shelfice_icefront/TRASH99/code.20170612.tar.gz
+to code06
+
+2) Remove any files that have been modified when we added 
+control variables of heat flux and freshwater flux. 
+
+3) In code06, create code06_ad_diff.list and 
+ add shelfice_solve4fluxes.F in code06_ad_diff.list.
+ Otherwise, TAF generates the following error
+ messages:
+ TAF ERROR    Code of subroutine  shelfice_solve4fluxes not seen and no flow information set,
+ TAF ERROR    assuming all arguments are input and output
+ 
+  
