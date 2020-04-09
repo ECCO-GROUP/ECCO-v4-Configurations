@@ -451,11 +451,16 @@ C =====================================================================
           HSNOW(I,J,bi,bj) = MAX(ZERO, HSNOW(I,J,bi,bj))
           HEFF(I,J,bi,bj) = MAX(ZERO, HEFF(I,J,bi,bj))
           AREA(I,J,bi,bj) = MAX(ZERO, AREA(I,J,bi,bj))
-          AREA(I,J,bi,bj) = MIN(AREA(I,J,bi,bj), SEAICE_area_max)
 
          ENDDO
         ENDDO
 
+        DO J=1,sNy
+         DO I=1,sNx        
+          AREA(I,J,bi,bj) = MIN(AREA(I,J,bi,bj), SEAICE_area_max)
+         ENDDO
+        ENDDO
+        
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE AREA (:,:,bi,bj) = comlev1_bibj,key=iicekey,byte=isbyte
 CADJ STORE HEFF (:,:,bi,bj) = comlev1_bibj,key=iicekey,byte=isbyte
@@ -721,6 +726,8 @@ CADJ &     comlev1_bibj, key = iicekey, byte = isbyte
 CADJ STORE QSWI_mult       =
 CADJ &     comlev1_bibj, key = iicekey, byte = isbyte
 CADJ STORE FWsublim_mult   =
+CADJ &     comlev1_bibj, key = iicekey, byte = isbyte
+CADJ STORE SALT   =
 CADJ &     comlev1_bibj, key = iicekey, byte = isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
