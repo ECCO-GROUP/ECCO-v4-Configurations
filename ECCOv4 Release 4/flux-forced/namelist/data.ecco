@@ -15,15 +15,6 @@
  /
 #
  &ECCO_GENCOST_NML
-#
-#  gencost_avgperiod(1)  = 'month',
-#  gencost_barfile(1) = 'm_bpmon',
-#  gencost_datafile(1) = 'GRACE_Ensemble_withland_noNaN_v4r2',
-#  gencost_errfile(1) = 'GRACE_Ensemble_withland_err_20150803_areascaled',
-#  gencost_name(1) = 'bpv4-grace',
-#  gencost_outputlevel(1)=1,
-#  mult_gencost(1) = 1.,
-#
   gencost_avgperiod(1)  = 'month',
   gencost_barfile(1) = 'm_boxmean_eta_dyn',
   gencost_errfile(1) = 'mask_BeaufortSea.bin'
@@ -32,40 +23,9 @@
   gencost_timevaryweight(1)=.FALSE. 
   gencost_preproc(1,1)='skip',
   gencost_preproc_i(1,1)=303,
-# gencost_preproc(2,1)='anom',
   gencost_preproc(3,1)='glosum',
-# gencost_spmin(1) = -1.8,
-# gencost_spmax(1) = 40.,
-# gencost_spzero(1) = 0.,
-# gencost_is3d(1)=.TRUE.,
   gencost_msk_is3d(1)=.FALSE.,
   gencost_outputlevel(1)=1,
   mult_gencost(1) = 1.,
-
-  gencost_avgperiod(22)  = 'month',
-  gencost_barfile(22) = 'm_eta_dynmon',
-  gencost_datafile(22) = '20180228_ensemble_average_gmsl_ref.asc',
-  gencost_name(22) = 'gmsl',
-  gencost_wei1d(22) = 0.00325,
-  gencost_spmin(22) = -990.,
-  gencost_spmax(22) = 990.,
-  gencost_spzero(22) = 0.,
-  gencost_is1d(22)=.TRUE.,
-  gencost_outputlevel(22)=1,
-  mult_gencost(22) = 0.,
-
-
-
-
-
-#gencost_errfile(18) = 'sigma_surf_0p5.bin',
-#gencost_name(18) = 'sstv4-amsre-lsc',
-#gencost_scalefile(18) = 'sshv4_scale_3points.bin',
-#mult_gencost(18) = 0.,
-#gencost_errfile(17) = 'sigma_surf_0p5.bin',
-#gencost_name(17) = 'sstv4-amsre',
-#gencost_datafile(17) = 'tmi_amsre_l2p_r1',
-#mult_gencost(17) = 0.,
-#
  /
 #
