@@ -344,34 +344,34 @@ c read mask for averaging (3d, time series)
             do j = 1,sNy
               do i =  1,sNx
 C area or volume weight for global sum
-       if ( mymsk2(i,j,k,bi,bj).NE. 0. _d 0) then
-          if(nrtmp.EQ.Nr)then
-           offset  = offset + RA(i,j,bi,bj)*mybar(i,j,k,bi,bj)
-     &       * mymsk2(i,j,k,bi,bj) * drf(k)
-           offset_sum = offset_sum + RA(i,j,bi,bj)
-     &       * mymsk2(i,j,k,bi,bj) * drf(k)
-          else
-           offset  = offset + RA(i,j,bi,bj)*mybar(i,j,k,bi,bj)
-     &         *mymsk2(i,j,k,bi,bj)
-           offset_sum = offset_sum + RA(i,j,bi,bj)
-     &         *mymsk2(i,j,k,bi,bj)
-          endif
-       endif
-
-C simple sum of global (area or volume weight is done in ecco_phys.F)
 C      if ( mymsk2(i,j,k,bi,bj).NE. 0. _d 0) then
 C         if(nrtmp.EQ.Nr)then
-C          offset  = offset + mybar(i,j,k,bi,bj)
-C    &       * mymsk2(i,j,k,bi,bj) 
-C          offset_sum = offset_sum + 
-C    &         mymsk2(i,j,k,bi,bj) 
+C          offset  = offset + RA(i,j,bi,bj)*mybar(i,j,k,bi,bj)
+C    &       * mymsk2(i,j,k,bi,bj) * drf(k)
+C          offset_sum = offset_sum + RA(i,j,bi,bj)
+C    &       * mymsk2(i,j,k,bi,bj) * drf(k)
 C         else
-C          offset  = offset + mybar(i,j,k,bi,bj)
+C          offset  = offset + RA(i,j,bi,bj)*mybar(i,j,k,bi,bj)
 C    &         *mymsk2(i,j,k,bi,bj)
-C          offset_sum = offset_sum + 
-C    &          mymsk2(i,j,k,bi,bj)
+C          offset_sum = offset_sum + RA(i,j,bi,bj)
+C    &         *mymsk2(i,j,k,bi,bj)
 C         endif
 C      endif
+
+C simple sum of global (area or volume weight is done in ecco_phys.F)
+       if ( mymsk2(i,j,k,bi,bj).NE. 0. _d 0) then
+          if(nrtmp.EQ.Nr)then
+           offset  = offset + mybar(i,j,k,bi,bj)
+     &       * mymsk2(i,j,k,bi,bj) 
+           offset_sum = offset_sum + 
+     &         mymsk2(i,j,k,bi,bj) 
+          else
+           offset  = offset + mybar(i,j,k,bi,bj)
+     &         *mymsk2(i,j,k,bi,bj)
+           offset_sum = offset_sum + 
+     &          mymsk2(i,j,k,bi,bj)
+          endif
+       endif
 
               enddo
             enddo

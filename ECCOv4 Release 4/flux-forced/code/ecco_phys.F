@@ -370,7 +370,7 @@ c---------
 c
           gencost_storefld(i,j,bi,bj,kgen) =
      &        gencost_storefld(i,j,bi,bj,kgen)
-     &        +tmpmsk*tmpfld
+     &        +tmpmsk*tmpfld*rA(i,j,bi,bj)
           areavolTile(bi,bj)=areavolTile(bi,bj)
      &        +tmpmsk2*rA(i,j,bi,bj)
 c---------
