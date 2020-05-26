@@ -22,7 +22,7 @@
   gencost_name(1) = 'boxmean',
   gencost_timevaryweight(1)=.FALSE. 
   gencost_preproc(1,1)='skip',
-  gencost_preproc_i(1,1)=303,
+  gencost_preproc_i(1,1)=311,
   gencost_preproc(3,1)='glosum',
   gencost_msk_is3d(1)=.FALSE.,
   gencost_outputlevel(1)=1,
