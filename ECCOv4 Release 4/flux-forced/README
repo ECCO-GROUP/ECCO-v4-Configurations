@@ -7,6 +7,7 @@ ECCO Version 4: Fourth Release       [ECCO v4-r4] [https://ecco.jpl.nasa.gov/dri
   README                              This file
   namelist                            namelist files (run-time parameters) needed to re-run the state estimate
   code                                updated and/or new fortran codes and header files that are required to compile the MITgcm in the ECCOv4 configuration
+  doc                                 A document about the flux-forced configuration
 
 - References:
   Fukumori, I., O. Wang, I. Fenty, G. Forget, P. Heimbach, and R. M. Ponte, 2017: 
@@ -31,4 +32,5 @@ ECCO Version 4: Fourth Release       [ECCO v4-r4] [https://ecco.jpl.nasa.gov/dri
 README file revision history:
 -----------------------------
 
+- Add doc                                          [Ou Wang] [2020/05/25]
 - README file creation                             [Ou Wang] [2020/04/07]
