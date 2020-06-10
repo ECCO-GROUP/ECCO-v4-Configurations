@@ -1,4 +1,5 @@
-- This directory contains the development version of the ECCO Version 4, Release 5 configuration
+- This directory contains the development version of the ECCO Version 4, Release 5 configuration. 
+  The patch code is based on MITgcm checkpoint67l. 
   README                              This file
   code                                Patch code 
   input                               Namelists 
