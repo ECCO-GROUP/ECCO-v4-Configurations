@@ -3,6 +3,7 @@
   icefront_iceshelf                   Merged ice-front and ice-shelf code
   fluxforced                          Configuration for flux-forced runs
   seaice_adjoint                      Configuration for sea-ice adjoint 
+  V4r5_devel                          A development version of configuration for ECCO Version 4, Release 5
 
 - Contact Us:
   ecco-support@mit.edu (please subscribe via http://mailman.mit.edu/mailman/listinfo/ecco-support)
@@ -11,6 +12,7 @@
 README file revision history:
 -----------------------------
 
+- Add V4r5_devel                                   [Ou Wang] [2020/06/10]
 - Add configuration for sea-ice adjoint code       [Ou Wang] [2020/04/07]
 - Add configuration for flux-forced runs           [Ou Wang] [2019/07/02]
 - Add merged ice-shelf and ice-front code          [Ou Wang] [2019/07/01]

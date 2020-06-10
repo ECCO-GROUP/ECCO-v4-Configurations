@@ -1,0 +1,13 @@
+- This directory contains the development version of the ECCO Version 4, Release 5 configuration
+  README                              This file
+  code                                Patch code 
+  input                               Namelists 
+
+- Contact Us:
+  ecco-support@mit.edu (please subscribe via http://mailman.mit.edu/mailman/listinfo/ecco-support)
+
+-----------------------------
+README file revision history:
+-----------------------------
+
+- README file creation                             [Ou Wang] [2020/06/10]
