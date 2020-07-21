@@ -711,8 +711,10 @@ cdm #endif
 #endif
 #ifdef ALLOW_DOWNWARD_RADIATION
            IF (xx_gentim2d_file(iarr)(1:9).EQ.'xx_swdown') THEN
-     &       swdown(i,j,bi,bj)=swdown(i,j,bi,bj)+
-     &                         xx_gentim2d(i,j,bi,bj,iarr)
+             IF swdown(i,j,bi,bj) .GT. 0. _d 0 THEN
+     &          swdown(i,j,bi,bj)=swdown(i,j,bi,bj)+
+     &                            xx_gentim2d(i,j,bi,bj,iarr)
+             ENDIF
 #ifdef EXF_ZERO_BOUND_SWDOWN
      &       swdown(i,j,bi,bj)=MAX(swdown(i,j,bi,bj), 0 _d 0)
 #undef 
