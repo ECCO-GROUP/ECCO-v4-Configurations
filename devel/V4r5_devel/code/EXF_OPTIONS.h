@@ -192,7 +192,6 @@ c- define zero bounds for forcing fields
 #define EXF_ZERO_BOUND_LWDOWN
 #define EXF_ZERO_BOUND_RUNOFF
 
-n
 #if (defined (ALLOW_BULKFORMULAE) && defined (ATMOSPHERIC_LOADING))
 C Note: To use EXF_CALC_ATMRHO, both ALLOW_BULKFORMULAE
 C       and ATMOSPHERIC_LOADING need to be defined
