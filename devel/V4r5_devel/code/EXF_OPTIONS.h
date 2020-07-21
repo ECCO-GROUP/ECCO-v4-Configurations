@@ -185,6 +185,13 @@ C-  Other forcing fields
 #undef  ALLOW_RUNOFTEMP
 #define ALLOW_SALTFLX
 
+c- define zero bounds for forcing fields
+#define EXF_ZERO_BOUND_AQH
+#define EXF_ZERO_BOUND_PRECIP
+#define EXF_ZERO_BOUND_SWDOWN
+#define EXF_ZERO_BOUND_LWDOWN
+#define EXF_ZERO_BOUND_RUNOFF
+
 #if (defined (ALLOW_BULKFORMULAE) && defined (ATMOSPHERIC_LOADING))
 C Note: To use EXF_CALC_ATMRHO, both ALLOW_BULKFORMULAE
 C       and ATMOSPHERIC_LOADING need to be defined
