@@ -687,18 +687,18 @@ cdm #endif
      &       atemp(i,j,bi,bj)=atemp(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
            IF (xx_gentim2d_file(iarr)(1:6).EQ.'xx_aqh') THEN
-     &       aqh(i,j,bi,bj)=aqh(i,j,bi,bj)+
+             aqh(i,j,bi,bj)=aqh(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
-#ifdef EXF_ZERO_BOUND_AQH 
-     &       aqh(i,j,bi,bj)=MAX(aqh(i,j,bi,bj), 0 _d 0)
-#undef 
+#ifdef EXF_ZERO_BOUND_AQH
+             aqh(i,j,bi,bj)=MAX(aqh(i,j,bi,bj), 0 _d 0)
+#endif
            ENDIF
            IF (xx_gentim2d_file(iarr)(1:9).EQ.'xx_precip') THEN
-     &       precip(i,j,bi,bj)=precip(i,j,bi,bj)+
+             precip(i,j,bi,bj)=precip(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
 #ifdef EXF_ZERO_BOUND_PRECIP
-     &       precip(i,j,bi,bj)=MAX(precip(i,j,bi,bj), 0 _d 0)
-#undef 
+             precip(i,j,bi,bj)=MAX(precip(i,j,bi,bj), 0 _d 0)
+#endif
            ENDIF
            IF (xx_gentim2d_file(iarr)(1:9).EQ.'xx_lwflux')
      &       lwflux(i,j,bi,bj)=lwflux(i,j,bi,bj)+
@@ -711,30 +711,29 @@ cdm #endif
 #endif
 #ifdef ALLOW_DOWNWARD_RADIATION
            IF (xx_gentim2d_file(iarr)(1:9).EQ.'xx_swdown') THEN
-             IF swdown(i,j,bi,bj) .GT. 0. _d 0 THEN
-     &          swdown(i,j,bi,bj)=swdown(i,j,bi,bj)+
-     &                            xx_gentim2d(i,j,bi,bj,iarr)
+             IF (swdown(i,j,bi,bj) .GT. 0. _d 0) THEN
+               swdown(i,j,bi,bj)=swdown(i,j,bi,bj)+
+     &                           xx_gentim2d(i,j,bi,bj,iarr)
              ENDIF
 #ifdef EXF_ZERO_BOUND_SWDOWN
-     &       swdown(i,j,bi,bj)=MAX(swdown(i,j,bi,bj), 0 _d 0)
-#undef 
+             swdown(i,j,bi,bj)=MAX(swdown(i,j,bi,bj), 0 _d 0)
+#endif
            ENDIF
            IF (xx_gentim2d_file(iarr)(1:9).EQ.'xx_lwdown') THEN
-     &       lwdown(i,j,bi,bj)=lwdown(i,j,bi,bj)+
+             lwdown(i,j,bi,bj)=lwdown(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
 #ifdef EXF_ZERO_BOUND_LWDOWN
-     &       lwdown(i,j,bi,bj)=MAX(lwdown(i,j,bi,bj), 0 _d 0)
-#undef 
+             lwdown(i,j,bi,bj)=MAX(lwdown(i,j,bi,bj), 0 _d 0)
+#endif
            ENDIF
-
 #endif
 #ifdef ALLOW_RUNOFF
            IF (xx_gentim2d_file(iarr)(1:9).EQ.'xx_runoff') THEN
-     &       runoff(i,j,bi,bj)=runoff(i,j,bi,bj)+
+             runoff(i,j,bi,bj)=runoff(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
 #ifdef EXF_ZERO_BOUND_RUNOFF
-     &       runoff(i,j,bi,bj)=MAX(runoff(i,j,bi,bj), 0 _d 0)
-#undef 
+             runoff(i,j,bi,bj)=MAX(runoff(i,j,bi,bj), 0 _d 0)
+#endif
            ENDIF
 #endif
 #ifdef EXF_READ_EVAP
