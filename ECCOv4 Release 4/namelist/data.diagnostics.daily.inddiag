@@ -453,7 +453,26 @@ frequency(96) = 86400.0,
 fields(1,96) = 'EXFpress',
 timePhase(96) = 43200,
 filename(96) = 'diags/EXFpress_day_mean/EXFpress_day_mean',
-
+#---
+frequency(97) = 86400.0,
+fields(1,97) = 'SIacSubl',
+timePhase(97) = 43200,
+filename(97) = 'diags/SIacSubl_day_mean/SIacSubl_day_mean',
+#---
+frequency(98) = 86400.0,
+fields(1,98) = 'SIaaflux',
+timePhase(98) = 43200,
+filename(98) = 'diags/SIaaflux_day_mean/SIaaflux_day_mean',
+#---
+frequency(99) = 86400.0,
+fields(1,99) = 'SIfwThru',
+timePhase(99) = 43200,
+filename(99) = 'diags/SIfwThru_day_mean/SIfwThru_day_mean',
+#---
+frequency(100) = 86400.0,
+fields(1,100) = 'SIrsSubl',
+timePhase(100) = 43200,
+filename(100) = 'diags/SIrsSubl_day_mean/SIrsSubl_day_mean',
 #---
   /
 #
