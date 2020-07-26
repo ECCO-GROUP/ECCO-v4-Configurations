@@ -689,17 +689,17 @@ cdm #endif
            IF (xx_gentim2d_file(iarr)(1:6).EQ.'xx_aqh') THEN
              aqh(i,j,bi,bj)=aqh(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
-#ifdef EXF_ZERO_BOUND_AQH
-             aqh(i,j,bi,bj)=MAX(aqh(i,j,bi,bj), 0 _d 0)
-#endif
            ENDIF
+#ifdef EXF_ZERO_BOUND_AQH
+           aqh(i,j,bi,bj)=MAX(aqh(i,j,bi,bj), 0 _d 0)
+#endif
            IF (xx_gentim2d_file(iarr)(1:9).EQ.'xx_precip') THEN
              precip(i,j,bi,bj)=precip(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
-#ifdef EXF_ZERO_BOUND_PRECIP
-             precip(i,j,bi,bj)=MAX(precip(i,j,bi,bj), 0 _d 0)
-#endif
            ENDIF
+#ifdef EXF_ZERO_BOUND_PRECIP
+           precip(i,j,bi,bj)=MAX(precip(i,j,bi,bj), 0 _d 0)
+#endif
            IF (xx_gentim2d_file(iarr)(1:9).EQ.'xx_lwflux')
      &       lwflux(i,j,bi,bj)=lwflux(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
@@ -715,26 +715,26 @@ cdm #endif
                swdown(i,j,bi,bj)=swdown(i,j,bi,bj)+
      &                           xx_gentim2d(i,j,bi,bj,iarr)
              ENDIF
-#ifdef EXF_ZERO_BOUND_SWDOWN
-             swdown(i,j,bi,bj)=MAX(swdown(i,j,bi,bj), 0 _d 0)
-#endif
            ENDIF
+#ifdef EXF_ZERO_BOUND_SWDOWN
+           swdown(i,j,bi,bj)=MAX(swdown(i,j,bi,bj), 0 _d 0)
+#endif
            IF (xx_gentim2d_file(iarr)(1:9).EQ.'xx_lwdown') THEN
              lwdown(i,j,bi,bj)=lwdown(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
-#ifdef EXF_ZERO_BOUND_LWDOWN
-             lwdown(i,j,bi,bj)=MAX(lwdown(i,j,bi,bj), 0 _d 0)
-#endif
            ENDIF
+#ifdef EXF_ZERO_BOUND_LWDOWN
+           lwdown(i,j,bi,bj)=MAX(lwdown(i,j,bi,bj), 0 _d 0)
+#endif
 #endif
 #ifdef ALLOW_RUNOFF
            IF (xx_gentim2d_file(iarr)(1:9).EQ.'xx_runoff') THEN
              runoff(i,j,bi,bj)=runoff(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
-#ifdef EXF_ZERO_BOUND_RUNOFF
-             runoff(i,j,bi,bj)=MAX(runoff(i,j,bi,bj), 0 _d 0)
-#endif
            ENDIF
+#ifdef EXF_ZERO_BOUND_RUNOFF
+           runoff(i,j,bi,bj)=MAX(runoff(i,j,bi,bj), 0 _d 0)
+#endif
 #endif
 #ifdef EXF_READ_EVAP
            IF (xx_gentim2d_file(iarr)(1:7).EQ.'xx_evap')
