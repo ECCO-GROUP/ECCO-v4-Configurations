@@ -115,9 +115,9 @@ c need to include halos for find_rho_2d
         sterGloH=0. _d 0
       endif
 
-c     WRITE(msgBuf,'(A,1PE21.14)') ' sterGloH= ', sterGloH
-c        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-c    &                       SQUEEZE_RIGHT, myThid )
+      WRITE(msgBuf,'(A,1PE21.14)') ' sterGloH= ', sterGloH
+         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                       SQUEEZE_RIGHT, myThid )
 
 #endif
 
