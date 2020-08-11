@@ -61,8 +61,8 @@ c- note defined with overlap here, not needed, but more efficient
 #ifdef ALLOW_PSBAR_STERIC
       _RL RHOInSituLoc(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL VOLsumTile(nSx,nSy),RHOsumTile(nSx,nSy)
+      CHARACTER*(MAX_LEN_MBUF) msgBuf
 #endif
-      character*200 msgBuf
 
 c need to include halos for find_rho_2d
       iMin = 1-OLx
@@ -332,16 +332,8 @@ c---------
 
       if (gencost_barfile(kgen)(1:9).EQ.'m_boxmean') then
         CALL GLOBAL_SUM_TILE_RL( areavolTile, areavolGlob, myThid )
-C       CALL ecco_div( gencost_storefld(1-OLx,1-OLy,1,1,kgen),
-C    &                 1, areavolGlob, myThid )
-CZZZZZ====beg
-      WRITE(msgBuf,'(A,4E14.4)') ' ZZZ check boxmean  ', areavolGlob, 
-     &    gencost_storefld( 5, 5,1,1,kgen),
-     &    gencost_storefld(15,15,1,1,kgen),
-     &    gencost_storefld(25,25,1,1,kgen) 
-         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                       SQUEEZE_RIGHT, myThid )
-CZZZZZ====end
+        CALL ecco_div( gencost_storefld(1-OLx,1-OLy,1,1,kgen),
+     &                 1, areavolGlob, myThid )
       endif
 
       enddo
