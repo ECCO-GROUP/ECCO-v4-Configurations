@@ -18,6 +18,8 @@ C     *==========================================================*
 #define ALLOW_SEAICE_GROWTH_ADX
 C     Package-specific Options & Macros go here
 
+#define ALLOW_SEAICE_FLOODING
+
 C--   Write "text-plots" of certain fields in STDOUT for debugging.
 #undef SEAICE_DEBUG
 

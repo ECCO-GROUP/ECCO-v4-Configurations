@@ -200,6 +200,17 @@ C      mask3dICF: 3d ice-front mask
       _RS mask2dICF  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS mask3dICF  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 
+C ow - 07/23/2020
+C ow - CURI_ARR, CURJ_AA, 
+C      CURI_ARR: i-index for neighboring ice-front points
+C      CURJ_ARR: j-index for neighboring ice-front points
+C      icefrontwidth_arr: ice-front width in meters
+      COMMON /SHELFICE_ICEFRONT_I/CURI_ARR, CURJ_ARR
+      INTEGER CURI_ARR(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy,4) 
+      INTEGER CURJ_ARR(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy,4) 
+      COMMON /SHELFICE_ICEFRONT_R/icefrontwidth_arr
+      _RL icefrontwidth_arr(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy,4) 
+
       LOGICAL SHELFICEisOn
       LOGICAL useISOMIPTD
       LOGICAL SHELFICEconserve
