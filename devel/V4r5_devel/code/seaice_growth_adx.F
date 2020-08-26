@@ -1232,6 +1232,23 @@ CADJ STORE HSNOW(:,:,bi,bj) = comlev1_bibj,key=iicekey,byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
+#ifdef ALLOW_SEAICE_FLOODING
+        IF(SEAICEuseFlooding) THEN
+         DO J=1,sNy
+           DO I=1,sNx
+ 
+            tmpscal0 = (HSNOW(I,J,bi,bj)*SEAICE_rhoSnow
+     &               +HEFF(I,J,bi,bj)*SEAICE_rhoIce)*recip_rhoConst
+            d_HEFFbyFlood(I,J) = MAX(tmpscal0 - HEFF(I,J,bi,bj),0. _d 0)
+                     HEFF(I,J,bi,bj)=HEFF(I,J,bi,bj)+d_HEFFbyFlood(I,J)
+                     HSNOW(I,J,bi,bj) = HSNOW(I,J,bi,bj)-
+     &               d_HEFFbyFlood(I,J)*ICE2SNOW
+           ENDDO
+         ENDDO
+c SEAICEuseFlooding
+        ENDIF
+c ALLOW_SEAICE_FLOODING
+#endif
         DO J=1,sNy
           DO I=1,sNx
 
@@ -1243,19 +1260,19 @@ c         THE EFFECTIVE SHORTWAVE HEATING RATE
 #else
             QSW(I,J,bi,bj) = 0. _d 0
 #endif
-#ifdef ALLOW_SEAICE_FLOODING
-        IF(SEAICEuseFlooding) THEN
-
-           tmpscal0 = (HSNOW(I,J,bi,bj)*SEAICE_rhoSnow
-     &              +HEFF(I,J,bi,bj)*SEAICE_rhoIce)*recip_rhoConst
-          d_HEFFbyFlood(I,J) = MAX(tmpscal0 - HEFF(I,J,bi,bj), 0. _d 0)
-                      HEFF(I,J,bi,bj)=HEFF(I,J,bi,bj)+d_HEFFbyFlood(I,J)
-                      HSNOW(I,J,bi,bj) = HSNOW(I,J,bi,bj)-
-     &                 d_HEFFbyFlood(I,J)*ICE2SNOW
-c SEAICEuseFlooding
-           ENDIF
-c ALLOW_SEAICE_FLOODING
-#endif
+C#ifdef ALLOW_SEAICE_FLOODING
+C        IF(SEAICEuseFlooding) THEN
+C
+C           tmpscal0 = (HSNOW(I,J,bi,bj)*SEAICE_rhoSnow
+C     &              +HEFF(I,J,bi,bj)*SEAICE_rhoIce)*recip_rhoConst
+C          d_HEFFbyFlood(I,J) = MAX(tmpscal0 - HEFF(I,J,bi,bj), 0. _d 0)
+C                      HEFF(I,J,bi,bj)=HEFF(I,J,bi,bj)+d_HEFFbyFlood(I,J)
+C                      HSNOW(I,J,bi,bj) = HSNOW(I,J,bi,bj)-
+C     &                 d_HEFFbyFlood(I,J)*ICE2SNOW
+Cc SEAICEuseFlooding
+C           ENDIF
+Cc ALLOW_SEAICE_FLOODING
+C#endif
 
 c           The actual ice volume change over the time step
             ActualNewTotalVolumeChange(I,J) =

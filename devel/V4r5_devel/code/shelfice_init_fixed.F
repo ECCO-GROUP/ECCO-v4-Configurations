@@ -156,6 +156,17 @@ C ow - the vertical, then mask2dSHI at i,j is one.
           ENDDO
          ENDDO
         ENDDO
+
+        DO J = 1-OLy,sNy+OLy
+          DO I = 1-OLx,sNx+OLx
+             DO SI = 1,4
+                CURI_ARR(I,J,bi,bj,SI) = -9999
+                CURJ_ARR(I,J,bi,bj,SI) = -9999
+                icefrontwidth_arr(I,J,bi,bj,SI) = 0. _d 0
+             ENDDO /* SI */
+          ENDDO /* I */
+        ENDDO /* J */
+
 C       DO k=1,Nr
 C        DO j=1-OLy,sNy+OLy
 C         DO i=1-OLx,sNx+OLx
@@ -322,6 +333,11 @@ C--   Looking to south
                   
                       iceFrontWidth     = dxG(I,J,bi,bj)
                     endif
+
+                    CURI_ARR(I,J,bi,bj,SI) = CURI
+                    CURJ_ARR(I,J,bi,bj,SI) = CURJ
+                    iceFrontWidth_arr(I,J,bi,bj,SI) = iceFrontWidth
+
                     
 C--                 cell depth describes the average distance 
 C--                 perpendicular to the ice front fact

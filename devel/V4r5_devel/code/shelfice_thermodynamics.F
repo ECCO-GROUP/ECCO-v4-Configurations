@@ -175,34 +175,12 @@ C--   Loop around the four laterally neighboring cells of the ice front.
 C--   If any neighboring points has wet volume in contact with the ice
 C--   front at (I,J) then calculate ice-ocean exchanges.  
 C--   The four laterally neighboring point are at (CURI,CURJ)
+
                   DO SI = 1,4
-                    IF     (SI .EQ. 1) THEN
-C--   Looking to right                  
-                      CURI = I+1
-                      CURJ = J
+                     CURI=CURI_ARR(I,J,bi,bj,SI) 
+                     CURJ=CURJ_ARR(I,J,bi,bj,SI)
+                     iceFrontWidth=iceFrontWidth_arr(I,J,bi,bj,SI)
 
-                      iceFrontWidth     = dyG(I+1,J,bi,bj)
-                      
-                    ELSEIF (SI .EQ. 2) THEN
-C--   Looking to LEFT                  
-                      CURI = I-1
-                      CURJ = J
-
-                      iceFrontWidth     = dyG(I,J,bi,bj)
-                    ELSEIF (SI .EQ. 3) THEN
-C--   Looking to NORTH                                    
-                      CURI = I
-                      CURJ = J+1
-
-                      iceFrontWidth     = dxG(I,J+1,bi,bj)
-                    ELSEIF (SI .EQ. 4) THEN
-C--   Looking to south                   
-                      CURI = I
-                      CURJ = J-1
-                  
-                      iceFrontWidth     = dxG(I,J,bi,bj)
-                    endif
-                    
 C--                 cell depth describes the average distance 
 C--                 perpendicular to the ice front fact
 
