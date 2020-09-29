@@ -587,7 +587,7 @@ C    I  myThid )
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
-      diagName  = 'OBPGMAP'
+      diagName  = 'OBPGMAP '
       diagTitle = 
      I'Ocean Bottom Pressure Including Global Mean Atmospheric Pressure'
       diagUnits = 'm^2/s^2         '
