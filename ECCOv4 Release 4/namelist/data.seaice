@@ -10,8 +10,8 @@
 
       SEAICE_no_slip     = .TRUE.,
 
-      SEAICE_drag=1.00,
-      OCEAN_drag=1.00,
+      SEAICE_drag=0.001,
+      OCEAN_drag=0.001,
 
 #####
       SEAICEuseTILT=.FALSE.,

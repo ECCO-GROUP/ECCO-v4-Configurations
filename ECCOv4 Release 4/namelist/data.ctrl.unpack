@@ -8,10 +8,10 @@
  ctrlSmoothCorrel3D=.TRUE.,
   ctrlUseGen=.TRUE.,
 #to start from given xx*00.data files
-  doinitxx = .FALSE.,
-  doMainUnpack = .FALSE.,
-#to start from given ecco_ctrl... files
 # doinitxx = .FALSE.,
+# doMainUnpack = .FALSE.,
+#to start from given ecco_ctrl... files
+  doinitxx = .FALSE.,
 #
 #doPackDiag = .TRUE.,
  forcingPrecond=1.,
