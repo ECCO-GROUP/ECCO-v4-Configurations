@@ -93,6 +93,7 @@ c     == local variables ==
       character*(MAX_LEN_FNAM) xx_precip_file
       character*(MAX_LEN_FNAM) xx_lwdown_file
       character*(MAX_LEN_FNAM) xx_swdown_file
+      character*(MAX_LEN_FNAM) xx_wspeed_file
 #endif
 
 c     == external functions ==
@@ -239,6 +240,7 @@ cph Initial wind stress adjustments are too vigorous.
       xx_precip_file     = 'xx_precip'
       xx_lwdown_file     = 'xx_lwdown'
       xx_swdown_file     = 'xx_swdown'
+      xx_wspeed_file     = 'xx_wspeed'
 #endif
 
       if ( gencount0 .LE. 2 .AND. (
@@ -248,6 +250,7 @@ cph Initial wind stress adjustments are too vigorous.
      &       xx_gen_file(1:9) .EQ. xx_precip_file .OR.
      &       xx_gen_file(1:9) .EQ. xx_lwdown_file .OR.
      &       xx_gen_file(1:9) .EQ. xx_swdown_file .OR.
+     &       xx_gen_file(1:9) .EQ. xx_wspeed_file .OR.
 #endif
      &       xx_gen_file(1:7) .EQ. xx_tauu_file .OR.
      &       xx_gen_file(1:7) .EQ. xx_tauv_file ) .AND.

@@ -10,7 +10,7 @@ C NUM_INTERP_POINTS   :: number of points used in horizontal averaging
 C============================================================
 
       INTEGER  NOBSGLOB
-      PARAMETER ( NOBSGLOB = 160000  )
+      PARAMETER ( NOBSGLOB = 100000  )
       INTEGER NFILESPROFMAX
       PARAMETER ( NFILESPROFMAX=35 )
       INTEGER NVARMAX

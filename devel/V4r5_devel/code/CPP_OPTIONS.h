@@ -18,7 +18,11 @@ CEOP
 
 C CPP flags controlling particular source code features
 
-C use 3d shiTransCoeffT and shiTransCoeffS
+C o Turn off capping of precip with snowprecip. This will elimnates one
+C   forward loop in the adjoint code.
+#define Turnoff_capping_precip_by_snowprecip 
+
+C o Use 3d shiTransCoeffT and shiTransCoeffS
 #define ALLOW_shiTransCoeff_3d
 
 C o Shortwave heating as extra term in external_forcing.F

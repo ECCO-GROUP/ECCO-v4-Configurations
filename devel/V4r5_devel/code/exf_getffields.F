@@ -66,6 +66,7 @@ C     == local variables ==
      defined (ALLOW_GENTIM2D_CONTROL))
       INTEGER iarr
 #endif
+      _RL     localmask(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
 C     == end of interface ==
 
@@ -317,6 +318,8 @@ C-    Snow.
      I     snowprecip_interpMethod,
 #endif
      I     myTime, myIter, myThid )
+
+#ifndef Turnoff_capping_precip_by_snowprecip
 C     Take care of case where total precip is not defined
       IF ( snowPrecipFile .NE. ' ' ) THEN
        DO bj = myByLo(myThid),myByHi(myThid)
@@ -330,6 +333,7 @@ C     Take care of case where total precip is not defined
         ENDDO
        ENDDO
       ENDIF
+#endif /* Turnoff_capping_precip_by_snowprecip */
 
 #endif /* ALLOW_ATM_TEMP */
 
@@ -662,7 +666,8 @@ C-- Control variables for atmos. state
       ENDDO
 #endif /* ALLOW_ATM_MEAN_CONTROL */
 
-cdm transferred from exf_init_runoff.F cdm functionality needs to be checked before turning on
+cdm transferred from exf_init_runoff.F
+cdm functionality needs to be checked before turning on
 cdm #ifdef ALLOW_RUNOFF_CONTROL
 cdm       CALL CTRL_GET_GEN (
 cdm      &     xx_runoff_file, xx_runoffstartdate, xx_runoffperiod,
@@ -677,6 +682,24 @@ cdm #endif
 
 #if (defined (ALLOW_CTRL) && defined (ALLOW_GENTIM2D_CONTROL))
       IF ( useCTRL.AND.ctrlUseGen ) THEN
+#ifdef ALLOW_DOWNWARD_RADIATION
+#ifdef NO_NIGHTTIME_CTRL_ADJ_TO_SWDOWN
+       DO bj = myByLo(myThid),myByHi(myThid)
+       DO bi = myBxLo(myThid),myBxHi(myThid)
+        DO j = 1,sNy
+         DO i = 1,sNx
+            if(swdown(i,j,bi,bj).GT.0. _d 0)then
+             localmask(i,j,bi,bj)=1. _d 0
+            else
+             localmask(i,j,bi,bj)=0. _d 0
+            endif
+         ENDDO
+        ENDDO
+       ENDDO
+       ENDDO
+#endif
+#endif
+
        DO bj = myByLo(myThid),myByHi(myThid)
        DO bi = myBxLo(myThid),myBxHi(myThid)
         DO j = 1,sNy
@@ -686,20 +709,12 @@ cdm #endif
            IF (xx_gentim2d_file(iarr)(1:8).EQ.'xx_atemp')
      &       atemp(i,j,bi,bj)=atemp(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
-           IF (xx_gentim2d_file(iarr)(1:6).EQ.'xx_aqh') THEN
-             aqh(i,j,bi,bj)=aqh(i,j,bi,bj)+
+           IF (xx_gentim2d_file(iarr)(1:6).EQ.'xx_aqh')
+     &       aqh(i,j,bi,bj)=aqh(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
-           ENDIF
-#ifdef EXF_ZERO_BOUND_AQH
-           aqh(i,j,bi,bj)=MAX(aqh(i,j,bi,bj), 0 _d 0)
-#endif
-           IF (xx_gentim2d_file(iarr)(1:9).EQ.'xx_precip') THEN
-             precip(i,j,bi,bj)=precip(i,j,bi,bj)+
+           IF (xx_gentim2d_file(iarr)(1:9).EQ.'xx_precip')
+     &       precip(i,j,bi,bj)=precip(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
-           ENDIF
-#ifdef EXF_ZERO_BOUND_PRECIP
-           precip(i,j,bi,bj)=MAX(precip(i,j,bi,bj), 0 _d 0)
-#endif
            IF (xx_gentim2d_file(iarr)(1:9).EQ.'xx_lwflux')
      &       lwflux(i,j,bi,bj)=lwflux(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
@@ -711,30 +726,23 @@ cdm #endif
 #endif
 #ifdef ALLOW_DOWNWARD_RADIATION
            IF (xx_gentim2d_file(iarr)(1:9).EQ.'xx_swdown') THEN
-             IF (swdown(i,j,bi,bj) .GT. 0. _d 0) THEN
+#ifdef NO_NIGHTTIME_CTRL_ADJ_TO_SWDOWN
+               swdown(i,j,bi,bj)=swdown(i,j,bi,bj)+
+     &                           localmask(i,j,bi,bj)*
+     &                           xx_gentim2d(i,j,bi,bj,iarr)
+#else
                swdown(i,j,bi,bj)=swdown(i,j,bi,bj)+
      &                           xx_gentim2d(i,j,bi,bj,iarr)
-             ENDIF
-           ENDIF
-#ifdef EXF_ZERO_BOUND_SWDOWN
-           swdown(i,j,bi,bj)=MAX(swdown(i,j,bi,bj), 0 _d 0)
 #endif
-           IF (xx_gentim2d_file(iarr)(1:9).EQ.'xx_lwdown') THEN
-             lwdown(i,j,bi,bj)=lwdown(i,j,bi,bj)+
+           ENDIF
+           IF (xx_gentim2d_file(iarr)(1:9).EQ.'xx_lwdown')
+     &       lwdown(i,j,bi,bj)=lwdown(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
-           ENDIF
-#ifdef EXF_ZERO_BOUND_LWDOWN
-           lwdown(i,j,bi,bj)=MAX(lwdown(i,j,bi,bj), 0 _d 0)
-#endif
 #endif
 #ifdef ALLOW_RUNOFF
-           IF (xx_gentim2d_file(iarr)(1:9).EQ.'xx_runoff') THEN
-             runoff(i,j,bi,bj)=runoff(i,j,bi,bj)+
+           IF (xx_gentim2d_file(iarr)(1:9).EQ.'xx_runoff')
+     &       runoff(i,j,bi,bj)=runoff(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
-           ENDIF
-#ifdef EXF_ZERO_BOUND_RUNOFF
-           runoff(i,j,bi,bj)=MAX(runoff(i,j,bi,bj), 0 _d 0)
-#endif
 #endif
 #ifdef EXF_READ_EVAP
            IF (xx_gentim2d_file(iarr)(1:7).EQ.'xx_evap')
@@ -771,6 +779,39 @@ cdm #endif
         ENDDO
        ENDDO
        ENDDO
+
+       DO bj = myByLo(myThid),myByHi(myThid)
+       DO bi = myBxLo(myThid),myBxHi(myThid)
+        DO j = 1,sNy
+         DO i = 1,sNx
+          DO iarr = 1, maxCtrlTim2D
+#ifdef ALLOW_ATM_TEMP
+#ifdef EXF_ZERO_BOUND_AQH
+             aqh(i,j,bi,bj)=MAX(aqh(i,j,bi,bj), 0 _d 0)
+#endif
+#ifdef EXF_ZERO_BOUND_PRECIP
+             precip(i,j,bi,bj)=MAX(precip(i,j,bi,bj), 0 _d 0)
+#endif
+#endif
+#ifdef ALLOW_DOWNWARD_RADIATION
+#ifdef EXF_ZERO_BOUND_SWDOWN
+             swdown(i,j,bi,bj)=MAX(swdown(i,j,bi,bj), 0 _d 0)
+#endif
+#ifdef EXF_ZERO_BOUND_LWDOWN
+             lwdown(i,j,bi,bj)=MAX(lwdown(i,j,bi,bj), 0 _d 0)
+#endif
+#endif
+#ifdef ALLOW_RUNOFF
+#ifdef EXF_ZERO_BOUND_RUNOFF
+             runoff(i,j,bi,bj)=MAX(runoff(i,j,bi,bj), 0 _d 0)
+#endif
+#endif
+          ENDDO
+         ENDDO
+        ENDDO
+       ENDDO
+       ENDDO
+
 #ifdef ALLOW_ROTATE_UV_CONTROLS
        CALL ROTATE_UV2EN_RL(tmpUX,tmpVY,tmpUE,tmpVN,
      &      .FALSE.,.FALSE.,.TRUE.,1,myThid)
