@@ -402,12 +402,17 @@ c--     load model average and observed average
         call cost_genread( fname1, localbar, localtmp, irec, nnzbar,
      &       nrecloc, preproc, preproc_c, preproc_i, preproc_r,
      &       dummy, myThid )
+
         if( dotrend ) then
-          fac = fac_tmp(irec)
-          if(preproc_r(k2trend).ne.0) 
-     &      fac = fac * preproc_r(k2trend)
+          if(preproc_r(k2trend).ne.0. _d 0)then
+           call ecco_mult(localbar,nnzbar,
+     &      fac_tmp(irec) * preproc_r(k2trend),myThid)
+          else
+           call ecco_mult(localbar,nnzbar,fac_tmp(irec),myThid)
+          endif
+        else
+         call ecco_mult(localbar,nnzbar,fac,myThid)
         endif
-        call ecco_mult(localbar,nnzbar,fac,myThid)
 
         if (.not.dotrend) then
          call ecco_zero(localobs,nnzobs,spzeroloc,myThid)
@@ -415,11 +420,12 @@ c--     load model average and observed average
      &    CALL READ_REC_3D_RL( fname2, cost_iprec, nnzobs,
      &                         localobs, localrec, 1, myThid )
         else 
-         if (irec.eq.1) then
+C        if (irec.eq.1) then
+         call ecco_zero(localobs,nnzobs,spzeroloc,myThid)
           if ( (localrec .GT. 0).AND.(obsrec .GT. 0).AND.(exst) )
      &    CALL READ_REC_3D_RL( fname2, cost_iprec, nnzobs,
-     &                         localobs, irec, 1, myThid )
-         endif
+     &                         localobs, 1, 1, myThid )
+C        endif
         endif
 
 c--     Compute masked model-data difference

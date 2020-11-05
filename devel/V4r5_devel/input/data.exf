@@ -28,14 +28,14 @@
  /
 #
  &EXF_NML_02
- ustressfile       = 'merra2_llc90/TAUX_llc90',
- vstressfile       = 'merra2_llc90/TAUY_llc90',
- atempfile         = 'merra2_llc90/T2M_llc90',
- aqhfile           = 'merra2_llc90/QV2M_llc90',
- precipfile        = 'merra2_llc90/PRECTOTCORR_llc90',
+ ustressfile       = 'merra2_plus_timemean_xx/TAUX_plus_xx_mean',
+ vstressfile       = 'merra2_plus_timemean_xx/TAUY_plus_xx_mean',
+ atempfile         = 'merra2_plus_timemean_xx/T2M_plus_xx_mean',
+ aqhfile           = 'merra2_plus_timemean_xx/QV2M_plus_xx_mean',
+ precipfile        = 'merra2_plus_timemean_xx/PRECTOTCORR_plus_xx_mean',
  wspeedfile        = 'forcing_plus_xx_v2/WSPD10M_adj2v4r4tot_v2',
- swdownfile        = 'merra2_llc90/SWGDN_llc90',
- lwdownfile        = 'merra2_llc90/LWGAB_llc90',
+ swdownfile        = 'merra2_plus_timemean_xx/SWGDN_plus_xx_mean',
+ lwdownfile        = 'merra2_plus_timemean_xx/LWGAB_plus_xx_mean',
  apressurefile     = 'merra2_llc90/SLP_llc90',
 
 #

@@ -132,6 +132,20 @@ C     (Holland and Jenkins, 1999, eq.21)
 
       DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
+#ifdef ALLOW_AUTODIFF_TAMC
+# ifdef SHI_ALLOW_GAMMAFRICT
+        act1 = bi - myBxLo(myThid)
+        max1 = myBxHi(myThid) - myBxLo(myThid) + 1
+        act2 = bj - myByLo(myThid)
+        max2 = myByHi(myThid) - myByLo(myThid) + 1
+        act3 = myThid - 1
+        max3 = nTx*nTy
+        act4 = ikey_dynamics - 1
+        ikey = (act1 + 1) + act2*max1
+     &                    + act3*max1*max2
+     &                    + act4*max1*max2*max3
+# endif /* SHI_ALLOW_GAMMAFRICT */
+#endif /* ALLOW_AUTODIFF_TAMC */
           DO J = 1-OLy,sNy+OLy
             DO I = 1-OLx,sNx+OLx
               shelfIceHeatFlux      (I,J,bi,bj) = 0. _d 0
@@ -160,8 +174,8 @@ C     (Holland and Jenkins, 1999, eq.21)
 
 C--   First ice front then ice shelf.  Loop through each i,j point
 C--   process ice fronts in k, then process ice shelf.
-          DO J = 1, sNy
-            DO I = 1, sNx
+          DO J = 1-OLy+1,sNy+OLy-1
+            DO I = 1-OLx+1,sNx+OLx-1
 
 C--   The K index where the ice front ends (0 if no ice front)
               FRONT_K = K_icefront(I,J,bi,bj)

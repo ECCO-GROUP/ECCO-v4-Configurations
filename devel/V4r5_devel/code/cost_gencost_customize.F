@@ -139,6 +139,12 @@ c    &     .TRUE.,.TRUE.,.TRUE.,1,myThid)
          elseif (gencost_barfile(k)(1:5).EQ.'m_sss') then
            gencost_modfld(i,j,bi,bj,k) = 
      &      SALT(i,j,1,bi,bj)*maskC(i,j,1,bi,bj)
+         elseif (gencost_barfile(k)(1:11).EQ.'m_drifterUE') then
+           gencost_modfld(i,j,bi,bj,k) = 
+     &      m_UE(i,j,2,bi,bj)*maskC(i,j,2,bi,bj)
+         elseif (gencost_barfile(k)(1:11).EQ.'m_drifterVN') then
+           gencost_modfld(i,j,bi,bj,k) = 
+     &      m_VN(i,j,2,bi,bj)*maskC(i,j,2,bi,bj)
 #ifdef ALLOW_SHELFICE
          elseif (gencost_barfile(k)(1:10).EQ.'m_shifwflx') then
            gencost_modfld(i,j,bi,bj,k) =

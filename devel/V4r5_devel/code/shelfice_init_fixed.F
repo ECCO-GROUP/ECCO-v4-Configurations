@@ -291,8 +291,8 @@ C--   wet for exchange to happen
 
 C--   First ice front then ice shelf.  Loop through each i,j point
 C--   process ice fronts in k, then process ice shelf.
-          DO J = 1, sNy
-            DO I = 1, sNx
+          DO J = 1-OLy+1,sNy+OLy-1
+            DO I = 1-OLx+1,sNx+OLx-1
 
 C--   The K index where the ice front ends (0 if no ice front)
               FRONT_K = K_icefront(I,J,bi,bj)
