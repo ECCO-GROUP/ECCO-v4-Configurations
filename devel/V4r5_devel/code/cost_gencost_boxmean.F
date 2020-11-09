@@ -1,6 +1,3 @@
-C $Header: /u/gcmpack/MITgcm/pkg/ecco/cost_gencost_boxmean.F,v 1.7 2015/03/23 21:10:04 gforget Exp $
-C $Name:  $
-
 #include "ECCO_OPTIONS.h"
 
       subroutine cost_gencost_boxmean(mythid)
@@ -65,7 +62,6 @@ c     == local variables ==
       logical doglobalread
       logical ladinit
       logical doskip, doanom, doglosum
-      logical domaskw, domasks
       character*(MAX_LEN_MBUF) msgbuf
 
 c     == external functions ==
@@ -106,8 +102,6 @@ c set bar field params
       ibeg = 0
       doanom=.FALSE.
       doglosum=.FALSE.
-      domaskw=.FALSE.
-      domasks=.FALSE.
       do k2 = 1, NGENPPROC
           if (gencost_preproc(k2,kgen).EQ.'skip') then 
            doskip=.TRUE.
@@ -120,42 +114,36 @@ c set bar field params
           if (gencost_preproc(k2,kgen).EQ.'glosum') then 
            doglosum=.TRUE.
           endif
-          if (gencost_preproc(k2,kgen).EQ.'usingmaskw') then 
-           domaskw=.TRUE.
-          endif
-          if (gencost_preproc(k2,kgen).EQ.'usingmasks') then 
-           domasks=.TRUE.
-          endif
       enddo
 
-        WRITE(msgBuf,'(A,5L2,3i5)') 'cost_gencost_boxmean.F: ',
-     &   doskip, doanom, doglosum, domaskw, domasks, iskip, ibeg,
+        WRITE(msgBuf,'(A,3L2,3i5)') 'cost_gencost_boxmean.F: ',
+     &   doskip, doanom, doglosum, iskip, ibeg,
      &   nrtmp
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT , 1)
 
-
-c initialize various things to 0
+c initialize various things 
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
           mySumTile(bi,bj)=0. _d 0
           myVolTile(bi,bj)=0. _d 0
           mySumGlo=0. _d 0
           myVolGlo=0. _d 0
+
           do k = 1,nr
           do j = 1,sNy
           do i =  1,sNx
-          tmpmsk(i,j,k,bi,bj)=0. _d 0
-          if(doanom)then
-           mymean(i,j,k,bi,bj)=0. _d 0
-           mycount(i,j,k,bi,bj)=0. _d 0
-          endif
+            tmpmsk(i,j,k,bi,bj)=0. _d 0
+            if(doanom)then
+             mymean(i,j,k,bi,bj)=0. _d 0
+             mycount(i,j,k,bi,bj)=0. _d 0
+            endif
 
-           mymsk2(i,j,k,bi,bj)=hFacC(i,j,k,bi,bj)
-           if(domaskw)
-     &       mymsk2(i,j,k,bi,bj)=hFacW(i,j,k,bi,bj)
-           if(domasks)
-     &       mymsk2(i,j,k,bi,bj)=hFacS(i,j,k,bi,bj)
+            if(nrtmp.ne.1) then
+             mymsk2(i,j,k,bi,bj)=hFacC(i,j,k,bi,bj)
+            else
+             mymsk2(i,j,k,bi,bj)=maskC(i,j,k,bi,bj)
+            endif
           enddo
           enddo
           enddo
@@ -338,28 +326,18 @@ c read mask for averaging (3d, time series)
           do k = 1,nrtmp
             do j = 1,sNy
               do i =  1,sNx
-       if ( mymsk2(i,j,k,bi,bj).NE. 0. _d 0) then
-          if(nrtmp.EQ.Nr)then
-           offset  = offset + RA(i,j,bi,bj)*mybar(i,j,k,bi,bj)
-     &       * mymsk2(i,j,k,bi,bj) * drf(k)
-           offset_sum = offset_sum + RA(i,j,bi,bj)
-     &       * mymsk2(i,j,k,bi,bj) * drf(k)
-          else
-           offset  = offset + RA(i,j,bi,bj)*mybar(i,j,k,bi,bj)
-           offset_sum = offset_sum + RA(i,j,bi,bj)
-          endif
-       endif
+C simple sum of global (area or volume weighting, 
+C  as well as masking, is done in ecco_phys.F)
+C  DO NOT apply mymsk2 here because: 
+C   1) It is double-counting of hFacC for 3d fields.
+C   2) It is redundant for 2d fields.
+                offset  = offset + mybar(i,j,k,bi,bj)
               enddo
             enddo
           enddo
         enddo
       enddo
       _GLOBAL_SUM_RL( offset     , mythid )
-      _GLOBAL_SUM_RL( offset_sum , mythid )
-
-      if (offset_sum.GT. 0. _d 0)then
-         offset = offset / offset_sum
-      endif
 
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
