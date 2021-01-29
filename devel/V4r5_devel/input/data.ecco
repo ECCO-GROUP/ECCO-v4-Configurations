@@ -25,7 +25,7 @@
   gencost_spmax(1) = 999.,
   gencost_spzero(1) = -9999.,
   gencost_outputlevel(1)=1,
-  mult_gencost(1) = 0.,
+  mult_gencost(1) = 0.033,
 #
   gencost_avgperiod(2)  = 'day',
   gencost_barfile(2) = 'gbar_deconc',
@@ -239,7 +239,7 @@
 #
   gencost_avgperiod(19)  = 'month',
   gencost_barfile(19) = 'm_sssmon',
-  gencost_datafile(19) = 'Aquarius_SSS_data_201108_201506_V4r5',
+  gencost_datafile(19) = 'Aquarius_SSS_data_201108_201506_V4r5_masked',
   gencost_errfile(19) = 'Aquarius_SSS_err_time_varying_201108_201506_V4r5_err_scaled.bin',
   gencost_name(19) = 'sss_AQanom',
   gencost_spmin(19) = 25.,
@@ -252,7 +252,7 @@
 #
   gencost_avgperiod(20)  = 'month',
   gencost_barfile(20) = 'm_sssmon',
-  gencost_datafile(20) = 'Aquarius_SSS_data_201108_201506_V4r5',
+  gencost_datafile(20) = 'Aquarius_SSS_data_201108_201506_V4r5_masked',
   gencost_errfile(20) = 'Aquarius_SSS_err_time_mean_201108_201506_V4r5_err_scaled.bin',
   gencost_name(20) = 'sss_AQmean',
   gencost_spmin(20) = 25.,
@@ -324,7 +324,7 @@
 #
 # gencost_avgperiod(26)  = 'month',
 # gencost_barfile(26) = 'm_sssmon',
-# gencost_datafile(26) = 'Aquarius_SSS_data_201108_201506_V4r5',
+# gencost_datafile(26) = 'Aquarius_SSS_data_201108_201506_V4r5_masked',
 # gencost_errfile(26) = 'toterrStdAQ_v3_llc_090_floored_areascaled',
 # gencost_name(26) = 'sss_AQ',
 # gencost_spmin(26) = 25.,
@@ -415,7 +415,7 @@
 #
   gencost_avgperiod(34)  = 'month',
   gencost_barfile(34) = 'm_sssmon',
-  gencost_datafile(34) = 'SMAP_SSS_data_201504_201912_V4r5',
+  gencost_datafile(34) = 'SMAP_SSS_data_201504_201912_V4r5_masked',
   gencost_errfile(34) = 'SMAP_SSS_err_time_varying_201504_201912_V4r5_err_scaled.bin',
   gencost_name(34) = 'sss_SMAPanom',
   gencost_spmin(34) = 25.,
@@ -428,7 +428,7 @@
 #
   gencost_avgperiod(35)  = 'month',
   gencost_barfile(35) = 'm_sssmon',
-  gencost_datafile(35) = 'SMAP_SSS_data_201504_201912_V4r5',
+  gencost_datafile(35) = 'SMAP_SSS_data_201504_201912_V4r5_masked',
   gencost_errfile(35) = 'SMAP_SSS_err_time_mean_201504_201912_V4r5_err_scaled.bin',
   gencost_name(35) = 'sss_SMAPmean',
   gencost_spmin(35) = 25.,
@@ -441,7 +441,7 @@
 #
   gencost_avgperiod(36)  = 'month',
   gencost_barfile(36) = 'm_sssmon',
-  gencost_datafile(36) = 'SMOS_SSS_data_201001_201912_NoOutlier_NonGap_V4r5',
+  gencost_datafile(36) = 'SMOS_SSS_data_201001_201912_NoOutlier_NonGap_V4r5_masked',
   gencost_errfile(36) = 'SMOS_SSS_err_time_varying_201001_201912_NoOutlier_NonGap_V4r5_err_scaled.bin',
   gencost_name(36) = 'sss_SMOSanom',
   gencost_spmin(36) = 25.,
@@ -454,7 +454,7 @@
 #
   gencost_avgperiod(37)  = 'month',
   gencost_barfile(37) = 'm_sssmon',
-  gencost_datafile(37) = 'SMOS_SSS_data_201001_201912_NoOutlier_NonGap_V4r5',
+  gencost_datafile(37) = 'SMOS_SSS_data_201001_201912_NoOutlier_NonGap_V4r5_masked',
   gencost_errfile(37) = 'SMOS_SSS_err_time_mean_201001_201912_NoOutlier_NonGap_V4r5_err_scaled.bin',
   gencost_name(37) = 'sss_SMOSmean',
   gencost_spmin(37) = 25.,

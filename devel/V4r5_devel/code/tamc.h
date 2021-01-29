@@ -1,6 +1,3 @@
-C $Header: /u/gcmpack/MITgcm_contrib/ecco_utils/ecco_v4_release3_devel/code/tamc.h,v 1.1 2017/05/04 17:46:37 ou.wang Exp $
-C $Name:  $
-
 #include "PACKAGES_CONFIG.h"
 
 c     ================================================================
@@ -115,7 +112,15 @@ c     and writing data.
       INTEGER act0, act1, act2, act3, act4
       INTEGER max0, max1, max2, max3
       INTEGER iikey, kkey, passkey, igadkey, 
-     &        itdkey, idynkey, igmkey, iptrkey
+     &        itdkey, idynkey, igmkey, ikppkey, iptrkey
+
+#ifdef ALLOW_CG2D_NSA
+C     Parameter that is needed for the tape complev_cg2d_iter
+C     cannot be smaller than the allowed number of iterations in cg2d
+C     (numItersMax >= cg2dMaxIters in data-file)
+      INTEGER numItersMax
+      PARAMETER ( numItersMax = 2000 )
+#endif
 
 c     ================================================================
 c     END OF HEADER TAMC
