@@ -11,4 +11,4 @@
  nstep            = 1,
  nend             = 4,
  grdchkvarindex   = 203,
- &
+ /
