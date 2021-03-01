@@ -95,11 +95,25 @@
  &EXF_NML_03
 #NOT FOR EIG exf_offset_atemp  = 273.3971,
  exf_offset_atemp  = 273.15,
+
 #NOT FOR NEW RUNOFF FIELD exf_inscal_runoff = 3.1710e-08,
  exf_inscal_swdown = -1.0,
  exf_inscal_lwdown = -1.0,
+ 
+# A -1 scalar mulitplier is applied to the ustress and vstress fields
+# provided by the atmosphere reanalysis. The reason is because 
+# the reanalysis reports surface stress in terms of the 
+# atmosphere momentum equations.  In terms of the atmosphere momentum
+# equations, wind-induced surface stress accelerates the air in 
+# the OPPOSITE direction of the wind: an eastward wind
+# causes a westward, decelerating force (negative).
+# In terms of the ocean momentum equations, wind-induced surface stress
+# accelerates the ocean in the same direction as the wind: an eastward
+# wind causes an eastward accelerating force. 
+ 
  exf_inscal_ustress = -1.0,
  exf_inscal_vstress = -1.0,
+ 
 # to compensate for sea level rise for nlfs/realFWF
 #precip_exfremo_intercept = 1.073E-9,
 #precip_exfremo_slope = -3.340E-18,
