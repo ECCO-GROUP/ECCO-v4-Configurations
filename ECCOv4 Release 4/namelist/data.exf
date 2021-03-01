@@ -100,17 +100,12 @@
  exf_inscal_swdown = -1.0,
  exf_inscal_lwdown = -1.0,
  
-# A -1 scalar mulitplier is applied to the ustress and vstress fields
-# provided by the atmosphere reanalysis. The reason is because 
-# the reanalysis reports surface stress in terms of the 
-# atmosphere momentum equations.  In terms of the atmosphere momentum
-# equations, wind-induced surface stress accelerates the air in 
-# the OPPOSITE direction of the wind: an eastward wind
-# causes a westward, decelerating force (negative).
-# In terms of the ocean momentum equations, wind-induced surface stress
-# accelerates the ocean in the same direction as the wind: an eastward
-# wind causes an eastward accelerating force. 
- 
+# The ERA-Interim atmospheric surface stress fields were
+# multiplied by -1 (for reasons no one can remember)
+# and so we need to multiply them AGAIN by -1 when
+# reading into the model to flip the sign 
+# so that eastward and northward surface wind stresses on
+# the ocean are both "positive". 
  exf_inscal_ustress = -1.0,
  exf_inscal_vstress = -1.0,
  
