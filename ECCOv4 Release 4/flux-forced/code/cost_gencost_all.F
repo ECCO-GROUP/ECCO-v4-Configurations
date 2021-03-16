@@ -74,31 +74,31 @@ c     == end of interface ==
          nrecloc= gencost_nrec(k)
          nrecperiodloc= gencost_nrec(k)
 
-C        call cost_generic(
-C    &     nnzbar, gencost_barfile(k), gencost_dummy(k),
-C    &     nnzobs, gencost_datafile(k), gencost_errfile(k),
-C    &     mult_gencost(k), nrecloc, nrecperiodloc,
-C    &     gencost_startdate(1,k), gencost_period(k), 'c',
-C    &     gencost_spmin(k), gencost_spmax(k), gencost_spzero(k),
-C    &     gencost_preproc(1,k), gencost_preproc_c(1,k),
-C    &     gencost_preproc_i(1,k), gencost_preproc_r(1,k),
-C    &     gencost_posproc(1,k), gencost_posproc_c(1,k), 
-C    &     gencost_posproc_i(1,k), gencost_posproc_r(1,k),
-C    &     gencost_outputlevel(k), gencost_name(k),
-C    &     objf_gencost(1,1,k), num_gencost(1,1,k),
-C    &     myiter, mytime, mythid )
+         call cost_generic(
+     &     nnzbar, gencost_barfile(k), gencost_dummy(k),
+     &     nnzobs, gencost_datafile(k), gencost_errfile(k),
+     &     mult_gencost(k), nrecloc, nrecperiodloc,
+     &     gencost_startdate(1,k), gencost_period(k), 'c',
+     &     gencost_spmin(k), gencost_spmax(k), gencost_spzero(k),
+     &     gencost_preproc(1,k), gencost_preproc_c(1,k),
+     &     gencost_preproc_i(1,k), gencost_preproc_r(1,k),
+     &     gencost_posproc(1,k), gencost_posproc_c(1,k), 
+     &     gencost_posproc_i(1,k), gencost_posproc_r(1,k),
+     &     gencost_outputlevel(k), gencost_name(k),
+     &     objf_gencost(1,1,k), num_gencost(1,1,k),
+     &     myiter, mytime, mythid )
 
          endif ! if ( (using_gencost(k)).AND.( gencost_flag(k).EQ.1 ) ) then
 
       end do
 
-C     call cost_gencost_glbmean( mythid )
+      call cost_gencost_glbmean( mythid )
       call cost_gencost_boxmean( mythid )
-C     call cost_gencost_bpv4( mythid )
-C     IF (using_cost_transp) call cost_gencost_transp( mythid )
-C     IF (using_cost_altim) call cost_gencost_sshv4( mythid )
-C     IF (using_cost_sst) call cost_gencost_sstv4( mythid )
-C     IF (using_cost_seaice) call cost_gencost_seaicev4( mythid )
+      call cost_gencost_bpv4( mythid )
+      IF (using_cost_transp) call cost_gencost_transp( mythid )
+      IF (using_cost_altim) call cost_gencost_sshv4( mythid )
+      IF (using_cost_sst) call cost_gencost_sstv4( mythid )
+      IF (using_cost_seaice) call cost_gencost_seaicev4( mythid )
 
 #endif /* ALLOW_GENCOST_CONTRIBUTION */
 
