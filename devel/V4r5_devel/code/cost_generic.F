@@ -109,6 +109,7 @@ c--   Initialise local variables.
 
       domean=.FALSE.
       doanom=.FALSE.
+      dotrend=.FALSE.
       do k2 = 1, NGENPPROC
           if (preproc(k2).EQ.'mean') domean=.TRUE.
           if (preproc(k2).EQ.'anom') doanom=.TRUE.
