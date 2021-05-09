@@ -139,24 +139,16 @@ C--   DEFINE SOME CONSTANTS
       ENDIF
 
 C--   Default thermodynamics specify a linear T gradient
-C--   through the ice (Holland and Jenkins, 1999, Section 2.
-      aqe = a0*(eps1 + eps3)
-      bqe = eps1*eps6 + eps3*eps7 - eps2 - SHELFICEsalinity*aqe
-      cqe = eps2 * sLoc - SHELFICEsalinity*(eps1*eps6 + eps3*eps7)
+C--   through the ice (Holland and Jenkins, 1999, Section 2).
+      IF (SHELFICEadvDiffHeatFlux .EQV. .FALSE.) THEN
+          aqe = a0*(eps1 + eps3)
+          bqe = eps1*eps6 + eps3*eps7 - eps2 - SHELFICEsalinity*aqe
+          cqe = eps2 * sLoc - SHELFICEsalinity*(eps1*eps6 + eps3*eps7)
 
 C--   Alterantively, we can have a nonlinear  T gradient
-C--   through the ice (Holland and Jenkins, 1999, Section 3.  
+C--   through the ice (Holland and Jenkins, 1999, Section 3).  
 C--   This demands a different set of constants
-      IF (SHELFICEadvDiffHeatFlux .EQV. .TRUE.) THEN
-
-      IF ( debugLevel.GE.debLevE ) THEN
-      WRITE(msgBuf,'(A)')
-     &   '1useSHELFICEadvDiffHeatFlux '
-
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                    SQUEEZE_RIGHT , 1)
-      ENDIF
-
+      ELSE 
           eps8 = rUnit2mass * gammaS * SHELFICEheatCapacity_Cp
           aqe = a0 *(eps1 - eps8)
           bqe = eps1*eps6 + sLoc*eps8*a0 - eps8*eps7 - eps2 -
@@ -187,26 +179,34 @@ C--   Calculate the upward heat and fresh water fluxes;
 C--   MITgcm sign conventions: downward (negative) fresh water flux
 C--   implies melting and due to upward (positive) heat flux
 
+C--   Default thermodynamics specify a linear T gradient
+C--   through the ice (Holland and Jenkins, 1999, Section 2).
+      IF (SHELFICEadvDiffHeatFlux .EQV. .FALSE.) THEN
 C--   This formulation of fwflux, derived from the heat balance equation 
 C--   instead of the salt balance equation, can handle the case when the 
 C--   salinity of the ocean, boundary layer, and ice are identical.
-      fwFlux = 1/SHELFICElatentHeat*(
-     &    eps3*(thetaFreeze - thetaIceConduction) -
-     &    eps1*(insitutLoc - thetaFreeze) )
+          fwFlux = 1/SHELFICElatentHeat*(
+     &        eps3*(thetaFreeze - thetaIceConduction) -
+     &        eps1*(insitutLoc - thetaFreeze) )
+C--   Alterantively, we can have a nonlinear  T gradient
+C--   through the ice (Holland and Jenkins, 1999, Section 3).  
+C--   This is only for melting case (Eq. 31 of Holland and Jenkins, 1999)
+      ELSE 
+          fwFlux =
+     &        eps1 * ( thetaFreeze - insitutLoc ) /
+     &        (SHELFICElatentHeat + SHELFICEheatCapacity_Cp*
+     &        (thetaFreeze - thetaIceConduction))
+      ENDIF
       
 C--   If a nonlinear local ice T gradient near the ice-ocean interface
 C--   is allowed and fwflux is positive (ice growth) then
 C--   we must solve the quadratic equation using a different set of
-C--   coeffs (Holland Jenkinsm, 1999).
+C--   coeffs (Holland Jenkins, 1999).
+C--   Since we first need to know fwFlux, the solving of the 
+C--   quadratic equation for this case cannot be combined
+C--   with the other two cases (linear T, nonlinear T and melting).
       IF ((SHELFICEadvDiffHeatFlux .EQV. .TRUE.) .AND. 
      &    (fwFlux .GT. zeroRL)) THEN
-      IF ( debugLevel.GE.debLevE ) THEN
-      WRITE(msgBuf,'(A)')
-     &   '2useSHELFICEadvDiffHeatFlux '
-
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                    SQUEEZE_RIGHT , 1)
-      ENDIF
           aqe = a0 *(eps1)
           bqe = eps1*eps6 - eps2 - SHELFICEsalinity*eps1*a0
           cqe = sLoc*(eps2) - SHELFICEsalinity*eps1
@@ -222,9 +222,9 @@ C--   coeffs (Holland Jenkinsm, 1999).
 
           thetaFreeze = a0*saltFreeze + eps4
            
-          fwFlux = 1/SHELFICElatentHeat*  (
-     &        eps3*(thetaFreeze - thetaIceConduction) -
-     &        eps1*(insitutLoc - thetaFreeze)   )
+          fwFlux =
+     &        eps1 * ( thetaFreeze - insitutLoc ) /
+     &        SHELFICElatentHeat 
       ENDIF
 
 C     meltwater advective flux velocity at ice-ocean interface (m/s)  
