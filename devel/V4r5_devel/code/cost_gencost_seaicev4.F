@@ -205,17 +205,25 @@ c====================================================
 #ifdef SEAICECOST_JPL
        fname0w=gencost_errfile(igen_conc)
        call ecco_readwei(fname0w,localweight,localrec,
-     &      nnzsiv4,dosumsq,myThid)
+     &      nnzsiv4,myThid)
        call ecco_readwei(gencost_errfile(igen_deconc),
      &      gencost_weight(1,1,1,1,igen_deconc),localrec,
-     &      nnzsiv4,dosumsq,myThid)
+     &      nnzsiv4,myThid)
        call ecco_readwei(gencost_errfile(igen_exconc),
      &      gencost_weight(1,1,1,1,igen_exconc),localrec,
-     &      nnzsiv4,dosumsq,myThid)
+     &      nnzsiv4,myThid)
 #else
         if ( (localrec. GT. 0).AND.(obsrec .GT. 0).AND.(exst) ) then
           call ecco_readwei(fname0w,localweight,localrec,
-     &      nnzsiv4,dosumsq,myThid)
+     &      nnzsiv4,myThid)
+#ifdef READIN_EXCONC_DECONC_SIGMA
+       call ecco_readwei(gencost_errfile(igen_deconc),
+     &      gencost_weight(1,1,1,1,igen_deconc),localrec,
+     &      nnzsiv4,myThid)
+       call ecco_readwei(gencost_errfile(igen_exconc),
+     &      gencost_weight(1,1,1,1,igen_exconc),localrec,
+     &      nnzsiv4,myThid)
+#endif
         else
           WRITE(standardMessageUnit,'(A)')
      &     'siv4cost WARNING: ALL WEIGHTS ZEROS! NO CONTRIBUTION'
@@ -300,7 +308,10 @@ c Add ice: model_A==0 but obs_A > 0, calc enthalpy E:
          call ecco_zero(difmask1,nnzsiv4,zeroRL,myThid)
          call ecco_zero(localdif,nnzsiv4,zeroRL,myThid)
          call ecco_zero(localtmp,nnzsiv4,zeroRL,myThid)
-
+#ifdef READIN_EXCONC_DECONC_SIGMA
+         call ecco_cp(gencost_weight(1,1,1,1,igen_deconc),nnzsiv4,
+     O        localtmp,nnzsiv4,myThid)
+#endif
          call get_exconc_deconc(
      I    localobs,nnzsiv4,areabar,heffbar,thetabar,nnzbar,
      I    difmask,'de',
@@ -322,7 +333,10 @@ c Removing ice: model_A > 0 but obs_A==0, calc enthalpy E:
          call ecco_zero(difmask1,nnzsiv4,zeroRL,myThid)
          call ecco_zero(localdif,nnzsiv4,zeroRL,myThid)
          call ecco_zero(localtmp,nnzsiv4,zeroRL,myThid)
-
+#ifdef READIN_EXCONC_DECONC_SIGMA
+         call ecco_cp(gencost_weight(1,1,1,1,igen_exconc),nnzsiv4,
+     O        localtmp,nnzsiv4,myThid)
+#endif
          call get_exconc_deconc(
      I    localobs,nnzsiv4,areabar,heffbar,thetabar,nnzbar,
      I    difmask,'ex',
@@ -473,7 +487,9 @@ cigf  const1 = 1 and be done with it.
 c intialize
       call ecco_zero(localfld,nnzobs,zeroRL,myThid)
       call ecco_zero(localfldmsk,nnzobs,zeroRL,myThid)
+#ifndef READIN_EXCONC_DECONC_SIGMA
       call ecco_zero(localfldweight,nnzobs,zeroRL,myThid)
+#endif
 
 c----------------------DECONC-------------------------------
 
@@ -560,9 +576,11 @@ c             but observation has nonzero ice (localobs  .gt. 0)
 
                localfldmsk(i,j,k,bi,bj) = localmask(i,j,k,bi,bj)
 
+#ifndef READIN_EXCONC_DECONC_SIGMA
 cigf           weight is 1/sigma_T^2, defined above localnormsq
 c              suggested value is 100 1/degreesC^2 
                localfldweight(i,j,k,bi,bj) = localnormsq
+#endif
 
 cigf           J = [T_ocn - T_f + \beta \Delta z^-1 \ep_h]^2 sigma_T^-2
 c              J = [T_ocn - T_f + const1]^2 sigma_T^-2
@@ -695,9 +713,11 @@ c             observations are zero and
 
                localfldmsk(i,j,k,bi,bj) = localmask(i,j,k,bi,bj)
 
+#ifndef READIN_EXCONC_DECONC_SIGMA
 cigf           weight is 1/sigma_T^2, defined above localnormsq
 c              suggested value is 100 1/degreesC^2 
                localfldweight(i,j,k,bi,bj) = localnormsq
+#endif
 
                heff_local = max(heffbar(i,j,k,bi,bj), epsilon_h)
 
