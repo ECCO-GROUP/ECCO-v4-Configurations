@@ -59,7 +59,7 @@
  precipstartdate2  = 003000,
  precipperiod      = 3600.0,
 #
- runofffile        = '/tmp/runoff-2d-Fekete-1deg-mon-V4-SMOOTH_S60scalving_v2.bin'
+ runofffile        = 'runoff-2d-Fekete-1deg-mon-V4-SMOOTH_S60scalving_v2.bin'
  runoffperiod      = -12,
 #
  uwindstartdate1   = 19920101,

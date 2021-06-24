@@ -230,7 +230,6 @@ C     == local variables ==
       integer ilgen
       logical doglobalread
       logical ladinit
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
 CEOP
 
 c--   Now, read the control vector.
@@ -273,29 +272,11 @@ c--   Now, read the control vector.
       ilgen=ilnblnk( fnamebase )
       write(fnamegenIn(1:80),'(2a,i10.10)')
      &       fnamebase(1:ilgen),'.',optimcycle
-#ifdef PLEIADES_LUSTRE_OPT
-! tmpDir is set in ctrl_readparms.F
-! ---------------------------------
-      write(fnamegenOut(1:80),'(3a,i10.10)')
-     &   trim(tmpDir), trim(fnamebase),'.effective.',optimcycle
-#else
       write(fnamegenOut(1:80),'(2a,i10.10)')
      &       fnamebase(1:ilgen),'.effective.',optimcycle
-#endif
-#ifdef DSK_DEBUG
-      WRITE(msgBuf,'(A,I4,A,A,A)')
-     &  'CTRL_MAP_GENARR2D: ',1,' (',
-     &              trim(xx_genarr2d_weight(iarr)),')'
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                        SQUEEZE_RIGHT, myThid )
-#endif
+
       CALL MDS_READ_FIELD(xx_genarr2d_weight(iarr),ctrlprec,.FALSE.,
-#ifdef PLEIADES_LUSTRE_OPT2
-     & 'RL',1,1,1,wgenarr2d(1-Olx,1-Oly,1,1,iarr),dummyRS,1,mythid,
-     & .FALSE.)
-#else
      & 'RL',1,1,1,wgenarr2d(1-Olx,1-Oly,1,1,iarr),dummyRS,1,mythid)
-#endif
 
 #ifdef ALLOW_AUTODIFF
       call active_read_xy( fnamegenIn, xx_gen, 1, doglobalread,
@@ -401,7 +382,6 @@ C     == local variables ==
       integer ilgen
       logical doglobalread
       logical ladinit
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
 #if (defined (ALLOW_UVEL0_CONTROL) && defined (ALLOW_VVEL0_CONTROL))
       _RL localmask  (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
 #endif
@@ -449,29 +429,11 @@ c--   Now, read the control vector.
       ilgen=ilnblnk( fnamebase )
       write(fnamegenIn(1:80),'(2a,i10.10)')
      &       fnamebase(1:ilgen),'.',optimcycle
-#ifdef PLEIADES_LUSTRE_OPT
-! tmpDir is set in ctrl_readparms.F
-! ---------------------------------
-      write(fnamegenOut(1:80),'(3a,i10.10)')
-     &   trim(tmpDir), trim(fnamebase),'.effective.',optimcycle
-#else
       write(fnamegenOut(1:80),'(2a,i10.10)')
      &       fnamebase(1:ilgen),'.effective.',optimcycle
-#endif
-#ifdef DSK_DEBUG
-      WRITE(msgBuf,'(A,I4,A,A,A)')
-     &  'CTRL_MAP_GENARR3D: ',1,' (',
-     &              trim(xx_genarr3d_weight(iarr)),')'
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                        SQUEEZE_RIGHT, myThid )
-#endif
+
       CALL MDS_READ_FIELD(xx_genarr3d_weight(iarr),ctrlprec,.FALSE.,
-#ifdef PLEIADES_LUSTRE_OPT2
-     & 'RL',nR,1,nR,wgenarr3d(1-Olx,1-Oly,1,1,1,iarr),dummyRS,1,mythid,
-     & .FALSE.)
-#else
      & 'RL',nR,1,nR,wgenarr3d(1-Olx,1-Oly,1,1,1,iarr),dummyRS,1,mythid)
-#endif
 
 #ifdef ALLOW_AUTODIFF
       call active_read_xyz( fnamegenIn, xx_gen, 1, doglobalread,

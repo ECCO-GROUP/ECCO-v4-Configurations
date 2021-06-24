@@ -1195,7 +1195,6 @@ C     iRec:            record number
       INTEGER iRec
       INTEGER myThid
       INTEGER nnzbar
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
 
 #ifdef ALLOW_ECCO
 
@@ -1219,12 +1218,6 @@ CEOP
       imin = 1
       imax = sNx
 
-#ifdef DSK_DEBUG
-      WRITE(msgBuf,'(A,I4,A,A,A)')
-     &  'ecco_readwei: ',iRec,' (', trim(localerr_file),')'
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                        SQUEEZE_RIGHT, myThid )
-#endif
       CALL READ_REC_3D_RL( localerr_file, cost_iprec, nnzbar,
      &                     localweight, iRec, 1, myThid )
 

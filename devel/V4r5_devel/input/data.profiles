@@ -4,7 +4,7 @@
 # ******************
  &PROFILES_NML
 #
- profilesDir='/tmp/profiles',
+ profilesDir='profiles',
  profilesDoGenGrid=.TRUE.,
 #
  profiles_mean_indsamples(1) = 9,

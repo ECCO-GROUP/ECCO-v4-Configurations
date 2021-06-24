@@ -84,7 +84,6 @@ c     == local variables ==
       integer itlo,ithi
       integer jtlo,jthi
       logical domean, doanom, dotrend
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
 
       _RL localdifmean1  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL localdifmean2  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
@@ -118,23 +117,8 @@ c--   Initialise local variables.
       enddo
 
 C Extra time loop to compute time-mean fields and costs
-#ifdef DSK_DEBUG
-      WRITE(msgBuf,'(A,3(L,A),A)')
-     & 'cost_generic: ', domean,' ',doanom,' ',dotrend,
-     & ' ', trim(localobsfile)
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                        SQUEEZE_RIGHT, myThid )
-#endif
       if ( (.NOT. ( localobsfile.EQ.' ' ) )
      &   .AND. ( domean .OR. doanom .OR. dotrend) ) then
-#ifdef DSK_DEBUG
-      WRITE(msgBuf,'(3A)')
-     & 'cost_generic: First cost_genloop call', 
-     & ' ', trim(localobsfile)
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                        SQUEEZE_RIGHT, myThid )
-#endif
-CADJ INCOMPLETE num_local
         call cost_genloop(
      &     localdifmean1,localdifmean2,.FALSE.,
      &     nnzbar, localbarfile, dummy,
@@ -153,13 +137,6 @@ CADJ INCOMPLETE num_local
 
       if ((.NOT.(localobsfile.EQ.' ')).AND.(.NOT.domean)
      &    .AND.(.NOT.dotrend)) then
-#ifdef DSK_DEBUG
-      WRITE(msgBuf,'(3A)')
-     & 'cost_generic: Second cost_genloop call',
-     & ' ', trim(localobsfile)
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                        SQUEEZE_RIGHT, myThid )
-#endif
         call cost_genloop(
      &     localdifmean2,localdifmean1,.TRUE.,
      &     nnzbar, localbarfile, dummy,

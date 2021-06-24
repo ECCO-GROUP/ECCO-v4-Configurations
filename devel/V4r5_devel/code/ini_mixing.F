@@ -102,11 +102,7 @@ CEOP
        ENDIF
 #endif
        _EXCH_XYZ_RL( kapGM, myThid )
-#ifdef PLEIADES_LUSTRE_OPT
-       CALL WRITE_FLD_XYZ_RL( '/tmp/KapGM', ' ', kapGM, 0, myThid )
-#else
        CALL WRITE_FLD_XYZ_RL( 'KapGM', ' ', kapGM, 0, myThid )
-#endif
 #endif
 #ifdef ALLOW_KAPREDI_CONTROL
 #ifdef ALLOW_KAPREDI_3DFILE
@@ -115,11 +111,7 @@ CEOP
        ENDIF
 #endif
        _EXCH_XYZ_RL( kapRedi, myThid )
-#ifdef PLEIADES_LUSTRE_OPT
-       CALL WRITE_FLD_XYZ_RL( '/tmp/KapRedi', ' ', kapRedi, 0, myThid )
-#else
        CALL WRITE_FLD_XYZ_RL( 'KapRedi', ' ', kapRedi, 0, myThid )
-#endif
 #endif
 #endif /* ALLOW_CTRL */
       RETURN
