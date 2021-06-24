@@ -1,7 +1,7 @@
 - This directory contains the development version of the ECCO Version 4, Release 5 configuration. 
-  The patch code is based on MITgcm checkpoint67l_fileHasah, the optimized code 
+  The patch code is based on MITgcm checkpoint67l_fileHash, the optimized code 
   for checkpoint67l that has much better code performance on NASA AMES's Pleiades than 
-  the original checkpoint67l. MITgcm checkpoint67l_fileHasah is available at 
+  the original checkpoint67l. MITgcm checkpoint67l_fileHash is available at 
   https://github.com/dkokron/MITgcm/tree/dkokron/checkpoint67l_fileHash. 
 
   README                              This file
