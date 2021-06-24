@@ -147,11 +147,7 @@ C Open and read the data.shelfice file
       CALL PRINT_MESSAGE(msgBuf, standardMessageUnit,
      &                   SQUEEZE_RIGHT, myThid )
       CALL OPEN_COPY_DATA_FILE(
-#ifdef PLEIADES_LUSTRE_OPT
-     I              '/tmp/data.shelfice', 'SHELFICE_READPARMS',
-#else
      I                   'data.shelfice', 'SHELFICE_READPARMS',
-#endif
      O                   iUnit,
      I                   myThid )
       READ(UNIT=iUnit,NML=SHELFICE_PARM01)

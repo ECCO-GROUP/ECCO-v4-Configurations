@@ -509,11 +509,7 @@ c--     Next, read the data.ecco file.
      &                    SQUEEZE_RIGHT , 1)
 
         CALL OPEN_COPY_DATA_FILE(
-#ifdef PLEIADES_LUSTRE_OPT
-     I                     '/tmp/data.ecco', 'ECCO_READPARMS',
-#else
      I                          'data.ecco', 'ECCO_READPARMS',
-#endif
      O                          iUnit,
      I                          myThid )
 

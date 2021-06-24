@@ -141,13 +141,13 @@ nTimeSteps=245423,
 
 # Input datasets
  &PARM05
- diffKrFile='/tmp/total_diffkr_r009bit11.bin',
+ diffKrFile='total_diffkr_r009bit11.bin',
  adTapeDir='tapes',
- bathyFile      ='/tmp/BATHY_ICE_SHELF_CAVITY_PLUS_ICE_FRONT_LLC_0090.bin',
+ bathyFile      ='BATHY_ICE_SHELF_CAVITY_PLUS_ICE_FRONT_LLC_0090.bin',
  hydrogThetaFile='T_OWPv1_M_eccollc_90x50.bin',
  hydrogSaltFile ='S_OWPv1_M_eccollc_90x50.bin',
- viscA4Dfile    ='/tmp/fenty_biharmonic_visc_v11.bin',
- viscA4Zfile    ='/tmp/fenty_biharmonic_visc_v11.bin',
- geothermalFile='/tmp/geothermalFlux.bin',
+ viscA4Dfile    ='fenty_biharmonic_visc_v11.bin',
+ viscA4Zfile    ='fenty_biharmonic_visc_v11.bin',
+ geothermalFile='geothermalFlux.bin',
 #
  /

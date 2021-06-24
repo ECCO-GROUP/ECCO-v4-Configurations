@@ -341,13 +341,8 @@ C     _BEGIN_MASTER( mythid )
 
         DO num_var=1,NVARMAX
          iL = ILNBLNK( prof_names(1,num_var) )
-#ifdef PLEIADES_LUSTRE_OPT
-         write(cfile,'(3a)') '/tmp/', prof_names(1,num_var)(1:iL),
-     &   '_data_mean.data'
-#else
          write(cfile,'(2a)') prof_names(1,num_var)(1:iL),
      &   '_data_mean.data'
-#endif
          call mdsfindunit( cunit, mythid )
          open( cunit, file   = cfile,
      &        status = 'unknown',
@@ -361,13 +356,8 @@ C     _BEGIN_MASTER( mythid )
          ENDDO
          close ( cunit )
 
-#ifdef PLEIADES_LUSTRE_OPT
-         write(cfile,'(3a)') '/tmp/', prof_names(1,num_var)(1:iL),
-     &    '_model_mean.data'
-#else
          write(cfile,'(2a)')prof_names(1,num_var)(1:iL),
      &    '_model_mean.data'
-#endif
          call mdsfindunit( cunit, mythid )
          open( cunit, file   = cfile,
      &         status = 'unknown',
@@ -383,13 +373,8 @@ C    &         access  = 'sequential'   )
          ENDDO
          close ( cunit )
 
-#ifdef PLEIADES_LUSTRE_OPT
-         write(cfile,'(3a)')
-     &     '/tmp/', prof_names(1,num_var)(1:iL),'_weight_mean.data'
-#else
          write(cfile,'(2a)')
      &     prof_names(1,num_var)(1:iL),'_weight_mean.data'
-#endif
          call mdsfindunit( cunit, mythid )
          open( cunit, file   = cfile,
      &         status = 'unknown',
@@ -402,13 +387,9 @@ C    &         access  = 'sequential'   )
           write(cunit,rec=ikzz) tmp99
          ENDDO
          close ( cunit )
-#ifdef PLEIADES_LUSTRE_OPT
-         write(cfile,'(3a)') '/tmp/', prof_names(1,num_var)(1:iL),
-     &    '_count_mean.data'
-#else
+
          write(cfile,'(2a)')prof_names(1,num_var)(1:iL),
      &    '_count_mean.data'
-#endif
          call mdsfindunit( cunit, mythid )
          open( cunit, file   = cfile,
      &         status = 'unknown',

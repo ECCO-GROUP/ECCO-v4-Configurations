@@ -347,7 +347,7 @@ c
             areavolTile(bi,bj)=areavolTile(bi,bj)
      &          +tmpmsk2*eccoVol_0(i,j,k,bi,bj)
 c
-          enddo ! k
+          enddo
 c---------
           tmpmsk=maskC(i,j,1,bi,bj)*gencost_mskCsurf(i,j,bi,bj,kgen)
           tmpfld=0. _d 0
@@ -367,37 +367,37 @@ c
           areavolTile(bi,bj)=areavolTile(bi,bj)
      &        +tmpmsk2*rA(i,j,bi,bj)
 c---------
-          if (gencost_barfile(kgen)(1:13).EQ.'m_horflux_vol') then
-           do k = 1,nr
+          do k = 1,nr
 c
-             tmpmskW=0. _d 0
-             tmpmskS=0. _d 0
-             if (.NOT.gencost_msk_is3d(kgen)) then
-               tmpmskW=gencost_mskWsurf(i,j,bi,bj,kgen)
-     &           *gencost_mskVertical(k,kgen)
-               tmpmskS=gencost_mskSsurf(i,j,bi,bj,kgen)
-     &           *gencost_mskVertical(k,kgen)
+            tmpmskW=0. _d 0
+            tmpmskS=0. _d 0
+            if (.NOT.gencost_msk_is3d(kgen)) then
+              tmpmskW=gencost_mskWsurf(i,j,bi,bj,kgen)
+     &          *gencost_mskVertical(k,kgen)
+              tmpmskS=gencost_mskSsurf(i,j,bi,bj,kgen)
+     &          *gencost_mskVertical(k,kgen)
 #ifdef ALLOW_GENCOST3D
-             else
-               kgen3d=gencost_msk_pointer3d(kgen)
-               tmpmskW=gencost_mskW(i,j,k,bi,bj,kgen3d)
-               tmpmskS=gencost_mskS(i,j,k,bi,bj,kgen3d)
+            else
+              kgen3d=gencost_msk_pointer3d(kgen)
+              tmpmskW=gencost_mskW(i,j,k,bi,bj,kgen3d)
+              tmpmskS=gencost_mskS(i,j,k,bi,bj,kgen3d)
 #endif
-             endif
-             tmpmskW=tmpmskW*hFacW(i,j,k,bi,bj)*dyG(i,j,bi,bj)*drF(k)
-             tmpmskS=tmpmskS*hFacS(i,j,k,bi,bj)*dxG(i,j,bi,bj)*drF(k)
+            endif
+            tmpmskW=tmpmskW*hFacW(i,j,k,bi,bj)*dyG(i,j,bi,bj)*drF(k)
+            tmpmskS=tmpmskS*hFacS(i,j,k,bi,bj)*dxG(i,j,bi,bj)*drF(k)
 c
-             gencost_storefld(i,j,bi,bj,kgen) =
-     &         gencost_storefld(i,j,bi,bj,kgen)
-     &         +uVel(i,j,k,bi,bj)*tmpmskW
-     &         +vVel(i,j,k,bi,bj)*tmpmskS
-           enddo ! k
-          endif
+            if (gencost_barfile(kgen)(1:13).EQ.'m_horflux_vol') then
+              gencost_storefld(i,j,bi,bj,kgen) =
+     &          gencost_storefld(i,j,bi,bj,kgen)
+     &          +uVel(i,j,k,bi,bj)*tmpmskW
+     &          +vVel(i,j,k,bi,bj)*tmpmskS
+            endif
+          enddo
 c---------
-         enddo ! i
-        enddo ! j
-       enddo ! bi
-      enddo ! bj
+         enddo
+        enddo
+       enddo
+      enddo
 
       if (gencost_barfile(kgen)(1:9).EQ.'m_boxmean') then
         CALL GLOBAL_SUM_TILE_RL( areavolTile, areavolGlob, myThid )
@@ -405,7 +405,7 @@ c---------
      &                 1, areavolGlob, myThid )
       endif
 
-      enddo ! kgen
+      enddo
 
 #endif /* ALLOW_GENCOST_CONTRIBUTION */
 

@@ -104,7 +104,6 @@ c local arrays
       character*(MAX_LEN_FNAM) mdtfi, tpfi, ersfi, gfofi
       integer tpsta(4), erssta(4), gfosta(4)
       integer mdtsta(4), mdtend(4)
-      integer tpend(4), ersend(4), gfoend(4)
       _RL tpper, ersper, gfoper
 
 c for PART 1: re-reference MDT (mdt) to the inferred SLA reference field
@@ -156,22 +155,13 @@ c for PART 4/5: compute smooth/raw anomalies
       _RL ndaysaveRL
 
       integer k2, k2_mdt, k2_lsc
-#ifdef PLEIADES_LUSTRE_OPT
-      integer il
-#endif
 
       character*(80) fname
       character*(80) fname4test
-#ifdef PLEIADES_LUSTRE_OPT
-      character*(80) fnametmp
-#endif
       character*(MAX_LEN_MBUF) msgbuf
 
       LOGICAL doReference
       LOGICAL useEtaMean
-#ifdef PLEIADES_LUSTRE_OPT
-      logical exst
-#endif
 
 c     == external functions ==
 
@@ -287,14 +277,6 @@ c tpfi, tpsta, tpper
        ilps=ilnblnk( gencost_datafile(igen_tp) )
        tpfi=gencost_datafile(igen_tp)(1:ilps)
        call cal_CopyDate(gencost_startdate(1,igen_tp),tpsta,myThid)
-!       call cal_CopyDate(gencost_enddate(1,igen_tp), tpend, myThid)
-!       if(mdtend(1) .NE. tpend(1)) then
-!         write(msgbuf,'(A)')
-!     &  'cost_gencost_sshv4: tp_end does not match mdtend'
-!         call print_message( msgbuf, errormessageunit,
-!     &                    SQUEEZE_RIGHT , myThid)
-!         stop
-!       endif
        tpper=gencost_period(igen_tp)
        if (gencost_barfile(igen_tp)(1:5).EQ.'m_eta')
      &    igen_etaday=igen_tp
@@ -304,14 +286,6 @@ c ersfi, erssta, ersper
        ilps=ilnblnk( gencost_datafile(igen_ers) )
        ersfi=gencost_datafile(igen_ers)(1:ilps)
        call cal_CopyDate(gencost_startdate(1,igen_ers),erssta,myThid)
-!       call cal_CopyDate(gencost_enddate(1,igen_ers),ersend,myThid)
-!       if(mdtend(1) .NE. ersend(1)) then
-!         write(msgbuf,'(A)')
-!     &  'cost_gencost_sshv4: ers_end does not match mdtend'
-!         call print_message( msgbuf, errormessageunit,
-!     &                    SQUEEZE_RIGHT , myThid)
-!         stop
-!       endif
        ersper=gencost_period(igen_ers)
        if (gencost_barfile(igen_ers)(1:5).EQ.'m_eta')
      &    igen_etaday=igen_ers
@@ -321,14 +295,6 @@ c gfofi, gfosta, gfoper
        ilps=ilnblnk( gencost_datafile(igen_gfo) )
        gfofi=gencost_datafile(igen_gfo)(1:ilps)
        call cal_CopyDate(gencost_startdate(1,igen_gfo),gfosta,myThid)
-!       call cal_CopyDate(gencost_enddate(1,igen_gfo),gfoend,myThid)
-!       if(mdtend(1) .NE. gfoend(1)) then
-!         write(msgbuf,'(A)')
-!     &  'cost_gencost_sshv4: gfo_end does not match mdtend'
-!         call print_message( msgbuf, errormessageunit,
-!     &                    SQUEEZE_RIGHT , myThid)
-!         stop
-!       endif
        gfoper=gencost_period(igen_gfo)
        if (gencost_barfile(igen_gfo)(1:5).EQ.'m_eta')
      &    igen_etaday=igen_gfo
@@ -411,48 +377,6 @@ c--   Compute mean_slaobs_mdt: sample mean SLA over the time period of mdt.
        enddo
 
       do year=mdt_y0,mdt_y1
-
-#ifdef PLEIADES_LUSTRE_OPT
-       if (using_tpj) then
-         il=ilnblnk(tpfi)
-         write(fnametmp(1:80),'(2a,i4)') tpfi(1:il), '_', year
-         inquire( file=fnametmp, exist=exst )
-         if (.NOT. exst) then
-           write(msgbuf,'(3A)')
-     &  'cost_gencost_sshv4: File ',fnametmp,' does not exist'
-           call print_message( msgbuf, errormessageunit,
-     &                    SQUEEZE_RIGHT , myThid)
-           stop
-         endif
-       endif
-
-       if (using_ers) then
-         il=ilnblnk(ersfi)
-         write(fnametmp(1:80),'(2a,i4)') ersfi(1:il), '_', year
-         inquire( file=fnametmp, exist=exst )
-         if (.NOT. exst) then
-           write(msgbuf,'(3A)')
-     &  'cost_gencost_sshv4: File ',fnametmp,' does not exist'
-           call print_message( msgbuf, errormessageunit,
-     &                    SQUEEZE_RIGHT , myThid)
-           stop
-         endif
-       endif
-
-       if (using_gfo) then
-         il=ilnblnk(gfofi)
-         write(fnametmp(1:80),'(2a,i4)') gfofi(1:il), '_', year
-         inquire( file=fnametmp, exist=exst )
-         if (.NOT. exst) then
-           write(msgbuf,'(3A)')
-     &  'cost_gencost_sshv4: File ',fnametmp,' does not exist'
-           call print_message( msgbuf, errormessageunit,
-     &                    SQUEEZE_RIGHT , myThid)
-           stop
-         endif
-       endif
-#endif
-
        do day=1,366
 
        do bj = jtlo,jthi
