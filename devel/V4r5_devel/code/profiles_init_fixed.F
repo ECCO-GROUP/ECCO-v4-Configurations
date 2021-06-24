@@ -38,17 +38,18 @@ C ==================== Routine Variables ==========================
 
 #ifdef ALLOW_PROFILES
 
+      integer, parameter :: ChunkSz = 1000
       integer i,j,k,l,m,bi,bj,iG,jG,num_file,ProfNo_tile
       integer stopProfiles
       integer fid, dimid, varid1, varid1a, varid1b
       integer varid2,varid3
-      _RL tmpyymmdd(1000),tmphhmmss(1000),diffsecs
+      _RL tmpyymmdd(ChunkSz),tmphhmmss(ChunkSz),diffsecs
       _RL yymmddMin,yymmddMax
       _RL hhmmssMin,hhmmssMax
 
       integer tmpdate(4),tmpdiff(4),profIsInRunTime
-      _RL  tmp_lon, tmp_lon2(1000), tmp_lat2(1000), lon_cur, lat_cur
-      _RL lon_1, lon_2, lat_1, lat_2
+      _RL tmp_lon, tmp_lon2(ChunkSz), tmp_lat2(ChunkSz)
+      _RL lon_1, lon_2, lat_1, lat_2, lon_cur, lat_cur
       _RL lon_tmp1, lon_tmp2
       _RL lat_fac, lon_fac
       integer prof_i, prof_j
@@ -60,18 +61,18 @@ C ==================== Routine Variables ==========================
 
       integer varid_intp1, varid_intp2, varid_intp11 , varid_intp22
       integer varid_intp3, varid_intp4, varid_intp5, q, iINTERP
-      _RL tmp_i(1000,NUM_INTERP_POINTS)
-      _RL tmp_j(1000,NUM_INTERP_POINTS)
-      _RL tmp_weights(1000,NUM_INTERP_POINTS),tmp_sum_weights
-      _RL tmp_xC11(1000),tmp_yC11(1000)
-      _RL tmp_xCNINJ(1000),tmp_yCNINJ(1000)
+      _RL tmp_i(ChunkSz,NUM_INTERP_POINTS)
+      _RL tmp_j(ChunkSz,NUM_INTERP_POINTS)
+      _RL tmp_weights(ChunkSz,NUM_INTERP_POINTS),tmp_sum_weights
+      _RL tmp_xC11(ChunkSz),tmp_yC11(ChunkSz)
+      _RL tmp_xCNINJ(ChunkSz),tmp_yCNINJ(ChunkSz)
       integer stopGenericGrid
       Real*8 xy_buffer_r8(0:sNx+1,0:sNy+1)
       integer vec_start2(2), vec_count2(2)
       integer hh, ProfNo_hh
 #ifdef ALLOW_PROFILES_SAMPLESPLIT_COST
       integer varid4
-      _RL tmp_avgbin(1000)
+      _RL tmp_avgbin(ChunkSz)
 #endif
 
 c     == external functions ==
@@ -150,9 +151,9 @@ c--   == end of interface ==
         hhmmssMin=modelstartdate(2)
         hhmmssMax=modelenddate(2)
 
-        do m=1,NLEVELMAX
-         do l=1,1000
-          do k=1,NVARMAX
+        do k=1,NVARMAX
+         do l=1,ChunkSz
+          do m=1,NLEVELMAX
            profiles_data_buff(m,l,k,bi,bj)=0. _d 0
            profiles_weight_buff(m,l,k,bi,bj)=0. _d 0
           enddo
@@ -175,6 +176,7 @@ c--   == end of interface ==
      &     'profiles file #',num_file,' is ', profilesfile(1:IL)
         call print_message(
      &     msgbuf, standardmessageunit, SQUEEZE_RIGHT , mythid)
+        CALL FLUSH(standardmessageunit)
       endif
 
       IL  = ILNBLNK( profilesfile )
@@ -226,6 +228,9 @@ c1)  read the number of profiles :
       call print_message(
      &   msgbuf, standardmessageunit, SQUEEZE_RIGHT , mythid)
 
+      !print*,'Read prof_depth'
+      CALL FLUSH(standardmessageunit)
+
 c2) read the dates and positions :
       err = NF_INQ_VARID(fid,'prof_depth', varid1a )
       if (err.NE.NF_NOERR) then
@@ -246,6 +251,11 @@ c       if neither is found, then stop
       err = NF_GET_VAR1_DOUBLE(fid,varid1a,k,
      & prof_depth(num_file,k,bi,bj))
       enddo
+
+!      write(msgbuf,'(a)') 'After Depth Loop'
+!      call print_message(
+!     &   msgbuf, standardmessageunit, SQUEEZE_RIGHT , mythid)
+!      CALL FLUSH(standardmessageunit)
 
       err = NF_INQ_VARID(fid,'prof_YYYYMMDD', varid1a )
       err = NF_INQ_VARID(fid,'prof_HHMMSS', varid1b )
@@ -281,6 +291,11 @@ c3) read interpolattion information (grid points, coeffs, etc.)
         CALL PRINT_ERROR( msgBuf, myThid)
       stopGenericGrid=2
       endif
+
+!        write(msgbuf,'(a)') 'Done profilesDoGenGrid'
+!        call print_message(
+!     &     msgbuf, standardmessageunit, SQUEEZE_RIGHT , mythid)
+!        CALL FLUSH(standardmessageunit)
       endif
 
 c4) default values
@@ -303,22 +318,28 @@ c4) default values
       prof_interp_yCNINJ(num_file,k,bi,bj)=-999. _d 0
       enddo
 
+!      write(msgbuf,'(a)') 'After set defaults'
+!      call print_message(
+!     &   msgbuf, standardmessageunit, SQUEEZE_RIGHT , mythid)
+!      CALL FLUSH(standardmessageunit)
+
 c5) main loop: look for profiles in this tile
       ProfNo_tile=0
-      profno_div1000=max(0,int(ProfNo(num_file,bi,bj)/1000))
+      profno_div1000=max(0,int(ProfNo(num_file,bi,bj)/ChunkSz))
 
       do kk=1,profno_div1000+1
 
-      if (min(ProfNo(num_file,bi,bj), 1000*kk).GE.
-     &  1+1000*(kk-1)) then
+      if (min(ProfNo(num_file,bi,bj), ChunkSz*kk).GE.
+     &  1+ChunkSz*(kk-1)) then
 
 c5.1) read a chunk
-      vec_start(1)=1
-      vec_start(2)=1+1000*(kk-1)
-      vec_count(1)=1
-      vec_count(2)=min(1000,ProfNo(num_file,bi,bj)-1000*(kk-1))
 
-      if ( (vec_count(2).LE.0).OR.(vec_count(2).GT.1000).OR.
+      vec_start(1)=1
+      vec_start(2)=1+ChunkSz*(kk-1)
+      vec_count(1)=1
+      vec_count(2)=min(ChunkSz,ProfNo(num_file,bi,bj)-ChunkSz*(kk-1))
+
+      if ( (vec_count(2).LE.0).OR.(vec_count(2).GT.ChunkSz).OR.
      & (vec_start(2).LE.0).OR.
      & (vec_count(2)+vec_start(2)-1.GT.ProfNo(num_file,bi,bj)) )
      & then
@@ -329,6 +350,11 @@ c5.1) read a chunk
         CALL PRINT_ERROR( msgBuf, myThid)
       stopProfiles=1
       endif
+
+!      write(msgbuf,'(a,i6)') 'Read chunk ', kk
+!      call print_message(
+!     &   msgbuf, standardmessageunit, SQUEEZE_RIGHT , mythid)
+!      CALL FLUSH(standardmessageunit)
 
       err = NF_GET_VARA_DOUBLE(fid,varid1a,vec_start(2),
      & vec_count(2), tmpyymmdd)
@@ -363,9 +389,9 @@ c if profilesDoGenGrid then also read in the interpolation coeffs and indices
      & vec_count(2), tmp_yCNINJ)
       do q=1,iINTERP
         vec_start2(1)=q
-        vec_start2(2)=1+1000*(kk-1)
+        vec_start2(2)=1+ChunkSz*(kk-1)
         vec_count2(1)=1
-        vec_count2(2)=min(1000,ProfNo(num_file,bi,bj)-1000*(kk-1))
+        vec_count2(2)=min(ChunkSz,ProfNo(num_file,bi,bj)-ChunkSz*(kk-1))
         err = NF_GET_VARA_DOUBLE(fid,varid_intp3,vec_start2,
      &  vec_count2, tmp_weights(1,q))
         err = NF_GET_VARA_DOUBLE(fid,varid_intp4,vec_start2,
@@ -375,8 +401,13 @@ c if profilesDoGenGrid then also read in the interpolation coeffs and indices
       enddo
       endif
 
+!      write(msgbuf,'(a,i6)') 'Done chunk ', kk
+!      call print_message(
+!     &   msgbuf, standardmessageunit, SQUEEZE_RIGHT , mythid)
+!      CALL FLUSH(standardmessageunit)
+
 c5.2) loop through this chunk
-      do k=1,min(1000,ProfNo(num_file,bi,bj)-1000*(kk-1))
+      do k=1,min(ChunkSz,ProfNo(num_file,bi,bj)-ChunkSz*(kk-1))
 
       if ( stopProfiles .EQ. 0) then
 
@@ -486,7 +517,7 @@ c if yes then store prof_time and longitude and latitude:
         prof_time(num_file,ProfNo_tile,bi,bj)=diffsecs
         prof_lon(num_file,ProfNo_tile,bi,bj)=lon_cur
         prof_lat(num_file,ProfNo_tile,bi,bj)=lat_cur
-        prof_ind_glob(num_file,ProfNo_tile,bi,bj)=k+1000*(kk-1)
+        prof_ind_glob(num_file,ProfNo_tile,bi,bj)=k+ChunkSz*(kk-1)
 #ifdef ALLOW_PROFILES_SAMPLESPLIT_COST
         prof_ind_avgbin(num_file,ProfNo_tile,bi,bj)=tmp_avgbin(k)
 #endif
@@ -581,7 +612,7 @@ c interpolation information consistent (self and with grid)
           stopGenericGrid=1
        endif
 
-       enddo
+       enddo ! end q loop
 
        if ( abs(tmp_sum_weights -1. _d 0 ) .GT. 0.0001 _d 0) then
           WRITE(msgBuf,'(4A)')
@@ -592,7 +623,7 @@ c interpolation information consistent (self and with grid)
           stopGenericGrid=1
        endif
 
-         prof_ind_glob(num_file,ProfNo_tile,bi,bj)=k+1000*(kk-1)
+         prof_ind_glob(num_file,ProfNo_tile,bi,bj)=k+ChunkSz*(kk-1)
 
        endif
        endif
@@ -610,8 +641,8 @@ c check that maximum size was not reached:
        endif
 
       endif    !if ( stopProfiles .EQ. 0) then
-      enddo    !do k=1,min(1000,ProfNo(num_file,bi,bj)-1000*(kk-1))
-      endif    !if (min(ProfNo(num_file,bi,bj), 1000...
+      enddo    !do k=1,min(ChunkSz,ProfNo(num_file,bi,bj)-ChunkSz*(kk-1))
+      endif    !if (min(ProfNo(num_file,bi,bj), ChunkSz...
       enddo    !do kk=1,profno_div1000+1
 
       ProfNo(num_file,bi,bj)=ProfNo_tile
@@ -783,6 +814,7 @@ C===========================================================
       enddo
 
       endif !if (IL.NE.0) then
+        !err = NF_CLOSE(fiddata(num_file,bi,bj))
       enddo !      do num_file=1,NFILESPROFMAX
 
 #ifdef ALLOW_PROFILES_SAMPLESPLIT_COST

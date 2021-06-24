@@ -369,18 +369,6 @@ C NEW VARIABLE NAMES
 
           PrecipRateOverIceSurfaceToSea(I,J) = 0.0 _d 0
 
-          DO IT=1,SEAICE_multDim
-            ticeInMult(I,J,IT)            = 0.0 _d 0
-            ticeOutMult(I,J,IT)           = 0.0 _d 0
-
-            F_io_net_mult(I,J,IT)  = 0.0 _d 0
-            F_ia_net_mult(I,J,IT)  = 0.0 _d 0
-            F_ia_mult(I,J,IT)      = 0.0 _d 0
-
-            QSWI_mult(I,J,IT)      = 0.0 _d 0
-            FWsublim_mult(I,J,IT)  = 0.0 _d 0
-          ENDDO
-
           F_io_net(I,J) = 0.0 _d 0
           F_ia_net(I,J) = 0.0 _d 0
           F_ia(I,J)     = 0.0 _d 0
@@ -427,6 +415,24 @@ C NEW VARIABLE NAMES
           saltPlumeFlux             (I,J,bi,bj) = 0. _d 0
 #endif
 
+         ENDDO
+        ENDDO
+
+        DO IT=1,nITD
+         DO J=1,sNy
+          DO I=1,sNx
+           ticeInMult(I,J,IT)     = 0.0 _d 0
+           ticeOutMult(I,J,IT)    = 0.0 _d 0
+
+           F_io_net_mult(I,J,IT)  = 0.0 _d 0
+           F_ia_net_mult(I,J,IT)  = 0.0 _d 0
+           F_ia_mult(I,J,IT)      = 0.0 _d 0
+
+           QSWI_mult(I,J,IT)      = 0.0 _d 0
+           FWsublim_mult(I,J,IT)  = 0.0 _d 0
+           hiceActualMult(i,j,it) = 0.0 _d 0
+           hsnowActualMult(i,j,it) = 0.0 _d 0
+          ENDDO
          ENDDO
         ENDDO
 
@@ -565,6 +571,10 @@ c         Do not regularize when HEFFpreTH = 0
            hsnowActual(I,J)       = ZERO
            recip_hiceActual(I,J)  = ZERO
           ENDIF
+!          if (isnan(hiceActual(i,j))) then
+!            WRITE(standardMessageUnit,'(A,2I4)')
+!     &     ': Found NaN in hiceActual ', i,j
+!          endif
 
          ENDDO
         ENDDO

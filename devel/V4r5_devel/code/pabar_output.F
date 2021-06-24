@@ -14,6 +14,9 @@ C     | o Output the global mean air pressure.
 C     *==========================================================*
 
 C !USES:
+#ifdef PLEIADES_LUSTRE_OPT2
+      use dictionary_m
+#endif
       IMPLICIT NONE
 C     === Global variables ===
 #include "SIZE.h"
@@ -62,12 +65,21 @@ C-----------------------------------------------------------------
       _BEGIN_MASTER(myThid)
 C-    multi-threaded: only write it once (by master thread)
        IF ( rwSuffixType.EQ.0 ) THEN
+#ifdef PLEIADES_LUSTRE_OPT
+         WRITE(fName,'(A,I10.10)') '/tmp/Pa_global.', nIter0
+#else
          WRITE(fName,'(A,I10.10)') 'Pa_global.', nIter0
+#endif
        ELSE
          CALL RW_GET_SUFFIX( suff, startTime, nIter0, myThid )
          WRITE(fName,'(A,A)') 'Pa_global.', suff
        ENDIF
+#ifdef PLEIADES_LUSTRE_OPT2
+       ioUnit = fileHash%get1(trim(fName) // '.data')
+       if(ioUnit .eq. -999) ioUnit = -1
+#else
        ioUnit  = 0
+#endif
        CALL MDS_WRITEVEC_LOC(
      I           fName, precFloat64, ioUnit,
      I           'RL', narr, ploadbar, dummyRS,

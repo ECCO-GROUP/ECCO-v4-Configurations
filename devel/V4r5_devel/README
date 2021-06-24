@@ -1,8 +1,27 @@
 - This directory contains the development version of the ECCO Version 4, Release 5 configuration. 
-  The patch code is based on MITgcm checkpoint67l. 
+  The patch code is based on MITgcm checkpoint67l_fileHasah, the optimized code 
+  for checkpoint67l that has much better code performance on NASA AMES's Pleiades than 
+  the original checkpoint67l. MITgcm checkpoint67l_fileHasah is available at 
+  https://github.com/dkokron/MITgcm/tree/dkokron/checkpoint67l_fileHash. 
+
   README                              This file
   code                                Patch code 
   input                               Namelists 
+  other                               Other files, including a new optfile for compilation 
+                                       and an example run script
+
+- To compile for an adjoint run, use the customized optfile ./other/linux_amd64_ifort+mpi_ice_nas_opt
+  mkdir build
+  cd build
+  ../../../tools/genmake2 -mods=../code -optfile=../other/linux_amd64_ifort+mpi_ice_nas_opt -mpi 
+  make depend
+  make adtaf
+  make adall
+- An example run script is available at ./other/example_runscript.csh
+  The run directory is set to ./run as where example_runscript.csh is.  
+   The most important changes from a normal run script that makes no use of scratch disks on Pleiades, 
+   are copy files to the scratch disk, /tmp for each node, before starting a run and copy/move 
+   some output files for archive from the scratch disk back to the run directory after a run finishes. 
 
 - Contact Us:
   ecco-support@mit.edu (please subscribe via http://mailman.mit.edu/mailman/listinfo/ecco-support)
@@ -11,4 +30,5 @@
 README file revision history:
 -----------------------------
 
+- Add a branch for V4r5 optimized code             [Ou Wang] [2021/06/24]
 - README file creation                             [Ou Wang] [2020/06/10]
