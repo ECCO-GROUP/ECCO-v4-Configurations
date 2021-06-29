@@ -294,24 +294,5 @@
   gencost_outputlevel(29)=1,
   mult_gencost(29) = 0.,
 #
-  gencost_avgperiod(30)  = 'day',
-  gencost_barfile(30) = 'm_bpday',
-  gencost_datafile(30) = 'GRACE_fake_daily',
-  gencost_errfile(30) = 'GRACE_jpl_rl05m_20180122_err_areascaled',
-  gencost_spmin(30) = -990.,
-  gencost_spmax(30) = 990.,
-  gencost_spzero(30) = 0.,
-  gencost_outputlevel(30)=1,
-  mult_gencost(30) = 0.,
-#
-  gencost_avgperiod(31)  = 'day',
-  gencost_barfile(31) = 'm_bp_nopabarday',
-  gencost_datafile(31) = 'GRACE_fake_daily'
-  gencost_errfile(31) = 'GRACE_jpl_rl05m_20180122_err_areascaled',
-  gencost_spmin(31) = -990.,
-  gencost_spmax(31) = 990.,
-  gencost_spzero(31) = 0.,
-  gencost_outputlevel(31)=1,
-  mult_gencost(31) = 0.,
  /
 #
