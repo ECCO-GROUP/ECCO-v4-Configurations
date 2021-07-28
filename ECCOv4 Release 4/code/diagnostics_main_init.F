@@ -582,7 +582,7 @@ C     diagTitle = DIAGS_MK_TITLE( fTitle
 C    I  //pTitle//
 C    I ' Ano. Adj. W/ Glb. sterH. Change. No Glb. Mean. Air Pres.',
 C    I  myThid )
-      diagUnits = 'm^2/s^2         '
+      diagUnits = 'm               '
       diagCode  = 'SM      M1      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
@@ -590,7 +590,7 @@ C    I  myThid )
       diagName  = 'OBPGMAP '
       diagTitle = 
      I'Ocean Bottom Pressure Including Global Mean Atmospheric Pressure'
-      diagUnits = 'm^2/s^2         '
+      diagUnits = 'm               '
       diagCode  = 'SM      M1      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
