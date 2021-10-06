@@ -882,6 +882,18 @@ catn -- checking boxmean and transp
             STOP
      &           'ECCO_READPARMS: gencost_avgperiod not properly set'
             endif
+         elseif( gencost_flag(k) .eq. -3 ) then
+             do k2=1,NGENPPROC
+              if (gencost_preproc(k2,k).EQ.'glosum') then
+               if (gencost_barfile(k)(1:13).NE.'m_boxmean_eta') then
+                 WRITE(msgBuf,'(2A)')
+     &                'glosum=.TRUE. only allowed for barfiles '
+     &                'm_boxmean_eta or m_boxmean_eta_dyn'
+                 CALL PRINT_ERROR( msgBuf, myThid )
+                 STOP 'ABNORMAL END: S/R glosum not properly set'
+               endif
+              endif
+             enddo
          endif !gencost_flag
         endif !using_gencost
 

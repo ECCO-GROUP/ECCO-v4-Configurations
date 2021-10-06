@@ -334,6 +334,9 @@ c read mask for averaging (3d, time series)
       enddo
       endif
 
+C gencost_preproc can only be set to 'glosum' for m_boxmean_eta
+C or m_boxmean_eta_dyn. There is a safeguard 
+C in ecco_readparms.F to check this. 
       if(doglosum) then 
       offset     = 0. _d 0
       offset_sum = 0. _d 0
@@ -360,16 +363,11 @@ C      endif
 
 C simple sum of global (area or volume weight is done in ecco_phys.F)
        if ( mymsk2(i,j,k,bi,bj).NE. 0. _d 0) then
-          if(nrtmp.EQ.Nr)then
-           offset  = offset + mybar(i,j,k,bi,bj)
-     &       * mymsk2(i,j,k,bi,bj) 
-           offset_sum = offset_sum + 
-     &         mymsk2(i,j,k,bi,bj) 
-          else
+          if(nrtmp.EQ.1)then
            offset  = offset + mybar(i,j,k,bi,bj)
      &         *mymsk2(i,j,k,bi,bj)
            offset_sum = offset_sum + 
-     &          mymsk2(i,j,k,bi,bj)
+     &          mymsk2(i,j,k,bi,bj)*rA(i,j,bi,bj)
           endif
        endif
 
@@ -395,9 +393,10 @@ C simple sum of global (area or volume weight is done in ecco_phys.F)
           do k = 1,nrtmp
             do j = 1,sNy
               do i =  1,sNx
-       if ( mymsk2(i,j,k,bi,bj).NE. 0. _d 0) then
-          mybar(i,j,k,bi,bj) = mybar(i,j,k,bi,bj) - offset      
-       endif
+                if ( mymsk2(i,j,k,bi,bj).NE. 0. _d 0) then
+                   mybar(i,j,k,bi,bj) = mybar(i,j,k,bi,bj) 
+     &               - offset*rA(i,j,bi,bj)
+                endif
               enddo
             enddo
           enddo
@@ -417,7 +416,6 @@ c sum that is actually be used in cost function
       objf_gencost(bi,bj,kgen)=
      &   objf_gencost(bi,bj,kgen)
      &  +mybar(i,j,k,bi,bj)*mymsk(i,j,k,bi,bj)
-     &   *RA(i,j,bi,bj)
       num_gencost(1,1,kgen)=
      &   num_gencost(1,1,kgen)
      &  +mymsk(i,j,k,bi,bj)
