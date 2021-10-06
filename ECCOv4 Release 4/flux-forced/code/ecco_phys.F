@@ -408,8 +408,8 @@ c---------
 
       if (gencost_barfile(kgen)(1:9).EQ.'m_boxmean') then
         CALL GLOBAL_SUM_TILE_RL( areavolTile, areavolGlob, myThid )
-C       CALL ecco_div( gencost_storefld(1-OLx,1-OLy,1,1,kgen),
-C    &                 1, areavolGlob, myThid )
+        CALL ecco_div( gencost_storefld(1-OLx,1-OLy,1,1,kgen),
+     &                 1, areavolGlob, myThid )
       endif
 
       enddo
