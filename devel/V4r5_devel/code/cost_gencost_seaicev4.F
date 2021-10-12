@@ -443,7 +443,7 @@ C      Might need to migrate into pkg/ecco instead of in pkg/seaice.
 
       _RL SEAICE_freeze, epsilonTemp, epsilonHEFF
       _RL localnorm, localnormsq
-      _RL beta, delta_hi, const0, const1, epsilon_h, epsilon_T
+      _RL beta_T, delta_hi, const0, const1, epsilon_h, epsilon_T
       _RL heff_local
 CEOP
 
@@ -473,11 +473,11 @@ cigf  localnorm = 1/\sigma_T = 10 C^-1
 cigf  localnormsq is weight [1/ sigma_t]^2
       localnormsq=localnorm*localnorm
 
-cigf  beta is a constant: the ocean temperature per unit 
+cigf  beta_T is a constant: the ocean temperature per unit 
 cigf  ocean depth required to melt sea-ice of equivalent thickness
 cigf  [J kg-1][kg m-3] / ([J kg-1 K-1] [kg m-3]) --> K
 cigf  numerically, about 73 degrees Celsius
-      beta = SEAICE_lhFusion*SEAICE_rhoIce / (HeatCapacity_Cp*rhoNil)
+      beta_T = SEAICE_lhFusion*SEAICE_rhoIce / (HeatCapacity_Cp*rhoNil)
       
 cigf  temperature of uppermost ocean grid cell of thickness drF(1)
 cigf  required to melt \epsilon_h meters of sea-ice.  
@@ -486,7 +486,7 @@ cigf  the gradient of deconc cost term with respect to temperature is
 cigf  positive with respect to ocean temperature.
 cigf  note: since all of these terms are constants, we could also just set
 cigf  const1 = 1 and be done with it.
-      const0 = beta / drF(1)
+      const0 = beta_T / drF(1)
       const1 = const0 * epsilon_h
       
       jtlo = myByLo(myThid)
@@ -557,9 +557,9 @@ c  \sigma_E = c_p \rho_sw \Delta z \sigma_T
 c
 c  which then gives us,
 c
-c    J_deconc = \sigma_T^-2 [T_ocn - T_f + \beta \Delta z^-1 \epsilon_h]
+c    J_deconc = \sigma_T^-2 [T_ocn - T_f + \beta_T \Delta z^-1 \epsilon_h]
 c
-c  with \beta = L_i \rho_i / (c_p \rho_sw)
+c  with \beta_T = L_i \rho_i / (c_p \rho_sw)
 c
 c  check the gradient w.r.t. T_ocn:
 c  ================================
@@ -596,7 +596,7 @@ c              suggested value is 100 1/degreesC^2
                localfldweight(i,j,k,bi,bj) = localnormsq
 #endif
 
-cigf           J = [T_ocn - T_f + \beta \Delta z^-1 \ep_h]^2 sigma_T^-2
+cigf           J = [T_ocn - T_f + \beta_T \Delta z^-1 \ep_h]^2 sigma_T^-2
 c              J = [T_ocn - T_f + const1]^2 sigma_T^-2
 c              localfld is the [T_o - T_f + const1] term
                localfld(i,j,k,bi,bj) =
@@ -664,22 +664,22 @@ c  \sigma_E = c_p \rho_sw \Delta z \sigma_T
 c
 c  which then gives us,
 c
-c    J_exconc = \sigma_T^-2 [-\beta \Delta z^-1 h_i + T_ocn - T_f - \ep_T]^2
+c    J_exconc = \sigma_T^-2 [-\beta_T \Delta z^-1 h_i + T_ocn - T_f - \ep_T]^2
 c
 c  after factoring out constants and using
-c  \beta = L_i \rho_i / (c_p \rho_sw)
+c  \beta_T = L_i \rho_i / (c_p \rho_sw)
 c
 c  check the gradient w.r.t. T_ocn:
 c  ================================
 c
 c  \partial_T J_deconc = \sigma_T^-2 x 2 x 
-c                      [-\beta \Delta z^-1 h_i + T_ocn - T_f - \ep_T] x 
-c                      [-\beta \Delta z^-1 \partial_T h_i + 1]
+c                      [-\beta_T \Delta z^-1 h_i + T_ocn - T_f - \ep_T] x 
+c                      [-\beta_T \Delta z^-1 \partial_T h_i + 1]
 c
 c  consider terms in []
-c  1. -\beta \Delta z^-1 h_i < 0 for all h_i
+c  1. -\beta_T \Delta z^-1 h_i < 0 for all h_i
 c  2. T_ocn - T_f -\epsilon_T  < 0 so long as \epsilon_T > T_ocn - T_f
-c  3. -\beta \Delta z^-1 \partial_T h_i > 0 because
+c  3. -\beta_T \Delta z^-1 \partial_T h_i > 0 because
 c          \partial_T h_i < 0 (increase ocean temperature thins ice)
 c
 c  [(-) + (-)][(+) + (+)] --> [-]  
@@ -690,13 +690,13 @@ c  check the gradient w.r.t. h_i:
 c  ================================
 c
 c  \partial_h_i J_deconc = \sigma_T^-2 x 2 x 
-c                      [-\beta \Delta z^-1 h_i + T_ocn - T_f - \ep_T] x 
-c                      [-\beta \Delta z^-1]
+c                      [-\beta_T \Delta z^-1 h_i + T_ocn - T_f - \ep_T] x 
+c                      [-\beta_T \Delta z^-1]
 c
 c  consider terms in []
-c  1. -\beta \Delta z^-1 h_i < 0 for all h_i
+c  1. -\beta_T \Delta z^-1 h_i < 0 for all h_i
 c  2. T_ocn - T_f -\epsilon_T  < 0 so long as \epsilon_T > T_ocn - T_f
-c  3. -\beta \Delta z^-1  < 0  
+c  3. -\beta_T \Delta z^-1  < 0  
 c
 c  [(-) + (-)][-] --> [+]  
 c  --> the gradient of exconc is positive with respect to ice thickness,
