@@ -72,7 +72,7 @@
  xx_gentim2d_period(5)=604800.0,
 #xx_gentim2d_preproc(1,5)='WC01',
  xx_gentim2d_preproc_i(1,5)=1,
- mult_gentim2d(4) = 0.,
+ mult_gentim2d(5) = 0.,
 #
  xx_gentim2d_weight(6) = 'weights_ones.data',
  xx_gentim2d_file(6)='xx_tauu',
