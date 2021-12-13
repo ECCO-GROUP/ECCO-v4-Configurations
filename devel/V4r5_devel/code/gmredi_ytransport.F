@@ -156,7 +156,8 @@ C-    Vertical gradients interpolated to V points
        DO j=jMin,jMax
         DO i=iMin,iMax
 #ifdef ALLOW_SHELFICE
-           if (k-1 .ge. kTopC(i,j,bi,bj)) then
+           if (k-1 .ge. kTopC(i,j,bi,bj).and.
+     &         k-1 .ge. kTopC(i,j-1,bi,bj)) then
 #endif /* ALLOW_SHELFICE */
         dTdz(i,j) =  op5*(
      &   +op5*recip_drC(k)*
