@@ -89,7 +89,7 @@ C     === Local variables ===
       _RL eps1, eps2, eps3, eps4, eps5, eps6, eps7, eps8
       _RL aqe, bqe, cqe, discrim, recip_aqe
       _RL a0, a1, a2, b0, c0
-      _RL w_I
+      _RL w_B
 
 C     === Useful Units ===
 C--   gammaT, m s^-1
@@ -102,6 +102,7 @@ C--   heatFlux, kg m^-2 s^-1
 C--   forcing T, K m/s
 C--   forcing S, psu m/s
 C--   SHELFICEkappa, m^2/s
+C--   w_B,  m/s
 
 C--   eps1, W K^-1 m^-2 : kg/m^3 * J/kg/K * m/s
 C--   eps2, W m^-2 : kg/m^3 * J/kg * m/s 
@@ -227,9 +228,9 @@ C--   with the other two cases (linear T, nonlinear T and melting).
      &        SHELFICElatentHeat 
       ENDIF
 
-C     meltwater advective flux velocity at ice-ocean interface (m/s)  
-C     * negative corresponds to downward flux (melting)
-      w_I = fwFlux * mass2rUnit
+C     velocity of meltwater flux at ice-ocean interface (m/s)  
+C     * negative corresponds to downward flux of meltwater (melting)
+      w_B = fwFlux * mass2rUnit
 
 C--   Calculate the upward heat fluxes:
 C--   melting requires upward (positive) heat flux from ocean to ice.
@@ -253,15 +254,15 @@ C--   consists of only two terms: turbulent fluxes (positive out)
 C--   and advective meltwater fluxes (negative in).
              heatFlux = rUnit2mass*HeatCapacity_Cp * (
      &           gammaT * (insitutLoc - thetaFreeze) 
-     &           + w_I * thetaFreeze                 )
+     &           + w_B * thetaFreeze                 )
           ELSE
 
 C--   If the volume is fixed (realFWFlux=false) then the advection of
 C--   meltwater does displace ambient water at T=insitutLoc in the cell. 
-C--   Displacement reduction volume energy by w_I * insitutLoc (positive)               
+C--   Displacement reduction volume energy by w_B * insitutLoc (positive)               
              heatFlux = rUnit2mass*HeatCapacity_Cp * (
      &           gammaT * (insitutLoc - thetaFreeze) 
-     &           + w_I * (thetaFreeze - insitutLoc)        ) 
+     &           + w_B * (thetaFreeze - insitutLoc)        ) 
           ENDIF
 
       ELSE
@@ -281,11 +282,11 @@ C--   In the conservative case, meltwater advection contributes (J2001)
 C--   to T and S tendencies
 C--   * forcing T (K m/s)
           forcingT = 
-     &      (gammaT - w_I)*(thetaFreeze - insitutLoc)
+     &      (gammaT - w_B)*(thetaFreeze - insitutLoc)
      
 C--   * forcing S (psu m/s)
           forcingS = 
-     &      (gammaS - w_I)*(saltFreeze  - sLoc)
+     &      (gammaS - w_B)*(saltFreeze  - sLoc)
       ELSE
 C--   Otherwise, the only fluxes out of the ocean that change T and S
 C--   are the turbulent fluxes.
@@ -302,8 +303,8 @@ C--   are the turbulent fluxes.
      &                    SQUEEZE_RIGHT , 1)
 
       WRITE(msgBuf,'(A25,7E16.8)')
-     &   'ZZZ2 T,S,P,t,TFrz,SFrz,w_I ',
-     &   tLoc,sLoc,pLoc, insitutLoc, thetaFreeze, saltFreeze, w_I
+     &   'ZZZ2 T,S,P,t,TFrz,SFrz,w_B ',
+     &   tLoc,sLoc,pLoc, insitutLoc, thetaFreeze, saltFreeze, w_B
 
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT , 1)
