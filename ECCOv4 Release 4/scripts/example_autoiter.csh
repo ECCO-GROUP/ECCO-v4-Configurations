@@ -63,7 +63,7 @@ set runnm = 'run_test'
 #Run directory
 set basedir   = /XYZ/
 #Control directory that would store ecco_ctrl and ecco_cost files.
-#The directory is empty of the initial iteration.
+#The directory is empty for the initial iteration.
 set ctrldir = ${basedir}/ctrlvec.${runnm}
 #Optimization directory where the optimization generates ecco_ctrl for next iteration
 #See an example of optimdir for the initial iteration in 
