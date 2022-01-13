@@ -178,6 +178,11 @@ EOF
 #start the run
 mpiexec -np ${nprocs} /u/scicon/tools/bin/mbind.x ./build/mitgcmuv_ad
 
+#After the run successfully finishes, copy ecco_cost from 
+#run directory to the ctrldir directory for optimization 
+#to generate ecco_ctrl for next iteration
+rsync -av ecco_cost_MIT_CE_000.opt${yiter} ${ctrldir}
+
 #Increase whichiter for next iteration
 @ whichiter = {$whichiter} + 1
 
