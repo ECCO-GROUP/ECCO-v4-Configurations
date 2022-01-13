@@ -1,0 +1,22 @@
+Example directory "optim" for the variable "optimdir" in 
+https://github.com/ECCO-GROUP/ECCO-v4-Configurations/blob/master/ECCOv4%20Release%204/scripts/example_autoiter.csh 
+
+2022-01-13
+Ou Wang
+
+README: this file
+
+Namelist files
+data.optim: Need to set "fim" to fc_0 * (1-0.5*fact), where fc_0 is the total cost of 
+            an initial iteration (the iteration before a steepest descent iteration);
+            fact is the target fractional cost reduction. For instance, if one wants 
+            to have a 0.01 (i.e., 1%) cost reduction, fmin should be set to 
+            fc_0 * (1-0.01*0.5) = fc_0 * 0.995. One only needs to set it once unless 
+            one wants to restart with another steepest iteration. 
+data.ctrl: No need to change
+data.ecco: No need to change
+
+Executable:
+optim.x: A dummy executable for optimization. See 
+https://github.com/ECCO-GROUP/ECCO-v4-Configurations/tree/master/ECCOv4%20Release%204/optimization 
+for how to generate optim.x. One can also use their own version of optim.x. 

@@ -1,0 +1,8 @@
+ &OPTIM
+ optimcycle=1,
+  numiter=1,
+  nfunc=1,
+  fmin=38498798.922067076,
+  iprint=10,
+  nupdate=4,
+ /
