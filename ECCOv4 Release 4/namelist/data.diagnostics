@@ -371,6 +371,22 @@ frequency(96) = 2635200.0,
 fields(1,96) = 'EXFpress',
 filename(96) = 'diags/EXFpress_mon_mean/EXFpress_mon_mean',
 #---
+frequency(97) = 2635200.0,
+fields(1,97) = 'SIacSubl',
+filename(97) = 'diags/SIacSubl_mon_mean/SIacSubl_mon_mean',
+#---
+frequency(98) = 2635200.0,
+fields(1,98) = 'SIaaflux',
+filename(98) = 'diags/SIaaflux_mon_mean/SIaaflux_mon_mean',
+#---
+frequency(99) = 2635200.0,
+fields(1,99) = 'SIfwThru',
+filename(99) = 'diags/SIfwThru_mon_mean/SIfwThru_mon_mean',
+#---
+frequency(100) = 2635200.0,
+fields(1,100) = 'SIrsSubl',
+filename(100) = 'diags/SIrsSubl_mon_mean/SIrsSubl_mon_mean',
+#---
   /
 #
 #
