@@ -1,0 +1,23 @@
+January 13, 2022
+
+Steps on automatic optimization on Pleiades
+Ou Wang
+
+1. Start the initial iteration (iteration 0)
+
+2. Once the forward mode of iteration 0 is finished;
+Generate the executable for optimization (optim.x) following the README file in
+https://github.com/ECCO-GROUP/ECCO-v4-
+Configurations/tree/master/ECCOv4%20Release%204/optimization
+Create directories ctrl.runname and optim.runname (replace runname with the actual
+run name) as specified in the example script for automating iterations at
+https://github.com/ECCO-GROUP/ECCO-v4-
+Configurations/blob/master/ECCOv4%20Release%204/scripts/example_autoiter.csh. The
+ctrl.runname will be empty. The optim.runname will be similar to the optim directory at
+https://github.com/ECCO-GROUP/ECCO-v4-
+Configurations/tree/master/ECCOv4%20Release%204/scripts/optim. One needs to replace the
+executable optim.x with the one generated above. One also needs to set fmin in data.optim.
+See the README file inside optim/.
+
+3. After the initial iteration finished the adjoint mode, use the example script to
+do multiple iterations.
