@@ -104,6 +104,7 @@ C     iceFrontWidth    :: the width of the ice front.
       _RL tmpHeatFlux, tmpFWFLX
       _RL tmpForcingT, tmpForcingS
       _RL tmpFac, icfgridareaFrac
+      _RL tmpHeatFluxscaled, tmpFWFLXscaled
       INTEGER SI
 
 #ifdef ALLOW_DIAGNOSTICS
@@ -320,16 +321,29 @@ C--   but these rates only apply to the
 C--   fraction of the grid cell that has ice in contact with seawater.
 C--   we must scale by iceFrontVertContactFrac to get to the average
 C--   fluxes in this grid cell.
+C--   We also further scale by ratio of vertical to horizontal grid
+C--   cell area so when comparing ice-front flux to ice-shelf flux we
+C--   can just times them by the same area, i.e. horizontal grid cell area.
+
+C--   ratio of vertical area to horizontal grid cell area
+                        icfgridareaFrac =
+     &                   iceFrontFaceArea/RA(CURI,CURJ,bi,bj)
 
 C--   In units W/m^2
-                        iceFrontHeatFlux(CURI,CURJ,K,bi,bj) = 
-     &                    iceFrontHeatFlux(CURI,CURJ,K,bi,bj) + 
+                        tmpHeatFluxscaled = 
      &                    tmpHeatFlux*iceFrontVertContactFrac
+     &                    *icfgridareaFrac
+                        iceFrontHeatFlux(CURI,CURJ,K,bi,bj) =
+     &                    iceFrontHeatFlux(CURI,CURJ,K,bi,bj) +
+     &                    tmpHeatFluxscaled
 
 C     In units of kg/s/m^2
-                        iceFrontFreshWaterFlux(CURI,CURJ,K,bi,bj) = 
-     &                    iceFrontFreshWaterFlux(CURI,CURJ,K,bi,bj) + 
+                        tmpFWFLXscaled =
      &                    tmpFWFLX*iceFrontVertContactFrac
+     &                    *icfgridareaFrac
+                        iceFrontFreshWaterFlux(CURI,CURJ,K,bi,bj) =
+     &                    iceFrontFreshWaterFlux(CURI,CURJ,K,bi,bj) +
+     &                    tmpFWFLXscaled
 
 C ow - 06/29/2018  
 C ow - Verticallly sum up the 3D icefront heat and freshwater fluxes to 
@@ -339,16 +353,12 @@ C ow -  ice-front melts below shelf-ice are included to be consistent
 C ow -  with Rignot's data 
                   if(k.GE.kTopC(I,J,bi,bj))then
                    if(RA(CURI,CURJ,bi,bj).NE.0. _d 0)then
-                        icfgridareaFrac = 
-     &                   iceFrontFaceArea/RA(CURI,CURJ,bi,bj) 
                         SHIICFHeatFlux(CURI,CURJ,bi,bj) = 
      &                   SHIICFHeatFlux(CURI,CURJ,bi,bj) + 
-     &                   iceFrontHeatFlux(CURI,CURJ,K,bi,bj)
-     &                   * icfgridareaFrac 
+     &                   tmpHeatFluxscaled
                         SHIICFFreshWaterFlux(CURI,CURJ,bi,bj) = 
      &                   SHIICFFreshWaterFlux(CURI,CURJ,bi,bj) + 
-     &                   iceFrontFreshWaterFlux(CURI,CURJ,K,bi,bj)
-     &                   * icfgridareaFrac
+     &                   tmpFWFLXscaled
                    endif
                   endif
 C     iceFrontForcing[T,S] X m/s but these rates only apply to the 
@@ -469,9 +479,9 @@ c     ENDIF
        CALL DIAGNOSTICS_FILL_RS(shelfIceHeatFlux,      'SHIhtFlx',
      &      0,1,0,1,1,myThid)
 
-       CALL DIAGNOSTICS_FILL_RS(SHIICFFreshWaterFlux,'SHIICFfwFlx',
+       CALL DIAGNOSTICS_FILL_RS(SHIICFFreshWaterFlux,'SHIICFfw',
      &      0,1,0,1,1,myThid)
-       CALL DIAGNOSTICS_FILL_RS(SHIICFHeatFlux,      'SHIICFhtFlx',
+       CALL DIAGNOSTICS_FILL_RS(SHIICFHeatFlux,      'SHIICFht',
      &      0,1,0,1,1,myThid)
 
         CALL DIAGNOSTICS_FILL(iceFrontFreshWaterFlux, 'ICFfwFlx',
