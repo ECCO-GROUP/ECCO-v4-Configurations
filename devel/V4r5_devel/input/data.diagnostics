@@ -179,7 +179,7 @@
    fileName(27) = 'diags/shelficeDiag',
 #---
   frequency(28) = 2635200.0,
-  fields(1:2,28)  = 'SHIICFfwFlx','SHIICFhtFlx',
+  fields(1:2,28)  = 'SHIICFfw','SHIICFht',
    fileName(28) = 'diags/shelficePicefrontDiag',
 #---
   frequency(29) = 2635200.0,

@@ -39,7 +39,8 @@ C ==================== Global Variables ===========================
 # include "cal.h"
 #endif
 #ifdef ALLOW_ECCO
-# include "ecco.h"
+# include "ECCO_SIZE.h"
+# include "ECCO.h"
 #endif
 #ifdef ALLOW_PROFILES
 # include "PROFILES_SIZE.h"

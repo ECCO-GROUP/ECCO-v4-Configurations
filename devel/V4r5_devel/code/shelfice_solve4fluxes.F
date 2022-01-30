@@ -44,7 +44,6 @@ C     === Global variables ===
 #ifdef ALLOW_AUTODIFF_TAMC
 # ifdef SHI_ALLOW_GAMMAFRICT
 #  include "tamc.h"
-#  include "tamc_keys.h"
 # endif /* SHI_ALLOW_GAMMAFRICT */
 #endif /* ALLOW_AUTODIFF_TAMC */
 
@@ -228,7 +227,7 @@ C--   with the other two cases (linear T, nonlinear T and melting).
      &        SHELFICElatentHeat 
       ENDIF
 
-C     velocity of meltwater flux at ice-ocean interface (m/s)  
+C     velocity of meltwater flux at ice-ocean interface (m/s)
 C     * negative corresponds to downward flux of meltwater (melting)
       w_B = fwFlux * mass2rUnit
 

@@ -15,7 +15,7 @@ C     *==========================================================*
 #include "CPP_OPTIONS.h"
 
 #ifdef ALLOW_SEAICE
-#define ALLOW_SEAICE_GROWTH_ADX
+#define SEAICE_USE_GROWTH_ADX
 C     Package-specific Options & Macros go here
 
 #define ALLOW_SEAICE_FLOODING

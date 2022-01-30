@@ -1,6 +1,3 @@
-C $Header: /home/ubuntu/mnt/e9_copy/MITgcm/pkg/shelfice/shelfice_init_fixed.F,v 1.18 2017/04/10 23:49:35 jmc Exp $
-C $Name:  $
-
 #include "SHELFICE_OPTIONS.h"
 #ifdef ALLOW_COST
 # include "COST_OPTIONS.h"
@@ -36,7 +33,7 @@ C     myThid ::  Number of this instance of SHELFICE_INIT_FIXED
 #ifdef ALLOW_SHELFICE
 C     === Local variables ===
 C     i, j, bi, bj :: Loop counters
-      INTEGER i, j, bi, bj, k
+      INTEGER i, j, bi, bj
 #ifdef ALLOW_DIAGNOSTICS
       INTEGER       diagNum
       INTEGER       diagMate
@@ -45,7 +42,7 @@ C     i, j, bi, bj :: Loop counters
       CHARACTER*16  diagUnits
       CHARACTER*(80) diagTitle
 #endif /* ALLOW_DIAGNOSTICS */
-#ifdef ALLOW_SHIFWFLX_CONTROL
+#ifdef ALLOW_CTRL
       INTEGER k
 # ifdef ALLOW_SHIFWFLX_COST_CONTRIBUTION
       _RL dummy
@@ -54,22 +51,23 @@ C     i, j, bi, bj :: Loop counters
 
 C local variabls used to determine shelf-ice and ice-front masks
 C     iceFrontCellThickness   :: the ratio of the horizontal length
-C                         of the ice front in each model grid cell 
+C                         of the ice front in each model grid cell
 C                         divided by the grid cell area.  The "thickness"
 C                         of the colum perpendicular to the front
 C     iceFrontWidth    :: the width of the ice front.
 
       INTEGER CURI, CURJ, FRONT_K
-      _RL ice_bottom_Z_C 
+      _RL ice_bottom_Z_C
       _RL wet_top_Z_N, wet_bottom_Z_N
       _RL iceFrontWetContact_Z_max
-      _RL iceFrontContact_H   
+      _RL iceFrontContact_H
       _RL iceFrontVertContactFrac, iceFrontCellThickness
       _RL iceFrontWidth, iceFrontFaceArea
       _RS fK_icefront (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
       INTEGER SI
       _RL epsilon_H
+      character*200 msgBuf
 
 #ifdef ALLOW_MNC
 C     Initialize MNC variable information for SHELFICE
@@ -91,7 +89,7 @@ C-----------------------------------------------------------------------
         DO j = 1-OLy, sNy+OLy
          DO i = 1-OLx, sNx+OLx
           IF ( kSurfC(i,j,bi,bj).LE.Nr .AND.
-     &         R_shelfIce(i,j,bi,bj).LT.zeroRS ) THEN
+     &         Ro_surf(i,j,bi,bj).LT.rF(1) ) THEN
             kTopC(i,j,bi,bj) = kSurfC(i,j,bi,bj)
           ELSE
             kTopC(i,j,bi,bj) = 0
@@ -105,7 +103,7 @@ C-----------------------------------------------------------------------
        ENDDO
       ENDDO
 
-#ifdef ALLOW_SHIFWFLX_CONTROL
+#ifdef ALLOW_CTRL
 C     maskSHI is a hack to play along with the general ctrl-package
 C     infrastructure, where only the k=1 layer of a 3D mask is used
 C     for 2D fields. We cannot use maskInC instead, because routines
@@ -122,8 +120,8 @@ C     like ctrl_get_gen and ctrl_set_unpack_xy require 3D masks.
         DO k=1,Nr
          DO j=1-OLy,sNy+OLy
           DO i=1-OLx,sNx+OLx
-           IF ( R_shelfIce(i,j,bi,bj).LT.zeroRS
-     &          .AND. hFacC(i,j,k,bi,bj).NE.zeroRS ) THEN
+           IF ( Ro_surf(i,j,bi,bj).LT.rF(1)
+     &          .AND. maskC(i,j,k,bi,bj).NE.zeroRS ) THEN
             maskSHI(i,j,k,bi,bj) = 1. _d 0
             maskSHI(i,j,1,bi,bj) = 1. _d 0
            ENDIF
@@ -132,7 +130,7 @@ C     like ctrl_get_gen and ctrl_set_unpack_xy require 3D masks.
         ENDDO
        ENDDO
       ENDDO
-#endif /* ALLOW_SHIFWFLX_CONTROL */
+#endif /* ALLOW_CTRL */
 
 C 06/29/2018
 C ow - maskSHI above is not consistent with the spirit of gencost. Use mask2dSHI and mask3dSHI below
@@ -167,18 +165,9 @@ C ow - the vertical, then mask2dSHI at i,j is one.
           ENDDO /* I */
         ENDDO /* J */
 
-C       DO k=1,Nr
-C        DO j=1-OLy,sNy+OLy
-C         DO i=1-OLx,sNx+OLx
-C          IF ( R_shelfIce(i,j,bi,bj).LT.zeroRS
-C    &          .AND. hFacC(i,j,k,bi,bj).NE.zeroRS ) THEN
-C           mask2dSHI(i,j,bi,bj) = 1. _d 0
-C          ENDIF
-C         ENDDO
-C        ENDDO
-C       ENDDO
        ENDDO
       ENDDO
+
 
 #ifdef ALLOW_COST
 #if  (defined (ALLOW_SHIFWFLX_COST_CONTRIBUTION) && \
@@ -280,9 +269,8 @@ C--  ICEFRONT parameters (BEGIN)
       ENDDO
 C--  ICEFRONT parameters (END)
 
-
 C create masks for shelf-ice and ice-front by modifyig code from shelfice_thermodynamics.F
-C--   minimum fraction of a cell adjacent to an ice front that must be 
+C--   minimum fraction of a cell adjacent to an ice front that must be
 C--   wet for exchange to happen
       epsilon_H = 1. _d -03
 
@@ -304,33 +292,33 @@ C--   Loop through all depths where the ice front is fround
                 DO K = 1, FRONT_K
 C--   Loop around the four laterally neighboring cells of the ice front.
 C--   If any neighboring points has wet volume in contact with the ice
-C--   front at (I,J) then calculate ice-ocean exchanges.  
+C--   front at (I,J) then calculate ice-ocean exchanges.
 C--   The four laterally neighboring point are at (CURI,CURJ)
                   DO SI = 1,4
                     IF     (SI .EQ. 1) THEN
-C--   Looking to right                  
+C--   Looking to right
                       CURI = I+1
                       CURJ = J
 
                       iceFrontWidth     = dyG(I+1,J,bi,bj)
-                      
+
                     ELSEIF (SI .EQ. 2) THEN
-C--   Looking to LEFT                  
+C--   Looking to LEFT
                       CURI = I-1
                       CURJ = J
 
                       iceFrontWidth     = dyG(I,J,bi,bj)
                     ELSEIF (SI .EQ. 3) THEN
-C--   Looking to NORTH                                    
+C--   Looking to NORTH
                       CURI = I
                       CURJ = J+1
 
                       iceFrontWidth     = dxG(I,J+1,bi,bj)
                     ELSEIF (SI .EQ. 4) THEN
-C--   Looking to south                   
+C--   Looking to south
                       CURI = I
                       CURJ = J-1
-                  
+
                       iceFrontWidth     = dxG(I,J,bi,bj)
                     endif
 
@@ -338,8 +326,7 @@ C--   Looking to south
                     CURJ_ARR(I,J,bi,bj,SI) = CURJ
                     iceFrontWidth_arr(I,J,bi,bj,SI) = iceFrontWidth
 
-                    
-C--                 cell depth describes the average distance 
+C--                 cell depth describes the average distance
 C--                 perpendicular to the ice front fact
 
                     iceFrontCellThickness = RA(CURI,CURJ,bi,bj)
@@ -352,106 +339,114 @@ C--   First, make sure the adjacent point has at least some water in it.
 C--   we need to determine how much of the ice front is in contact with
 C--   water in the neighboring grid cell at this depth level.
 
-C--   1. Determine the top depth with water in the current cell 
+C--   1. Determine the top depth with water in the current cell
 C--   2. Determine the top depth with water in the neighbor cell
-C--   3. Determine the depth where water  gap between (1) and (2).  
-C--   4. If there is a gap then ice front is in contact with water in 
+C--   3. Determine the depth where water  gap between (1) and (2).
+C--   4. If there is a gap then ice front is in contact with water in
 C--      the neighboring cell
 
-C--   ice_bottom_Z_C: the depth (m) of the bottom of the ice in the 
-C--               current cell.  Bounded between rF(K) and rF(K+1).  
-C--               * If the ice extends past the bottom of the cell then 
+C--   ice_bottom_Z_C: the depth (m) of the bottom of the ice in the
+C--               current cell.  Bounded between rF(K) and rF(K+1).
+C--               * If the ice extends past the bottom of the cell then
 C--                 ice_bottom_Z_C = rF(K+1)
 C--               [rF(k) >= ice_bottom_Z_C >= rF(K+1)]  (rF is negative)
-                      ice_bottom_Z_C = max(rF(K+1), 
+                      ice_bottom_Z_C = max(rF(K+1),
      &                  min(Ro_surf(I,J, bi,bj), rF(K)))
 
-C--   wet_top_Z_N: the depth (m) of the bottom of the ice in the 
+C--   wet_top_Z_N: the depth (m) of the bottom of the ice in the
 C--              neighboring grid.  If the neighboring cell has ice in
-C--              (in the form of a shelf or front) then wet_top_Z_N is 
+C--              (in the form of a shelf or front) then wet_top_Z_N is
 C--              the depth of this neighboring ice.
-C--  
-C--              * If neighbor cell has no ice, then Ro_surf = 0 and 
+C--
+C--              * If neighbor cell has no ice, then Ro_surf = 0 and
 C--                wet_top_Z_N = rF(K)
 C--              [rF(k) >= wet_top_Z_N >= rF(K+1)]     (rF is negative)
 
-                      wet_top_Z_N = max(rF(K+1), 
+                      wet_top_Z_N = max(rF(K+1),
      &                 min(Ro_surf(CURI,CURJ, bi,bj), rF(K)))
 
-C--   wet_bottom_Z_N: the depth (m) of the bottom of the wet part of the 
-C--              neighboring cell.  If the seafloor reaches into 
-C--              the grid cell then the bottom of the wet part of the 
+C--   wet_bottom_Z_N: the depth (m) of the bottom of the wet part of the
+C--              neighboring cell.  If the seafloor reaches into
+C--              the grid cell then the bottom of the wet part of the
 C--              grid cell is at the seafloor.
-C--  
-C--              * If the seafloor is deeper than this grid cell then 
-C--                wet_bottom_Z = rF(K+1) 
-C--              * If the seafloor is shallower than this grid cell then 
-C--                wet_bottom_Z = rF(K) 
+C--
+C--              * If the seafloor is deeper than this grid cell then
+C--                wet_bottom_Z = rF(K+1)
+C--              * If the seafloor is shallower than this grid cell then
+C--                wet_bottom_Z = rF(K)
 C--              * If the seafloor reaches partly into this grid cell
 C--                then wet_bottom_Z = R_low
 
 C--              [rF(k) >= wet_bottom_Z >= rF(K+1)]     (rF is negative)
 
-                      wet_bottom_Z_N = min(rF(K), 
+                      wet_bottom_Z_N = min(rF(K),
      &                  max(R_low(CURI,CURJ, bi,bj), rF(K+1)))
 
-C--   iceFrontWetContact_Z_max:  The deepest point where the 
+C--   iceFrontWetContact_Z_max:  The deepest point where the
 C--              the ice front at (I,J) is in contact with water
-C--              in the neighboring cell.  The shallower of  
-C--              wet_bottom_Z_N (seafloor depth of neighboring point) and 
-C--              ice_bottom_Z_C (bottom of ice front in this center cell). 
+C--              in the neighboring cell.  The shallower of
+C--              wet_bottom_Z_N (seafloor depth of neighboring point) and
+C--              ice_bottom_Z_C (bottom of ice front in this center cell).
 
-C--              * wet_bottom_Z_N if the seafloor of the neighboring 
-C--                cell is shallower than the ice draft at (I,J).  
+C--              * wet_bottom_Z_N if the seafloor of the neighboring
+C--                cell is shallower than the ice draft at (I,J).
 C--              * ice_bottom_Z_C if the ice draft at (I,J) is shallower
 C--                than the seafloor of the neighboring cell.
 
                       IF (ice_bottom_Z_C .GT. wet_bottom_Z_N) THEN
                         iceFrontWetContact_Z_max = ice_bottom_Z_C
-                      ELSE 
+                      ELSE
                         iceFrontWetContact_Z_max = wet_bottom_Z_N
                       ENDIF
 
-C--   The shallowest depth where the ice front at (I,J) is in contact 
-C--   with water in the neighboring cell.  If the neighboring cell has 
+C--   The shallowest depth where the ice front at (I,J) is in contact
+C--   with water in the neighboring cell.  If the neighboring cell has
 C--   no ice draft then wet_top_Z_N = rF(k), the top of the cell.
-C--   Otherwise, the shallowest depth where the ice front at (I,J) can 
-C--   be in in contact with water (not ice) in (CURI, CURJ) 
-C--   is wet_top_Z_N. 
+C--   Otherwise, the shallowest depth where the ice front at (I,J) can
+C--   be in in contact with water (not ice) in (CURI, CURJ)
+C--   is wet_top_Z_N.
 
 C--   the fraction of the grid cell height that has ice draft in contact
 C--   with water in the neighboring cell.
-                      iceFrontVertContactFrac = 
+                      iceFrontVertContactFrac =
      &                  (wet_top_Z_N - iceFrontWetContact_Z_max)/ DRF(K)
-
-
-C--   Only proceed if iceFrontVertContactFrac is > 0, the 
-C--   ice draft at (I,J) 
+C--   Only proceed if iceFrontVertContactFrac is > 0, the
+C--   ice draft at (I,J)
 C--   is in contact with some water in the neighboring grid cell.
+      WRITE(msgBuf,'(A,3I4,L3,8e14.5)')
+     &'ZZZ, CURI, CURJ, K', CURI,CURJ,K,
+     & iceFrontVertContactFrac .GT. epsilon_H,
+     &  wet_top_Z_N, iceFrontWetContact_Z_max,
+     &  ice_bottom_Z_C, wet_bottom_Z_N,
+     &  rF(K+1), Ro_surf(I,J, bi,bj), rF(K)
+
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , 1)
+
                       IF (iceFrontVertContactFrac .GT. epsilon_H) THEN
-                        mask3dSHIICF(CURI,CURJ,K,bi,bj) = 1. _d 0  
-                        mask2dSHIICF(CURI,CURJ,bi,bj) = 1. _d 0  
-                        mask3dICF(CURI,CURJ,K,bi,bj) = 1. _d 0  
-                        mask2dICF(CURI,CURJ,bi,bj) = 1. _d 0  
+                        mask3dSHIICF(CURI,CURJ,K,bi,bj) = 1. _d 0
+                        mask2dSHIICF(CURI,CURJ,bi,bj) = 1. _d 0
+                        mask3dICF(CURI,CURJ,K,bi,bj) = 1. _d 0
+                        mask2dICF(CURI,CURJ,bi,bj) = 1. _d 0
                       ENDIF /* iceFrontVertContactFrac */
                     ENDIF /* hFacC(CURI,CURJ,K,bi,bj) */
                   ENDDO /* SI loop for adjacent cells */
                 ENDDO /* K LOOP */
               ENDIF /* FRONT K */
 
-C--   ice shelf 
-              K = kTopC(I,J,bi,bj)  
+C--   ice shelf
+              K = kTopC(I,J,bi,bj)
 
-C--   If there is an ice front at this (I,J) continue 
+C--   If there is an ice front at this (I,J) continue
 C--   I am assuming K is only .GT. when there is at least some
 C--   nonzero wet point below the shelf in the grid cell.
               IF (K .GT. 0) THEN
-                   mask3dSHIICF(I,J,K,bi,bj) = 1. _d 0  
-                   mask2dSHIICF(I,J,bi,bj) = 1. _d 0  
-                   mask3dSHI(I,J,K,bi,bj) = 1. _d 0  
-                   mask2dSHI(I,J,bi,bj) = 1. _d 0  
+                   mask3dSHIICF(I,J,K,bi,bj) = 1. _d 0
+                   mask2dSHIICF(I,J,bi,bj) = 1. _d 0
+                   mask3dSHI(I,J,K,bi,bj) = 1. _d 0
+                   mask2dSHI(I,J,bi,bj) = 1. _d 0
               ENDIF /* SHELF K > 0 */
-            ENDDO /* i */ 
+            ENDDO /* i */
           ENDDO /* j */
         ENDDO /* bi */
       ENDDO /* bj */
@@ -518,27 +513,20 @@ C output the masks
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
-C     diagName  = 'THETA   '
-C     diagTitle = 'Potential Temperature'
-C     diagUnits = DIAGS_MK_UNITS( tUnit4c, myThid )
-C     diagCode  = 'SMR     MR      '
-C     CALL DIAGNOSTICS_ADDTOLIST( diagNum,
-C    I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
-
-
-
-       diagName  = 'SHIUDrag'
-       diagTitle = 'U momentum tendency from ice shelf drag'
-       diagUnits = 'm/s^2           '
-       diagCode  = 'UU      MR      '
+       diagName  = 'SHI_TauX'
+       diagTitle =
+     &     'Ice shelf bottom stress, zonal  comp., >0 increases uVel'
+       diagUnits = 'N/m^2           '
+       diagCode  = 'UU      L1      '
        diagMate  = diagNum + 2
        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I      diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
 
-       diagName  = 'SHIVDrag'
-       diagTitle = 'V momentum tendency from ice shelf drag'
-       diagUnits = 'm/s^2           '
-       diagCode  = 'VV      MR      '
+       diagName  = 'SHI_TauY'
+       diagTitle =
+     &     'Ice shelf bottom stress, merid. comp., >0 increases vVel'
+       diagUnits = 'N/m^2           '
+       diagCode  = 'VV      L1      '
        diagMate  = diagNum
        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I      diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
@@ -584,6 +572,7 @@ C    I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
        diagCode  = 'SM      L1      '
        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I      diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
 #ifndef ALLOW_shiTransCoeff_3d
        diagName  = 'SHIgammT'
        diagTitle = 'Ice shelf exchange coefficient for theta'
@@ -614,8 +603,14 @@ C    I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
      I      diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 #endif
 
+       diagName  = 'SHI_mass'
+       diagTitle = 'dynamic ice shelf mass for surface load anomaly'
+       diagUnits = 'kg/m^2          '
+       diagCode  = 'SM      L1      '
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I      diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
-
+#ifdef SHI_ALLOW_GAMMAFRICT
        diagName  = 'SHIuStar'
        diagTitle = 'Friction velocity at bottom of ice shelf'
        diagUnits = 'm/s             '
@@ -623,12 +618,48 @@ C    I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I      diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
-       diagName  = 'SHI_mass'
-       diagTitle = 'dynamic ice shelf mass for surface load anomaly'
-       diagUnits = 'kg/m^2          '
+       diagName  = 'SHICDrag'
+       diagTitle = 'Shelfice drag coefficient for u* parameterization'
+       diagUnits = '1               '
+       diagCode  = 'SM      L1      '
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+#endif
+
+#ifdef ALLOW_SHELFICE_REMESHING
+       diagName  = 'SHIRshel'
+       diagTitle = 'depth of shelfice'
+       diagUnits = 'm               '
        diagCode  = 'SM      L1      '
        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I      diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+#endif
+
+# ifdef ALLOW_AUTODIFF
+#  ifndef SHI_ALLOW_GAMMAFRICT
+       diagName  = 'ADJshict'
+       diagTitle = 'dJ/dgammaT: Sens. to shelfice heat transfer coeff'
+       diagUnits = 'dJ/(m/s)        '
+       diagCode  = 'SM A    M1      '
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
+       diagName  = 'ADJshics'
+       diagTitle = 'dJ/dgammaS: Sens. to shelfice salt transfer coeff'
+       diagUnits = 'dJ/(m/s)        '
+       diagCode  = 'SM A    M1      '
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
+#  else
+       diagName  = 'ADJshicd'
+       diagTitle = 'dJ/dcDrag: Sensitivity to shelfice u* drag coeff'
+       diagUnits = 'dJ/1            '
+       diagCode  = 'SM A    M1      '
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+#  endif
+# endif
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
 #endif /* ALLOW_SHELFICE */

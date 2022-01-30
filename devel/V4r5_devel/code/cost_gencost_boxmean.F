@@ -24,11 +24,12 @@ c     == global variables ==
 # include "cal.h"
 #endif
 #ifdef ALLOW_ECCO
-# include "ecco.h"
+# include "ECCO_SIZE.h"
+# include "ECCO.h"
 #endif
-#ifdef ALLOW_AUTODIFF
-# include "tamc.h"
-#endif
+C#ifdef ALLOW_AUTODIFF
+C# include "tamc.h"
+C#endif
 
 c     == routine arguments ==
       integer mythid
@@ -281,10 +282,10 @@ c read bar field
 #endif
        endif
 
-#ifdef ALLOW_AUTODIFF
-CADJ STORE mymsk         = comlev1, key = ikey_dynamics,
-CADJ &     kind = isbyte
-#endif
+C#ifdef ALLOW_AUTODIFF
+CCADJ STORE mymsk         = comlev1, key = ikey_dynamics,
+CCADJ &     kind = isbyte
+C#endif
        if(gencost_timevaryweight(kgen).or.irec.eq.(iskip+1)) then
 c read mask for averaging (3d, time series)
         irec2 = irec-iskip

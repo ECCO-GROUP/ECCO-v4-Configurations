@@ -74,7 +74,10 @@ C     === Global variables ===
 # include "SEAICE.h"
 #endif
 #ifdef EXTRA_OAM_USING_DYN_SEALEVEL
-# include "ecco.h"
+#ifdef ALLOW_ECCO
+# include "ECCO_SIZE.h"
+# include "ECCO.h"
+#endif
 #endif
 
 C !INPUT PARAMETERS: ===================================================
