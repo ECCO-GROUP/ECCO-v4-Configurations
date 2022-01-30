@@ -40,7 +40,7 @@ C allow for near-shore and high-latitude altimetry
 #define ALLOW_SHALLOW_ALTIMETRY
 #define ALLOW_HIGHLAT_ALTIMETRY
 
-c define to read in uncertainties from files for exconc and deconc 
+c define to read in uncertainties from files for exconc and deconc
 #define READIN_EXCONC_DECONC_SIGMA
 
 c define the JPL version of sea-ice cost formula

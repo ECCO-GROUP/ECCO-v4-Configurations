@@ -1,6 +1,3 @@
-C $Header: /u/gcmpack/MITgcm/pkg/ecco/cost_gencost_customize.F,v 1.27 2017/04/03 23:16:38 ou.wang Exp $
-C $Name:  $
-
 #include "ECCO_OPTIONS.h"
 #ifdef ALLOW_SEAICE
 # include "SEAICE_OPTIONS.h"
@@ -32,7 +29,8 @@ c     == global variables ==
 #include "DYNVARS.h"
 #include "FFIELDS.h"
 #ifdef ALLOW_ECCO
-# include "ecco.h"
+# include "ECCO_SIZE.h"
+# include "ECCO.h"
 #endif
 #ifdef ALLOW_SEAICE
 #  include "SEAICE_SIZE.h"
@@ -65,6 +63,7 @@ c     == local variables ==
       integer k2,kk
       integer itr
 #endif
+      integer kLev
 #ifdef ALLOW_EXF
       _RL uBarC, vBarC
       _RL zontau        (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
@@ -87,7 +86,6 @@ c     == end of interface ==
       jmax = sny
       imin = 1
       imax = snx
-
 
 #ifdef ALLOW_EXF
 c rotated to EW/NS tracer point
@@ -118,6 +116,7 @@ c    &     .TRUE.,.TRUE.,.TRUE.,1,myThid)
 
       do k=1,NGENCOST
       itr=gencost_itracer(k)
+      kLev = MAX( 1, MIN( Nr, gencost_kLev_select(k) ) )
       do bj = jtlo,jthi
        do bi = itlo,ithi
         do j = jmin,jmax
@@ -125,48 +124,46 @@ c    &     .TRUE.,.TRUE.,.TRUE.,1,myThid)
 
          if (gencost_barfile(k)(1:5).EQ.'m_eta' .and.
      &       gencost_barfile(k)(1:9).NE.'m_eta_dyn') then
-           gencost_modfld(i,j,bi,bj,k) = 
+           gencost_modfld(i,j,bi,bj,k) =
      &      m_eta(i,j,bi,bj)*maskC(i,j,1,bi,bj)
          elseif (gencost_barfile(k)(1:9).EQ.'m_boxmean') then
-           gencost_modfld(i,j,bi,bj,k) = 
+           gencost_modfld(i,j,bi,bj,k) =
      &      gencost_storefld(i,j,bi,bj,k)
          elseif (gencost_barfile(k)(1:9).EQ.'m_horflux') then
-           gencost_modfld(i,j,bi,bj,k) = 
+           gencost_modfld(i,j,bi,bj,k) =
      &      gencost_storefld(i,j,bi,bj,k)
          elseif (gencost_barfile(k)(1:5).EQ.'m_sst') then
-           gencost_modfld(i,j,bi,bj,k) = 
+           gencost_modfld(i,j,bi,bj,k) =
      &      THETA(i,j,1,bi,bj)*maskC(i,j,1,bi,bj)
          elseif (gencost_barfile(k)(1:5).EQ.'m_sss') then
-           gencost_modfld(i,j,bi,bj,k) = 
+           gencost_modfld(i,j,bi,bj,k) =
      &      SALT(i,j,1,bi,bj)*maskC(i,j,1,bi,bj)
          elseif (gencost_barfile(k)(1:11).EQ.'m_drifterUE') then
-           gencost_modfld(i,j,bi,bj,k) = 
-     &      m_UE(i,j,2,bi,bj)*maskC(i,j,2,bi,bj)
+           gencost_modfld(i,j,bi,bj,k) =
+     &      m_UE(i,j,kLev,bi,bj)*maskC(i,j,kLev,bi,bj)
          elseif (gencost_barfile(k)(1:11).EQ.'m_drifterVN') then
-           gencost_modfld(i,j,bi,bj,k) = 
-     &      m_VN(i,j,2,bi,bj)*maskC(i,j,2,bi,bj)
+           gencost_modfld(i,j,bi,bj,k) =
+     &      m_VN(i,j,kLev,bi,bj)*maskC(i,j,kLev,bi,bj)
 #ifdef ALLOW_SHELFICE
          elseif (gencost_barfile(k)(1:10).EQ.'m_shifwflx') then
            gencost_modfld(i,j,bi,bj,k) =
      &      SHIICFFreshWaterFlux(i,j,bi,bj)
      &      *mask2dSHIICF(i,j,bi,bj)
 #endif
-         elseif (gencost_barfile(k)(1:4).EQ.'m_bp' .and. 
+         elseif (gencost_barfile(k)(1:4).EQ.'m_bp' .and.
      &           gencost_barfile(k)(1:12).NE.'m_bp_nopabar') then
-           gencost_modfld(i,j,bi,bj,k) = 
+           gencost_modfld(i,j,bi,bj,k) =
      &      m_bp(i,j,bi,bj)*maskC(i,j,1,bi,bj)
-
 #ifdef ATMOSPHERIC_LOADING
 #ifdef ALLOW_IB_CORR
          elseif (gencost_barfile(k)(1:9).EQ.'m_eta_dyn') then
-           gencost_modfld(i,j,bi,bj,k) = 
+           gencost_modfld(i,j,bi,bj,k) =
      &      m_eta_dyn(i,j,bi,bj)*maskC(i,j,1,bi,bj)
          elseif (gencost_barfile(k)(1:12).EQ.'m_bp_nopabar') then
            gencost_modfld(i,j,bi,bj,k) =
      &      m_bp_nopabar(i,j,bi,bj)*maskC(i,j,1,bi,bj)
 #endif
 #endif
-
 #ifdef ALLOW_GEOTHERMAL_FLUX
          elseif (gencost_barfile(k)(1:16).EQ.'m_geothermalflux') then
            gencost_modfld(i,j,bi,bj,k) =
@@ -174,10 +171,10 @@ c    &     .TRUE.,.TRUE.,.TRUE.,1,myThid)
 #endif
 #ifdef ALLOW_EXF
          elseif (gencost_barfile(k)(1:9).EQ.'m_ustress') then
-           gencost_modfld(i,j,bi,bj,k) = 
+           gencost_modfld(i,j,bi,bj,k) =
      &      zontau(i,j,bi,bj)*maskC(i,j,1,bi,bj)
          elseif (gencost_barfile(k)(1:9).EQ.'m_vstress') then
-           gencost_modfld(i,j,bi,bj,k) = 
+           gencost_modfld(i,j,bi,bj,k) =
      &      mertau(i,j,bi,bj)*maskC(i,j,1,bi,bj)
          elseif (gencost_barfile(k)(1:7).EQ.'m_uwind') then
            gencost_modfld(i,j,bi,bj,k) =
@@ -218,14 +215,14 @@ c    &     .TRUE.,.TRUE.,.TRUE.,1,myThid)
 #ifdef ALLOW_SEAICE
          elseif ( (gencost_name(k).EQ.'siv4-conc').OR.
      &            (gencost_barfile(k)(1:8).EQ.'m_siarea') ) then
-           gencost_modfld(i,j,bi,bj,k) = 
-     &      area(i,j,bi,bj)*maskC(i,j,1,bi,bj) 
+           gencost_modfld(i,j,bi,bj,k) =
+     &      area(i,j,bi,bj)*maskC(i,j,1,bi,bj)
          elseif (gencost_name(k).EQ.'siv4-deconc') then
-           gencost_modfld(i,j,bi,bj,k) = 
+           gencost_modfld(i,j,bi,bj,k) =
      &      theta(i,j,1,bi,bj)*maskC(i,j,1,bi,bj)
          elseif ( (gencost_name(k).EQ.'siv4-exconc').OR.
-     &            (gencost_barfile(k)(1:8).EQ.'m_siheff') ) then  
-           gencost_modfld(i,j,bi,bj,k) = 
+     &            (gencost_barfile(k)(1:8).EQ.'m_siheff') ) then
+           gencost_modfld(i,j,bi,bj,k) =
      &      heff(i,j,bi,bj)*maskC(i,j,1,bi,bj)
          elseif (gencost_barfile(k)(1:9).EQ.'m_sihsnow') then
            gencost_modfld(i,j,bi,bj,k) =
@@ -316,4 +313,5 @@ c    &     .TRUE.,.TRUE.,.TRUE.,1,myThid)
 
 #endif /* ALLOW_GENCOST_CONTRIBUTION */
 
-      end
+      RETURN
+      END

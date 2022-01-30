@@ -1,0 +1,11 @@
+20211215
+
+Code base code3test8 that has same results as using 59l4 code
+for V4r4
+(Need to turn off sea-ice velocity capping)
+Compare: 
+run.v4_rls2.042ff23v3.iter129.59l4code
+run.v4_rls2.042ff23v3.iter129.newcode8
+Both runs are run for a few years and costs were not generated. 
+
+Now testing ice-shelf configuration

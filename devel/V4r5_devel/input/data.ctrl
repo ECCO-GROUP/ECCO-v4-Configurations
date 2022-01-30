@@ -120,9 +120,9 @@
  xx_genarr3d_preproc_i(1,7)=1,
  mult_genarr3d(7) = 1.,
 #
- xx_genarr3d_weight(8) = 'w_shiTransCoeffT3d610_areascaled.bin',
+ xx_genarr3d_weight(8) = 'w_shiTransCoeffT3d_constv2_mask_areascaled.bin',
  xx_genarr3d_file(8)='xx_shiTransCoeffT',
- xx_genarr3d_bounds(1:5,8)=1e-8,1.1e-8,0.9e-2,1e-2,0.,
- mult_genarr3d(8) = 1.,
+ xx_genarr3d_bounds(1:5,8)=0.9e-8,0.95e-8,1.1e-2,1.2e-2,0.,
+ mult_genarr3d(8) = 0.00133,
 
  /

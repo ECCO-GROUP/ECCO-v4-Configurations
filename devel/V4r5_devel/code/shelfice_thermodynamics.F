@@ -49,7 +49,6 @@ C     === Global variables ===
 #ifdef ALLOW_AUTODIFF_TAMC
 # ifdef SHI_ALLOW_GAMMAFRICT
 #  include "tamc.h"
-#  include "tamc_keys.h"
 # endif /* SHI_ALLOW_GAMMAFRICT */
 #endif /* ALLOW_AUTODIFF_TAMC */
 
@@ -115,6 +114,12 @@ C     iceFrontWidth    :: the width of the ice front.
 
 #ifdef ALLOW_SHIFWFLX_CONTROL
       _RL xx_shifwflx_loc(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+#endif
+
+#ifdef ALLOW_AUTODIFF_TAMC
+      INTEGER act1, act2, act3, act4
+      INTEGER max1, max2, max3
+      INTEGER ikey
 #endif
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
@@ -321,29 +326,29 @@ C--   but these rates only apply to the
 C--   fraction of the grid cell that has ice in contact with seawater.
 C--   we must scale by iceFrontVertContactFrac to get to the average
 C--   fluxes in this grid cell.
-C--   We also further scale by ratio of vertical to horizontal grid
-C--   cell area so when comparing ice-front flux to ice-shelf flux we
-C--   can just times them by the same area, i.e. horizontal grid cell area.
+C--   We also further scale by ratio of vertical to horizontal grid 
+C--   cell area so when comparing ice-front flux to ice-shelf flux we 
+C--   can just times them by the same area, i.e. horizontal grid cell area. 
 
 C--   ratio of vertical area to horizontal grid cell area
-                        icfgridareaFrac =
-     &                   iceFrontFaceArea/RA(CURI,CURJ,bi,bj)
+                        icfgridareaFrac = 
+     &                   iceFrontFaceArea/RA(CURI,CURJ,bi,bj) 
 
 C--   In units W/m^2
                         tmpHeatFluxscaled = 
      &                    tmpHeatFlux*iceFrontVertContactFrac
      &                    *icfgridareaFrac
-                        iceFrontHeatFlux(CURI,CURJ,K,bi,bj) =
-     &                    iceFrontHeatFlux(CURI,CURJ,K,bi,bj) +
+                        iceFrontHeatFlux(CURI,CURJ,K,bi,bj) = 
+     &                    iceFrontHeatFlux(CURI,CURJ,K,bi,bj) + 
      &                    tmpHeatFluxscaled
 
 C     In units of kg/s/m^2
-                        tmpFWFLXscaled =
+                        tmpFWFLXscaled = 
      &                    tmpFWFLX*iceFrontVertContactFrac
      &                    *icfgridareaFrac
-                        iceFrontFreshWaterFlux(CURI,CURJ,K,bi,bj) =
-     &                    iceFrontFreshWaterFlux(CURI,CURJ,K,bi,bj) +
-     &                    tmpFWFLXscaled
+                        iceFrontFreshWaterFlux(CURI,CURJ,K,bi,bj) = 
+     &                    iceFrontFreshWaterFlux(CURI,CURJ,K,bi,bj) + 
+     &                    tmpFWFLXscaled 
 
 C ow - 06/29/2018  
 C ow - Verticallly sum up the 3D icefront heat and freshwater fluxes to 

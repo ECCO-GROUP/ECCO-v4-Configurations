@@ -40,6 +40,9 @@ C This allows for GMREDI controls
 #define ALLOW_KAPREDI_CONTROL
 # undef ALLOW_KAPREDI_CONTROL_OLD
 
+C This allows for DIFFKR control
+#define ALLOW_DIFFKR_CONTROL
+
 C This allows for initila UVEL and VVEL controls
 #define ALLOW_UVEL0_CONTROL
 #define ALLOW_VVEL0_CONTROL

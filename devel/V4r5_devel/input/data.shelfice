@@ -2,7 +2,7 @@
 # | Parameters for SHELFICE package |
 # ===================================
  &SHELFICE_PARM01
- SHELFICETransCoeffTFile = 'xx_shiTransCoeffT.effective.0000000137.data.fgmt0'
+ SHELFICETransCoeffTFile = 'xx_shiTransCoeffT.effective.0000000137.data.fgmt0_masked'
  SHELFICEadvDiffHeatFlux = .TRUE.,
  SHELFICEboundaryLayer = .FALSE.,
  SHELFICEtopoFile='ICE_DRAFT_ICE_SHELF_CAVITY_PLUS_ICE_FRONT_LLC_0090.bin',
@@ -11,7 +11,8 @@
  SHELFICEconserve = .true.,
  SHELFICEheatTransCoeff=2.e-5, 
  ICEFRONTdepthFile = 'ICE_DRAFT_ICE_SHELF_CAVITY_PLUS_ICE_FRONT_LLC_0090.bin',
+ SHELFICEkappa = 0.,
  useISOMIPTD = .FALSE.,
  no_slip_shelfice = .false.,
  SHELFICEwriteState = .TRUE.,
- /
+ / 
