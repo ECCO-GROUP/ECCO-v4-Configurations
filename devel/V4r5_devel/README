@@ -1,5 +1,5 @@
 - This directory contains the development version of the ECCO Version 4, Release 5 configuration. 
-  The patch code is based on MITgcm checkpoint67l. 
+  The patch code is based on MITgcm checkpoint68d. 
   README                              This file
   code                                Patch code 
   input                               Namelists 
@@ -11,4 +11,5 @@
 README file revision history:
 -----------------------------
 
+- Update codebase from 67l to 68d                  [Ou Wang] [2022/01/30]
 - README file creation                             [Ou Wang] [2020/06/10]
