@@ -108,6 +108,15 @@ C     iceFrontWidth    :: the width of the ice front.
 
 #ifdef ALLOW_DIAGNOSTICS
       _RL uStarDiag(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+
+      _RL tmpdiagiceFrontForcingT(1-olx:snx+olx,
+     & 1-oly:sny+oly,nr,nsx,nsy)
+      _RL tmpdiagiceFrontForcingS(1-olx:snx+olx,
+     & 1-oly:sny+oly,nr,nsx,nsy)
+      _RL tmpdiagshelficeForcingT(1-olx:snx+olx,
+     & 1-oly:sny+oly,nsx,nsy)
+      _RL tmpdiagshelficeForcingS(1-olx:snx+olx,
+     & 1-oly:sny+oly,nsx,nsy)
 #endif /* ALLOW_DIAGNOSTICS */
 
       _RL epsilon_H
@@ -173,6 +182,12 @@ C     (Holland and Jenkins, 1999, eq.21)
                 iceFrontFreshWaterFlux(I,J,K,bi,bj) = 0. _d 0
                 iceFrontForcingT(I,J,K,bi,bj)       = 0. _d 0
                 iceFrontForcingS(I,J,K,bi,bj)       = 0. _d 0
+#ifdef ALLOW_DIAGNOSTICS
+                IF ( useDiagnostics ) THEN
+                 tmpdiagiceFrontForcingT(I,J,K,bi,bj)       = 0. _d 0
+                 tmpdiagiceFrontForcingS(I,J,K,bi,bj)       = 0. _d 0
+                ENDIF
+#endif /* ALLOW_DIAGNOSTICS */
               ENDDO /* K */
               
             ENDDO /* I */
@@ -377,14 +392,25 @@ C     In units of K / s
                         iceFrontForcingT(CURI,CURJ,K,bi,bj) = 
      &                    iceFrontForcingT(CURI,CURJ,K,bi,bj) + 
      &                    tmpForcingT/iceFrontCellThickness*
-     &                    iceFrontVertContactFrac
+     &                    iceFrontVertContactFrac*
+     &                    _recip_hFacC(CURI,CURJ,K,bi,bj)
+                        tmpdiagiceFrontForcingT(CURI,CURJ,K,bi,bj) =
+     &                    tmpdiagiceFrontForcingT(CURI,CURJ,K,bi,bj) +
+     &                    tmpForcingT/iceFrontCellThickness*
+     &                    iceFrontVertContactFrac*
+     &                    DRF(k)
 
 C     In units of psu /s
                         iceFrontForcingS(CURI,CURJ,K,bi,bj) = 
      &                    iceFrontForcingS(CURI,CURJ,K,bi,bj) + 
      &                    tmpForcingS/iceFrontCellThickness*
-     &                    iceFrontVertContactFrac
-
+     &                    iceFrontVertContactFrac*
+     &                    _recip_hFacC(CURI,CURJ,K,bi,bj)
+                        tmpdiagiceFrontForcingS(CURI,CURJ,K,bi,bj) =
+     &                    tmpdiagiceFrontForcingS(CURI,CURJ,K,bi,bj) +
+     &                    tmpForcingS/iceFrontCellThickness*
+     &                    iceFrontVertContactFrac*
+     &                    DRF(k)
                        ENDIF /* iceFrontCellThickness */
 C     In units of kg /s     
                          addMass(CURI,CURJ,K,bi,bj) = 
@@ -447,10 +473,12 @@ C ow - Now add shelfice heat and freshwater fluxes
      &                   shelfIceFreshWaterFlux(i,j,bi,bj)
 C     In units of K/s -- division by drF required first
                 shelficeForcingT(I,J,bi,bj) = tmpForcingT*
-     &              recip_drF(K)* _recip_hFacC(i,j,K,bi,bj)                            
+     &              recip_drF(K)* _recip_hFacC(i,j,K,bi,bj)
+                tmpdiagshelficeForcingT(I,J,bi,bj) = tmpForcingT
 C     In units of psu/s  -- division by drF required first
                 shelficeForcingS(I,J,bi,bj) = tmpForcingS*
      &              recip_drF(K)* _recip_hFacC(i,j,K,bi,bj)
+                tmpdiagshelficeForcingS(I,J,bi,bj) = tmpForcingS
 C     In units of kg/s  -- multiplication of area required first        
                 addMass(I,J,K, bi,bj) = addMass(I,J,K, bi,bj) - 
      &              tmpFWFLX*RA(I,J,bi,bj)
@@ -496,20 +524,20 @@ c     ENDIF
 
 C     SHIForcT (Ice shelf forcing for theta [W/m2], >0 increases theta)
        tmpFac = HeatCapacity_Cp*rUnit2mass
-       CALL DIAGNOSTICS_SCALE_FILL(shelficeForcingT,tmpFac,1,
+       CALL DIAGNOSTICS_SCALE_FILL(tmpdiagshelficeForcingT,tmpFac,1,
      &      'SHIForcT',0,1,0,1,1,myThid)
 C     SHIForcS (Ice shelf forcing for salt [g/m2/s], >0 increases salt)
        tmpFac = rUnit2mass
-       CALL DIAGNOSTICS_SCALE_FILL(shelficeForcingS,tmpFac,1,
+       CALL DIAGNOSTICS_SCALE_FILL(tmpdiagshelficeForcingS,tmpFac,1,
      &      'SHIForcS',0,1,0,1,1,myThid)
 
 C     ICFForcT (Ice front forcing for theta [W/m2], >0 increases theta)
        tmpFac = HeatCapacity_Cp*rUnit2mass
-       CALL DIAGNOSTICS_SCALE_FILL(iceFrontForcingT,tmpFac,1,
+       CALL DIAGNOSTICS_SCALE_FILL(tmpdiagiceFrontForcingT,tmpFac,1,
      &      'ICFForcT',0,Nr,0,1,1,myThid)
 C     ICFForcS (Ice front forcing for salt [g/m2/s], >0 increases salt)
        tmpFac = rUnit2mass
-       CALL DIAGNOSTICS_SCALE_FILL(iceFrontForcingS,tmpFac,1,
+       CALL DIAGNOSTICS_SCALE_FILL(tmpdiagiceFrontForcingS,tmpFac,1,
      &      'ICFForcS',0,Nr,0,1,1,myThid)
 
 C     Transfer coefficients
