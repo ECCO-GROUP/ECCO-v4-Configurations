@@ -71,11 +71,12 @@ C                         ice-ocean interface (at the freezing point)
 C     freshWaterFlux   :: local variable for fresh water melt flux due
 C                         to melting in kg/m^2/s
 C                         (negative density x melt rate)
-C     iceFrontCellThickness   :: the ratio of the horizontal length
-C                         of the ice front in each model grid cell 
-C                         divided by the grid cell area.  The "thickness"
-C                         of the colum perpendicular to the front
-C     iceFrontWidth    :: the width of the ice front.
+C     iceFrontCellThickness   :: the ratio of the grid cell area to
+C                         the horizontal length of the ice front.
+C                         unit meters.  Approximately the length of the 
+C                         column perpendicular to the ice front extended 
+C                         to the far side of the tracer cell.
+C     iceFrontWidth    :: the width of the ice front.  unit meters.
 
       INTEGER I,J,K,Kp1
       INTEGER bi,bj
