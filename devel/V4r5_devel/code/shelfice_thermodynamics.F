@@ -73,8 +73,8 @@ C                         to melting in kg/m^2/s
 C                         (negative density x melt rate)
 C     iceFrontCellThickness   :: the ratio of the grid cell area to
 C                         the horizontal length of the ice front.
-C                         unit meters.  Approximately the length of the 
-C                         column perpendicular to the ice front extended 
+C                         unit meters.  Approximately the length of the
+C                         column perpendicular to the ice front extended
 C                         to the far side of the tracer cell.
 C     iceFrontWidth    :: the width of the ice front.  unit meters.
 
@@ -359,7 +359,7 @@ C--   In units W/m^2
      &                    tmpHeatFluxscaled
 
 C     In units of kg/s/m^2
-                        tmpFWFLXscaled = 
+                        tmpFWFLXscaled =
      &                    tmpFWFLX*iceFrontVertContactFrac
      &                    *icfgridareaFrac
                         iceFrontFreshWaterFlux(CURI,CURJ,K,bi,bj) = 
@@ -377,8 +377,8 @@ C ow -  with Rignot's data
                         SHIICFHeatFlux(CURI,CURJ,bi,bj) = 
      &                   SHIICFHeatFlux(CURI,CURJ,bi,bj) + 
      &                   tmpHeatFluxscaled
-                        SHIICFFreshWaterFlux(CURI,CURJ,bi,bj) = 
-     &                   SHIICFFreshWaterFlux(CURI,CURJ,bi,bj) + 
+                        SHIICFFreshWaterFlux(CURI,CURJ,bi,bj) =
+     &                   SHIICFFreshWaterFlux(CURI,CURJ,bi,bj) +
      &                   tmpFWFLXscaled
                    endif
                   endif
@@ -402,8 +402,8 @@ C     In units of K / s
      &                    DRF(k)
 
 C     In units of psu /s
-                        iceFrontForcingS(CURI,CURJ,K,bi,bj) = 
-     &                    iceFrontForcingS(CURI,CURJ,K,bi,bj) + 
+                        iceFrontForcingS(CURI,CURJ,K,bi,bj) =
+     &                    iceFrontForcingS(CURI,CURJ,K,bi,bj) +
      &                    tmpForcingS/iceFrontCellThickness*
      &                    iceFrontVertContactFrac*
      &                    _recip_hFacC(CURI,CURJ,K,bi,bj)

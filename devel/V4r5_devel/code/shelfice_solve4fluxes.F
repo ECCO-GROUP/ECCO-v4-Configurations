@@ -253,7 +253,7 @@ C--   consists of only two terms: turbulent fluxes (positive out)
 C--   and advective meltwater fluxes (negative in).
              heatFlux = rUnit2mass*HeatCapacity_Cp * (
      &           gammaT * (insitutLoc - thetaFreeze) 
-     &           + w_B * thetaFreeze                 )
+     &           + w_B * (thetaFreeze - insitutLoc + tLoc) )
           ELSE
 
 C--   If the volume is fixed (realFWFlux=false) then the advection of
