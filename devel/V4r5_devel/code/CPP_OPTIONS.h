@@ -72,7 +72,7 @@ C o Include pressure loading code
 C o Calculate Phi-Hydrostatic at r-lower boundary during initialization.
 C   Needed for obp cost. Otherwise, the first record of m_bp is wrong,
 C   because phiHydLow is zero.
-#undef CALC_PHI_RLOW_INI
+#define CALC_PHI_RLOW_INI
 
 C o exclude/allow external forcing-fields load
 C   this allows to read & do simple linear time interpolation of oceanic

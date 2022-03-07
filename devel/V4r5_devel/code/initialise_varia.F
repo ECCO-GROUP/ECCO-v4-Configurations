@@ -117,6 +117,13 @@ CEOP
       IF (debugMode) CALL DEBUG_ENTER('INITIALISE_VARIA',myThid)
 #endif
 
+#ifdef CALC_PHI_RLOW_INI
+      iMin = 1-OLx
+      iMax = sNx+OLx
+      jMin = 1-OLy
+      jMax = sNy+OLy
+#endif
+
 #ifdef ALLOW_AUTODIFF
       nIter0 = NINT( (startTime-baseTime)/deltaTClock )
 #endif /* ALLOW_AUTODIFF */
@@ -160,26 +167,6 @@ C     stored files.
 CADJ STORE phi0surf = tapelev_init, key = 1
 #endif
       CALL INI_FIELDS( myThid )
-#ifdef CALC_PHI_RLOW_INI
-Cow
-C--      Integrate hydrostatic balance for phiHyd with BC of phiHyd(z=0)=0
-C--      phiHydLow is calcluated here using the initial TS and will
-C--      be used in ecco_phys.F (called in ECCO_INIT_VARIA.F/PACKAGES_INIT_VARIABLES.F).
-C--      to correct m_bp. Otherwise, a zero phiHydLow will be used, which
-C--      is incorrect.
-C--
-      DO bj = myByLo(myThid), myByHi(myThid)
-       DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO k = 1, Nr
-         CALL CALC_PHI_HYD(
-     I        bi,bj,iMin,iMax,jMin,jMax,k,
-     U        phiHydF,
-     O        phiHydC, dPhiHydX, dPhiHydY,
-     I        startTime, -1, myThid )
-        ENDDO
-       ENDDO
-      ENDDO
-#endif
 
 C--   Initialise 3-dim. diffusivities
 #ifdef ALLOW_DEBUG
@@ -201,6 +188,27 @@ C--   Initialise model forcing fields.
 #ifdef ALLOW_AUTODIFF
 C--   Initialise active fields to help TAMC
       if (useAUTODIFF) CALL AUTODIFF_INIT_VARIA( myThid )
+#endif
+
+#ifdef CALC_PHI_RLOW_INI
+Cow
+C--      Integrate hydrostatic balance for phiHyd with BC of phiHyd(z=0)=0
+C--      phiHydLow is calcluated here using the initial TS and will
+C--      be used in ecco_phys.F (called in ECCO_INIT_VARIA.F/PACKAGES_INIT_VARIABLES.F).
+C--      to correct m_bp. Otherwise, a zero phiHydLow will be used, which
+C--      is incorrect.
+C--
+      DO bj = myByLo(myThid), myByHi(myThid)
+       DO bi = myBxLo(myThid), myBxHi(myThid)
+        DO k = 1, Nr
+         CALL CALC_PHI_HYD_TEST(
+     I        bi,bj,iMin,iMax,jMin,jMax,k,
+     U        phiHydF,
+     O        phiHydC, dPhiHydX, dPhiHydY,
+     I        startTime, -1, myThid )
+        ENDDO
+       ENDDO
+      ENDDO
 #endif
 
 C--   Initialize variable data for packages
