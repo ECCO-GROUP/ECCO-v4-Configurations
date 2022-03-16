@@ -106,6 +106,8 @@ C     Helper variables: reciprocal of some constants
       _RL rhoSnow2rhoFresh
       _RL rhoIce2rhoFresh
 
+      _RL gamma_ano_floor
+
 C     facilitate multi-category snow implementation
       _RL pFac, pFacSnow
 
@@ -188,8 +190,10 @@ C     Sea ice growth rates (m/s)
 
 CAB   Terms for closing the budget
       _RL SItflux     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL SIatmQnt    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL SIaaflux    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL SIatmFW     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL SIfwThru    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 CAB these two terms are placeholders for extra bits from advection,
 C   used in budget
       _RL SIheffNeg   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
@@ -292,6 +296,27 @@ C     Factor by which we increase the upper ocean friction velocity (u*) when
 C     ice is absent in a grid cell  (dimensionless)
       _RL MLTF
 
+C     HEFF, HSNOW, and AREA after sea-ice dynamic
+C     and before regulation. 
+C     Needed to close budget 
+      _RL HEFF_postadv                  (1:sNx,1:sNy)
+      _RL HSNOW_postadv                 (1:sNx,1:sNy)
+      _RL AREA_postadv                  (1:sNx,1:sNy)
+
+      _RL Diag_F_ao   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL Diag_F_io_net   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL Diag_F_ia_net   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL Diag_F_mi       (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL Diag_F_Flood    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL Diag_SnowAccRateOverIce
+     &                    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL Diag_SnowMeltRateFromSurface
+     &                    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL Diag_ANTVolC    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL Diag_ANTSnowM   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL gamma           (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL gamma_cnts      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C ===================================================================
@@ -303,6 +328,9 @@ C ===================================================================
       ELSE
        kSurface        = 1
       ENDIF
+
+C     Cutoff for deviation of gamma from -1
+      gamma_ano_floor = 1. _d -4
 
 C     Cutoff for iceload
       heffTooHeavy=drF(kSurface) / 5. _d 0
@@ -466,6 +494,16 @@ C =====================================================================
 
         DO J=1,sNy
          DO I=1,sNx
+
+          HSNOW_postadv(I,J) = HSNOW(I,J,bi,bj)
+          HEFF_postadv(I,J) = HEFF(I,J,bi,bj)
+          AREA_postadv(I,J) = AREA(I,J,bi,bj)
+
+         ENDDO
+        ENDDO
+
+        DO J=1,sNy
+         DO I=1,sNx
           SIheffNeg(I,J,bi,bj)=ZERO
           SIhsnwNeg(I,J,bi,bj)=ZERO
 
@@ -525,6 +563,15 @@ CADJ STORE HSNOW(:,:,bi,bj) = comlev1_bibj,key=iicekey,byte=isbyte
         DO J=1,sNy
          DO I=1,sNx
 
+          SIheffNeg(I,J,bi,bj) = HEFF(I,J,bi,bj)-HEFF_postadv(I,J)
+          SIhsnwNeg(I,J,bi,bj) = HSNOW(I,J,bi,bj)-HSNOW_postadv(I,J)
+
+         ENDDO
+        ENDDO
+
+        DO J=1,sNy
+         DO I=1,sNx
+
           HEFFpreTH(I,J) = HEFF(I,J,bi,bj)
           HSNWpreTH(I,J) = HSNOW(I,J,bi,bj)
           AREApreTH(I,J) = AREA(I,J,bi,bj)
@@ -536,6 +583,8 @@ CADJ STORE HSNOW(:,:,bi,bj) = comlev1_bibj,key=iicekey,byte=isbyte
 #endif
          ENDDO
         ENDDO
+
+
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE AREA (:,:,bi,bj) = comlev1_bibj,key=iicekey,byte=isbyte
 CADJ STORE HEFF (:,:,bi,bj) = comlev1_bibj,key=iicekey,byte=isbyte
@@ -1356,7 +1405,7 @@ CAB
      &                    min(SEAICE_salt0,salt(I,J,kSurface,bi,bj)) )
 CAB   Salt in ice + ridgid - ice from snow flood
           tmpscal2 = (ActualNewTotalVolumeChange(I,J)+
-     &                   SIheffNeg(I,J,bi,bj)+
+C    &                   SIheffNeg(I,J,bi,bj)+
      &                  0.0 )
      &                   * tmpscal3
      &                   * HEFFM(I,J,bi,bj)
@@ -1387,21 +1436,86 @@ c    weighted
      &         - (FreshwaterContribFromIce(I,J) +
      &            FreshwaterContribFromSnowMelt(I,J))
      &           *recip_deltaTtherm ) * rhoConstFresh
-     &         +( SIheffNeg(I,J,bi,bj)*SEAICE_rhoIce
-     &          + SIhsnwNeg(I,J,bi,bj)*SEAICE_rhoSnow)
-     &          *recip_deltaTtherm * maskC(I,J,kSurface,bi,bj)
+C    &         +( SIheffNeg(I,J,bi,bj)*SEAICE_rhoIce
+C    &          + SIhsnwNeg(I,J,bi,bj)*SEAICE_rhoSnow)
+C    &          *recip_deltaTtherm * maskC(I,J,kSurface,bi,bj)
 
 CAB   Budget test , adding the energy stored in snow melt to qnet
 C     Moved bunch of these to line 780
 
-          SItflux(I,J,bi,bj) = 0.0 +
+C     Add back SIatmQnt. This may not work with 
+C     potential global mean adjustement. 
+C     For that, SIatmQnt probably needs to be done 
+C     outside of bi, bj loops 
+          SIatmQnt(I,J,bi,bj) = 0.0 +
      &         (AREApreTH(I,J)
      &         *(F_ia_net(I,J)
      &         + F_io_net(I,J) + QSWI(I,J))
      &         +( ONE - AREApreTH(I,J)) *  F_ao(I,J))
      &         *maskC(I,J,kSurface,bi,bj)
-     &         +(SIheffNeg(I,J,bi,bj)*recip_QI
-     &         +( SIhsnwNeg(I,J,bi,bj) - ActualNewTotalSnowMelt(I,J)
+
+          gamma(i,j,bi,bj) = 1. _d 0
+          IF (S_h(I,J) .LT. 0) THEN 
+           gamma(i,j,bi,bj) = (ActualNewTotalVolumeChange(I,J)-
+     &       d_HEFFbyFlood(I,J))/
+     &       S_h(I,J) * recip_deltaTtherm 
+           IF (S_h(I,J).LT.0 _d 0.AND.HEFFpreTH(i,j).GT. 0. _d 0.AND.
+     &        ABS(gamma(i,j,bi,bj)-1. _d 0).GE.gamma_ano_floor) THEN
+            gamma_cnts(i,j,bi,bj) = gamma_cnts(i,j,bi,bj) + 1
+           ENDIF
+          ENDIF 
+C heat flux related to sea-ice growth (W/m^2)
+C positive is upward
+          Diag_F_ao(I,J,bi,bj) = 
+     &     gamma(i,j,bi,bj) * 
+     &     (ONE - AREApreTH(I,J)) * 
+     &     recip_QI * IceGrowthRateOpenWater(I,J) *
+     &     maskC(I,J,kSurface,bi,bj)
+
+C Use IceGrowthRateOpenWater, not F_ao,
+C because 
+C          IceGrowthRateOpenWater(I,J) = QI *
+C    &        (F_ao(I,J) - QSWO(I,J) + QSWO_IN_FIRST_LAYER(I,J))
+
+          Diag_F_io_net(I,J,bi,bj) = 
+     &     gamma(i,j,bi,bj) * 
+     &     AREApreTH(I,J) * F_io_net(I,J) * maskC(I,J,kSurface,bi,bj)
+
+          Diag_F_ia_net(I,J,bi,bj) = 
+     &     gamma(i,j,bi,bj) * 
+     &     AREApreTH(I,J) * F_ia_net(I,J) * maskC(I,J,kSurface,bi,bj)
+
+          Diag_F_mi(I,J,bi,bj) = 
+     &     gamma(i,j,bi,bj) * 
+     &     F_mi(I,J) * maskC(I,J,kSurface,bi,bj) 
+
+          Diag_ANTVolC(I,J,bi,bj) = 
+     &     ActualNewTotalVolumeChange(I,J)
+     &     * maskC(I,J,kSurface,bi,bj)
+
+          Diag_F_Flood(I,J,bi,bj) = 
+     &     d_HEFFbyFlood(I,J) 
+C    &     recip_QI * d_HEFFbyFlood(I,J) 
+     &     * recip_deltaTtherm * maskC(I,J,kSurface,bi,bj)
+
+          Diag_SnowAccRateOverIce(I,J,bi,bj) = 
+     &     SnowAccRateOverIce(I,J) * AREApreTH(I,J)
+     &     * maskC(I,J,kSurface,bi,bj)
+
+          Diag_SnowMeltRateFromSurface(I,J,bi,bj) = 
+     &     SnowMeltRateFromSurface(I,J) * AREApreTH(I,J)
+     &     * maskC(I,J,kSurface,bi,bj)
+
+          Diag_ANTSnowM(I,J,bi,bj) = 
+     &     ActualNewTotalSnowMelt(I,J)
+     &     * maskC(I,J,kSurface,bi,bj)
+
+          SItflux(I,J,bi,bj) = SIatmQnt(I,J,bi,bj)
+     &         +(
+C    &         SIheffNeg(I,J,bi,bj)*recip_QI
+     &         +( 
+C    &         SIhsnwNeg(I,J,bi,bj)
+     &         - ActualNewTotalSnowMelt(I,J)
      &          + SnowAccOverIce(I,J) )*recip_QS)
      &         * recip_deltaTtherm * maskC(I,J,kSurface,bi,bj)
 
@@ -1412,12 +1526,18 @@ C     Moved bunch of these to line 780
      &         EVAP(I,J,bi,bj)*( ONE - AREApreTH(I,J) )
      &         - PRECIP(I,J,bi,bj)
 #ifdef ALLOW_RUNOFF
-     &          - RUNOFF(I,J,bi,bj)
+     &         - RUNOFF(I,J,bi,bj)
 #endif /* ALLOW_RUNOFF */
      &           )*rhoConstFresh
+     &         - ( SIheffNeg(I,J,bi,bj)*SEAICE_rhoIce
+     &         + SIhsnwNeg(I,J,bi,bj)*SEAICE_rhoSnow )
+     &         * recip_deltaTtherm * maskC(I,J,kSurface,bi,bj)
 C     &     +    FWsublim(i,j)* SEAICE_rhoIce * recip_deltaTtherm
 C  a_FWbySublim(
 CAB
+          SIfwThru(I,J,bi,bj) = maskC(I,J,kSurface,bi,bj)*
+     &     PrecipRateOverIceSurfaceToSea(I,J)*AREApreTH(I,J)*
+     &     rhoConstFresh
 
          ENDDO
         ENDDO
@@ -1594,8 +1714,9 @@ C we may do potential global mean adjustement to them consistently.
 CAB
 CAB        CALL DIAGNOSTICS_FILL(SItflux,
 
-C        CALL DIAGNOSTICS_FILL(SIatmQnt,
-C     &        'SIatmQnt',0,1,0,1,1,myThid)
+         CALL DIAGNOSTICS_FILL(SIatmQnt,
+     &        'SIatmQnt',0,1,0,1,1,myThid)
+
 C SIatmFW follows the same convention as empmr -- SIatmFW diag does not
 CAB
 C       CALL DIAGNOSTICS_FILL(SIacSubl,
@@ -1608,6 +1729,63 @@ C     &        'SIacSubl',0,1,3,bi,bj,myThid)
        tmpscal1= - 1. _d 0
        CALL DIAGNOSTICS_SCALE_FILL(SIatmFW,
      &      tmpscal1,1,'SIatmFW ',0,1,0,1,1,myThid)
+
+       CALL DIAGNOSTICS_FILL(SIfwThru, 'SIfwThru',0,1,0,1,1,myThid)
+
+C      Sea-ice growth due to heat flux between atm and ocean (W/m^2).
+C      Positive is upward.
+       CALL DIAGNOSTICS_FILL(Diag_F_ao, 'SIFao   ',0,1,0,1,1,myThid)
+
+C      Sea-ice growth due to NET conductive heat flux between 
+C      ice and ocean (W/m^2). Positive is upward.
+       CALL DIAGNOSTICS_FILL(Diag_F_io_net, 'SIFionet',0,1,0,1,1,myThid)
+
+C      Sea-ice growth due to NET heat flux between ice and atm (W/m^2).
+C      Positive is upward
+       CALL DIAGNOSTICS_FILL(Diag_F_ia_net, 'SIFianet',0,1,0,1,1,myThid)
+
+C      Sea-ice growth due to heat flux between ice and ocean (W/m^2).
+C      Positive is upward.
+       CALL DIAGNOSTICS_FILL(Diag_F_mi, 'SIFmi   ',0,1,0,1,1,myThid)
+
+C      Actaul sea-ice volume change (m/s).
+C      Positive is increase of sea-ice thickness
+       CALL DIAGNOSTICS_FILL(Diag_ANTVolC, 'SIANTVC ',
+     &  0,1,0,1,1,myThid)
+
+C      Sea-ice growth due to flooding (m/s).
+C      Positive is increase of sea-ice thickness. 
+       CALL DIAGNOSTICS_FILL(Diag_F_Flood, 'SIFFlood',0,1,0,1,1,myThid)
+
+C      Snow thickness due to snow (m/s).
+C      Positive is increase of sea-ice thickness. 
+       CALL DIAGNOSTICS_FILL(Diag_SnowAccRateOverIce, 'SIsnAccR',
+     &  0,1,0,1,1,myThid)
+
+C      Snow melt from surface (m/s).
+C      Positive is decrease of snow thickness. 
+       CALL DIAGNOSTICS_FILL(Diag_SnowMeltRateFromSurface, 'SIsnmltS',
+     &  0,1,0,1,1,myThid)
+
+C      Actaul melt of snow volume (m/s).
+C      Positive is decrease of snow volume
+       CALL DIAGNOSTICS_FILL(Diag_ANTSnowM, 'SIANTSM ',
+     &  0,1,0,1,1,myThid)
+
+C      Scaling factor (unitless) to account for regulation of sea-ice thickness
+       CALL DIAGNOSTICS_FILL(gamma, 'SIgamma ',0,1,0,1,1,myThid)
+
+C      Counters of scaling factor (unitless) not equal to one 
+       CALL DIAGNOSTICS_FILL(gamma_cnts, 'SIgmacnt',0,1,0,1,1,myThid)
+
+C      Change of SIheff (m) after advection to make them physical
+       CALL DIAGNOSTICS_FILL(SIheffNeg, 'SIheffNe',
+     &  0,1,0,1,1,myThid)
+
+C      Change of SIhsnow (m) after advection to make them physical
+       CALL DIAGNOSTICS_FILL(SIhsnwNeg, 'SIhsnwNe',
+     &  0,1,0,1,1,myThid)
+
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
 

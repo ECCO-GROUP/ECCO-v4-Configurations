@@ -201,7 +201,7 @@ C--
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO k = 1, Nr
-         CALL CALC_PHI_HYD_TEST(
+         CALL CALC_PHI_HYD(
      I        bi,bj,iMin,iMax,jMin,jMax,k,
      U        phiHydF,
      O        phiHydC, dPhiHydX, dPhiHydY,
