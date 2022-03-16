@@ -185,7 +185,10 @@
   frequency(29) = 2635200.0,
   fields(1:2,29)  = 'ICFfwFlx','ICFhtFlx',
    fileName(29) = 'diags/icefrontDiag',
-
+#---
+  frequency(30) = 2635200.0,
+   fields(1:3,30) = 'UVEL   ','VVEL    ','WVEL    '
+   filename(30) = 'diags/vel_3d_set1',
 #---
 # frequency(1) = 2635200.0,
 #  fields(1:7,1) = 'SIpress',
