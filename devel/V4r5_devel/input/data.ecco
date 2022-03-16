@@ -11,6 +11,7 @@
  salt0errfile     = 'Salt_err_20210416_masked_scaled.bin',
  cost_iprec  = 32,
  cost_yftype = 'RL',
+ ecco_output_sterGloH = .TRUE.,
 #
  /
 #
