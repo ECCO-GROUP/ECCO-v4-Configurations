@@ -374,8 +374,8 @@ C ow -  ice-front melts below shelf-ice are included to be consistent
 C ow -  with Rignot's data 
                   if(k.GE.kTopC(I,J,bi,bj))then
                    if(RA(CURI,CURJ,bi,bj).NE.0. _d 0)then
-                        SHIICFHeatFlux(CURI,CURJ,bi,bj) = 
-     &                   SHIICFHeatFlux(CURI,CURJ,bi,bj) + 
+                        SHIICFHeatFlux(CURI,CURJ,bi,bj) =
+     &                   SHIICFHeatFlux(CURI,CURJ,bi,bj) +
      &                   tmpHeatFluxscaled
                         SHIICFFreshWaterFlux(CURI,CURJ,bi,bj) =
      &                   SHIICFFreshWaterFlux(CURI,CURJ,bi,bj) +
@@ -390,8 +390,8 @@ C--   of the grid cell perpendicular to the face.
 
                        IF (iceFrontCellThickness .NE. 0. _d 0) THEN
 C     In units of K / s 
-                        iceFrontForcingT(CURI,CURJ,K,bi,bj) = 
-     &                    iceFrontForcingT(CURI,CURJ,K,bi,bj) + 
+                        iceFrontForcingT(CURI,CURJ,K,bi,bj) =
+     &                    iceFrontForcingT(CURI,CURJ,K,bi,bj) +
      &                    tmpForcingT/iceFrontCellThickness*
      &                    iceFrontVertContactFrac*
      &                    _recip_hFacC(CURI,CURJ,K,bi,bj)
@@ -414,10 +414,10 @@ C     In units of psu /s
      &                    DRF(k)
                        ENDIF /* iceFrontCellThickness */
 C     In units of kg /s     
-                         addMass(CURI,CURJ,K,bi,bj) = 
-     &                     addMass(CURI,CURJ,K,bi,bj) - 
+                         addMass(CURI,CURJ,K,bi,bj) =
+     &                     addMass(CURI,CURJ,K,bi,bj) -
      &                     tmpFWFLX*iceFrontFaceArea*
-     &                     iceFrontVertContactFrac 
+     &                     iceFrontVertContactFrac
                       ENDIF /* iceFrontVertContactFrac */
                     ENDIF /* hFacC(CURI,CURJ,K,bi,bj) */
                   ENDDO /* SI loop for adjacent cells */
