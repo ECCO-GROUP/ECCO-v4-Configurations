@@ -73,14 +73,14 @@
 #
  xx_genarr3d_weight(1) = 'Theta_weights_nonseasonal_rmsv2_areascaled_nomaskingSO.bin',
  xx_genarr3d_file(1)='xx_theta',
- xx_genarr3d_bounds(1:5,1)=-2.0,-1.9,39.,40.,0.,
+#xx_genarr3d_bounds(1:5,1)=-2.0,-1.9,39.,40.,0.,
  xx_genarr3d_preproc(1,1)='WC01',
  xx_genarr3d_preproc_i(1,1)=1,
  mult_genarr3d(1) = 1.,
 #
  xx_genarr3d_weight(2) = 'Salt_weights_nonseasonal_rmsv2_areascaled_nomaskingSO.bin',
  xx_genarr3d_file(2)='xx_salt',
- xx_genarr3d_bounds(1:5,2)=20.,20.5,40.5,41.,0.,
+#xx_genarr3d_bounds(1:5,2)=20.,20.5,40.5,41.,0.,
  xx_genarr3d_preproc(1,2)='WC01',
  xx_genarr3d_preproc_i(1,2)=1,
  mult_genarr3d(2) = 1.,
