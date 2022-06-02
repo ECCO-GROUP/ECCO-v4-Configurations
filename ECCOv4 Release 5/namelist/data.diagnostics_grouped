@@ -64,8 +64,7 @@ filename(9)   = 'diags/SEA_ICE_VELOCITY_day_mean/SEA_ICE_VELOCITY_day_mean',
 #---
 frequency(10)  = 86400.0,
 timePhase(10) = 43200.0,
-fields(1:8,10) = 'ADVxHEFF','ADVyHEFF','ADVxSNOW','ADVySNOW',
-                 'DFxESNOW','DFyEHEFF','DFxEHEFF','DFyESNOW',
+fields(1:4,10) = 'ADVxHEFF','ADVyHEFF','ADVxSNOW','ADVySNOW',
 filename(10)   = 'diags/SEA_ICE_HORIZ_VOLUME_FLUX_day_mean/SEA_ICE_HORIZ_VOLUME_FLUX_day_mean',
 
 #---
@@ -236,8 +235,7 @@ filename(37)   = 'diags/SEA_ICE_VELOCITY_mon_mean/SEA_ICE_VELOCITY_mon_mean',
 
 #---
 frequency(38)  = 2635200.0,
-fields(1:8,38) = 'ADVxHEFF','ADVyHEFF','ADVxSNOW','ADVySNOW',
-                 'DFxESNOW','DFyEHEFF','DFxEHEFF','DFyESNOW',
+fields(1:4,38) = 'ADVxHEFF','ADVyHEFF','ADVxSNOW','ADVySNOW',
 filename(38)   = 'diags/SEA_ICE_HORIZ_VOLUME_FLUX_mon_mean/SEA_ICE_HORIZ_VOLUME_FLUX_mon_mean',
 
 #---
