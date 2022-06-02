@@ -12,6 +12,7 @@ frequency(2)  = 86400.0,
 timePhase(2) = 43200.0,
 fields(1:3,2) = 'OBP     ','OBPGMAP ','PHIBOT  ',
 filename(2)   = 'diags/OCEAN_BOTTOM_PRESSURE_day_mean/OCEAN_BOTTOM_PRESSURE_day_mean',
+fileFlags(2) = 'D       ',
 
 #---
 frequency(3)  = 86400.0,
@@ -126,256 +127,246 @@ filename(19)   = 'diags/OCEAN_BOLUS_VELOCITY_day_mean/OCEAN_BOLUS_VELOCITY_day_m
 #---
 frequency(20)  = 86400.0,
 timePhase(20) = 43200.0,
-fields(1:4,20) = 'SSH     ','SSHIBC  ','SSHNOIBC','ETAN    ',
-filename(20)   = 'diags/SEA_SURFACE_HEIGHT_snap_day_mean/SEA_SURFACE_HEIGHT_snap_day_mean',
+fields(1:8,20) = 'TOTUTEND','Um_Cori ','Um_Advec','Um_Diss ',
+                 'Um_Ext  ','Um_dPhiX','AB_gU   ','Um_ImplD',
+filename(20)   = 'diags/OCEAN_3D_MOMENTUM_TEND_U_day_mean/OCEAN_3D_MOMENTUM_TEND_U_day_mean',
 
 #---
 frequency(21)  = 86400.0,
 timePhase(21) = 43200.0,
-fields(1:3,21) = 'OBP     ','OBPGMAP ','PHIBOT  ',
-filename(21)   = 'diags/OCEAN_BOTTOM_PRESSURE_snap_day_mean/OCEAN_BOTTOM_PRESSURE_snap_day_mean',
+fields(1:3,21) = 'Um_AdvZ3','Um_AdvRe','Um_dKEdx',
+filename(21)   = 'diags/OCEAN_3D_MOMENTUM_TEND_U_ADV_OPTIONAL_day_mean/OCEAN_3D_MOMENTUM_TEND_U_ADV_OPTIONAL_day_mean',
 
 #---
 frequency(22)  = 86400.0,
 timePhase(22) = 43200.0,
-fields(1:2,22) = 'THETA   ','SALT    ',
-filename(22)   = 'diags/OCEAN_TEMPERATURE_SALINITY_snap_day_mean/OCEAN_TEMPERATURE_SALINITY_snap_day_mean',
+fields(1:5,22) = 'Um_Diss2','Um_Diss4','UBotDrag','USidDrag',
+                 'UShIDrag',
+filename(22)   = 'diags/OCEAN_3D_MOMENTUM_TEND_U_DISS_OPTIONAL_day_mean/OCEAN_3D_MOMENTUM_TEND_U_DISS_OPTIONAL_day_mean',
 
 #---
 frequency(23)  = 86400.0,
 timePhase(23) = 43200.0,
-fields(1:4,23) = 'SIarea  ','SIheff  ','SIhsnow ','sIceLoad',
-filename(23)   = 'diags/SEA_ICE_CONC_THICKNESS_snap_day_mean/SEA_ICE_CONC_THICKNESS_snap_day_mean',
+fields(1:8,23) = 'TOTVTEND','Vm_Cori ','Vm_Advec','Vm_Diss ',
+                 'Vm_Ext  ','Vm_dPhiY','AB_gV   ','Vm_ImplD',
+filename(23)   = 'diags/OCEAN_3D_MOMENTUM_TEND_V_day_mean/OCEAN_3D_MOMENTUM_TEND_V_day_mean',
 
 #---
 frequency(24)  = 86400.0,
 timePhase(24) = 43200.0,
-fields(1:2,24) = 'SIuice  ','SIvice  ',
-filename(24)   = 'diags/SEA_ICE_VELOCITY_snap_day_mean/SEA_ICE_VELOCITY_snap_day_mean',
+fields(1:3,24) = 'Vm_AdvZ3','Vm_AdvRe','Vm_dKEdy',
+filename(24)   = 'diags/OCEAN_3D_MOMENTUM_TEND_V_ADV_OPTIONAL_day_mean/OCEAN_3D_MOMENTUM_TEND_V_ADV_OPTIONAL_day_mean',
 
 #---
 frequency(25)  = 86400.0,
 timePhase(25) = 43200.0,
-fields(1:8,25) = 'TOTUTEND','Um_Cori ','Um_Advec','Um_Diss ',
-                 'Um_Ext  ','Um_dPhiX','AB_gU   ','Um_ImplD',
-filename(25)   = 'diags/OCEAN_3D_MOMENTUM_TEND_U_day_mean/OCEAN_3D_MOMENTUM_TEND_U_day_mean',
+fields(1:5,25) = 'Vm_Diss2','Vm_Diss4','VBotDrag','VSidDrag',
+                 'VShIDrag',
+filename(25)   = 'diags/OCEAN_3D_MOMENTUM_TEND_V_DISS_OPTIONAL_day_mean/OCEAN_3D_MOMENTUM_TEND_V_DISS_OPTIONAL_day_mean',
 
 #---
 frequency(26)  = 86400.0,
 timePhase(26) = 43200.0,
-fields(1:3,26) = 'Um_AdvZ3','Um_AdvRe','Um_dKEdx',
-filename(26)   = 'diags/OCEAN_3D_MOMENTUM_TEND_U_ADV_OPTIONAL_day_mean/OCEAN_3D_MOMENTUM_TEND_U_ADV_OPTIONAL_day_mean',
+fields(1:2,26) = 'SHIfwFlx','SHIhtFlx',
+filename(26)   = 'diags/ICESHELF_FLUX_day_mean/ICESHELF_FLUX_day_mean',
 
 #---
 frequency(27)  = 86400.0,
 timePhase(27) = 43200.0,
-fields(1:5,27) = 'Um_Diss2','Um_Diss4','UBotDrag','USidDrag',
-                 'UShIDrag',
-filename(27)   = 'diags/OCEAN_3D_MOMENTUM_TEND_U_DISS_OPTIONAL_day_mean/OCEAN_3D_MOMENTUM_TEND_U_DISS_OPTIONAL_day_mean',
+fields(1:2,27) = 'ICFfwFlx','ICFhtFlx',
+filename(27)   = 'diags/ICEFRONT_FLUX_day_mean/ICEFRONT_FLUX_day_mean',
 
 #---
 frequency(28)  = 86400.0,
 timePhase(28) = 43200.0,
-fields(1:8,28) = 'TOTVTEND','Vm_Cori ','Vm_Advec','Vm_Diss ',
-                 'Vm_Ext  ','Vm_dPhiY','AB_gV   ','Vm_ImplD',
-filename(28)   = 'diags/OCEAN_3D_MOMENTUM_TEND_V_day_mean/OCEAN_3D_MOMENTUM_TEND_V_day_mean',
+fields(1:8,28) = 'SIFao   ','SIFionet','SIFianet','SIFmi   ',
+                 'SIFFlood','SIsnAccR','SIsnmltS','SIgamma ',
+filename(28)   = 'diags/SEA_ICE_THERMO_BUDG_day_mean/SEA_ICE_THERMO_BUDG_day_mean',
 
 #---
-frequency(29)  = 86400.0,
-timePhase(29) = 43200.0,
-fields(1:3,29) = 'Vm_AdvZ3','Vm_AdvRe','Vm_dKEdy',
-filename(29)   = 'diags/OCEAN_3D_MOMENTUM_TEND_V_ADV_OPTIONAL_day_mean/OCEAN_3D_MOMENTUM_TEND_V_ADV_OPTIONAL_day_mean',
+frequency(29)  = 2635200.0,
+fields(1:4,29) = 'SSH     ','SSHIBC  ','SSHNOIBC','ETAN    ',
+filename(29)   = 'diags/SEA_SURFACE_HEIGHT_mon_mean/SEA_SURFACE_HEIGHT_mon_mean',
 
 #---
-frequency(30)  = 86400.0,
-timePhase(30) = 43200.0,
-fields(1:5,30) = 'Vm_Diss2','Vm_Diss4','VBotDrag','VSidDrag',
-                 'VShIDrag',
-filename(30)   = 'diags/OCEAN_3D_MOMENTUM_TEND_V_DISS_OPTIONAL_day_mean/OCEAN_3D_MOMENTUM_TEND_V_DISS_OPTIONAL_day_mean',
+frequency(30)  = 2635200.0,
+fields(1:3,30) = 'OBP     ','OBPGMAP ','PHIBOT  ',
+filename(30)   = 'diags/OCEAN_BOTTOM_PRESSURE_mon_mean/OCEAN_BOTTOM_PRESSURE_mon_mean',
+fileFlags(30) = 'D       ',
 
 #---
-frequency(31)  = 86400.0,
-timePhase(31) = 43200.0,
-fields(1:2,31) = 'SHIfwFlx','SHIhtFlx',
-filename(31)   = 'diags/ICESHELF_FLUX_day_mean/ICESHELF_FLUX_day_mean',
+frequency(31)  = 2635200.0,
+fields(1:11,31) = 'EXFpreci','EXFevap ','EXFroff ','SIsnPrcp',
+                 'EXFempmr','oceFWflx','SIatmFW ','SFLUX   ',
+                 'SIacSubl','SIrsSubl','SIfwThru',
+filename(31)   = 'diags/OCEAN_AND_ICE_SURFACE_FW_FLUX_mon_mean/OCEAN_AND_ICE_SURFACE_FW_FLUX_mon_mean',
 
 #---
-frequency(32)  = 86400.0,
-timePhase(32) = 43200.0,
-fields(1:2,32) = 'ICFfwFlx','ICFhtFlx',
-filename(32)   = 'diags/ICEFRONT_FLUX_day_mean/ICEFRONT_FLUX_day_mean',
+frequency(32)  = 2635200.0,
+fields(1:12,32) = 'EXFhl   ','EXFhs   ','EXFlwdn ','EXFswdn ',
+                 'EXFqnet ','oceQnet ','SIatmQnt','TFLUX   ',
+                 'EXFswnet','EXFlwnet','oceQsw  ','SIaaflux',
+filename(32)   = 'diags/OCEAN_AND_ICE_SURFACE_HEAT_FLUX_mon_mean/OCEAN_AND_ICE_SURFACE_HEAT_FLUX_mon_mean',
 
 #---
 frequency(33)  = 2635200.0,
-fields(1:4,33) = 'SSH     ','SSHIBC  ','SSHNOIBC','ETAN    ',
-filename(33)   = 'diags/SEA_SURFACE_HEIGHT_mon_mean/SEA_SURFACE_HEIGHT_mon_mean',
+fields(1:6,33) = 'EXFatemp','EXFaqh  ','EXFuwind','EXFvwind',
+                 'EXFwspee','EXFpress',
+filename(33)   = 'diags/ATM_SURFACE_TEMP_HUM_WIND_PRES_mon_mean/ATM_SURFACE_TEMP_HUM_WIND_PRES_mon_mean',
 
 #---
 frequency(34)  = 2635200.0,
-fields(1:3,34) = 'OBP     ','OBPGMAP ','PHIBOT  ',
-filename(34)   = 'diags/OCEAN_BOTTOM_PRESSURE_mon_mean/OCEAN_BOTTOM_PRESSURE_mon_mean',
+fields(1,34) = 'MXLDEPTH',
+filename(34)   = 'diags/OCEAN_MIXED_LAYER_DEPTH_mon_mean/OCEAN_MIXED_LAYER_DEPTH_mon_mean',
 
 #---
 frequency(35)  = 2635200.0,
-fields(1:11,35) = 'EXFpreci','EXFevap ','EXFroff ','SIsnPrcp',
-                 'EXFempmr','oceFWflx','SIatmFW ','SFLUX   ',
-                 'SIacSubl','SIrsSubl','SIfwThru',
-filename(35)   = 'diags/OCEAN_AND_ICE_SURFACE_FW_FLUX_mon_mean/OCEAN_AND_ICE_SURFACE_FW_FLUX_mon_mean',
+fields(1:4,35) = 'EXFtaux ','EXFtauy ','oceTAUX ','oceTAUY ',
+filename(35)   = 'diags/OCEAN_AND_ICE_SURFACE_STRESS_mon_mean/OCEAN_AND_ICE_SURFACE_STRESS_mon_mean',
 
 #---
 frequency(36)  = 2635200.0,
-fields(1:12,36) = 'EXFhl   ','EXFhs   ','EXFlwdn ','EXFswdn ',
-                 'EXFqnet ','oceQnet ','SIatmQnt','TFLUX   ',
-                 'EXFswnet','EXFlwnet','oceQsw  ','SIaaflux',
-filename(36)   = 'diags/OCEAN_AND_ICE_SURFACE_HEAT_FLUX_mon_mean/OCEAN_AND_ICE_SURFACE_HEAT_FLUX_mon_mean',
+fields(1:4,36) = 'SIarea  ','SIheff  ','SIhsnow ','sIceLoad',
+filename(36)   = 'diags/SEA_ICE_CONC_THICKNESS_mon_mean/SEA_ICE_CONC_THICKNESS_mon_mean',
 
 #---
 frequency(37)  = 2635200.0,
-fields(1:6,37) = 'EXFatemp','EXFaqh  ','EXFuwind','EXFvwind',
-                 'EXFwspee','EXFpress',
-filename(37)   = 'diags/ATM_SURFACE_TEMP_HUM_WIND_PRES_mon_mean/ATM_SURFACE_TEMP_HUM_WIND_PRES_mon_mean',
+fields(1:2,37) = 'SIuice  ','SIvice  ',
+filename(37)   = 'diags/SEA_ICE_VELOCITY_mon_mean/SEA_ICE_VELOCITY_mon_mean',
 
 #---
 frequency(38)  = 2635200.0,
-fields(1,38) = 'MXLDEPTH',
-filename(38)   = 'diags/OCEAN_MIXED_LAYER_DEPTH_mon_mean/OCEAN_MIXED_LAYER_DEPTH_mon_mean',
+fields(1:8,38) = 'ADVxHEFF','ADVyHEFF','ADVxSNOW','ADVySNOW',
+                 'DFxESNOW','DFyEHEFF','DFxEHEFF','DFyESNOW',
+filename(38)   = 'diags/SEA_ICE_HORIZ_VOLUME_FLUX_mon_mean/SEA_ICE_HORIZ_VOLUME_FLUX_mon_mean',
 
 #---
 frequency(39)  = 2635200.0,
-fields(1:4,39) = 'EXFtaux ','EXFtauy ','oceTAUX ','oceTAUY ',
-filename(39)   = 'diags/OCEAN_AND_ICE_SURFACE_STRESS_mon_mean/OCEAN_AND_ICE_SURFACE_STRESS_mon_mean',
+fields(1:2,39) = 'GM_PsiX ','GM_PsiY ',
+filename(39)   = 'diags/OCEAN_BOLUS_STREAMFUNCTION_mon_mean/OCEAN_BOLUS_STREAMFUNCTION_mon_mean',
 
 #---
 frequency(40)  = 2635200.0,
-fields(1:4,40) = 'SIarea  ','SIheff  ','SIhsnow ','sIceLoad',
-filename(40)   = 'diags/SEA_ICE_CONC_THICKNESS_mon_mean/SEA_ICE_CONC_THICKNESS_mon_mean',
+fields(1:3,40) = 'UVELMASS','VVELMASS','WVELMASS',
+filename(40)   = 'diags/OCEAN_3D_VOLUME_FLUX_mon_mean/OCEAN_3D_VOLUME_FLUX_mon_mean',
 
 #---
 frequency(41)  = 2635200.0,
-fields(1:2,41) = 'SIuice  ','SIvice  ',
-filename(41)   = 'diags/SEA_ICE_VELOCITY_mon_mean/SEA_ICE_VELOCITY_mon_mean',
+fields(1:7,41) = 'ADVx_TH ','DFxE_TH ','ADVy_TH ','DFyE_TH ',
+                 'ADVr_TH ','DFrE_TH ','DFrI_TH ',
+filename(41)   = 'diags/OCEAN_3D_TEMPERATURE_FLUX_mon_mean/OCEAN_3D_TEMPERATURE_FLUX_mon_mean',
 
 #---
 frequency(42)  = 2635200.0,
-fields(1:8,42) = 'ADVxHEFF','ADVyHEFF','ADVxSNOW','ADVySNOW',
-                 'DFxESNOW','DFyEHEFF','DFxEHEFF','DFyESNOW',
-filename(42)   = 'diags/SEA_ICE_HORIZ_VOLUME_FLUX_mon_mean/SEA_ICE_HORIZ_VOLUME_FLUX_mon_mean',
+fields(1:8,42) = 'ADVx_SLT','DFxE_SLT','ADVy_SLT','DFyE_SLT',
+                 'ADVr_SLT','DFrE_SLT','DFrI_SLT','oceSPtnd',
+filename(42)   = 'diags/OCEAN_3D_SALINITY_FLUX_mon_mean/OCEAN_3D_SALINITY_FLUX_mon_mean',
 
 #---
 frequency(43)  = 2635200.0,
-fields(1:2,43) = 'GM_PsiX ','GM_PsiY ',
-filename(43)   = 'diags/OCEAN_BOLUS_STREAMFUNCTION_mon_mean/OCEAN_BOLUS_STREAMFUNCTION_mon_mean',
+fields(1:2,43) = 'oceSPflx','oceSPDep',
+filename(43)   = 'diags/SEA_ICE_SALT_PLUME_FLUX_mon_mean/SEA_ICE_SALT_PLUME_FLUX_mon_mean',
 
 #---
 frequency(44)  = 2635200.0,
-fields(1:3,44) = 'UVELMASS','VVELMASS','WVELMASS',
-filename(44)   = 'diags/OCEAN_3D_VOLUME_FLUX_mon_mean/OCEAN_3D_VOLUME_FLUX_mon_mean',
+fields(1:2,44) = 'THETA   ','SALT    ',
+filename(44)   = 'diags/OCEAN_TEMPERATURE_SALINITY_mon_mean/OCEAN_TEMPERATURE_SALINITY_mon_mean',
 
 #---
 frequency(45)  = 2635200.0,
-fields(1:7,45) = 'ADVx_TH ','DFxE_TH ','ADVy_TH ','DFyE_TH ',
-                 'ADVr_TH ','DFrE_TH ','DFrI_TH ',
-filename(45)   = 'diags/OCEAN_3D_TEMPERATURE_FLUX_mon_mean/OCEAN_3D_TEMPERATURE_FLUX_mon_mean',
+fields(1:4,45) = 'RHOAnoma','DRHODR  ','PHIHYD  ','PHIHYDcR',
+filename(45)   = 'diags/OCEAN_DENS_STRAT_PRESS_mon_mean/OCEAN_DENS_STRAT_PRESS_mon_mean',
 
 #---
 frequency(46)  = 2635200.0,
-fields(1:8,46) = 'ADVx_SLT','DFxE_SLT','ADVy_SLT','DFyE_SLT',
-                 'ADVr_SLT','DFrE_SLT','DFrI_SLT','oceSPtnd',
-filename(46)   = 'diags/OCEAN_3D_SALINITY_FLUX_mon_mean/OCEAN_3D_SALINITY_FLUX_mon_mean',
+fields(1:3,46) = 'UVEL    ','VVEL    ','WVELMASS',
+filename(46)   = 'diags/OCEAN_VELOCITY_mon_mean/OCEAN_VELOCITY_mon_mean',
 
 #---
 frequency(47)  = 2635200.0,
-fields(1:2,47) = 'oceSPflx','oceSPDep',
-filename(47)   = 'diags/SEA_ICE_SALT_PLUME_FLUX_mon_mean/SEA_ICE_SALT_PLUME_FLUX_mon_mean',
+fields(1:3,47) = 'UVELSTAR','VVELSTAR','WVELSTAR',
+filename(47)   = 'diags/OCEAN_BOLUS_VELOCITY_mon_mean/OCEAN_BOLUS_VELOCITY_mon_mean',
 
 #---
 frequency(48)  = 2635200.0,
-fields(1:2,48) = 'THETA   ','SALT    ',
-filename(48)   = 'diags/OCEAN_TEMPERATURE_SALINITY_mon_mean/OCEAN_TEMPERATURE_SALINITY_mon_mean',
+fields(1:8,48) = 'TOTUTEND','Um_Cori ','Um_Advec','Um_Diss ',
+                 'Um_Ext  ','Um_dPhiX','AB_gU   ','Um_ImplD',
+filename(48)   = 'diags/OCEAN_3D_MOMENTUM_TEND_U_mon_mean/OCEAN_3D_MOMENTUM_TEND_U_mon_mean',
 
 #---
 frequency(49)  = 2635200.0,
-fields(1:4,49) = 'RHOAnoma','DRHODR  ','PHIHYD  ','PHIHYDcR',
-filename(49)   = 'diags/OCEAN_DENS_STRAT_PRESS_mon_mean/OCEAN_DENS_STRAT_PRESS_mon_mean',
+fields(1:3,49) = 'Um_AdvZ3','Um_AdvRe','Um_dKEdx',
+filename(49)   = 'diags/OCEAN_3D_MOMENTUM_TEND_U_ADV_OPTIONAL_mon_mean/OCEAN_3D_MOMENTUM_TEND_U_ADV_OPTIONAL_mon_mean',
 
 #---
 frequency(50)  = 2635200.0,
-fields(1:3,50) = 'UVEL    ','VVEL    ','WVELMASS',
-filename(50)   = 'diags/OCEAN_VELOCITY_mon_mean/OCEAN_VELOCITY_mon_mean',
+fields(1:5,50) = 'Um_Diss2','Um_Diss4','UBotDrag','USidDrag',
+                 'UShIDrag',
+filename(50)   = 'diags/OCEAN_3D_MOMENTUM_TEND_U_DISS_OPTIONAL_mon_mean/OCEAN_3D_MOMENTUM_TEND_U_DISS_OPTIONAL_mon_mean',
 
 #---
 frequency(51)  = 2635200.0,
-fields(1:3,51) = 'UVELSTAR','VVELSTAR','WVELSTAR',
-filename(51)   = 'diags/OCEAN_BOLUS_VELOCITY_mon_mean/OCEAN_BOLUS_VELOCITY_mon_mean',
+fields(1:8,51) = 'TOTVTEND','Vm_Cori ','Vm_Advec','Vm_Diss ',
+                 'Vm_Ext  ','Vm_dPhiY','AB_gV   ','Vm_ImplD',
+filename(51)   = 'diags/OCEAN_3D_MOMENTUM_TEND_V_mon_mean/OCEAN_3D_MOMENTUM_TEND_V_mon_mean',
 
 #---
 frequency(52)  = 2635200.0,
-fields(1:4,52) = 'SSH     ','SSHIBC  ','SSHNOIBC','ETAN    ',
-filename(52)   = 'diags/SEA_SURFACE_HEIGHT_snap_mon_mean/SEA_SURFACE_HEIGHT_snap_mon_mean',
+fields(1:3,52) = 'Vm_AdvZ3','Vm_AdvRe','Vm_dKEdy',
+filename(52)   = 'diags/OCEAN_3D_MOMENTUM_TEND_V_ADV_OPTIONAL_mon_mean/OCEAN_3D_MOMENTUM_TEND_V_ADV_OPTIONAL_mon_mean',
 
 #---
 frequency(53)  = 2635200.0,
-fields(1:3,53) = 'OBP     ','OBPGMAP ','PHIBOT  ',
-filename(53)   = 'diags/OCEAN_BOTTOM_PRESSURE_snap_mon_mean/OCEAN_BOTTOM_PRESSURE_snap_mon_mean',
+fields(1:5,53) = 'Vm_Diss2','Vm_Diss4','VBotDrag','VSidDrag',
+                 'VShIDrag',
+filename(53)   = 'diags/OCEAN_3D_MOMENTUM_TEND_V_DISS_OPTIONAL_mon_mean/OCEAN_3D_MOMENTUM_TEND_V_DISS_OPTIONAL_mon_mean',
 
 #---
 frequency(54)  = 2635200.0,
-fields(1:2,54) = 'THETA   ','SALT    ',
-filename(54)   = 'diags/OCEAN_TEMPERATURE_SALINITY_snap_mon_mean/OCEAN_TEMPERATURE_SALINITY_snap_mon_mean',
+fields(1:2,54) = 'SHIfwFlx','SHIhtFlx',
+filename(54)   = 'diags/ICESHELF_FLUX_mon_mean/ICESHELF_FLUX_mon_mean',
 
 #---
 frequency(55)  = 2635200.0,
-fields(1:4,55) = 'SIarea  ','SIheff  ','SIhsnow ','sIceLoad',
-filename(55)   = 'diags/SEA_ICE_CONC_THICKNESS_snap_mon_mean/SEA_ICE_CONC_THICKNESS_snap_mon_mean',
+fields(1:2,55) = 'ICFfwFlx','ICFhtFlx',
+filename(55)   = 'diags/ICEFRONT_FLUX_mon_mean/ICEFRONT_FLUX_mon_mean',
 
 #---
 frequency(56)  = 2635200.0,
-fields(1:2,56) = 'SIuice  ','SIvice  ',
-filename(56)   = 'diags/SEA_ICE_VELOCITY_snap_mon_mean/SEA_ICE_VELOCITY_snap_mon_mean',
+fields(1:8,56) = 'SIFao   ','SIFionet','SIFianet','SIFmi   ',
+                 'SIFFlood','SIsnAccR','SIsnmltS','SIgamma ',
+filename(56)   = 'diags/SEA_ICE_THERMO_BUDG_mon_mean/SEA_ICE_THERMO_BUDG_mon_mean',
 
 #---
-frequency(57)  = 2635200.0,
-fields(1:8,57) = 'TOTUTEND','Um_Cori ','Um_Advec','Um_Diss ',
-                 'Um_Ext  ','Um_dPhiX','AB_gU   ','Um_ImplD',
-filename(57)   = 'diags/OCEAN_3D_MOMENTUM_TEND_U_mon_mean/OCEAN_3D_MOMENTUM_TEND_U_mon_mean',
+frequency(57)  = -86400.0,
+timePhase(57) = 43200.0,
+fields(1:4,57) = 'SSH     ','SSHIBC  ','SSHNOIBC','ETAN    ',
+filename(57)   = 'diags/SEA_SURFACE_HEIGHT_day_snap/SEA_SURFACE_HEIGHT_day_snap',
 
 #---
-frequency(58)  = 2635200.0,
-fields(1:3,58) = 'Um_AdvZ3','Um_AdvRe','Um_dKEdx',
-filename(58)   = 'diags/OCEAN_3D_MOMENTUM_TEND_U_ADV_OPTIONAL_mon_mean/OCEAN_3D_MOMENTUM_TEND_U_ADV_OPTIONAL_mon_mean',
+frequency(58)  = -86400.0,
+timePhase(58) = 43200.0,
+fields(1:3,58) = 'OBP     ','OBPGMAP ','PHIBOT  ',
+filename(58)   = 'diags/OCEAN_BOTTOM_PRESSURE_day_snap/OCEAN_BOTTOM_PRESSURE_day_snap',
+fileFlags(58) = 'D       ',
 
 #---
-frequency(59)  = 2635200.0,
-fields(1:5,59) = 'Um_Diss2','Um_Diss4','UBotDrag','USidDrag',
-                 'UShIDrag',
-filename(59)   = 'diags/OCEAN_3D_MOMENTUM_TEND_U_DISS_OPTIONAL_mon_mean/OCEAN_3D_MOMENTUM_TEND_U_DISS_OPTIONAL_mon_mean',
+frequency(59)  = -86400.0,
+timePhase(59) = 43200.0,
+fields(1:2,59) = 'THETA   ','SALT    ',
+filename(59)   = 'diags/OCEAN_TEMPERATURE_SALINITY_day_snap/OCEAN_TEMPERATURE_SALINITY_day_snap',
 
 #---
-frequency(60)  = 2635200.0,
-fields(1:8,60) = 'TOTVTEND','Vm_Cori ','Vm_Advec','Vm_Diss ',
-                 'Vm_Ext  ','Vm_dPhiY','AB_gV   ','Vm_ImplD',
-filename(60)   = 'diags/OCEAN_3D_MOMENTUM_TEND_V_mon_mean/OCEAN_3D_MOMENTUM_TEND_V_mon_mean',
+frequency(60)  = -86400.0,
+timePhase(60) = 43200.0,
+fields(1:4,60) = 'SIarea  ','SIheff  ','SIhsnow ','sIceLoad',
+filename(60)   = 'diags/SEA_ICE_CONC_THICKNESS_day_snap/SEA_ICE_CONC_THICKNESS_day_snap',
 
 #---
-frequency(61)  = 2635200.0,
-fields(1:3,61) = 'Vm_AdvZ3','Vm_AdvRe','Vm_dKEdy',
-filename(61)   = 'diags/OCEAN_3D_MOMENTUM_TEND_V_ADV_OPTIONAL_mon_mean/OCEAN_3D_MOMENTUM_TEND_V_ADV_OPTIONAL_mon_mean',
-
-#---
-frequency(62)  = 2635200.0,
-fields(1:5,62) = 'Vm_Diss2','Vm_Diss4','VBotDrag','VSidDrag',
-                 'VShIDrag',
-filename(62)   = 'diags/OCEAN_3D_MOMENTUM_TEND_V_DISS_OPTIONAL_mon_mean/OCEAN_3D_MOMENTUM_TEND_V_DISS_OPTIONAL_mon_mean',
-
-#---
-frequency(63)  = 2635200.0,
-fields(1:2,63) = 'SHIfwFlx','SHIhtFlx',
-filename(63)   = 'diags/ICESHELF_FLUX_mon_mean/ICESHELF_FLUX_mon_mean',
-
-#---
-frequency(64)  = 2635200.0,
-fields(1:2,64) = 'ICFfwFlx','ICFhtFlx',
-filename(64)   = 'diags/ICEFRONT_FLUX_mon_mean/ICEFRONT_FLUX_mon_mean',
+frequency(61)  = -86400.0,
+timePhase(61) = 43200.0,
+fields(1:2,61) = 'SIuice  ','SIvice  ',
+filename(61)   = 'diags/SEA_ICE_VELOCITY_day_snap/SEA_ICE_VELOCITY_day_snap',
 
   /
 
