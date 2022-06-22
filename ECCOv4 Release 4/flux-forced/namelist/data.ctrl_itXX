@@ -100,15 +100,6 @@
 #xx_gentim2d_preproc(1,8)='WC01',
  xx_gentim2d_preproc_i(1,8)=1,
  mult_gentim2d(8) = 0.,
-
- xx_gentim2d_weight(9) = 'weights_ones.data',
- xx_gentim2d_file(9)='xx_runoff',
-# xx_gentim2d_startdate1(9) = 19920101,
-# xx_gentim2d_startdate2(9) = 120000,
- xx_gentim2d_period(9)=604800.0,
-#xx_gentim2d_preproc(1,9)='WC01',
- xx_gentim2d_preproc_i(1,9)=1,
- mult_gentim2d(9) = 0.,
 #
  xx_genarr2d_weight(1) = 'SSH_weights_nonseasonal_rms_areascaled.bin',
  xx_genarr2d_file(1)='xx_etan',
