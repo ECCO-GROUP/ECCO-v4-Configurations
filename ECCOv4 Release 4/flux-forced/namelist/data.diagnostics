@@ -157,12 +157,12 @@
    fileFlags(24) = 'D       ',
 #---
   frequency(25) = 2635200.0,
-   fields(1:3,25) = 'OBPGMAP', 'OBP',
+   fields(1:2,25) = 'OBPGMAP', 'OBP',
    filename(25) = 'diags/state_2d_obp_mon_mean',
    fileFlags(25) = 'D       ',
 #---
   frequency(26) = 86400.0,
-   fields(1:3,26) = 'OBPGMAP', 'OBP',
+   fields(1:2,26) = 'OBPGMAP', 'OBP',
    timePhase(26) = 42300.,
    filename(26) = 'diags/state_2d_obp_day_mean',
    fileFlags(26) = 'D       ',
