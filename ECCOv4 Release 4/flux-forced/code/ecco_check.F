@@ -508,6 +508,7 @@ c-- (upper/lower-case matters) in cost_gencost_customize
      &          (gencost_barfile(k)(1:7).EQ.'m_theta').OR.
      &          (gencost_barfile(k)(1:15).EQ.'m_boxmean_theta').OR.
      &          (gencost_barfile(k)(1:13).EQ.'m_boxmean_eta').OR.
+     &          (gencost_barfile(k)(1:13).EQ.'m_boxmean_obp').OR.
      &          (gencost_barfile(k)(1:14).EQ.'m_boxmean_salt').OR.
      &          (gencost_barfile(k)(1:17).EQ.'m_boxmean_ptracer').OR.
      &          (gencost_barfile(k)(1:14).EQ.'m_horflux_vol')
