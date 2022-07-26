@@ -359,13 +359,23 @@ c---------
           tmpmsk=maskC(i,j,1,bi,bj)*gencost_mskCsurf(i,j,bi,bj,kgen)
           tmpfld=0. _d 0
           tmpmsk2=0. _d 0
-          if (gencost_barfile(kgen)(1:13).EQ.'m_boxmean_eta') then
+          if (gencost_barfile(kgen)(1:13).EQ.'m_boxmean_eta' .OR.
+     &        gencost_barfile(kgen)(1:13).EQ.'m_boxmean_obp') then
            if (gencost_barfile(kgen)(1:17).EQ.'m_boxmean_eta_dyn') then
             tmpfld=m_eta_dyn(i,j,bi,bj)
-           else
+           else if (gencost_barfile(kgen)(1:13).EQ.'m_boxmean_eta_dyn')
+     &      then
             tmpfld=m_eta(i,j,bi,bj)
+           else if (gencost_barfile(kgen)(1:17).EQ.'m_boxmean_obpgmap')
+     &      then
+c OBPGMAP (in m; converted from m^2/s^2 to m)
+            tmpfld=m_bp(i,j,bi,bj)*recip_gravity
+           else if (gencost_barfile(kgen)(1:13).EQ.'m_boxmean_obp')
+     &      then
+c OBP (in m; converted from m^2/s^2 to m)
+            tmpfld=m_bp_nopabar(i,j,bi,bj)*recip_gravity
            endif
-            if (tmpmsk.NE.0. _d 0) tmpmsk2=1. _d 0
+           if (tmpmsk.NE.0. _d 0) tmpmsk2=1. _d 0
           endif
 c
           gencost_storefld(i,j,bi,bj,kgen) =

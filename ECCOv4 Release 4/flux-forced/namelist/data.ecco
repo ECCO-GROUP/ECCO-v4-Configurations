@@ -17,15 +17,11 @@
  &ECCO_GENCOST_NML
   gencost_avgperiod(1)  = 'month',
   gencost_barfile(1) = 'm_boxmean_eta_dyn',
-  gencost_errfile(1) = 'mask_BeaufortSea.bin'
-  gencost_mask(1) = 'v4_maskCtrl'
+  gencost_mask(1) = 'mask_BeaufortSea'
   gencost_name(1) = 'boxmean',
-  gencost_timevaryweight(1)=.FALSE. 
-  gencost_preproc(1,1)='skip',
-  gencost_preproc_i(1,1)=311,
-  gencost_preproc(3,1)='glosum',
   gencost_msk_is3d(1)=.FALSE.,
   gencost_outputlevel(1)=1,
   mult_gencost(1) = 1.,
+#
  /
 #
