@@ -380,9 +380,7 @@ c OBP (in m; converted from m^2/s^2 to m)
 c
           gencost_storefld(i,j,bi,bj,kgen) =
      &        gencost_storefld(i,j,bi,bj,kgen)
-     &        +tmpmsk*tmpfld*rA(i,j,bi,bj)
-          areavolTile(bi,bj)=areavolTile(bi,bj)
-     &        +tmpmsk2*rA(i,j,bi,bj)
+     &        +tmpmsk*tmpfld
 c---------
           do k = 1,nr
 c
@@ -400,8 +398,6 @@ c
               tmpmskS=gencost_mskS(i,j,k,bi,bj,kgen3d)
 #endif
             endif
-            tmpmskW=tmpmskW*hFacW(i,j,k,bi,bj)*dyG(i,j,bi,bj)*drF(k)
-            tmpmskS=tmpmskS*hFacS(i,j,k,bi,bj)*dxG(i,j,bi,bj)*drF(k)
 c
             if (gencost_barfile(kgen)(1:13).EQ.'m_horflux_vol') then
               gencost_storefld(i,j,bi,bj,kgen) =
@@ -415,12 +411,6 @@ c---------
         enddo
        enddo
       enddo
-
-      if (gencost_barfile(kgen)(1:9).EQ.'m_boxmean') then
-        CALL GLOBAL_SUM_TILE_RL( areavolTile, areavolGlob, myThid )
-        CALL ecco_div( gencost_storefld(1-OLx,1-OLy,1,1,kgen),
-     &                 1, areavolGlob, myThid )
-      endif
 
       enddo
 
