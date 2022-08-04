@@ -12,4 +12,4 @@
  &CTRL_PACKNAMES
  ctrlname = 'ecco_ctrl',
  costname = 'ecco_cost',
- &
+ /

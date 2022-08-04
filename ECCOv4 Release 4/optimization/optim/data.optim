@@ -3,10 +3,20 @@
 # Off-line optimization parameters
 # ********************************
  &OPTIM
+# optimcycle (iteration number) and fmin
+# are usually the only two values 
+# need to be changed. 
  optimcycle=0,
  numiter=1,
- nfunc=2,
- fmin=0.05495D04,
+ nfunc=1,
+# fmin only needs to be set once for steepest descent
+# and should not be changed during quasi-Newton. 
+# The value is chosen to be (1-0.5*expfracred)*f0,
+# where f0 is iteration 0's cost and expfracred is 
+# the expected fractional cost reduction. For 
+# ECCO V4r4 production adjoint runs, 0.004 has beend 
+# used for expfracred. 
+ fmin=38385143.69610436,
  iprint=10,
  nupdate=4,
- &
+ /
