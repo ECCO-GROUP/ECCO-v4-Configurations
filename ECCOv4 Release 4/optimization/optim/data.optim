@@ -14,7 +14,7 @@
 # The value is chosen to be (1-0.5*expfracred)*f0,
 # where f0 is iteration 0's cost and expfracred is 
 # the expected fractional cost reduction. For 
-# ECCO V4r4 production adjoint runs, 0.004 has beend 
+# ECCO V4r4 production adjoint runs, 0.004 has been
 # used for expfracred. 
  fmin=38385143.69610436,
  iprint=10,
