@@ -127,17 +127,6 @@ C--   DEFINE SOME CONSTANTS
       eps6 = eps4 - insitutLoc
       eps7 = eps4 - thetaIceConduction
 
-      IF ( debugLevel.GE.debLevE ) THEN
-      WRITE(msgBuf,'(A25,9E16.8)')
-     &'ZZZ7 r2mass, Cp, gmaT,SIlh,gmaS, rhoSI, SI_Cp, Kap, ICondDis ',
-     & rUnit2mass,HeatCapacity_Cp,gammaT, SHELFICElatentHeat,gammaS,
-     & rhoShelfIce, SHELFICEheatCapacity_Cp, SHELFICEkappa,
-     & iceConductionDistance
-
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                    SQUEEZE_RIGHT , 1)
-      ENDIF
-
 C--   Default thermodynamics specify a linear T gradient
 C--   through the ice (Holland and Jenkins, 1999, Section 2).
       IF (SHELFICEadvDiffHeatFlux .EQV. .FALSE.) THEN
@@ -293,20 +282,6 @@ C--   are the turbulent fluxes.
           forcingS = gammaS * ( saltFreeze  - sLoc )
       ENDIF
 
-      IF ( debugLevel.GE.debLevE ) THEN
-      WRITE(msgBuf,'(A25,7E16.8)')
-     &   'ZZZ6 aqe, bqe, ceq ',
-     &   aqe,bqe,cqe
-
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                    SQUEEZE_RIGHT , 1)
-
-      WRITE(msgBuf,'(A25,7E16.8)')
-     &   'ZZZ2 T,S,P,t,TFrz,SFrz,w_B ',
-     &   tLoc,sLoc,pLoc, insitutLoc, thetaFreeze, saltFreeze, w_B
-
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                    SQUEEZE_RIGHT , 1)
       ENDIF
 
 
