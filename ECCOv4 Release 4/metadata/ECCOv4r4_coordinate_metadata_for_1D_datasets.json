@@ -1,0 +1,29 @@
+[
+   {
+      "name": "time",
+      "standard_name": "time",
+      "long_name": "midpoint of averaging period or snapshot",
+      "comment": "",
+      "units": "hours since 1992-01-01 12:00:00",
+      "axis": "T",
+      "bounds": "time_bnds",
+      "grid_dimension":"1D 2D 3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "time_bnds",
+      "long_name": "time bounds of averaging period",
+      "comment" : "Start and end times of averaging period.",
+      "units": "hours since 1992-01-01 12:00:00",
+      "grid_dimension":"1D 2D 3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "time_step",
+      "long_name": "model timestep at end of averaging period or model timestep at snapshot.",
+      "comment": "The ECCO V4r4 model uses 1 hour timesteps starting from 1992-01-01T12:00:00",
+      "units":"hours",
+      "grid_dimension":"1D 2D 3D",
+      "coverage_content_type": "coordinate"
+   }
+]

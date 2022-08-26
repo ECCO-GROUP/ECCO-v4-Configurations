@@ -1,0 +1,111 @@
+[
+   {
+    "name" : "dynamic sea surface height",
+    "fields" : "SSH, SSHIBC, SSHNOIBC",
+    "comment": "SSH (dynamic sea surface height) = SSHNOIBC (dynamic sea surface without the inverse barometer correction) - SSHIBC (inverse barometer correction). The inverted barometer correction accounts for variations in sea surface height due to atmospheric pressure variations.",
+    "product": "latlon",
+    "filename" : "SEA_SURFACE_HEIGHT",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "ocean bottom pressure",
+    "fields": "OBP, OBPGMAP",
+    "comment": "Ocean bottom pressure given in equivalent water thickness excluding (OBP) and including (OBPGMAP) the contribution from global mean atmospheric pressure.",
+    "product": "latlon",
+    "filename" : "OCEAN_BOTTOM_PRESSURE",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "ocean and sea-ice surface freshwater fluxes",
+    "fields": "EXFpreci, EXFevap, EXFroff, SIsnPrcp, EXFempmr, oceFWflx, SIatmFW, SFLUX, SIacSubl, SIrsSubl, SIfwThru",
+    "product": "latlon",
+    "filename" : "OCEAN_AND_ICE_SURFACE_FW_FLUX",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "ocean and sea-ice surface heat fluxes",
+    "fields": "EXFhl, EXFhs, EXFlwdn, EXFswdn, EXFqnet, oceQnet, SIatmQnt, TFLUX, EXFswnet, EXFlwnet, oceQsw, SIaaflux",
+    "product": "latlon",
+    "filename" : "OCEAN_AND_ICE_SURFACE_HEAT_FLUX",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "atmosphere surface temperature, humidity, wind, and pressure",
+    "fields": "EXFatemp, EXFaqh, EXFewind, EXFnwind, EXFwspee, EXFpress",
+    "product": "latlon",
+    "filename" : "ATM_SURFACE_TEMP_HUM_WIND_PRES",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name" : "ocean mixed layer depth",
+    "fields" : "MXLDEPTH",
+    "product": "latlon",
+    "filename" : "OCEAN_MIXED_LAYER_DEPTH",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name" : "ocean and sea-ice surface stress",
+    "fields" : "EXFtaue, EXFtaun, oceTAUE, oceTAUN",
+    "product": "latlon",
+    "filename" : "OCEAN_AND_ICE_SURFACE_STRESS",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "sea-ice and snow concentration and thickness",
+    "fields":"SIarea, SIheff, SIhsnow, sIceLoad",
+    "product": "latlon",
+    "filename" : "SEA_ICE_CONC_THICKNESS",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "sea-ice velocity",
+    "fields":"SIeice, SInice",
+    "product": "latlon",
+    "filename" : "SEA_ICE_VELOCITY",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name" : "ocean potential temperature and salinity",
+    "fields": "THETA, SALT",
+    "product": "latlon",
+    "filename" : "OCEAN_TEMPERATURE_SALINITY",
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "ocean density, stratification, and hydrostatic pressure",
+    "fields": "RHOAnoma, DRHODR, PHIHYD",
+    "product": "latlon",
+    "filename" : "OCEAN_DENS_STRAT_PRESS",
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "ocean velocity",
+    "fields": "EVEL, NVEL, WVELMASS",
+    "product": "latlon",
+    "variable_rename" : "WVELMASS:WVEL",
+    "filename" : "OCEAN_VELOCITY",
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON",
+    "vector_inputs": "UVEL,VVEL:EVEL,NVEL",
+    "vector_outputs": "EVEL:EAST,NVEL:NORTH"
+   },
+   {
+    "name": "Gent-McWilliams ocean bolus velocity",
+    "fields": "EVELSTAR, NVELSTAR, WVELSTAR",
+    "product": "latlon",
+    "filename" : "OCEAN_BOLUS_VELOCITY",
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   }
+]

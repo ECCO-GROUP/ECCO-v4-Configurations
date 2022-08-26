@@ -1,0 +1,194 @@
+[   
+   {
+      "name": "time",
+      "standard_name": "time",
+      "long_name": "midpoint of averaging period or snapshot",
+      "units": "hours since 1992-01-01 12:00:00",
+      "bounds": "time_bnds",
+      "grid_dimension":"1D 2D 3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "time_bnds",
+      "long_name": "time bounds of averaging period",
+      "comment" : "Start and end times of averaging period.",
+      "units": "hours since 1992-01-01 12:00:00",
+      "grid_dimension":"1D 2D 3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "time_step",
+      "long_name": "model timestep at end of averaging period or model timestep at snapshot.",
+      "comment": "The ECCO V4r4 model uses 1 hour timesteps starting from 1992-01-01T12:00:00",
+      "units":"hours",
+      "grid_dimension":"1D 2D 3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "i",
+      "long_name": "grid index in x for variables at tracer and 'v' locations",
+      "comment": "In the Arakawa C-grid system, tracer (e.g., THETA) and 'v' variables (e.g., VVEL) have the same x coordinate on the model grid.",
+      "axis": "X",
+      "grid_dimension": "2D 3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "i_g",
+      "long_name": "grid index in x for variables at 'u' and 'g' locations",
+      "comment": "In the Arakawa C-grid system, 'u' (e.g., UVEL) and 'g' variables (e.g., XG) have the same x coordinate on the model grid.",
+      "grid_dimension": "2D 3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "j",
+      "long_name": "grid index in y for variables at tracer and 'u' locations",
+      "comment": "In the Arakawa C-grid system, tracer (e.g., THETA) and 'u' variables (e.g., UVEL) have the same y coordinate on the model grid.",
+      "axis": "Y",
+      "grid_dimension": "2D 3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "j_g",
+      "long_name": "grid index in y for variables at 'v' and 'g' locations",
+      "comment": "In the Arakawa C-grid system, 'v' (e.g., VVEL) and 'g' variables (e.g., XG) have the same y coordinate.",
+      "grid_dimension": "2D 3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "k",
+      "long_name": "grid index in z for tracer variables",
+      "axis": "Z",
+      "grid_dimension": "3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "k_l",
+      "long_name": "grid index in z corresponding to the top face of tracer grid cells ('w' locations)",
+      "comment": "First index corresponds to the top face of the uppermost tracer grid cell. The use of 'l' in the variable name follows the MITgcm convention for naming the top face of ocean tracer grid cells.",
+      "grid_dimension": "3D",
+      "coverage_content_type": "coordinate"
+   },   
+   {
+      "name": "k_u",
+      "long_name": "grid index in z corresponding to the bottom face of tracer grid cells ('w' locations)",
+      "comment": "First index corresponds to the bottom face of the uppermost tracer grid cell. The use of 'u' in the variable name follows the MITgcm convention for naming the bottom face of ocean tracer grid cells.",
+      "grid_dimension": "3D",
+      "coverage_content_type": "coordinate"
+   },   
+   {
+      "name": "k_p1",
+      "long_name": "grid index in z for variables at 'w' locations",
+      "comment": "Includes top of uppermost model tracer cell (k_p1=0) and bottom of lowermost tracer cell (k_p1=51).",
+      "grid_dimension": "3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "tile",
+      "long_name": "lat-lon-cap tile index",
+      "comment": "The ECCO V4 horizontal model grid is divided into 13 tiles of 90x90 cells for convenience.",
+      "grid_dimension": "2D 3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "XC",
+      "standard_name": "longitude",
+      "long_name": "longitude of tracer grid cell center",
+      "comment": "nonuniform grid spacing",
+      "units": "degrees_east",
+      "bounds": "XC_bnds",
+      "grid_dimension": "2D 3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "YC",
+      "standard_name": "latitude",
+      "long_name": "latitude of tracer grid cell center",
+      "units": "degrees_north",
+      "comment": "nonuniform grid spacing",
+      "bounds": "YC_bnds",
+      "grid_dimension": "2D 3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "XC_bnds",
+      "long_name": "longitudes of tracer grid cell corners",
+      "comment": "Bounds array follows CF conventions. XC_bnds[i,j,0] = 'southwest' corner (j-1, i-1), XC_bnds[i,j,1] = 'southeast' corner (j-1, i+1), XC_bnds[i,j,2] = 'northeast' corner (j+1, i+1), XC_bnds[i,j,3]  = 'northwest' corner (j+1, i-1). Note: 'southwest', 'southeast', northwest', and 'northeast' do not correspond to geographic orientation but are used for convenience to describe the computational grid. See MITgcm dcoumentation for details.",
+      "grid_dimension": "2D 3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "YC_bnds",
+      "long_name": "latitudes of tracer grid cell corners",
+      "comment": "Bounds array follows CF conventions. YC_bnds[i,j,0] = 'southwest' corner (j-1, i-1), YC_bnds[i,j,1] = 'southeast' corner (j-1, i+1), YC_bnds[i,j,2] = 'northeast' corner (j+1, i+1), YC_bnds[i,j,3]  = 'northwest' corner (j+1, i-1). Note: 'southwest', 'southeast', northwest', and 'northeast' do not correspond to geographic orientation but are used for convenience to describe the computational grid. See MITgcm dcoumentation for details.",
+      "grid_dimension": "2D 3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "XG",
+      "standard_name": "longitude",
+      "long_name": "longitude of 'southwest' corner of tracer grid cell",
+      "comment": "Nonuniform grid spacing. Note: 'southwest' does not correspond to geographic orientation but is used for convenience to describe the computational grid. See MITgcm dcoumentation for details.",
+      "units": "degrees_east",
+      "grid_dimension": "2D 3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "YG",
+      "standard_name": "latitude",
+      "long_name": "latitude of 'southwest' corner of tracer grid cell",
+      "comment": "Nonuniform grid spacing. Note: 'southwest' does not correspond to geographic orientation but is used for convenience to describe the computational grid. See MITgcm dcoumentation for details.",
+      "units": "degrees_north",
+      "grid_dimension": "2D 3D",
+      "coverage_content_type": "coordinate"
+   },      
+   {
+      "name": "Z",
+      "standard_name": "depth",
+      "long_name": "depth of tracer grid cell center",
+      "comment": "Non-uniform vertical spacing.",
+      "units": "m",
+      "positive": "up",
+      "bounds": "Z_bnds",
+      "grid_dimension":"3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "Z_bnds",
+      "long_name": "depths of top and bottom faces of tracer grid cell",
+      "comment": "One pair of depths for each vertical level.",
+      "units": "m",
+      "positive" : "up",
+      "grid_dimension":"3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "Zp1",
+      "standard_name": "depth",
+      "long_name": "depth of top/bottom face of tracer grid cell",
+      "comment": "Contains one element more than the number of vertical layers. First element is 0m, the depth of the top face of the uppermost grid cell. Last element is the depth of the bottom face of the deepest grid cell.",
+      "units": "m",
+      "positive" : "up",
+      "grid_dimension":"3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "Zu",
+      "standard_name": "depth",
+      "long_name": "depth of bottom face of tracer grid cell",
+      "comment": "First element is -10m, the depth of the bottom face of the uppermost tracer grid cell. Last element is the depth of the bottom face of the deepest grid cell. The use of 'u' in the variable name follows the MITgcm convention for naming the bottom face of ocean tracer grid cells.",
+      "units": "m",
+      "positive" : "up",
+      "grid_dimension":"3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "Zl",
+      "standard_name": "depth",
+      "long_name": "depth of top face of tracer grid cell",
+      "comment": "First element is 0m, the depth of the top face of the uppermost tracer grid cell (i.e., the ocean surface). Last element is the depth of the top face of the deepest grid cell. The use of 'l' in the variable name follows the MITgcm convention for naming the top face of ocean tracer grid cells.",
+      "units": "m",
+      "positive" : "up",
+      "grid_dimension":"3D",
+      "coverage_content_type": "coordinate"
+   }
+]
