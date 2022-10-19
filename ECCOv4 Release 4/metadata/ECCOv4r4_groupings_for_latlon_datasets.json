@@ -97,8 +97,10 @@
     "filename" : "OCEAN_VELOCITY",
     "dimension" : "3D",
     "frequency" : "AVG_DAY, AVG_MON",
-    "vector_inputs": "UVEL,VVEL:EVEL,NVEL",
-    "vector_outputs": "EVEL:EAST,NVEL:NORTH"
+    "vector_inputs_old": "UVEL,VVEL:EVEL,NVEL",
+    "vector_inputs": {"UVEL":["EVEL", "NVEL"], "VVEL":["EVEL", "NVEL"]},
+    "vector_outputs_old": "EVEL:EAST,NVEL:NORTH",
+    "vector_outputs": {"EVEL":"EAST", "NVEL":"NORTH"}
    },
    {
     "name": "Gent-McWilliams ocean bolus velocity",
