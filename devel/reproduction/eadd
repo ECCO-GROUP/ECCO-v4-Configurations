@@ -1,0 +1,60 @@
+#!/bin/bash
+#
+# eadd - ECCO Ancillary Data Download
+#
+
+usage() {
+    echo "$(basename $0) - ECCO ancillary data download, extract, and optional clean up"
+    echo "usage: $(basename $0) -v version -r release [-u username] [-p password] [-k]"
+    echo "where:"
+    echo "   -h    Show usage."
+    echo "   -k    Keep downloaded tarfiles after extraction."
+    echo "   -p    NASA Earthdata password (prompt if not provided)."
+    echo "   -r    ECCO release number."
+    echo "   -u    NASA Earthdata username (prompt if not provided)."
+    echo "   -v    ECCO version number."
+    echo "notes:"
+    echo "   $(basename $0) is called by the eget utility."
+    echo "   $(basename $0) assumes the existence of an ECCO configuration file, ecfg."
+}
+
+set -e
+keep=no
+while getopts ":v:r:u:p:hk" opt; do
+    case $opt in
+        h  ) usage
+             exit 1 ;;
+        k  ) keep=yes ;;
+        p  ) passwd=$OPTARG ;;
+        r  ) release=$OPTARG ;;
+        u  ) uname=$OPTARG ;;
+        v  ) version=$OPTARG ;;
+        \? ) usage
+             exit 1 ;;
+    esac
+done
+
+# set ecco configuration variables:
+source ecfg
+
+if [ -z $uname ]; then
+    read -rsep "NASA Earthdata username: " uname
+    echo ""
+fi
+
+if [ -z $passwd ]; then
+    read -rsep "NASA Earthdata password: " passwd
+    echo ""
+fi
+
+for target in ${targets[@]}; do
+    wget --user=${uname} --password=${passwd} ${rooturl}/${target}
+    echo "$(basename $0): extracting files from ${target} ..."
+    tar -xvf ${target}
+    echo "$(basename $0): ... done extracting files from ${target}."
+    if [ $keep = no ]; then
+        echo "$(basename $0): keep archive files (-k) option not selected; removing ${target}."
+        rm ${target}
+    fi
+done
+
