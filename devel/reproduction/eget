@@ -1,0 +1,94 @@
+#!/bin/bash
+#
+# eget - download (get) ECCO and MITgcm source, configuration, and ancillary data
+#
+
+usage() {
+    echo "$(basename $0) - download (get) ECCO and MITgcm source, configuration, and ancillary data"
+    echo "usage: $(basename $0) -v version -r release [-u username] [-p password] [-k] dir"
+    echo "where:"
+    echo "   dir   Top-level working directory."
+    echo "   -h    Show usage."
+    echo "   -k    Keep downloaded tarfiles after extraction."
+    echo "   -p    NASA Earthdata password (prompt if not provided)."
+    echo "   -r    ECCO release number."
+    echo "   -u    NASA Earthdata username (prompt if not provided)."
+    echo "   -v    ECCO version number."
+    echo "notes:"
+    echo "   $(basename $0) calls the eadd utility for ECCO ancillary data download."
+    echo "   $(basename $0) assumes the existence of an ECCO configuration file, ecfg."
+}
+
+set -e
+npos=1
+keep=no
+while getopts ":v:r:u:p:hk" opt; do
+    case $opt in
+        h  ) usage
+             exit 1 ;;
+        k  ) keep=yes ;;
+        p  ) passwd=$OPTARG ;;
+        r  ) release=$OPTARG ;;
+        u  ) uname=$OPTARG ;;
+        v  ) version=$OPTARG ;;
+        \? ) usage
+             exit 1 ;;
+    esac
+done
+shift $(($OPTIND-1))
+
+if [[ $# -ne $npos ]]; then
+    usage
+    exit 1
+fi
+
+# set ecco configuration variables:
+source ecfg
+
+workingdir=$1
+
+if [ -z $uname ]; then
+    read -rsep "NASA Earthdata username: " uname
+    echo ""
+fi
+
+if [ -z $passwd ]; then
+    read -rsep "NASA Earthdata password: " passwd
+    echo ""
+fi
+
+if mkdir $workingdir && cd $workingdir; then
+
+    #
+    # clone MITgcm source:
+    #
+
+    echo "$(basename $0): cloning git repository $mitgcmrepo..."
+    git clone $mitgcmrepo -b $branch
+    echo "$(basename $0): ...done cloning $(basename $mitgcmrepo)."
+
+    #
+    # clone ecco configurations:
+    #
+
+    echo "$(basename $0): cloning ecco v${version}r${release} configurations, $eccorepo..."
+    git clone $eccorepo
+    mkdir -p ECCOV${version}/release${release}
+    cp -r "ECCO-v${version}-Configurations/ECCOv${version} Release ${release}/code" \
+        ECCOV${version}/release${release}/code
+    cp -r "ECCO-v${version}-Configurations/ECCOv${version} Release ${release}/namelist" \
+        ECCOV${version}/release${release}/namelist
+    echo "$(basename $0): ...done cloning $(basename $eccorepo)."
+
+    #
+    # download ecco ancillary data:
+    #
+
+    if cd ECCOV${version}/release${release} && mkdir input && cd input; then
+        if [ $keep = yes ]; then
+            eadd -v ${version} -r ${release} -u ${uname} -p ${passwd} -k
+        else
+            eadd -v ${version} -r ${release} -u ${uname} -p ${passwd}
+        fi
+    fi
+fi

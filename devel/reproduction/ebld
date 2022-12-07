@@ -1,0 +1,84 @@
+#!/bin/bash
+#
+# ebld - build ECCO model code
+#
+
+usage() {
+    echo "$(basename $0) - build ECCO model code"
+    echo "usage: $(basename $0) -v version -r release [-a] dir"
+    echo "where:"
+    echo "   -a    Build adjoint and optimization code, forward otherwise."
+    echo "   -h    Show usage."
+    echo "   -r    ECCO release number."
+    echo "   -v    ECCO version number."
+    echo "   dir   Top-level working directory."
+    echo "notes:"
+    echo "   $(basename $0) assumes the availability of MITgcm and ECCO source (eget and eadd have been run)."
+    echo "   $(basename $0) assumes the existence of an ECCO configuration file, ecfg."
+}
+
+set -e
+npos=1
+adjoint=no
+while getopts ":v:r:ah" opt; do
+    case $opt in
+        a  ) adjoint=yes ;;
+        h  ) usage
+             exit 1 ;;
+        r  ) release=$OPTARG ;;
+        v  ) version=$OPTARG ;;
+        \? ) usage
+             exit 1 ;;
+    esac
+done
+shift $(($OPTIND-1))
+
+if [[ $# -ne $npos ]]; then
+    usage
+    exit 1
+fi
+
+workingdir=$1
+builddir=build
+
+# set ecco configuration variables:
+source ecfg
+
+echo "$(basename $0): loading required modules..."
+module purge
+for module in ${modules[@]}; do
+    module load ${module}
+done
+module list
+echo "$(basename $0): module load complete."
+
+# anticipate optimization code build if adjoint build: 
+if [ ${adjoint} == yes ]; then
+    cp -r "${workingdir}/ECCO-v${version}-Configurations/ECCOv${version} Release ${release}/optimization/lsopt" \
+        ${workingdir}/ECCOV${version}/release${release}
+    cp -r "${workingdir}/ECCO-v${version}-Configurations/ECCOv${version} Release ${release}/optimization/optim" \
+        ${workingdir}/ECCOV${version}/release${release}
+fi
+
+echo "$(basename $0): building ECCOV${version}/release${release} code..."
+if cd ${workingdir}/ECCOV${version}/release${release} && mkdir ${builddir} && cd ${builddir}; then
+    export ROOTDIR=../../../MITgcm
+    ${ROOTDIR}/tools/genmake2 -mods=../code -optfile=${optfile} -mpi
+    if [ ${adjoint} == yes ]; then
+        echo "$(basename $0): building adjoint model..."
+        make -j16 depend
+        make -j16 adtaf
+        make -j16 adall
+        echo "$(basename $0): adjoint model build complete."
+        echo "$(basename $0): building optimization code..."
+        cd ..
+        cd lsopt && make clean && make && cd ..
+        cd optim && make clean && make
+        echo "$(basename $0): optimization build complete."
+    else
+        echo "$(basename $0): building forward model..."
+        make -j16 depend
+        make -j16 all
+        echo "$(basename $0): forward model build complete."
+    fi
+fi

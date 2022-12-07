@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# ecfg - set ecco configuration variables
+# usage: source ecfg
+#
+
+if [[ ${version} == 4 ]] && [[ ${release} == 4 ]]; then
+    # code repositories, checkpoints:
+    mitgcmrepo=https://github.com/MITgcm/MITgcm.git
+    eccorepo=https://github.com/ECCO-GROUP/ECCO-v${version}-Configurations.git
+    branch=checkpoint66g
+    rooturl="https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/ECCO_L4_ANCILLARY_DATA_V${version}R${release}"
+    declare -a targets=(
+        "ancillary_data_doc_ECCO_V${version}r${release}.tar.gz"
+        "ancillary_data_input_init_ECCO_V${version}r${release}.tar.gz"
+        "ancillary_data_input_forcing_ECCO_V${version}r${release}.tar.gz"
+        "ancillary_data_native_grid_files_ECCO_V${version}r${release}.tar.gz"
+        "ancillary_data_data_constraints_ECCO_V${version}r${release}.tar.gz"
+        "ancillary_data_misc_ECCO_V${version}r${release}.tar.gz"
+    )
+    # pleiades-specific settings (TODO: add machine input option)
+    declare -a modules=(
+        comp-intel/2020.4.304
+        mpi-hpe/mpt.2.25
+        hdf4/4.2.12
+        hdf5/1.8.18_mpt
+        netcdf/4.4.1.1_mpt
+    )
+    optfile=../code/linux_amd64_ifort+mpi_ice_nas
+else
+    echo "no configuration available for ECCOV${version:?version is unset or null}r${release:?release is unset or null}"
+    exit 1
+fi
