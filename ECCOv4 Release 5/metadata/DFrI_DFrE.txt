@@ -1,0 +1,28 @@
+
+
+
+DFrI_TH: 
+================
+*. The vertical flux 3rd component from GM-Redi is due to Kwz tensor component
+and is easy to process implicitly (vertical flux function of vertical gradient)
+like any vertical diffusivity contribution; this is the case when implicitDiffusion=.TRUE.
+
+*. with useGMRedi= True, the 3rd component (from Kwz) is added to "DFrE_???" when using implicitDiffusion=.True. (implictDiffusion = True with V4r4)
+
+DFrE_TH: 
+================
+* For any tracer, when using pkg/gmredi, it adds to vertical fluxes
+two diffusive components that are proportional to horizontal tracer gradient
+(Kwx & Kwy components of the GM-Redi tensor) and these components are always
+evaluated explicitly (i.e., forward in time)
+
+* only be non-zero if pkg/gmredi activated. "
+
+* with useGMRedi=TRUE, the first 2 components (from Kwx & Kwy) are accounted for in diagnostics "DFrE_???";
+
+* These terms (Kwx & Kwy) are due to the Redi tensor but are increased by some GM 
+contributions when using the Skew-flux form (GM_AdvForm = .FALSE., i.e, the default).
+
+* with useGMRedi= True, the 3rd component (from Kwz) is added to "DFrE_???" when using implicitDiffusion=.False. (implictDiffusion = True with V4r4)
+
+

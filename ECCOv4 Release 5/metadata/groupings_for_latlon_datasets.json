@@ -1,0 +1,115 @@
+[
+   {
+    "name" : "sea surface height",
+    "fields" : "SSH, SSHIBC, SSHNOIBC",
+    "description": "sea surface height",
+    "dataset_description":"Parameters include dynamic sea surface height [SSH], sea surface height without the inverse barometer (IB) correction from atmospheric pressure loading [SSHNOIBC], and the IB correction from atmospheric pressure loading [SSHIBC]. The sea surface height fields include corrections for global mean steric height associated with global mean density changes in the Boussinesq volume-conserving model (i.e., the Greatbatch correction) and for sea-ice pressure loading.",
+    "filename" : "SEA_SURFACE_HEIGHT",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "ocean bottom pressure",
+    "fields": "OBP, OBPGMAP, OBPAnoma, OBPGMAPA",
+    "dataset_description": "Parameters include ocean bottom pressure with and without the contribution from atmospheric pressure loading [OBPGMAP, OBP], their anomalies with respect to 2005-2010 means [OBPGMAPA, OBPAnoma]. Note: ocean bottom pressure fields are provided in terms of equivalent water height.",
+    "filename" : "OCEAN_BOTTOM_PRESSURE",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "ocean and sea-ice surface freshwater fluxes",
+    "fields": "EXFpreci, EXFevap, EXFroff, EXFempmr, SIatmFW, SIacSubl, SIrsSubl, SIfwThru, SIsnPrcp, oceFWflx, SFLUX",
+    "dataset_description": "Parameters include freshwater flxues from precipitation, evaporation, runoff, and sublimation across the air/ocean interface [EXFpreci, EXFevap, EXFroff, EXFempmr] and air/sea-ice interface [SIatmFW, SIacSubl, SIrsSubl, SIfwThru, SIsnPrcp]; and total freshwater fluxes across the ocean surface [oceFWflx, SFLUX].",
+    "filename" : "OCEAN_AND_ICE_SURFACE_FW_FLUX",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "ocean and sea-ice surface heat fluxes",
+    "fields": "EXFhl, EXFhs, EXFlwdn, EXFswdn, EXFqnet, oceQnet, SIatmQnt, TFLUX, EXFswnet, EXFlwnet, oceQsw, SIaaflux",
+    "dataset_description": "Parameters include latent, sensible, and short- and longwave radiative heat fluxes across the air/ocean interface [EXFhl, EXFhs, EXFlwdn, EXFlwnet, EXFswdn, EXFswnet, EXFqnet] and air/sea-ice interface [SIatmQnt, SIaaflux]; and total net heat fluxes across the ocean surface [oceQnet, oceQsw, TFLUX].",
+    "filename" : "OCEAN_AND_ICE_SURFACE_HEAT_FLUX",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "atmosphere surface state",
+    "fields": "EXFatemp, EXFaqh, EXFpress, EXFewind, EXFnwind, EXFwspee",
+    "dataset_description": "Parameters include atmosphere temperature [EXFatemp], humidity [EXFaqh], pressure [EXFpress], meridional and zonal winds [EXFewind, EXFnwind], and total wind speed [EXFwspee].",
+    "filename" : "ATM_SURFACE_TEMP_HUM_WIND_PRES",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name" : "ocean mixed layer depth",
+    "fields" : "MXLDEPTH",
+    "filename" : "OCEAN_MIXED_LAYER_DEPTH",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name" : "ocean and sea-ice surface stress",
+    "fields" : "EXFtaue, EXFtaun, oceTAUE, oceTAUN",
+    "dataset_description": "Parameters include surface wind stress at the top of the ocean and sea-ice [EXFtaue, EXFtaun] and total ocean surface stress [oceTAUE, oceTAUN] in the zonal and meridional directions. Total ocean surface stress includes contributions from winds and sea-ice drag.",
+    "filename" : "OCEAN_AND_ICE_SURFACE_STRESS",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "sea-ice and snow concentration and thickness",
+    "fields":"SIarea, SIheff, SIhsnow, sIceLoad",
+    "dataset_description": "Parameters include sea-ice concentration [SIarea], grid-cell averaged sea-ice and snow thickness [SIheff, SIhsnow], and sea-ice pressure loading [sIceLoad].",
+    "filename" : "SEA_ICE_CONC_THICKNESS",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "sea-ice velocity",
+    "fields":"SIeice, SInice",
+    "dataset_description": "Parameters include sea-ice velocity in the zonal and meridional directions [SIuice, SIvice].",
+    "filename" : "SEA_ICE_VELOCITY",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name" : "ocean temperature and salinity",
+    "fields": "THETA, SALT",
+    "dataset_description": "Parameters include seawater potential temperature [THETA] and salinity [SALT].",
+    "filename" : "OCEAN_TEMPERATURE_SALINITY",
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "ocean density, stratification, and hydrostatic pressure",
+    "fields": "RHOAnoma, DRHODR, PHIHYD",
+    "dataset_description" : "Parameters include seawater density [RHOAnoma], vertical stratification [DRHODR], and hydrostatic pressure on the model's time-varying vertical coordinate [PHIHYD].",
+    "filename" : "OCEAN_DENS_STRAT_PRESS",
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "ocean velocity",
+    "fields": "EVEL, NVEL, WVELMASS",
+    "dataset_description" : "Parameters include ocean velocity in the zonal, meridional, and vertical directions [EVEL, NVEL, WVEL].",    
+    "variable_rename" : "WVELMASS:WVEL",
+    "filename" : "OCEAN_VELOCITY",
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "Gent-McWilliams ocean bolus velocity",
+    "fields": "EVELSTAR, NVELSTAR, WVELSTAR",
+    "dataset_description" : "Parameters include the Gent-McWilliams ocean bolus velocity in the zonal, meridional, and vertical directions [EVELSTAR, NVELSTAR, WVELSTAR].",
+    "filename" : "OCEAN_BOLUS_VELOCITY",
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "ocean three-dimensional parameterized mixing coefficients",
+    "fields": "DIFFKR, KAPGM, KAPREDI",
+    "dataset_description" : "Parameters include the time-invariant, three-dimensional coefficients for vertical diffusivity [DIFFKR], Gent-McWilliams cross-isopycnal diffusivity [KAPGM], and Redi along-isopycnal diffusivity [KAPREDI].",    
+    "filename" : "OCEAN_3D_MIXING_COEFFS",
+    "dimension" : "3D",
+    "frequency" : "TIME-INVARIANT"
+   }
+]

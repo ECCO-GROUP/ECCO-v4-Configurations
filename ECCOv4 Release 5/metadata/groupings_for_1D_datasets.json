@@ -1,0 +1,25 @@
+[
+   {
+     "name": "global mean atmospheric surface pressure over the ocean and sea-ice",
+     "fields": "Pa_global",
+     "product": "1D",
+     "dataset_description" : "Global mean atmospheric surface pressure over the ocean and sea-ice",
+     "filename" : "GLOBAL_MEAN_ATM_SURFACE_PRES",
+     "dimension" : "1D"
+   },
+   {
+     "name": "global mean sea level anomalies including barystatic and sterodynamic terms",
+     "fields": "global_mean_sea_level_anomaly, global_mean_barystatic_sea_level_anomaly, global_mean_sterodynamic_sea_level_anomaly",
+     "product": "1D",
+     "filename" : "GLOBAL_MEAN_SEA_LEVEL",
+     "dimension" : "1D"
+   },
+   {
+     "name": "core products of the IERS Special Bureau for the Oceans",
+     "fields": "xoamc, yoamc, zoamc, xoamp, yoamp, zoamp, xoamp_dsl, yoamp_dsl, zoamp_dsl, mass, xcom, ycom, zcom, sboarea, xoamc_si, yoamc_si, zoamc_si, mass_si, xoamp_fw, yoamp_fw, zoamp_fw, mass_fw, xcom_fw, ycom_fw, zcom_fw, mass_gc",
+     "comment" : "Dataset fields include core products of the IERS Special Bureau for the Oceans (https://euler.jpl.nasa.gov/sbo/sbo_home.html), including ocean angular momentum (OAM), center of mass (COM) and global ocean mass, calculated using the basic formulation of Gross et al. (2000). Further details on the available fields are provided in Quinn et al. (2019).",
+     "product": "1D",
+     "filename" : "SBO_CORE_PRODUCTS",
+     "dimension" : "1D"
+   }
+]

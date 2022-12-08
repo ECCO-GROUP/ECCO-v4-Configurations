@@ -1,0 +1,317 @@
+   [
+      {
+         "name": "global_mean_barystatic_sea_level_anomaly",
+         "long_name": "Global mean of barystatic sea level anomaly",
+         "units": "m",
+         "standard_name": "",
+         "comments_1": "Global mean barystatic sea level anomaly due to changes in total ocean mass.",
+         "comments_2": "Note: ECCO V4 uses a volume-conserving Boussinesq formulation of the MITgcm with a free-surface boundary condition with real freshwater flux forcing. Changes in ocean mass due to evaporation, precipitation, runoff, and sea-ice growth/melt are reflected in model sea level. However, as a consequence of the Boussinsq formulation, changes to seawater density due to net buoyancy fluxes (e.g., global mean surface heating/cooling) do not change model sea level anomaly (ETAN) via seawater expansion/contraction. Changes in global ocean density therefore induce a spurious change in model ocean bottom pressure (PHIBOT) via 'virtual mass fluxes'. The 'Greatbatch correction' is a time varying, globally-uniform correction to account for changes in global mean density in Boussinesq models. This correction is used to calculate dynamic sea surface height (SSH) and ocean bottom pressure (OBP). Importantly, there is no dynamical significance to the Greatbatch correction but it is required to account for steric changes in global sea level. See Greatbatch, 1994. J. of Geophys. Res. Oceans, doi.org/10.1029/94JC00847",
+         "GCMD_keywords" : "EARTH SCIENCE > OCEANS > SEA SURFACE TOPOGRAPHY > SEA SURFACE HEIGHT",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "global_mean_sea_level_anomaly",
+         "long_name": "Global mean of dynamic SSH",
+         "units": "m",
+         "standard_name": "",
+         "comments_1": "Global mean of dynamic sea level anomaly, equivalent to global mean sea level change.",
+         "comments_2": "Note: ECCO V4 uses a volume-conserving Boussinesq formulation of the MITgcm with a free-surface boundary condition with real freshwater flux forcing. Changes in ocean mass due to evaporation, precipitation, runoff, and sea-ice growth/melt are reflected in model sea level. However, as a consequence of the Boussinsq formulation, changes to seawater density due to net buoyancy fluxes (e.g., global mean surface heating/cooling) do not change model sea level anomaly (ETAN) via seawater expansion/contraction. Changes in global ocean density therefore induce a spurious change in model ocean bottom pressure (PHIBOT) via 'virtual mass fluxes'. The 'Greatbatch correction' is a time varying, globally-uniform correction to account for changes in global mean density in Boussinesq models. This correction is used to calculate dynamic sea surface height (SSH) and ocean bottom pressure (OBP). Importantly, there is no dynamical significance to the Greatbatch correction but it is required to account for steric changes in global sea level. See Greatbatch, 1994. J. of Geophys. Res. Oceans, doi.org/10.1029/94JC00847",
+         "GCMD_keywords" : "EARTH SCIENCE > OCEANS > SEA SURFACE TOPOGRAPHY > SEA SURFACE HEIGHT",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "global_mean_sterodynamic_sea_level_anomaly",
+         "long_name": "Global mean of sterodynamic sea level anomaly",
+         "units": "m",
+         "standard_name": "",
+         "comments_1": "Steric sea level anomaly associated with seawater expansion/contraction due to density changes.",
+         "comments_2": "Note: ECCO V4 uses a volume-conserving Boussinesq formulation of the MITgcm with a free-surface boundary condition with real freshwater flux forcing. Changes in ocean mass due to evaporation, precipitation, runoff, and sea-ice growth/melt are reflected in model sea level. However, as a consequence of the Boussinsq formulation, changes to seawater density due to net buoyancy fluxes (e.g., global mean surface heating/cooling) do not change model sea level anomaly (ETAN) via seawater expansion/contraction. Changes in global ocean density therefore induce a spurious change in model ocean bottom pressure (PHIBOT) via 'virtual mass fluxes'. The 'Greatbatch correction' is a time varying, globally-uniform correction to account for changes in global mean density in Boussinesq models. This correction is used to calculate dynamic sea surface height (SSH) and ocean bottom pressure (OBP). Importantly, there is no dynamical significance to the Greatbatch correction but it is required to account for steric changes in global sea level. See Greatbatch, 1994. J. of Geophys. Res. Oceans, doi.org/10.1029/94JC00847",
+         "GCMD_keywords" : "EARTH SCIENCE > OCEANS > SEA SURFACE TOPOGRAPHY > SEA SURFACE HEIGHT",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "sterGloH",
+         "long_name": "Greatbatch correction to model sea level anomaly (ETAN)",
+         "units": "m",
+         "standard_name": "",
+         "comments_1": "Correction to model sea level anomaly (ETAN) to account for changes in global mean density.",
+         "comments_2": "Note: ECCO V4 uses a volume-conserving Boussinesq formulation of the MITgcm with a free-surface boundary condition with real freshwater flux forcing. Changes in ocean mass due to evaporation, precipitation, runoff, and sea-ice growth/melt are reflected in model sea level. However, as a consequence of the Boussinsq formulation, changes to seawater density due to net buoyancy fluxes (e.g., global mean surface heating/cooling) do not change model sea level anomaly (ETAN) via seawater expansion/contraction. Changes in global ocean density therefore induce a spurious change in model ocean bottom pressure (PHIBOT) via 'virtual mass fluxes'. The 'Greatbatch correction' is a time varying, globally-uniform correction to account for changes in global mean density in Boussinesq models. This correction is used to calculate dynamic sea surface height (SSH) and ocean bottom pressure (OBP). Importantly, there is no dynamical significance to the Greatbatch correction but it is required to account for steric changes in global sea level. See Greatbatch, 1994. J. of Geophys. Res. Oceans, doi.org/10.1029/94JC00847",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "Pa_global",
+         "long_name": "Global mean atmospheric surface pressure over the ocean and sea-ice",
+         "units": "N m-2",
+         "standard_name": "air_pressure_at_sea_level",
+         "GCMD_keywords" : "EARTH SCIENCE > ATMOSPHERE > ATMOSPHERIC PRESSURE > SEA LEVEL PRESSURE, EARTH SCIENCE > ATMOSPHERE > ATMOSPHERIC PRESSURE > SURFACE PRESSURE",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "xoamc",
+         "long_name": "x-component of oceanic angular momentum due to currents",
+         "units": "kg m2 s-1",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "yoamc",
+         "long_name": "y-component of oceanic angular momentum due to currents",
+         "units": "kg m2 s-1",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "zoamc",
+         "long_name": "z-component of oceanic angular momentum due to currents",
+         "units": "kg m2 s-1",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "xoamp",
+         "long_name": "x-component of oceanic angular momentum due to pressure",
+         "units": "kg m2 s-1",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "yoamp",
+         "long_name": "y-component of oceanic angular momentum due to pressure",
+         "units": "kg m2 s-1",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "zoamp",
+         "long_name": "z-component of oceanic angular momentum due to pressure",
+         "units": "kg m2 s-1",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "mass",
+         "long_name": "ocean mass",
+         "units": "kg",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "xcom",
+         "long_name": "x-component of center-of-mass of ocean",
+         "units": "m",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "ycom",
+         "long_name": "y-component of center-of-mass of ocean",
+         "units": "m",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "zcom",
+         "long_name": "z-component of center-of-mass of ocean",
+         "units": "m",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "sboarea",
+         "long_name": "surface area of oceans",
+         "units": "m2",
+         "GCMD_keywords" : "",
+         "comments_1": "Note: ocean surface area is constant but provided as time series for convenience",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "xoamc_si",
+         "long_name": "x-component of oceanic angular momentum due to sea-ice motion",
+         "units": "kg m2 s-1",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "yoamc_si",
+         "long_name": "y-component of oceanic angular momentum due to sea-ice motion",
+         "units": "kg m2 s-1",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "zoamc_si",
+         "long_name": "z-component of oceanic angular momentum due to sea-ice motion",
+         "units": "kg m2 s-1",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "mass_si",
+         "long_name": "sea-ice mass",
+         "units": "kg",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "xoamp_fw",
+         "long_name": "x-component of oceanic angular momentum due to freshwater flux",
+         "units": "kg m2 s-1",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "yoamp_fw",
+         "long_name": "y-component of oceanic angular momentum due to freshwater flux",
+         "units": "kg m2 s-1",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "zoamp_fw",
+         "long_name": "z-component of oceanic angular momentum due to freshwater flux",
+         "units": "kg m2 s-1",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "mass_fw",
+         "long_name": "mass due to freshwater flux",
+         "units": "kg",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "xcom_fw",
+         "long_name": "x-component of center-of-mass of freshwater flux",
+         "units": "m",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "ycom_fw",
+         "long_name": "y-component of center-of-mass of freshwater flux",
+         "units": "m",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "zcom_fw",
+         "long_name": "z-component of center-of-mass of freshater flux",
+         "units": "m",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "mass_gc",
+         "long_name": "mass due to the Greatbatch correction",
+         "units": "kg",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "xoamp_dsl",
+         "long_name": "x-component of oceanic angular momentum due to pressure based on dynamic (IB-corrected) sea level",
+         "units": "kg m2 s-1",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "yoamp_dsl",
+         "long_name": "y-component of oceanic angular momentum due to pressure based on dynamic (IB-corrected) sea level",
+         "units": "kg m2 s-1",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      },
+      {
+         "name": "zoamp_dsl",
+         "long_name": "z-component of oceanic angular momentum due to pressure based on dynamic (IB-corrected) sea level",
+         "units": "kg m2 s-1",
+         "GCMD_keywords" : "",
+         "comments_1": "",
+         "comments_2": "",
+         "grid_dimension":"1D",
+         "coverage_content_type": "modelResult"
+      }
+
+]
