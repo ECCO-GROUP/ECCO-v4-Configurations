@@ -99,7 +99,6 @@
     "name": "Gent-McWilliams ocean bolus velocity",
     "fields": "UVELSTAR, VVELSTAR, WVELSTAR",
     "dataset_description" : "Parameters include the Gent-McWilliams ocean bolus velocity in the model x, y, and z-directions [UVELSTAR, VVELSTAR, WVELSTAR].",
-    "product": "native",
     "filename" : "OCEAN_BOLUS_VELOCITY",
     "dimension" : "3D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -117,7 +116,6 @@
     "name": "sea-ice and snow horizontal volume fluxes",
     "fields":"ADVxHEFF, ADVyHEFF, ADVxSNOW , ADVySNOW",
     "dataset_description" : "Parameters include the horizontal volume fluxes of sea-ice and snow in the model x- and y-directions.",
-    "product": "native",
     "filename" : "SEA_ICE_HORIZ_VOLUME_FLUX",
     "dimension" : "2D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -126,7 +124,6 @@
     "name": "Gent-McWilliams ocean bolus transport streamfunction",
     "fields": "GM_PsiX, GM_PsiY",
     "dataset_description" : "Parameters include the ocean bolus transport streamfunction in the model x- and y-directions.",
-    "product": "native",
     "filename" : "OCEAN_BOLUS_STREAMFUNCTION",
     "dimension" : "3D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -135,7 +132,6 @@
     "name": "ocean three-dimensional volume fluxes",
     "fields": "UVELMASS, VVELMASS, WVELMASS",
     "dataset_description" : "Parameters include the three dimensional ocean volume fluxes in the model x, y, and z-directions. Volume fluxes are calculated by multiplying ocean velocities with wet grid cell areas (i.e., horizontal fluxes account for partial cells and the time-varying vertical coordinate).",
-    "product": "native",
     "filename" : "OCEAN_VOLUME_FLUX",
     "dimension" : "3D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -144,7 +140,6 @@
     "name": "ocean three-dimensional potential temperature fluxes",
     "fields":"ADVx_TH, DFxE_TH, ADVy_TH, DFyE_TH, ADVr_TH, DFrE_TH, DFrI_TH",
     "dataset_description" : "Parameters include the three dimensional advective and diffusive ocean potential temperature fluxes in the model x, y, and z-directions. Horizontal fluxes account for partial cells and the time-varying vertical coordinate.",
-    "product": "native",
     "filename" : "OCEAN_TEMPERATURE_FLUX",
     "dimension" : "3D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -153,7 +148,6 @@
     "name": "ocean three-dimensional salinity fluxes",
     "fields":"ADVx_SLT, DFxE_SLT, ADVy_SLT, DFyE_SLT, ADVr_SLT, DFrE_SLT, DFrI_SLT, oceSPtnd",
     "dataset_description" : "Parameters include the three dimensional advective and diffusive ocean salinity fluxes in the model x, y, and z-directions. Horizontal fluxes account for partial cells and the time-varying vertical coordinate.",
-    "product": "native",
     "filename" : "OCEAN_SALINITY_FLUX",
     "dimension" : "3D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -163,7 +157,6 @@
     "fields":"oceSPflx, oceSPDep",
     "dataset_description" : "Parameters include the salt mass flux from sea-ice salt plumes per unit area (g m-2 s-1) and the depth of the salt plumes.",    
     "comment": "oceSPflx is salt mass flux per unit area (g m-2 s-1), not salinity flux.",
-    "product": "native",
     "filename" : "SEA_ICE_SALT_PLUME_FLUX",
     "dimension" : "2D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -172,7 +165,6 @@
     "name": "ocean three-dimensional momentum tendency terms in the model x-direction",
     "fields": "TOTUTEND, Um_Cori, Um_Advec, Um_Diss, Um_Ext, Um_dPhiX, AB_gU, Um_ImplD",
     "dataset_description" : "Parameters include XYZ.",
-    "product": "native",
     "filename" : "OCEAN_3D_MOMENTUM_TEND_X",
     "dimension" : "3D"
    },
@@ -180,7 +172,6 @@
     "name": "ocean three-dimensional advective momentum tendency terms in the model x-direction",
     "fields": "Um_AdvZ3, Um_AdvRe, Um_dKEdx",
     "dataset_description" : "Parameters include XYZ.",
-    "product": "native",
     "filename" : "OCEAN_3D_MOMENTUM_ADV_TEND_X",
     "dimension" : "3D"
    },
@@ -188,7 +179,6 @@
     "name": "ocean three-dimensional dissipative momentum tendency terms in the model x-direction",
     "fields": "Um_Diss2, Um_Diss4, UBotDrag, USidDrag, UShIDrag",
     "dataset_description" : "Parameters include XYZ.",
-    "product": "native",
     "filename" : "OCEAN_3D_MOMENTUM_DISS_TEND_X",
     "dimension" : "3D"
    },
@@ -196,7 +186,6 @@
     "name": "ocean three-dimensional momentum tendencies in the model y-direction",
     "fields": "TOTVTEND, Vm_Cori, Vm_Advec, Vm_Diss, Vm_Ext, Vm_dPhiY, AB_gV, Vm_ImplD",
     "dataset_description" : "Parameters include XYZ.",
-    "product": "native",
     "filename" : "OCEAN_3D_MOMENTUM_TEND_Y",
     "dimension" : "3D"
    },
@@ -204,7 +193,6 @@
     "name": "ocean three-dimensional advective momentum tendency terms in the model y-direction",
     "fields": "Vm_AdvZ3, Vm_AdvRe, Vm_dKEdy",
     "dataset_description" : "Parameters include XYZ.",
-    "product": "native",
     "filename" : "OCEAN_3D_MOMENTUM_ADV_TEND_Y",
     "dimension" : "3D"
    },
@@ -212,7 +200,6 @@
     "name": "ocean three-dimensional dissipative momentum tendency terms in the model y-direction",
     "fields": "Vm_Diss2, Vm_Diss4, VBotDrag, VSidDrag, VShIDrag",
     "dataset_description" : "Parameters include XYZ.",
-    "product": "native",
     "filename" : "OCEAN_3D_MOMENTUM_DISS_TEND_Y",
     "dimension" : "3D"
    },
@@ -220,7 +207,6 @@
     "name": "ice-shelf freshwater and heat fluxes",
     "fields": "SHIfwFlx, SHIhtFlx",
     "dataset_description" : "Parameters include XYZ.",
-    "product": "native",
     "filename" : "ICE_SHELF_FLUX",
     "dimension" : "2D"
    },
@@ -228,14 +214,12 @@
     "name": "ice-front freshwater and heat fluxes",
     "fields": "ICFfwFlx, ICFhtFlx",
     "dataset_description" : "Parameters include XYZ.",
-    "product": "native",
     "filename" : "ICE_FRONT_FLUX",
     "dimension" : "3D"
    },
    {
     "name": "sea-ice thermodynamic budget",
     "fields": "SIFao, SIFionet, SIFianet, SIFmi, SIFFlood, SIsnAccR, SIsnmltS, SIgamma",
-    "product": "native",
     "filename" : "SEA_ICE_THERMO_BUDG",
     "dimension" : "2D"
    }
