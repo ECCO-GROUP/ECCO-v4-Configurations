@@ -8,12 +8,12 @@ Offline passive tracer in this repository is implemented as part of the flux-for
 
 The prescribed model circulation and mixing parameters are 7-day means from ECCO V4r4. The fields includes velocity, convection, GM mixing tensor, GM bolus velocity stream function, and GGL90 vertical diffusivity. 
 
-Compiling and running offline passive tracer is similar to that for the flux-forced version of V4r4 (Wang et al., 2021). A few changes from those for the flux-forced V4r4 are listed below. 
+Compiling and running offline passive tracer is similar to that for the flux-forced version of V4r4 (Wang et al., 2021). A few changes from that for the flux-forced V4r4 are listed below. 
 
 ### Forward passive tracer 
 
 - Compile 
-  - Use files in ``code_offline_ptracer`` for patch code instead of ``code`` for custom code
+  - Use files in ``code_offline_ptracer`` for patch code instead of ``code`` for custom code. 
 - Run
   - Use ``namelist_offline_ptracer`` instead of ``namelist`` for input name list files
   - ECCO V4r4's 7-day mean circulation and mixing parameters are available at https://ecco.jpl.nasa.gov/drive/files/Version4/Release4/other/flux-forced/state_weekly. The fields are organized by variable (subdirectory). Download all variables (and keep the directory structure) to your local machine. When running the model, make them accessible to a run by linking all variables into your run directory.  
@@ -22,7 +22,13 @@ Compiling and running offline passive tracer is similar to that for the flux-for
   - Because there is no time stepping for model state, forcing files for the flux-forced V4r4 are *not* needed for running offline passive tracer.
        
 ### Adjoint passive tracer 
-  (to be added)
+Compiling and running offline adjoint passive tracer is very similar to that for offline forward passive tracer described above. The changes are as follows.
+- Compile 
+  - Same as that for forward passive tracer, but need to use a different version of the header file OFFLINE_OPTIONS.h. There are two extra header files for OFFLINE_OPTIONS.h: OFFLINE_OPTIONS.h.fwd is the same as the default OFFLINE_OPTIONS.h, while OFFLINE_OPTIONS.h.adj is used for adjoint passive tracer run. Copy OFFLINE_OPTIONS.h.adj to OFFLINE_OPTIONS.h and then compile the code the same way as foward passive tracer.
+- Run
+  - The backward-in-time integration for offline adjoint passive tracer is implemented by creating a new set of 7-day mean files of model circulation and mixing parameters that are symbolic links to the original 7-day mean files from V4r4. For instance, the new ``uVeltave.0000227808.data`` would be a symbolic link to the original ``uVeltave.0000000000.data``. Two bash scripts (``reverseintime.sh`` and ``reverseintime_all.sh``; the latter will call the former) are provided in ``flux-forced/scripts`` for this purpose. Copy the two scripts to the parent directory of ``state_weekly`` that has the 7-day mean V4r4 files, and use ``sh -xv reverseintime_all.sh`` to create the new set of files (which are just symbolic links) in ``state_weekly_rev_time_227808``. The scripts are also capable of creating symbolic links for shorter runs by using ``sh -xv reverseintime_all.sh XYZ``, where ``XYZ`` is the largest time step of 7-day mean files over the shorter run. For example, ``sh -xv reverseintime_all.sh 8904`` would create a new set of files in ``state_weekly_rev_time_8904`` to force an offline adjoint passive integration backward in time over year 1992. See more descriptions in ``reverseintime_all.sh``. 
+  - Once the new set of files are created, make all of the subdirectories under ``state_weekly_rev_time_227808`` (or something similar like ``state_weekly_rev_time_8904`` for the example short run) accessible to the run. 
+  - The rest is the same as what is been described above for running forward passive tracer.
 
 ### References:
 
