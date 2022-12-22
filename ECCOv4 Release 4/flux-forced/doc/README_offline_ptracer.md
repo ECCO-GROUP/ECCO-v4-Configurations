@@ -1,10 +1,10 @@
 # Offline passive tracer
-This README file describes offline passive tracer configurations, for both forward and adjoint, that are based on ECCO Version 4 Release 4 (V4r4). An overview of the tracer configuration is provided, followed by instructions on how to compile and run offline passive tracer. 
+This README file describes offline passive tracer configurations, for both forward and adjoint, that are based on ECCO Version 4 Release 4 (V4r4). An overview of the tracer configurations is provided, followed by instructions on how to compile and run offline passive tracer. 
 
 ## Overview
 Offline passive tracer uses prescribed (thus "offline") model circulation and mixing parameters to integrate passive tracer in time. Because there is no time stepping for model state, running offline passive tracer can be much faster than running "online" passive tracer where the model state is computed on the fly. 
   
-Offline passive tracer in this repository is implemented as part of the flux-forced version of ECCO Version 4 Release 4 (V4r4) for both forward and adjoint passive tracer. Adjoint passive tracer is approximated following Fukumori et al. (2004).
+Offline passive tracer in this repository is implemented as part of the flux-forced version of ECCO V4r4 for both forward and adjoint passive tracer. Adjoint passive tracer is approximated following Fukumori et al. (2004).
 
 The prescribed model circulation and mixing parameters are 7-day means from ECCO V4r4. The fields includes velocity, convection, GM mixing tensor, GM bolus velocity stream function, and GGL90 vertical diffusivity. 
 
