@@ -1,0 +1,83 @@
+# Diagnostic Package Choices
+#-----------------
+# for each output-stream:
+#  filename(n) : prefix of the output file name (only 8.c long) for outp.stream n
+#  frequency(n):< 0 : write snap-shot output every multiple of |frequency| (iter)
+#               > 0 : write time-average output every multiple of frequency (iter)
+#  levels(:,n) : list of levels to write to file (Notes: declared as REAL)
+#                 when this entry is missing, select all common levels of this list
+#  fields(:,n) : list of diagnostics fields (8.c) (see "available_diagnostics" file 
+#                 for the list of all available diag. in this particular config)
+#--------------------------------------------------------------------
+#
+ &diagnostics_list
+#
+   dumpatlast = .TRUE.,
+#---
+  frequency(27) = 2635200.0,
+   fields(1,27) = 'TRAC01', 
+   filename(27) = 'diags/ptracer_mon_mean',
+#---
+  frequency(28) = -2635200.0,
+   fields(1,28) = 'TRAC01', 
+   timePhase(28) = 0.0, 
+   filename(28) = 'diags/ptracer_mon_snap',
+#---
+# frequency(28) = 2635200.0,
+#  fields(1,28) = 'ForcTr01', 
+#  filename(28) = 'diags/ForcTr_mon_mean',
+#---
+# frequency(1) = 2635200.0,
+#  fields(1:7,1) = 'SIpress',
+#  filename(1) = 'diags/SIpress',
+#---
+#  frequency(18) = 2635200.0,
+#   fields(1:1,18) = 'PHIHYDcR'
+#   filename(18) = 'diags/state_3d_set3',
+#---
+#  frequency(19) = -2635200.0,
+#   fields(1:4,19) = 'THETA   ','SALT    ',
+#                 'PHIHYDcR  ', 'RHOAnoma',
+#   timePhase(19)= 0.,
+#   filename(19) = 'diags/state_3d_snap_set1',
+
+
+#---
+ /
+#
+#
+# Parameter for Diagnostics of per level statistics:
+#-----------------
+# for each output-stream:
+#  stat_fname(n) : prefix of the output file name (only 8.c long) for outp.stream n
+#  stat_freq(n):< 0 : write snap-shot output every |stat_freq| seconds
+#               > 0 : write time-average output every stat_freq seconds
+#  stat_phase(n)    : write at time = stat_phase + multiple of |stat_freq|
+#  stat_region(:,n) : list of "regions" (default: 1 region only=global)
+#  stat_fields(:,n) : list of diagnostics fields (8.c) (see "available_diagnostics.log"
+#                 file for the list of all available diag. in this particular config)
+#-----------------
+ &DIAG_STATIS_PARMS
+# diagSt_regMaskFile='basin_masks_eccollc_90x50.bin',
+# nSetRegMskFile=1,
+# set_regMask(1)= 1,  1,  1,  1,  1,  1,  1,  1,  1,
+#                 1,  1,  1,  1,  1,  1,  1,  1
+# val_regMask(1)= 1., 2., 3., 4., 5., 6., 7., 8., 9.,
+#                10.,11.,12.,13.,14.,15.,16.,17.
+##---
+# stat_fields(1,1)= 'ETAN    ','ETANSQ  ','DETADT2 ',
+#                   'UVEL    ','VVEL    ','WVEL    ',
+#                   'THETA   ','SALT    ',
+#    stat_fname(1)= 'dynStDiag',
+#     stat_freq(1)= 3153600.,
+# stat_region(1,1)=  1, 2, 3, 4, 5, 6, 7, 8, 9,
+#                   10,11,12,13,14,15,16,17
+##---
+# stat_fields(1,2)= 'oceTAUX ','oceTAUY ',
+#                   'surForcT','surForcS','TFLUX   ','SFLUX   ',
+#                   'oceQnet ','oceSflux','oceFWflx',
+#    stat_fname(2)= 'surfStDiag',
+#     stat_freq(2)= 3153600.,
+# stat_region(1,2)=  1, 2, 3, 4, 5, 6, 7, 8, 9,
+#                   10,11,12,13,14,15,16,17
+ /
