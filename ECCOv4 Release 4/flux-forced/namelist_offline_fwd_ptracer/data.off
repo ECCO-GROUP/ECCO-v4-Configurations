@@ -1,0 +1,28 @@
+ &OFFLINE_PARM01
+  UvelFile= 'uVeltave/uVeltave',
+  VvelFile= 'vVeltave/vVeltave',
+  WvelFile= 'wVeltave/wVeltave',
+  GMwxFile= 'GM_Kwx-T/GM_Kwx-T',
+  GMwyFile= 'GM_Kwy-T/GM_Kwy-T',
+  GMwzFile= 'GM_Kwz-T/GM_Kwz-T',
+  GM_PsiXFile= 'GM_PsiXtave/GM_PsiXtave',
+  GM_PsiYFile= 'GM_PsiYtave/GM_PsiYtave',
+  GMuxFile= 'GM_Kux_week_mean/GM_Kux_week_mean',
+  GMvyFile= 'GM_Kvy_week_mean/GM_Kvy_week_mean',
+  GMuzFile= 'GM_Kuz_week_mean/GM_Kuz_week_mean',
+  GMvzFile= 'GM_Kvz_week_mean/GM_Kvz_week_mean',
+  ConvFile= 'Convtave/Convtave',
+# SaltFile= 'Stave/Stave',
+# ThetFile= 'Ttave/Ttave',
+  GGL90diffKrFile= 'GGL90diffKr-T/GGL90diffKr-T',
+# SFluxFile='sFluxtave',
+# HFluxFile=' ',
+ &
+
+ &OFFLINE_PARM02
+  offlineIter0=0,
+  deltaToffline=3600.,
+  offlineForcingPeriod=604800.,
+  offlineForcingCycle=0.,
+ &
+
