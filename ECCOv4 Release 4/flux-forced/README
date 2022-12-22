@@ -6,10 +6,10 @@ ECCO Version 4: Fourth Release       [ECCO v4-r4] [https://ecco.jpl.nasa.gov/dri
 - This directory contains the configuration of the flux-forced version of 'ECCO version 4, release 4':
   README                              This file
   code                                updated and/or new fortran codes and header files that are required to compile the MITgcm in the ECCOv4 configuration
-  code_offline_fwd_ptracer            custom code for offline forward passive tracer 
+  code_offline_ptracer                custom code for offline passive tracer 
   doc                                 documents about the flux-forced configuration and offline passive tracer
   namelist                            namelist files (run-time parameters) needed to re-run the state estimate
-  namelist_offline_fwd_ptracer        namelist files (run-time parameters) needed for offline forward passive tracer
+  namelist_offline_ptracer            namelist files (run-time parameters) needed for offline passive tracer
 
 - References:
   Fukumori, I., O. Wang, I. Fenty, G. Forget, P. Heimbach, and R. M. Ponte, 2017: 
@@ -34,6 +34,6 @@ ECCO Version 4: Fourth Release       [ECCO v4-r4] [https://ecco.jpl.nasa.gov/dri
 README file revision history:
 -----------------------------
 
-- Offline forward passive tracer                   [Ou Wang] [2022/12/22]
+- Offline (forward) passive tracer                 [Ou Wang] [2022/12/22]
 - Add doc                                          [Ou Wang] [2020/05/25]
 - README file creation                             [Ou Wang] [2020/04/07]
