@@ -1,20 +1,147 @@
-# Configuration for flux-forced version of ECCO V4r4
+# Configuration for flux-forced version of ECCO Version 4 Release 4
+
 Ou Wang, Ichiro Fukumori, and Ian Fenty
 
 ## Introduction
-This configuration is for a flux-forced version of ECCO Version 4 Release 4 (v4r4) that would
-produce results of a forward simulation run equivalent to v4r4.
-ECCO v4r4 uses the bulk-formula to compute the air-sea fluxes as well as the ice-ocean and iceatmosphere
+This configuration is for a flux-forced version of ECCO Version 4 Release 4 (V4r4) that would
+produce results of a forward simulation run same as V4r4.
+
+ECCO V4r4 uses the bulk-formula to compute the air-sea fluxes as well as the ice-ocean and iceatmosphere
 fluxes. The fluxes would change along with underling ocean and/ice states. In
 contrast, a flux-forced configuration reads in pre-computed fluxes from files and therefore the
 fluxes are independent upon the underlining ocean/sea-ice states. This character of the fluxforced
 configuration is useful when one wants to separate contributions of various fluxes to a
 particular ocean quantity. Potential usage includes forward sensitivity experiments, adjoint
 reconstruction, and others.
-It is assumed that a user has been successfully reproduced ECCO v4r4 as described in
-https://ecco.jpl.nasa.gov/drive/files/Version4/Release4/doc/v4r4_reproduction_howto.pdf. The
+
+It is assumed that a user has been successfully reproduced ECCO v4r4 as described in https://ecco-group.org/docs/v4r4_reproduction_howto.pdf. The
 steps to conduct a flux-forced run is similar to those for v4r4, with some significant changes as
 described below.
-Introdcution
-This README file describes offline passive tracer configurations, for both forward and adjoint, that are based on ECCO Version 4 Release 4 (V4r4). An overview of the tracer configurations is provided, followed by instructions on how to compile and run offline passive tracer. 
 
+The configuration is mainly hosted on github:
+https://github.com/ECCO-GROUP/ECCO-v4-Configurations/tree/master/ECCOv4%20Release%204/flux-forced. The repository has two
+directories called code and namelist. Code contains the patchy code and the namelist directory
+has the complete namelists for the flux-forced configuration. These two directories, instead of
+v4r4's, need to be used to compile and run the flux-forced version of v4r4, following the same
+steps as described in the v4r4 reproduction document at
+https://ecco.jpl.nasa.gov/drive/files/Version4/Release4/doc/v4r4_reproduction_howto.pdf. See
+below for more details about code and namelists.
+
+The forcing files and some of the input files are hosted on the ECCO data server at
+https://ecco.jpl.nasa.gov/drive/files/Version4/Release4/other/flux-forced. These forcing files
+and the other input files should be downloaded to one's local disk and copy them (or make
+symbolic links) to a run directory when one runs the model.
+
+## Code
+Similar to V4r4's, the patch code specific to the flux-forced configuration of v4 is in ./code/. This
+patch code directory should be used along with MITgcm when one compiles the model.
+
+While V4r4 has both ocean-air bulk formula and sea-ice package turned on, the flux-forced
+configuration has both turned off to make fluxes independent upon ocean states. The air-sea bulk
+formula is turned off by undefining the CPP option ALLOW_ATEMP EXF_OPTIONS.h. This
+allows the model reads in fluxes, not atmospheric states like air temperature to use the bulk
+formula to compute fluxes on-the-fly. The air-ice and ice-ocean fluxes in v4r4 were also
+calculated by the bulk formula in the sea-ice package and therefore are dependent on the sea-ice
+and also ocean/atmosphere states. To eliminate the sea-ice bulk formula in the flux-forced
+configuration, the sea-ice package is turned off by setting the run-time parameter useSeaice to
+.FALSE. in data.pkg.
+
+## Updated namelists
+Most of the namelist files are the same as v4r4's. However, there are a couple of updated name
+lists in namelist/ need be used to conduct the flux-forced runs:
+- data.pkg: Turn off the sea-ice, profile packages.
+- data.exf: Use the pre-generated fluxes to force the model. Note that the pre-generated
+sfluxfile is assumed to have contained runoff and therefore runoff forcing is turned off
+here. Use data.exf_sflux_excl_runoff if sfluxfile does NOT contain runoff.
+- data.ecco: Specify the objective function or cost functions. Provided is an example with
+the objective function being the area-sum of Beaufort Sea sea level in December 2015.
+See more details below.
+- data.exf_sflux_excl_runoff: If the pre-generated sfluxfile contains NO runoff, then runoff
+forcing needs to be included here. Need to rename this file (data.exf_sflux_excl_runoff)
+to data.exf when run the model.
+
+## Forcing
+The 6-hourly mean forcing fields are available at
+https://ecco.jpl.nasa.gov/drive/files/Version4/Release4/other/flux-forced/forcing/. The
+forcing is the same forcing used in v4r4 and was generated by outputting 6-hourly mean
+diagnostic outputs from v4r4. These 6-hourly files are then aggregated to yearly files as required
+by MITgcm. The forcing fields are listed below. The name in parentheses is the actual variable
+name in the model.
+- heat flux (hflux): net downward heat flux including shortwave flux (W m-2). The model
+calculates the heat flux excluding shortwave flux (hflux-swflux) and applies (hfluxswflux)
+and swflux separately. The part hflux-swflux has no vertical penetrating part,
+while the latter does. See below about shortwave (swflux).
+- shortwave (swflux): net downward freshwater flux (kg m-2s-1). Swflux is the total
+(vertically sum) shortwave to the ocean. The model computes the penetrating part onthe-
+fly.
+- wind stress along x-direction (ustress): eastward wind stress (N m-2)
+- wind stress along y-direction (vstress) : northward wind stress (N m-2)
+- freshwater flux (sflux): net downward freshwater flux (kg m-2 s-1)
+- salt flux (saltflx): downward salt flux into the ocean (g/m2/s). Salt flux between ocean
+and sea-ice when sea-ice forms and freezes. The total salt in the ocean changes with
+oceSflux. In contrast to the relationship between oceQnet and oceQsw, oceSflux does
+not contain the salt plum flux (oceSPflx).
+- salt plume flux (spflx): downward salt flux (g m-2 s-1) due to salt rejected when sea-ice
+forms. This is the so-called salt plume flux -- Salt is removed from the first level of the
+ocean and vertically redistributed to deep layers. The total salt in the ocean does not
+change.
+- pressure load (apressure): pressure load due to atmosphere, sea-ice and snow pressure
+(kg/m2)
+
+The corresponding namelist entries in data.exf in the same order are
+- hfluxfile = 'TFLUX_6hourlyavg'
+- swfluxfile = 'oceQsw_6hourlyavg',
+- ustressfile = 'oceTAUX_6hourlyavg',
+- vstressfile = 'oceTAUY_6hourlyavg',
+- sfluxfile = 'oceFWflx_6hourlyavg',
+- saltflxfile = 'oceSflux_6hourlyavg',
+- spflxfile = 'oceSPflx_6hourlyavg',
+- apressurefile = 'sIceLoadPatmPload_nopabar_6hourlyavg',
+
+## Control variables
+The controls variables include the forcing controls, the controls to the mixing coefficients, and
+those to the initial conditions. The controls related to the forcing are:
+- xx_qnet: net upward surface heat flux including shortwave (in W m-2).
+- xx_qsw: net upward shortwave radiation (W m-2). The model computes the penetrating shortwave profile on the fly. The model computes the penetrating
+profile on the fly. 
+-	xx_empmr: net upward freshwater flux (kg m-2 s-1)
+-	xx_tauu: westward wind stress (N m-2)
+-	xx_tauv: southward wind stress (N m-2)
+-	xx_saltflux: net upward salt flux (g m-2 s-1)
+-	xx_pload: pressure applied on the ocean (N m-2)
+-	xx_spflx: net downward salt flux (g m-2 s-1)
+
+The weekly control adjustments and the corresponding weights for the control variables specified above are in https://ecco.jpl.nasa.gov/drive/files/Version4/Release4/other/flux-forced/xx/. The values in xx*.data there are all zeros, since the actual control adjustments for the forcing have been folded to the forcing files specified in data.exf. The reason to provide these xx files with all zeros are that the adjoint model needs to explicitly have these files to calculate the corresponding adjoint gradients (adxx files). After an adjoint run, the adjoint gradients will be in the corresponding files adxx* file. For instance, the adjoint gradient for xx_qnet would be in adxx_qnet.*.data.
+
+Also, if one only wants to conduct a forward run that would produce the same results as V4r4, these xx files specified above can be omitted to save some disk space. To do that, one needs to remove the entries in data.ctrl that correspond to the control variables above. However, the control adjustments for the initial conditions and the mixing parameters (see below) are still needed and those corresponding entries in data.ctrl should be kept.
+
+The controls of the mixing coefficients and of the initial conditions are the same as V4r4's:
+-	xx_diffkr: vertical diffusion coefficients (m2s-1)
+-	xx_kapgm: Kappa for Gent-McWilliams scheme  (m2s-1)
+-	xx_kapredi: Kappa for Redi scheme (m2s-1)
+
+The controls for the initial conditions are also the same as V4r4's:
+-	xx_etan: initial sea surface height (m)
+-	xx_theta: initial potential temperature (degC) 
+-	xx_salt: initial salinity (psu)
+-	xx_uvel: initial ocean velocity component along the model x-direction (ms-1)
+-	xx_vvel: initial ocean velocity component along the model y-direction (ms-1)
+
+## Sample namelist to define a cost function
+
+Here is a sample namelist to define the objective function as the mean sea surface height of December 2017 over Beaufort Sea.
+
+| Entry in data.ecco      | Comment |
+| ----------- | ----------- |
+| &ECCO_GENCOST_NML      | namelist name       |
+| gencost_avgperiod(1)  = 'month',   | averaging period is monthly.       |
+| gencost_barfile(1) = 'm_boxmean_eta_dyn',      | monthly average filename (sea surface height)      |
+| gencost_errfile(1) = 'mask_BeaufortSea.bin'  | mask for the objective function      |
+| gencost_mask(1) = 'v4r3_maskCtrl' | maskCtrl files for llc90 grid. Rename them to 'v4r3_maskCtrlC', 'v4r3_maskCtrlW.data', and 'v4r3_maskCtrlS.data'.|
+| gencost_name(1) = 'boxmean', | define the cost is a "boxmean" type cost |
+| gencost_timevaryweight(1)=.FALSE. | do not use time-varying weight |
+| gencost_preproc(1,1)='skip', | skip some of time records in gencost_barfile when calculating the objective function. |
+| gencost_preproc_i(1,1)=311, | skill the first 311 monthly records so the objective function is based on the model state of December 2017 (the model integration period is from January 1992 thru December 2017. |
+| gencost_preproc(3,1)='glosum', | remove the global mean of sea surface height |
+| gencost_msk_is3d(1)=.FALSE., | gencost_errfile is not 3d. |
+| mult_gencost(1) = 1., | multiplier set to one |
