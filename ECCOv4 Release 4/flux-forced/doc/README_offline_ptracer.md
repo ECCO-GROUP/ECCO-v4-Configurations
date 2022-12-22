@@ -34,4 +34,4 @@ Compiling and running offline adjoint passive tracer is very similar to that for
 
 Fukumori, I., T. Lee, B. Cheng, and D. Menemenlis, 2004: The origin, pathway, and destination of Niño3 water estimated by a simulated passive tracer and its adjoint, J. Phys. Oceanogr., 34, 582-604, doi:10.1175/2515.1.
 
-Wang, O., I. Fukumori, and I. Fenty, 2021: Configuration for flux-forced version of ECCO V4r4. Available at https://github.com/ECCO-GROUP/ECCO-v4-Configurations/blob/master/ECCOv4%20Release%204/flux-forced/doc/Config_fluxforced.pdf.
+Wang, O., I. Fukumori, and I. Fenty, 2021: Configuration for flux-forced version of ECCO V4r4. Available at https://github.com/ECCO-GROUP/ECCO-v4-Configurations/blob/master/ECCOv4%20Release%204/flux-forced/doc/README_fluxforced.md. 
