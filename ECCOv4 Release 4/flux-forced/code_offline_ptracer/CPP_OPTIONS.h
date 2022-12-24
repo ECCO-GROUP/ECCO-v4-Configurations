@@ -17,6 +17,18 @@ C *==================================================================*
 CEOP
 
 C CPP flags controlling particular source code features
+C o Read in forcing for passive tracers
+#undef ALLOW_PTRACERS_EXF
+
+C o To use flux filenames in offline package that 
+C o  do not conflict exf package
+#define ALLOW_OFFLINE_DIST_FLUXFILES
+
+C o To load GGL90 diffkr in offline package
+#define ALLOW_OFFLINE_LOAD_GGL90
+
+C o To load GM_Psi in offline package
+#define ALLOW_OFFLINE_LOAD_GM_PSI
 
 C o Shortwave heating as extra term in external_forcing.F
 C Note: this should be a run-time option
