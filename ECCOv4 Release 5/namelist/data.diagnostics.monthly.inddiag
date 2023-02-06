@@ -309,10 +309,12 @@ filename(93) = 'diags/SSHNOIBC_mon_mean/SSHNOIBC_mon_mean',
 frequency(94) = 2635200.0,
 fields(1,94) = 'OBP',
 filename(94) = 'diags/OBP_mon_mean/OBP_mon_mean',
+fileFlags(94) = 'D       ',
 #---
 frequency(95) = 2635200.0,
 fields(1,95) = 'OBPGMAP',
 filename(95) = 'diags/OBPGMAP_mon_mean/OBPGMAP_mon_mean',
+fileFlags(95) = 'D       ',
 #---
 frequency(96) = 2635200.0,
 fields(1,96) = 'EXFpress',
