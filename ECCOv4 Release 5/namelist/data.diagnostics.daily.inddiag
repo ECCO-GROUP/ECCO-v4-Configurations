@@ -384,11 +384,13 @@ frequency(94) = 86400.0,
 timePhase(94) = 43200.0,
 fields(1,94) = 'OBP',
 filename(94) = 'diags/OBP_day_mean/OBP_day_mean',
+fileFlags(94) = 'D       ',
 #---
 frequency(95) = 86400.0,
 timePhase(95) = 43200.0,
 fields(1,95) = 'OBPGMAP',
 filename(95) = 'diags/OBPGMAP_day_mean/OBPGMAP_day_mean',
+fileFlags(95) = 'D       ',
 #---
 frequency(96) = 86400.0,
 timePhase(96) = 43200.0,
