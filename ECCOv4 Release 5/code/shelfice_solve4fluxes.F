@@ -282,9 +282,6 @@ C--   are the turbulent fluxes.
           forcingS = gammaS * ( saltFreeze  - sLoc )
       ENDIF
 
-      ENDIF
-
-
       RETURN
       END
      
