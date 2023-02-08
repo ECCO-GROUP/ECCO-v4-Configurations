@@ -17,7 +17,7 @@ Compiling and running offline passive tracer is similar to that for the flux-for
 - Run
   - Use ``namelist_offline_ptracer`` instead of ``namelist`` for input name list files
   - ECCO V4r4's 7-day mean circulation and mixing parameters are available at https://ecco.jpl.nasa.gov/drive/files/Version4/Release4/other/flux-forced/state_weekly. The fields are organized by variable (subdirectory). Download ``state_weekly`` inclduing all subdirectories (and keep the directory structure the same) to your local machine. When running the model, make them accessible to a run by linking all variables into your run directory.  
-  - Initializing tracer by creating a single-precision, 3d file on the model grid. Specify whatever tracer value one wants to the region one wants to release tracer and zero elsewhere. Create a link to this file with the name "theta_init_V4r4.bin" in the run directory.
+  - Initializing tracer by creating a double-precision, 3d file on the model grid. Specify whatever tracer value one wants to the region one wants to release tracer and zero elsewhere. Name the file as pickup_ptracers.ZZZZZZZZZZ.data, where "ZZZZZZZZZZ" is a 10-digit nunber for Iter0 (as specified in the namelist file "data"), left padded with zeros. For example, if nIter0 is 1, then the filename is pickup_ptracers.0000000001.data. Copy or create a link to this file in the run directory.
   - Monthly mean (ptracer_mon_mean) and snapshot (ptracer_mon_mean) of tracer distribution are output to diags/ by the MITgcm diagnostics package. 
   - Because there is no time stepping for model state, forcing files for the flux-forced V4r4 are *not* needed for running offline passive tracer.
        

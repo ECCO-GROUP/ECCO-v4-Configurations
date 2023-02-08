@@ -13,7 +13,7 @@
  PTRACERS_ref(1,1)=0.,
 #PTRACERS_useGMRedi(1)=.FALSE. ,
  PTRACERS_names(1)='trace_theta',
- PTRACERS_initialFile(1)='theta_init_V4r4.bin',
+#PTRACERS_initialFile(1)='theta_init_V4r4.bin',
  PTRACERS_ImplVertAdv(1)=.TRUE.
 #
 #PTRACERS_ref(1,2)=1.,
