@@ -71,12 +71,12 @@ name in the model.
 calculates the heat flux excluding shortwave flux (hflux-swflux) and applies (hfluxswflux)
 and swflux separately. The part hflux-swflux has no vertical penetrating part,
 while the latter does. See below about shortwave (swflux).
-- shortwave (swflux): net downward freshwater flux (kg m-2s-1). Swflux is the total
+- shortwave (swflux): net downward shortwave flux (W m-2). Swflux is the total
 (vertically sum) shortwave to the ocean. The model computes the penetrating part on-the-fly.
 - wind stress along x-direction (ustress): eastward wind stress (N m-2)
 - wind stress along y-direction (vstress) : northward wind stress (N m-2)
 - freshwater flux (sflux): net downward freshwater flux (kg m-2 s-1)
-- salt flux (saltflx): downward salt flux into the ocean (g/m2/s). Salt flux between ocean
+- salt flux (saltflx): downward salt flux into the ocean (g m-2 s-1). Salt flux between ocean
 and sea-ice when sea-ice forms and freezes. The total salt in the ocean changes with
 oceSflux. In contrast to the relationship between oceQnet and oceQsw, oceSflux does
 not contain the salt plum flux (oceSPflx).
@@ -85,7 +85,7 @@ forms. This is the so-called salt plume flux -- Salt is removed from the first l
 ocean and vertically redistributed to deep layers. The total salt in the ocean does not
 change.
 - pressure load (apressure): pressure load due to atmosphere, sea-ice and snow pressure
-(kg/m2)
+(kg m-2)
 
 The corresponding namelist entries in data.exf in the same order are
 - hfluxfile = 'TFLUX_6hourlyavg'
