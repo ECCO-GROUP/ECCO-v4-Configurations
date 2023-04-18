@@ -72,8 +72,7 @@ calculates the heat flux excluding shortwave flux (hflux-swflux) and applies (hf
 and swflux separately. The part hflux-swflux has no vertical penetrating part,
 while the latter does. See below about shortwave (swflux).
 - shortwave (swflux): net downward freshwater flux (kg m-2s-1). Swflux is the total
-(vertically sum) shortwave to the ocean. The model computes the penetrating part onthe-
-fly.
+(vertically sum) shortwave to the ocean. The model computes the penetrating part on-the-fly.
 - wind stress along x-direction (ustress): eastward wind stress (N m-2)
 - wind stress along y-direction (vstress) : northward wind stress (N m-2)
 - freshwater flux (sflux): net downward freshwater flux (kg m-2 s-1)
