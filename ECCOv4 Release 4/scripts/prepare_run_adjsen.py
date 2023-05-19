@@ -704,7 +704,7 @@ def llc_faces_to_compact(F, less_output=True):
 #%%
 
 grid_dir = '../namelist_adjsen/'
-grid_fn = 'GRID_GEOMETRY_ECCO_V4r4_native_llc0090.nc'
+grid_fn = '../input/GRID_GEOMETRY_ECCO_V4r4_native_llc0090.nc'
 grid_ds = xr.open_dataset(grid_dir+grid_fn)
 grid_ds.load()
 XC = grid_ds.XC
