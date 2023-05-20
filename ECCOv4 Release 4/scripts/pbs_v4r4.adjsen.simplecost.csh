@@ -32,8 +32,8 @@ mkdir ${basedir}/run
 cd ${basedir}/run
 
 # Link input files
-# IMPORTANT: link ../namelist_adjset/ before ../namelist/
-ln -s ../namelist_adjset/* .
+# IMPORTANT: link ../namelist_adjsen/ before ../namelist/
+ln -s ../namelist_adjsen/* .
 ln -s ../namelist/* .
 ln -s ${inputdir}/input_init/error_weight/data_error/* .
 ln -s ${inputdir}/input_init/* .
@@ -49,7 +49,7 @@ ln -s ${inputdir}/native_grid_files/tile*.mitgrid .
 #  prepare_run.py: set up the run
 #  mkdir_subdir_diags.py: create subdirectories for outputting diagnostics.
 #   comment it out if no need to output diagnostics
-python ../scripts/prepare_run.py
+python ../scripts/prepare_run_adjsen.py
 python ../scripts/mkdir_subdir_diags.py
 
 # Submit run
