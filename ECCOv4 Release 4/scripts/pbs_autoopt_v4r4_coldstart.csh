@@ -25,7 +25,7 @@ setenv MPI_DISPLAY_SETTINGS
 
 # Set run specific variables
 set nprocs  = 96
-set basedir = FULL_PATH_TO_WORKINGDIR/ECCOV4/release4/
+set basedir = `pwd`
 set inputdir = ${basedir}/input/
 
 # Specify starting iteration number

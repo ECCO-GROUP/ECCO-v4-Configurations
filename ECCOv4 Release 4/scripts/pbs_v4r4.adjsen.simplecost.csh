@@ -19,7 +19,7 @@ setenv MPI_BUFS_PER_PROC 128
 setenv MPI_DISPLAY_SETTINGS
 
 set nprocs  = 96
-set basedir = ./
+set basedir = `pwd`
 set inputdir = ../input/
 
 # Check & remove existing run, if present, for a fresh start 
