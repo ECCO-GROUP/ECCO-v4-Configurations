@@ -965,7 +965,7 @@
       "name": "SSHNOIBC",
       "long_name": "Sea surface height relative to the geoid",
       "units": "m",
-      "standard_name": "sea_surface_height_above_geoid"
+      "standard_name": "sea_surface_height_above_geoid",
       "comments_1": "The local height of the sea surface relative to the geoid. SSHNOIBC does not include the inverted barometer (IB) correction. SSHNOIBC is suitable for comparisons with altimetry sea surface height data products that do NOT apply the inverse barometer (IB) correction",
       "comments_2": "Note: SSHNOIBC is calculated by correcting model sea level anomaly ETAN for two effects: a) global mean steric sea level changes related to density changes in the Boussinesq volume-conserving model (Greatbatch correction, see sterGloH), b) sea level displacement due to sea-ice and snow pressure loading (see sIceLoad). In ECCO V4r5 the model is forced with atmospheric pressure loading. SSHNOIBC does not correct for the static part of the effect of atmosphere pressure loading on sea surface height (the so-called inverse barometer (IB) correction). Use SSH for comparisons with altimetry data products that DO apply the IB correction.",
       "GCMD_keywords" : "EARTH SCIENCE > OCEANS > SEA SURFACE TOPOGRAPHY > SEA SURFACE HEIGHT",

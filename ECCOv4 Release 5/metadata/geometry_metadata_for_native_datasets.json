@@ -12,6 +12,28 @@
       "coverage_content_type": "modelResult"
    },
    {
+      "name": "ice_shelf_draft",
+      "long_name": "ice shelf draft",
+      "comments_1": "Depth of the base of floating ice shelves and grounded ice",
+      "comments_2": "Note: grounded ice can be in contact with the ocean",
+      "units": "m",
+      "GCMD_keywords" : "",
+      "grid_dimension": "2D",
+      "grid_location": "c",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "ocean_column_thickness",
+      "long_name": "ocean column thickness",
+      "comments_1": "Distance between the seafloor and sea surface. Normally equivalent to Depth, but beneath ice shelves the ocean column thickness is the distance between the seafloor and the ceiling of the ice shelf cavity.",
+      "comments_2": "Note: the MITgcm writes ocean column thickness to 'Depth.data', which makes sense because ocean column thickness was equivalent to seafloor depth when the model did not have ice shelf cavities.",
+      "units": "m",
+      "GCMD_keywords" : "",
+      "grid_dimension": "2D",
+      "grid_location": "c",
+      "coverage_content_type": "modelResult"
+   },
+   {
       "name": "CS",
       "long_name": "cosine of tracer grid cell orientation vs geographical north",
       "comments_1": "CS and SN are used to calculate the geographic (meridional, zonal) components of vector fields defined on the model's llc curvilinear grid",
