@@ -1,0 +1,226 @@
+[
+   {
+    "name" : "sea surface height",
+    "fields" : "SSH, SSHNOIBC, SSHIBC, ETAN",
+    "dataset_description":"Parameters include dynamic sea surface height [SSH], sea surface height without the inverse barometer (IB) correction from atmospheric pressure loading [SSHNOIBC], the IB correction from atmospheric pressure loading [SSHIBC], and model sea level [ETAN]. The sea surface height fields include corrections for global mean steric height associated with global mean density changes in the Boussinesq volume-conserving model (i.e., the Greatbatch correction) and for sea-ice pressure loading.",
+    "filename" : "SEA_SURFACE_HEIGHT",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON, SNAP"
+   },
+   {
+    "name" : "ocean bottom pressure",
+    "fields": "OBP, OBPGMAP, OBPAnoma, OBPGMAPA, PHIBOT",
+    "dataset_description": "Parameters include ocean bottom pressure with [OBPGMAP] and without [OBP] the contribution from atmospheric pressure loading, their anomalies with respect to their 2005-2010 means [OBPGMAPA, OBPAnoma], and hydrostatic ocean bottom pressure anomaly [PHIBOT]. Note: ocean bottom pressure fields are provided in terms of equivalent water height.",
+    "filename" : "OCEAN_BOTTOM_PRESSURE",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON, SNAP"
+   },
+   {
+    "name": "ocean and sea-ice surface freshwater fluxes",
+    "fields": "EXFpreci, EXFevap, EXFroff, EXFempmr, oceFWflx, SIatmFW, SFLUX, SIacSubl, SIrsSubl, SIfwThru, SIsnPrcp",
+    "dataset_description": "Parameters include freshwater flxues from precipitation, evaporation, runoff, and sublimation across the air/ocean interface [EXFpreci, EXFevap, EXFroff, EXFempmr] and air/sea-ice interface [SIatmFW, SIacSubl, SIrsSubl, SIfwThru, SIsnPrcp]; and total freshwater fluxes across the ocean surface [oceFWflx, SFLUX].",
+    "filename" : "OCEAN_AND_ICE_SURFACE_FW_FLUX",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "ocean and sea-ice surface heat fluxes",
+    "fields": "EXFhl, EXFhs, EXFlwdn, EXFlwnet, EXFswdn, EXFswnet, EXFqnet, SIatmQnt, SIaaflux, oceQnet, oceQsw, TFLUX",
+    "dataset_description": "Parameters include latent, sensible, and short- and longwave radiative heat fluxes across the air/ocean interface [EXFhl, EXFhs, EXFlwdn, EXFlwnet, EXFswdn, EXFswnet, EXFqnet] and air/sea-ice interface [SIatmQnt, SIaaflux]; and total net heat fluxes across the ocean surface [oceQnet, oceQsw, TFLUX].",
+    "filename" : "OCEAN_AND_ICE_SURFACE_HEAT_FLUX",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "atmosphere surface state",
+    "fields": "EXFatemp, EXFaqh, EXFpress, EXFuwind, EXFvwind, EXFwspee",
+    "dataset_description": "Parameters include atmosphere temperature [EXFatemp], humidity [EXFaqh], pressure [EXFpress], winds in the model x and y-directions [EXFuwind, EXFvwind], and total wind speed [EXFwspee].",
+    "filename" : "ATM_SURFACE_TEMP_HUM_WIND_PRES",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name" : "ocean mixed layer depth",
+    "fields" : "MXLDEPTH",
+    "filename" : "OCEAN_MIXED_LAYER_DEPTH",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name" : "ocean and sea-ice surface stress",
+    "fields" : "EXFtaux, EXFtauy, oceTAUX, oceTAUY",
+    "dataset_description": "Parameters include surface wind stress at the top of the ocean and sea-ice [EXFtaux, EXFtauy] and total ocean surface stress [oceTAUX, oceTAUY] in the model x and y-directions. Total ocean surface stress includes contributions from winds and sea-ice drag.",
+    "filename" : "OCEAN_AND_ICE_SURFACE_STRESS",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "sea-ice and snow concentration and thickness",
+    "fields":"SIarea, SIheff, SIhsnow, sIceLoad",
+    "dataset_description": "Parameters include sea-ice concentration [SIarea], grid-cell averaged sea-ice and snow thickness [SIheff, SIhsnow], and sea-ice pressure loading [sIceLoad].",
+    "filename" : "SEA_ICE_CONC_THICKNESS",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON, SNAP"
+   },
+   {
+    "name": "sea-ice velocity",
+    "fields":"SIuice, SIvice",
+    "dataset_description": "Parameters include sea-ice velocity in the model x and y-directions [SIuice, SIvice].",
+    "filename" : "SEA_ICE_VELOCITY",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON, SNAP"
+   },
+   {
+    "name" : "ocean temperature and salinity",
+    "fields": "THETA, SALT",
+    "dataset_description": "Parameters include seawater potential temperature [THETA] and salinity [SALT].",
+    "filename" : "OCEAN_TEMPERATURE_SALINITY",
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON, SNAP"
+   },   
+   {
+    "name": "ocean density, stratification, and hydrostatic pressure",
+    "fields": "RHOAnoma, DRHODR, PHIHYD, PHIHYDcR",
+    "dataset_description" : "Parameters include seawater density [RHOAnoma], vertical stratification [DRHODR], and hydrostatic pressure considering fixed and time-varying vertical coordinate [PHIHYD, PHIHYDcR].",
+    "filename" : "OCEAN_DENS_STRAT_PRESS",
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "ocean velocity",
+    "fields": "UVEL, VVEL, WVELMASS",
+    "dataset_description" : "Parameters include ocean velocity in the model x, y, and z-directions [UVEL, VVLE, WVEL].",    
+    "variable_rename" : "WVELMASS:WVEL",
+    "filename" : "OCEAN_VELOCITY",
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },   
+   {
+    "name": "Gent-McWilliams ocean bolus velocity",
+    "fields": "UVELSTAR, VVELSTAR, WVELSTAR",
+    "dataset_description" : "Parameters include the Gent-McWilliams ocean bolus velocity in the model x, y, and z-directions [UVELSTAR, VVELSTAR, WVELSTAR].",
+    "filename" : "OCEAN_BOLUS_VELOCITY",
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "ocean three-dimensional parameterized mixing coefficients",
+    "fields": "DIFFKR, KAPGM, KAPREDI",
+    "dataset_description" : "Parameters include the time-invariant, three-dimensional coefficients for vertical diffusivity [DIFFKR], Gent-McWilliams cross-isopycnal diffusivity [KAPGM], and Redi along-isopycnal diffusivity [KAPREDI].",    
+    "filename" : "OCEAN_MIXING_COEFFS",
+    "dimension" : "3D",
+    "frequency" : "TIME-INVARIANT"
+    
+   },
+   {
+    "name": "sea-ice and snow horizontal volume fluxes",
+    "fields":"ADVxHEFF, ADVyHEFF, ADVxSNOW , ADVySNOW",
+    "dataset_description" : "Parameters include the horizontal volume fluxes of sea-ice and snow in the model x- and y-directions.",
+    "filename" : "SEA_ICE_HORIZ_VOLUME_FLUX",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "Gent-McWilliams ocean bolus transport streamfunction",
+    "fields": "GM_PsiX, GM_PsiY",
+    "dataset_description" : "Parameters include the ocean bolus transport streamfunction in the model x- and y-directions.",
+    "filename" : "OCEAN_BOLUS_STREAMFUNCTION",
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },   
+   {
+    "name": "ocean three-dimensional volume fluxes",
+    "fields": "UVELMASS, VVELMASS, WVELMASS",
+    "dataset_description" : "Parameters include the three dimensional ocean volume fluxes in the model x, y, and z-directions. Volume fluxes are calculated by multiplying ocean velocities with wet grid cell areas (i.e., horizontal fluxes account for partial cells and the time-varying vertical coordinate).",
+    "filename" : "OCEAN_VOLUME_FLUX",
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "ocean three-dimensional potential temperature fluxes",
+    "fields":"ADVx_TH, DFxE_TH, ADVy_TH, DFyE_TH, ADVr_TH, DFrE_TH, DFrI_TH",
+    "dataset_description" : "Parameters include the three dimensional advective and diffusive ocean potential temperature fluxes in the model x, y, and z-directions. Horizontal fluxes account for partial cells and the time-varying vertical coordinate.",
+    "filename" : "OCEAN_TEMPERATURE_FLUX",
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "ocean three-dimensional salinity fluxes",
+    "fields":"ADVx_SLT, DFxE_SLT, ADVy_SLT, DFyE_SLT, ADVr_SLT, DFrE_SLT, DFrI_SLT, oceSPtnd",
+    "dataset_description" : "Parameters include the three dimensional advective and diffusive ocean salinity fluxes in the model x, y, and z-directions. Horizontal fluxes account for partial cells and the time-varying vertical coordinate.",
+    "filename" : "OCEAN_SALINITY_FLUX",
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "sea-ice salt plume fluxes",
+    "fields":"oceSPflx, oceSPDep",
+    "dataset_description" : "Parameters include the salt mass flux from sea-ice salt plumes per unit area (g m-2 s-1) and the depth of the salt plumes.",    
+    "comment": "oceSPflx is salt mass flux per unit area (g m-2 s-1), not salinity flux.",
+    "filename" : "SEA_ICE_SALT_PLUME_FLUX",
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "ocean three-dimensional momentum tendency terms in the model x-direction",
+    "fields": "TOTUTEND, Um_Cori, Um_Advec, Um_Diss, Um_Ext, Um_dPhiX, AB_gU, Um_ImplD",
+    "dataset_description" : "Parameters include XYZ.",
+    "filename" : "OCEAN_3D_MOMENTUM_TEND_X",
+    "dimension" : "3D"
+   },
+   {
+    "name": "ocean three-dimensional advective momentum tendency terms in the model x-direction",
+    "fields": "Um_AdvZ3, Um_AdvRe, Um_dKEdx",
+    "dataset_description" : "Parameters include XYZ.",
+    "filename" : "OCEAN_3D_MOMENTUM_ADV_TEND_X",
+    "dimension" : "3D"
+   },
+   {
+    "name": "ocean three-dimensional dissipative momentum tendency terms in the model x-direction",
+    "fields": "Um_Diss2, Um_Diss4, UBotDrag, USidDrag, UShIDrag",
+    "dataset_description" : "Parameters include XYZ.",
+    "filename" : "OCEAN_3D_MOMENTUM_DISS_TEND_X",
+    "dimension" : "3D"
+   },
+   {
+    "name": "ocean three-dimensional momentum tendencies in the model y-direction",
+    "fields": "TOTVTEND, Vm_Cori, Vm_Advec, Vm_Diss, Vm_Ext, Vm_dPhiY, AB_gV, Vm_ImplD",
+    "dataset_description" : "Parameters include XYZ.",
+    "filename" : "OCEAN_3D_MOMENTUM_TEND_Y",
+    "dimension" : "3D"
+   },
+   {
+    "name": "ocean three-dimensional advective momentum tendency terms in the model y-direction",
+    "fields": "Vm_AdvZ3, Vm_AdvRe, Vm_dKEdy",
+    "dataset_description" : "Parameters include XYZ.",
+    "filename" : "OCEAN_3D_MOMENTUM_ADV_TEND_Y",
+    "dimension" : "3D"
+   },
+   {
+    "name": "ocean three-dimensional dissipative momentum tendency terms in the model y-direction",
+    "fields": "Vm_Diss2, Vm_Diss4, VBotDrag, VSidDrag, VShIDrag",
+    "dataset_description" : "Parameters include XYZ.",
+    "filename" : "OCEAN_3D_MOMENTUM_DISS_TEND_Y",
+    "dimension" : "3D"
+   },
+   {
+    "name": "ice-shelf freshwater and heat fluxes",
+    "fields": "SHIfwFlx, SHIhtFlx",
+    "dataset_description" : "Parameters include XYZ.",
+    "filename" : "ICE_SHELF_FLUX",
+    "dimension" : "2D"
+   },
+   {
+    "name": "ice-front freshwater and heat fluxes",
+    "fields": "ICFfwFlx, ICFhtFlx",
+    "dataset_description" : "Parameters include XYZ.",
+    "filename" : "ICE_FRONT_FLUX",
+    "dimension" : "3D"
+   },
+   {
+    "name": "sea-ice thermodynamic budget",
+    "fields": "SIFao, SIFionet, SIFianet, SIFmi, SIFFlood, SIsnAccR, SIsnmltS, SIgamma",
+    "filename" : "SEA_ICE_THERMO_BUDG",
+    "dimension" : "2D"
+   }
+]

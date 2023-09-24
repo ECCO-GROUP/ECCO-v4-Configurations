@@ -1,0 +1,289 @@
+[
+   {
+      "name": "acknowledgement",
+      "type": "s",
+      "value": "This research was carried out by the Jet Propulsion Laboratory, managed by the California Institute of Technology under a contract with the National Aeronautics and Space Administration."
+   },
+   {
+      "name": "author",
+      "type": "s",
+      "value": "Ian Fenty, Ou Wang, Ichiro Fukumori"
+   },
+   {
+      "name": "cdm_data_type",
+      "type": "s",
+      "value": "Grid"
+   },
+   {
+      "name": "Conventions",
+      "type": "s",
+      "value": "CF-1.8, ACDD-1.3"
+   },
+   {
+      "name": "creator_email",
+      "type": "s",
+      "value": "ecco-group@mit.edu"
+   },
+   {
+      "name": "creator_institution",
+      "type": "s",
+      "value": "NASA Jet Propulsion Laboratory (JPL)"
+   },
+   {
+      "name": "creator_name",
+      "type": "s",
+      "value": "ECCO Consortium"
+   },
+   {
+      "name": "creator_type",
+      "type": "s",
+      "value": "group"
+   },
+   {
+      "name": "creator_url",
+      "type": "s",
+      "value": "https://ecco-group.org"
+   },
+   {
+      "name": "date_created",
+      "type": "s",
+      "value": "TBD_DATASET"
+   },
+   {
+      "name": "date_issued",
+      "type": "s",
+      "value": "TBD_DATASET"
+   },
+   {
+      "name": "date_metadata_modified",
+      "type": "s",
+      "value": "TBD_DATASET"
+   },
+   {
+      "name": "geospatial_lat_max",
+      "type": "f",
+      "value": 90,
+      "grid_dimension":"2D 3D"
+   },
+   {
+      "name": "geospatial_lat_min",
+      "type": "f",
+      "value": -90,
+      "grid_dimension":"2D 3D"
+   },
+   {
+      "name": "geospatial_lat_units",
+      "type": "s",
+      "value": "degrees_north",
+      "grid_dimension":"2D 3D"
+   },
+   {
+      "name": "geospatial_lon_max",
+      "type": "f",
+      "value": 180,
+      "grid_dimension":"2D 3D"
+   },
+   {
+      "name": "geospatial_lon_min",
+      "type": "f",
+      "value": -180,
+      "grid_dimension":"2D 3D"
+   },
+   {
+      "name": "geospatial_lon_units",
+      "type": "s",
+      "value": "degrees_east",
+      "grid_dimension":"2D 3D"
+   },
+   {
+      "name": "geospatial_bounds_crs",
+      "type": "s",
+      "value": "EPSG:4326",
+      "grid_dimension":"2D 3D"
+   },
+   {
+      "name": "geospatial_vertical_max",
+      "type": "f",
+      "value": "0",
+      "grid_dimension":"3D"
+   },
+   {
+      "name": "geospatial_vertical_min",
+      "type": "f",
+      "value": -6134.5,
+      "grid_dimension":"3D"
+   },
+   {
+      "name": "geospatial_vertical_positive",
+      "type": "s",
+      "value": "up",
+      "grid_dimension":"3D"
+   },
+   {
+      "name": "geospatial_vertical_resolution",
+      "type": "s",
+      "value": "variable",
+      "grid_dimension":"3D"
+   },
+   {
+      "name": "geospatial_vertical_units",
+      "type": "s",
+      "value": "meter",
+      "grid_dimension":"3D"
+   },
+   {
+      "name": "history",
+      "type": "s",
+      "value": "Initial release of ECCO V4r5, 1992-2020"
+   },
+   {
+      "name": "id",
+      "type": "s",
+      "value": "TBD_DOI"
+   },
+   {
+      "name": "institution",
+      "type": "s",
+      "value": "NASA Jet Propulsion Laboratory (JPL)"
+   },
+   {
+      "name": "instrument_vocabulary",
+      "type": "s",
+      "value": "GCMD instrument keywords"
+   },
+   {
+      "name": "keywords",
+      "type": "s",
+      "value": "EARTH SCIENCE SERVICES > MODELS > EARTH SCIENCE REANALYSES/ASSIMILATION MODELS"
+   },
+   {
+      "name": "keywords_vocabulary",
+      "type": "s",
+      "value": "NASA Global Change Master Directory (GCMD) Science Keywords"
+   },
+   {
+      "name": "license",
+      "type": "s",
+      "value": "Public Domain"
+   },
+   {
+      "name": "metadata_link",
+      "type": "s",
+      "value": "TBD_DATASET"
+   },
+   {
+      "name": "naming_authority",
+      "type": "s",
+      "value": "gov.nasa.jpl"
+   },
+   {
+      "name": "platform_vocabulary",
+      "type": "s",
+      "value": "GCMD platform keywords"
+   },
+   {
+      "name": "processing_level",
+      "type": "s",
+      "value": "L4"
+   },
+   {
+      "name": "product_name",
+      "type": "s",
+      "value": "TBD_FILENAME"
+   },
+   {
+      "name": "product_time_coverage_end",
+      "type": "s",
+      "value": "2020-01-01T00:00:00"
+   },
+   {
+      "name": "product_time_coverage_start",
+      "type": "s",
+      "value": "1992-01-01T12:00:00"
+   },
+   {
+      "name": "product_version",
+      "type": "s",
+      "value": "Version 4, Release 5"
+   },
+   {
+      "name": "program",
+      "type": "s",
+      "value": "NASA Physical Oceanography; Cryosphere; and Modeling, Analysis, and Prediction (MAP)"
+   },
+   {
+      "name": "project",
+      "type": "s",
+      "value": "Estimating the Circulation and Climate of the Ocean (ECCO)"
+   },
+   {
+      "name": "publisher_email",
+      "type": "s",
+      "value": "podaac@podaac.jpl.nasa.gov"
+   },
+   {
+      "name": "publisher_institution",
+      "type": "s",
+      "value": "PO.DAAC"
+   },
+   {
+      "name": "publisher_name",
+      "type": "s",
+      "value": "Physical Oceanography Distributed Active Archive Center (PO.DAAC)"
+   },
+   {
+      "name": "publisher_type",
+      "type": "s",
+      "value": "institution"
+   },
+   {
+      "name": "publisher_url",
+      "type": "s",
+      "value": "https://podaac.jpl.nasa.gov"
+   },
+   {
+      "name": "platform",
+      "type": "s",
+      "value": "ERS-1/2, TOPEX/Poseidon, Geosat Follow-On (GFO), ENVISAT, Jason-1, Jason-2, CryoSat-2, SARAL/AltiKa, Jason-3, AVHRR, Aquarius, SSM/I, SSMIS, GRACE, DTU17MDT, Argo, WOCE, GO-SHIP, MEOP, Ice Tethered Profilers (ITP)"
+   },
+   {
+      "name": "references",
+      "type": "s",
+      "value": "ECCO Consortium, Fukumori, I., Wang, O., Fenty, I., Forget, G., Heimbach, P., & Ponte, R. M. 2020. Synopsis of the ECCO Central Production Global Ocean and Sea-Ice State Estimate (Version 4 Release 4). doi:10.5281/zenodo.3765928"
+   },
+   {
+      "name": "source",
+      "type": "s",
+      "value": "ECCO V4 state estimates are produced by fitting a free-running solution of the MITgcm to satellite and in situ observational data in a least squares sense using the adjoint method."
+   },
+   {
+      "name": "standard_name_vocabulary",
+      "type": "s",
+      "value": "NetCDF Climate and Forecast (CF) Metadata Convention"
+   },
+   {
+      "name": "project_summary",
+      "type": "s",
+      "value": "Estimating the Circulation and Climate of the Ocean (ECCO) state estimates are dynamically and kinematically-consistent reconstructions of the three-dimensional, time-evolving ocean, sea-ice, and surface atmospheric states. ECCO V4r5 is a free-running solution of a global, nominally 1-degree configuration of the MIT general circulation model (MITgcm) that has been fit to observations in a least-squares sense. Observational data constraints used in V4r5 include sea surface height (SSH) from satellite altimeters [ERS-1/2, TOPEX/Poseidon, GFO, ENVISAT, Jason-1,2,3, CryoSat-2, and SARAL/AltiKa]; sea surface temperature (SST) from satellite radiometers [AVHRR], sea surface salinity (SSS) from the Aquarius satellite radiometer/scatterometer, ocean bottom pressure (OBP) from the GRACE satellite gravimeter; sea-ice concentration from satellite radiometers [SSM/I and SSMIS], and in-situ ocean temperature and salinity measured with conductivity-temperature-depth (CTD) sensors and expendable bathythermographs (XBTs) from several programs [e.g., WOCE, GO-SHIP, Argo, and others] and platforms [e.g., research vessels, gliders, moorings, ice-tethered profilers, and instrumented pinnipeds]. V4r5 covers the period 1992-01-01T12:00:00 to 2020-01-01T00:00:00."
+   },
+   {
+      "name": "time_coverage_end",
+      "type": "s",
+      "value": "TBD_DATASET"
+   },
+   {
+      "name": "time_coverage_start",
+      "type": "s",
+      "value": "TBD_DATASET"
+   },
+   {
+      "name": "title",
+      "type": "s",
+      "value": "TBD_DATASET"
+   },
+   {
+      "name": "uuid",
+      "type": "s",
+      "value": "TBD_DATASET"
+   }
+]
