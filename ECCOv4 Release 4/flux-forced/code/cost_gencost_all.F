@@ -49,6 +49,7 @@ c     == external functions ==
 
 c     == end of interface ==
 
+#ifndef BOXMEAN_COST_ONLY
       do k = 1, NGENCOST
 
          if ( (using_gencost(k)).AND.( gencost_flag(k).EQ.1 ) 
@@ -99,6 +100,9 @@ c     == end of interface ==
       IF (using_cost_altim) call cost_gencost_sshv4( mythid )
       IF (using_cost_sst) call cost_gencost_sstv4( mythid )
       IF (using_cost_seaice) call cost_gencost_seaicev4( mythid )
+#else
+      call cost_gencost_boxmean( mythid )
+#endif /* ifndef BOXMEAN_COST_ONLY */
 
 #endif /* ALLOW_GENCOST_CONTRIBUTION */
 

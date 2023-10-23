@@ -34,6 +34,9 @@ C allow for generic cost function and integral terms
 C allow for 3 dimensional generic terms
 #define ALLOW_GENCOST3D
 
+C only allow boxmean costs
+#define BOXMEAN_COST_ONLY
+
 C include global mean steric sea level correction
 #define ALLOW_PSBAR_STERIC
 C allow for near-shore and high-latitude altimetry
@@ -45,7 +48,6 @@ c define the JPL version of sea-ice cost formula
 
 c define ALLOW_GENCOST_1D to compute the global mean cost
 #define ALLOW_GENCOST_1D
-
 
 C allow for In-Situ Profiles cost function contribution
 #define ALLOW_PROFILES_CONTRIBUTION
