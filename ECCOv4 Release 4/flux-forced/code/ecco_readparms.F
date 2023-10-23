@@ -650,6 +650,33 @@ c boxmean/horflux masks
       gencost_msk_k3d=1
 
       do k=1,NGENCOST
+#ifdef BOXMEAN_COST_ONLY
+c only boxmean costs are allowed
+
+         if ( gencost_name(k)(1:7).NE.'gencost' ) then
+           if ( gencost_name(k)(1:7).NE.'boxmean' ) then
+             il=ilnblnk(gencost_name(k))
+             WRITE(msgBuf,'(2A,I3,2A)') 
+     &       "Only gencost_name='",
+     &       "boxmean' is allowed: gencost ",k, " ", 
+     &       gencost_name(k)(1:7)
+             CALL PRINT_ERROR( msgBuf, myThid )
+             WRITE(msgBuf,'(2A)') 
+     &            'in ECCO_READPARMS: ',
+     &            'gencost_name not properly set'
+             CALL PRINT_ERROR( msgBuf, myThid )
+             STOP 
+     &           'ECCO_READPARMS: gencost_name not properly set'
+           endif
+         else
+           il=ilnblnk(gencost_name(k))
+           WRITE(msgBuf,'(2A,I3,A)') "** WARNING ** No cost will be ",
+     &     "calculated for gencost ", k, 
+     &     " as its gencost_name is not set to 'boxmean'."
+           CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &     SQUEEZE_RIGHT , 1)
+         endif
+#endif
 
 c pre-specified generic cost terms using otherwise created barfiles
          if ( (gencost_name(k).EQ.'sshv4-mdt').OR.
