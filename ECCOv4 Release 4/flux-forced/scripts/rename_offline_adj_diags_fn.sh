@@ -130,3 +130,5 @@ done
 
 # Remove the temporary directory
 rmdir ${RENAME_DIR}
+
+echo "Done"
