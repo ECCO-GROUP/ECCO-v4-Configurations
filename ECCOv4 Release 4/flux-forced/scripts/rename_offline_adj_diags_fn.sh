@@ -62,8 +62,9 @@ fi
 confirm_action() {
     echo "You are about to rename files in the following directory: $DIRECTORY"
     echo "This will affect files where the last 15 characters are a 10-digit number followed by '.data' or '.meta'."
-    echo "The renamed files will be placed in a subdirectory named 'offline_adj_file_renamed_dir'."
     echo "The renaming process will subtract each number from $NUMBER."
+    echo "The renamed files will be first placed in a temporary subdirectory named 'offline_adj_file_renamed_dir',"
+    echo "and then they wll be moved back to the same directory as the input files."
     read -p "Are you sure you want to proceed? Type 'YES' to confirm: " confirmation
     if [ "$confirmation" != "YES" ]; then
         echo "Operation cancelled by user."
@@ -76,6 +77,12 @@ confirm_action
 
 # Create a subdirectory for the renamed files if it doesn't exist
 RENAME_DIR="$DIRECTORY/offline_adj_file_renamed_dir"
+
+if [ -d "$RENAME_DIR" ]; then
+    echo "Error: The directory $RENAME_DIR already exists. Please remove it before running this script."
+    exit 1
+fi
+
 mkdir -p "$RENAME_DIR"
 
 # Loop through files ending with ".data" or ".meta"
@@ -105,7 +112,7 @@ do
         # Form the new filename in the subdirectory
         extension=${BASH_REMATCH[2]}
         base_name=$(basename "$file")
-        new_file="${RENAME_DIR}/${base_name%_*}_${formatted_new_number}.${extension}"
+        new_file="${RENAME_DIR}/${base_name:0:-15}${formatted_new_number}.${extension}"
 
         # Check if the new file already exists
         if [ -e "$new_file" ]; then
@@ -115,5 +122,11 @@ do
 
         # Rename the file
         mv "$file" "$new_file"
+        
+        # Move the renamed file back to the input directory
+        mv "$new_file" ${DIRECTORY}/
     fi
 done
+
+# Remove the temporary directory
+rmdir ${RENAME_DIR}
