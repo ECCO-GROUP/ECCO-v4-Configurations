@@ -1,0 +1,19 @@
+#
+# -------------------------
+# SLR Correction Parameters
+# -------------------------
+ &SLR_CORR_PARM01
+#
+  slrc_obs_filename = 'GMSL_TPJAOS_5.1_202001_GIAapplied_meter_60d_smoothed_v4_fitv2.bin',
+  slrc_obs_period = 856707.84,
+  slrc_obs_startdate_1 = 20191231,
+  slrc_obs_startdate_2 = 083631,
+#
+  slrc_output_filename = 'slrc_precip_scalars.bin',
+#
+  slrc_balancePeriod=86400.,
+# 
+  slrc_filePrec = 32,
+#
+  slrc_obs_ref = 0.09193208281064341,
+ &

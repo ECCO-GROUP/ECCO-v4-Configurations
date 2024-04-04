@@ -5,8 +5,11 @@ ECCO Version 4: Fifth Release       [ECCO V4r5]
 
 - This directory contains the 'ECCO version 4, release 5' state estimate files:
   README                              This file
+  doc                                 documentation
   namelist                            namelist files (run-time parameters) needed to re-run the state estimate
   code                                updated and/or new fortran codes and header files that are required to compile the MITgcm in the ECCOv4 configuration
+  metadata                            meta data for model diagnostics
+  extension                           configuration for extending V4r5 beyond 2019; forward simulation only, without optimization
 
 - References:
   Fukumori, I., O. Wang, I. Fenty, G. Forget, P. Heimbach, and R. M. Ponte, 2017: 
@@ -31,4 +34,5 @@ ECCO Version 4: Fifth Release       [ECCO V4r5]
 README file revision history:
 -----------------------------
 
+- Extension configuration added                    [Ou Wang] [2024/04/04]
 - README file creation                             [Ou Wang] [2022/05/09]
