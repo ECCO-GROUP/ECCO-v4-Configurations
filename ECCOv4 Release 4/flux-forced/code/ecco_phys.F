@@ -86,7 +86,7 @@ c need to include halos for find_rho_2d
      O                RHOInSituLoc(1-OLx,1-OLy,k,bi,bj),
      I                k, bi, bj, myThid )
           enddo
-        enddo
+       enddo
       enddo
 
       DO bj=myByLo(myThid),myByHi(myThid)
