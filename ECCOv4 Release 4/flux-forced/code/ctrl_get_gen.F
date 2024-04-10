@@ -228,10 +228,20 @@ cph Initial wind stress adjustments are too vigorous.
 #endif
 
       if ( gencount0 .LE. 2 .AND.
+     &     nIter0 .LE. 1 .AND.
      &     ( xx_gen_file(1:7) .EQ. xx_tauu_file .OR.
      &       xx_gen_file(1:7) .EQ. xx_tauv_file ) .AND.
      &     ( xx_genperiod .NE. 0 ) ) then
          doCtrlUpdate = .FALSE.
+c--   Check if nIter0 is large enough
+       if ( nIter0 .GT. 1 .AND. 
+     &    nIter0 .LE. INT(2*(xx_genperiod+1. _d -5)/deltaTClock) ) then
+          print*,' When restarting the model (nIter0>1), '
+          print*,' nIter0 must be large enough: ',  nIter0
+          print*,' More complicated handling for small nIter0 is not'
+          print*,' implemented.'
+          stop   ' ... stopped in ctrl_get_gen.F.'
+       endif
       else
          doCtrlUpdate = .TRUE.
       endif
