@@ -47,7 +47,7 @@ C     == end of interface ==
       ENDIF
 #endif /* ALLOW_PSBAR_STERIC */
 
-      CALL ECCO_PHYS( myThid )
+      CALL ECCO_PHYS( startTime, -1, myThid )
 
 #ifdef ALLOW_PSBAR_STERIC
 C RHO/VOLsumGlob_0 are zeros if S/R ECCO_READ_PICKUP is not called
