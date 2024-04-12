@@ -29,7 +29,7 @@ as the input files are already available on Pleiades.
 The input files can also be accessed on ECCO Drive at:
 https://ecco.jpl.nasa.gov/drive/files/Version4/Release5/other/staging/release5_ext/input/.
 Use the following wget command to download the input files:
-wget --user=YOURUSERNAME --password=YOURPASSWORD -r -nc -np -nH --cut-dirs=2 \
+wget --user=YOURUSERNAME --password=YOURPASSWORD -r -nc -np -nH --cut-dirs=7 \
 https://ecco.jpl.nasa.gov/drive/files/Version4/Release5/other/staging/release5_ext/input 
 (For more instructions on using wget to download files from ECCO Drive, visit 
 https://ecco-group.org/docs/wget_download_multiple_files_and_directories.pdf) 
