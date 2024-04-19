@@ -66,7 +66,7 @@ C     iceFrontWidth    :: the width of the ice front.
       _RS fK_icefront (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
       INTEGER SI
-      _RL epsilon_H
+      _RL epsilon_H, epsilon_iceFrontWidth
       character*200 msgBuf
 
 #ifdef ALLOW_MNC
@@ -273,6 +273,8 @@ C create masks for shelf-ice and ice-front by modifyig code from shelfice_thermo
 C--   minimum fraction of a cell adjacent to an ice front that must be
 C--   wet for exchange to happen
       epsilon_H = 1. _d -03
+C--Treat IceFrontWidth as zero if less than epsilon_iceFrontWidth (in m)
+      epsilon_iceFrontWidth = 1. _d -08
 
       DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
@@ -329,9 +331,14 @@ C--   Looking to south
 C--                 cell depth describes the average distance
 C--                 perpendicular to the ice front fact
 
-                    iceFrontCellThickness = RA(CURI,CURJ,bi,bj)
-     &                                  /iceFrontWidth
-                    iceFrontFaceArea  = DRF(K)*iceFrontWidth
+                    IF (iceFrontWidth .LT. epsilon_iceFrontWidth) THEN
+                      iceFrontCellThickness = 0. _d 0
+                      iceFrontFaceArea      = 0. _d 0
+                    ELSE
+                      iceFrontCellThickness = RA(CURI,CURJ,bi,bj)
+     &                                    /iceFrontWidth
+                      iceFrontFaceArea  = DRF(K)*iceFrontWidth
+                    ENDIF
 
 C--   First, make sure the adjacent point has at least some water in it.
                     IF (_hFacC(CURI,CURJ,K,bi,bj) .GT. zeroRL) THEN

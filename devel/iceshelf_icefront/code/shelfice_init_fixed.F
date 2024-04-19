@@ -69,7 +69,7 @@ C     iceFrontWidth    :: the width of the ice front.
       _RS fK_icefront (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
       INTEGER SI
-      _RL epsilon_H
+      _RL epsilon_H, epsilon_iceFrontWidth
 
 #ifdef ALLOW_MNC
 C     Initialize MNC variable information for SHELFICE
@@ -91,7 +91,7 @@ C-----------------------------------------------------------------------
         DO j = 1-OLy, sNy+OLy
          DO i = 1-OLx, sNx+OLx
           IF ( kSurfC(i,j,bi,bj).LE.Nr .AND.
-     &         R_shelfIce(i,j,bi,bj).LT.zeroRS ) THEN
+     &         Ro_surf(i,j,bi,bj).LT.rF(1) ) THEN
             kTopC(i,j,bi,bj) = kSurfC(i,j,bi,bj)
           ELSE
             kTopC(i,j,bi,bj) = 0
@@ -105,7 +105,7 @@ C-----------------------------------------------------------------------
        ENDDO
       ENDDO
 
-#ifdef ALLOW_SHIFWFLX_CONTROL
+#ifdef ALLOW_CTRL
 C     maskSHI is a hack to play along with the general ctrl-package
 C     infrastructure, where only the k=1 layer of a 3D mask is used
 C     for 2D fields. We cannot use maskInC instead, because routines
@@ -122,8 +122,8 @@ C     like ctrl_get_gen and ctrl_set_unpack_xy require 3D masks.
         DO k=1,Nr
          DO j=1-OLy,sNy+OLy
           DO i=1-OLx,sNx+OLx
-           IF ( R_shelfIce(i,j,bi,bj).LT.zeroRS
-     &          .AND. hFacC(i,j,k,bi,bj).NE.zeroRS ) THEN
+           IF ( Ro_surf(i,j,bi,bj).LT.rF(1)
+     &          .AND. maskC(i,j,k,bi,bj).NE.zeroRS ) THEN
             maskSHI(i,j,k,bi,bj) = 1. _d 0
             maskSHI(i,j,1,bi,bj) = 1. _d 0
            ENDIF
@@ -132,7 +132,7 @@ C     like ctrl_get_gen and ctrl_set_unpack_xy require 3D masks.
         ENDDO
        ENDDO
       ENDDO
-#endif /* ALLOW_SHIFWFLX_CONTROL */
+#endif /* ALLOW_CTRL */
 
 C 06/29/2018
 C ow - maskSHI above is not consistent with the spirit of gencost. Use mask2dSHI and mask3dSHI below
@@ -156,16 +156,17 @@ C ow - the vertical, then mask2dSHI at i,j is one.
           ENDDO
          ENDDO
         ENDDO
-C       DO k=1,Nr
-C        DO j=1-OLy,sNy+OLy
-C         DO i=1-OLx,sNx+OLx
-C          IF ( R_shelfIce(i,j,bi,bj).LT.zeroRS
-C    &          .AND. hFacC(i,j,k,bi,bj).NE.zeroRS ) THEN
-C           mask2dSHI(i,j,bi,bj) = 1. _d 0
-C          ENDIF
-C         ENDDO
-C        ENDDO
-C       ENDDO
+
+        DO J = 1-OLy,sNy+OLy
+          DO I = 1-OLx,sNx+OLx
+             DO SI = 1,4
+                CURI_ARR(I,J,bi,bj,SI) = -9999
+                CURJ_ARR(I,J,bi,bj,SI) = -9999
+                icefrontwidth_arr(I,J,bi,bj,SI) = 0. _d 0
+             ENDDO /* SI */
+          ENDDO /* I */
+        ENDDO /* J */
+
        ENDDO
       ENDDO
 
@@ -274,14 +275,16 @@ C create masks for shelf-ice and ice-front by modifyig code from shelfice_thermo
 C--   minimum fraction of a cell adjacent to an ice front that must be 
 C--   wet for exchange to happen
       epsilon_H = 1. _d -03
+C--Treat IceFrontWidth as zero if less than epsilon_iceFrontWidth (in m)
+      epsilon_iceFrontWidth = 1. _d -08
 
       DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
 
 C--   First ice front then ice shelf.  Loop through each i,j point
 C--   process ice fronts in k, then process ice shelf.
-          DO J = 1, sNy
-            DO I = 1, sNx
+          DO J = 1-OLy+1,sNy+OLy-1
+            DO I = 1-OLx+1,sNx+OLx-1
 
 C--   The K index where the ice front ends (0 if no ice front)
               FRONT_K = K_icefront(I,J,bi,bj)
@@ -322,13 +325,22 @@ C--   Looking to south
                   
                       iceFrontWidth     = dxG(I,J,bi,bj)
                     endif
+
+                    CURI_ARR(I,J,bi,bj,SI) = CURI
+                    CURJ_ARR(I,J,bi,bj,SI) = CURJ
+                    iceFrontWidth_arr(I,J,bi,bj,SI) = iceFrontWidth
                     
 C--                 cell depth describes the average distance 
 C--                 perpendicular to the ice front fact
 
-                    iceFrontCellThickness = RA(CURI,CURJ,bi,bj)
-     &                                  /iceFrontWidth
-                    iceFrontFaceArea  = DRF(K)*iceFrontWidth
+                    IF (iceFrontWidth .LT. epsilon_iceFrontWidth) THEN
+                      iceFrontCellThickness = 0. _d 0
+                      iceFrontFaceArea      = 0. _d 0
+                    ELSE
+                      iceFrontCellThickness = RA(CURI,CURJ,bi,bj)
+     &                                    /iceFrontWidth
+                      iceFrontFaceArea  = DRF(K)*iceFrontWidth
+                    ENDIF
 
 C--   First, make sure the adjacent point has at least some water in it.
                     IF (_hFacC(CURI,CURJ,K,bi,bj) .GT. zeroRL) THEN
