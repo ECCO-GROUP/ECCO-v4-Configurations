@@ -149,7 +149,7 @@
     "variable_rename" : "WVELMASS:WVEL",
     "filename" : "OCEAN_VELOCITY",
     "dimension" : "3D",
-    "frequency" : "AVG_DAY, AVG_MON",
+    "frequency" : "AVG_DAY, AVG_MON"
    },
    {
     "name": "Gent-McWilliams ocean bolus velocity",
