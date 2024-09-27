@@ -1,0 +1,39 @@
+#!/bin/bash
+
+FC=mpiifort
+CC=mpiicc
+
+DEFINES='-DALLOW_USE_MPI -DALWAYS_USE_MPI -DWORDLENGTH=4 -DINTEL_COMMITQQ'
+# CPP='/lib/cpp  -traditional -P'
+# CPP='/efs/mrilee/spack1/spack/opt/spack/linux-ubuntu20.04-skylake_avx512/intel-2021.3.0/intel-oneapi-mpi-2021.3.0-6xdcokzvquirq55fu5iyuno226ilesrj/mpi/2021.3.0/bin/mpiicc -EP'
+EXTENDED_SRC_FLAG='-132'
+OMPFLAG='-openmp'
+CFLAGS='-fPIC'
+LDADD='-shared-intel'
+
+INCLUDES=""
+INCLUDES+=" -I/shared/spack/opt/spack/linux-ubuntu20.04-skylake_avx512/gcc-11.1.0/netcdf-c-4.8.1-6so76ncnzdxppvzoibchvcb7pv4gkdci/include"
+INCLUDES+=" -I/shared/spack/opt/spack/linux-ubuntu20.04-skylake_avx512/gcc-11.1.0/netcdf-fortran-4.5.3-d35hzyrebyl26non7uztlg7xi6iluhpd/include"
+INCLUDES+=" -I/shared/spack/opt/spack/linux-ubuntu20.04-skylake_avx512/gcc-11.1.0/intel-oneapi-mpi-2021.2.0-ibxno3uinsuyly3lrb4b5nczh6shd4du/mpi/2021.2.0/include"
+#INCLUDES+=" -I/shared/spack/opt/spack/linux-ubuntu20.04-skylake_avx512/gcc-11.1.0/openmpi-4.1.1-7katordjzvelwyhv3v37nwd3sipkupzc/include"
+
+LIBS=""
+LIBS+=" -L/shared/spack/opt/spack/linux-ubuntu20.04-skylake_avx512/gcc-11.1.0/intel-oneapi-mpi-2021.2.0-ibxno3uinsuyly3lrb4b5nczh6shd4du/mpi/2021.2.0/lib"
+LIBS+=" -lmpi"
+LIBS+=" -L/shared/spack/opt/spack/linux-ubuntu20.04-skylake_avx512/gcc-11.1.0/netcdf-fortran-4.5.3-d35hzyrebyl26non7uztlg7xi6iluhpd/lib"
+LIBS+=" -lnetcdff"
+LIBS+=" -L/shared/spack/opt/spack/linux-ubuntu20.04-skylake_avx512/gcc-11.1.0/netcdf-c-4.8.1-6so76ncnzdxppvzoibchvcb7pv4gkdci/lib"
+LIBS+=" -lnetcdf"
+
+NOOPTFLAGS='-O0'
+
+if test "x$IEEE" = x ; then
+    #  No need for IEEE-754
+    FFLAGS="$FFLAGS -fPIC -W0 -WB -convert big_endian -assume byterecl -align -mcmodel medium"
+    FOPTIM='-O2 -ipo -fp-model precise -axCORE-AVX2 -xSSE4.2 -traceback -ftz'
+    NOOPTFILES='seaice_growth.F calc_oce_mxlayer.F fizhi_lsm.F fizhi_clockstuff.F ini_parms.F'
+else
+    #  Try to follow IEEE-754
+    FFLAGS="$FFLAGS -fPIC -W0 -WB -convert big_endian -assume byterecl -noalign -mcmodel medium"
+    FOPTIM='-O0'
+fi
