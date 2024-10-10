@@ -41,11 +41,11 @@ with open(fdiag, 'r') as f0:
                     newdir = newdirtmp[0:endloc]
                     #print('making new directories: ', endloc,newdir)
                     try:
-                    	os.makedirs(newdir)
+                        os.makedirs(newdir)
                     except:
                         print(newdir + " exists") 
                     # print '====='
-		    # print(newdir+'*.??ta',  '  ', newdir+'/')
+                    # print(newdir+'*.??ta',  '  ', newdir+'/')
                     # for fl2mv in glob.glob(newdir+'*.??ta'):
                     #     shutil.move(fl2mv , newdir+'/')
 
