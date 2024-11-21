@@ -670,6 +670,16 @@ frequency(166) = 86400.0,
 timePhase(166) = 43200.0,
 fields(1,166) = 'SHIICFht',
 filename(166) = 'diags/SHIICFht_day_mean/SHIICFht_day_mean',
+#
+frequency(167) = 86400.0,
+timePhase(167) = 43200.0,
+fields(1,167) = 'VISrI_Um',
+filename(167) = 'diags/VISrI_Um_day_mean/VISrI_Um_day_mean',
+#---
+frequency(168) = 86400.0,
+timePhase(168) = 43200.0,
+fields(1,168) = 'VISrI_Vm',
+filename(168) = 'diags/VISrI_Vm_day_mean/VISrI_Vm_day_mean',
 #snapshot
 #
 frequency(180) = -86400.0,
@@ -746,6 +756,26 @@ frequency(194) = -86400.0,
 timePhase(194) = 43200.0,
 fields(1,194) = 'sIceLoad',
 filename(194) = 'diags/sIceLoad_day_snap/sIceLoad_day_snap',
+#---
+frequency(195) = -86400.0,
+timePhase(195) = 43200.0,
+fields(1,195) = 'UVEL',
+filename(195) = 'diags/UVEL_day_snap/UVEL_day_snap',
+#---
+frequency(196) = -86400.0,
+timePhase(196) = 43200.0,
+fields(1,196) = 'VVEL',
+filename(196) = 'diags/VVEL_day_snap/VVEL_day_snap',
+#---
+frequency(197) = -86400.0,
+timePhase(197) = 43200.0,
+fields(1,197) = 'UVELMASS',
+filename(197) = 'diags/UVELMASS_day_snap/UVELMASS_day_snap',
+#---
+frequency(198) = -86400.0,
+timePhase(198) = 43200.0,
+fields(1,198) = 'VVELMASS',
+filename(198) = 'diags/VVELMASS_day_snap/VVELMASS_day_snap',
 #---
   /
 #

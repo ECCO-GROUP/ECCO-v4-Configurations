@@ -542,6 +542,14 @@ frequency(166) = 2635200.0,
 fields(1,166) = 'SHIICFht',
 filename(166) = 'diags/SHIICFht_mon_mean/SHIICFht_mon_mean',
 #---
+frequency(167) = 2635200.0,
+fields(1,167) = 'VISrI_Um',
+filename(167) = 'diags/VISrI_Um_mon_mean/VISrI_Um_mon_mean',
+#---
+frequency(168) = 2635200.0,
+fields(1,168) = 'VISrI_Vm',
+filename(168) = 'diags/VISrI_Vm_mon_mean/VISrI_Vm_mon_mean',
+#---
   /
 #
 #
