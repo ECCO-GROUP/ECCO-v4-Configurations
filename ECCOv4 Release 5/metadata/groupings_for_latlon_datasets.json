@@ -35,6 +35,8 @@
    {
     "name": "atmosphere surface state",
     "fields": "EXFatemp, EXFaqh, EXFpress, EXFewind, EXFnwind, EXFwspee",
+    "field_components": {"EXFewind":{"x":"EXFuwind", "y":"EXFvwind"}, "EXFnwind":{"x":"EXFuwind", "y":"EXFvwind"}},
+    "field_orientations": {"EXFewind":"zonal", "EXFnwind":"meridional"},    
     "dataset_description": "Parameters include atmosphere temperature [EXFatemp], humidity [EXFaqh], pressure [EXFpress], meridional and zonal winds [EXFewind, EXFnwind], and total wind speed [EXFwspee].",
     "filename" : "ATM_SURFACE_TEMP_HUM_WIND_PRES",
     "dimension" : "2D",
@@ -50,6 +52,8 @@
    {
     "name" : "ocean and sea-ice surface stress",
     "fields" : "EXFtaue, EXFtaun, oceTAUE, oceTAUN",
+    "field_components": {"EXFtaue":{"x":"EXFtaux", "y":"EXFtauy"}, "EXFtaun":{"x":"EXFtaux", "y":"EXFtauy"}, "oceTAUE":{"x":"oceTAUX", "y":"oceTAUY"}, "oceTAUN":{"x":"oceTAUX", "y":"oceTAUY"}},
+    "field_orientations": {"EXFtaue":"zonal", "EXFtaun":"meridional", "oceTAUE":"zonal", "oceTAUN":"meridional"},    
     "dataset_description": "Parameters include surface wind stress at the top of the ocean and sea-ice [EXFtaue, EXFtaun] and total ocean surface stress [oceTAUE, oceTAUN] in the zonal and meridional directions. Total ocean surface stress includes contributions from winds and sea-ice drag.",
     "filename" : "OCEAN_AND_ICE_SURFACE_STRESS",
     "dimension" : "2D",
@@ -66,6 +70,8 @@
    {
     "name": "sea-ice velocity",
     "fields":"SIeice, SInice",
+    "field_components": {"SIeice":{"x":"SIuice", "y":"SIvice"}, "SInice":{"x":"SIuice", "y":"SIvice"}},
+    "field_orientations": {"SIeice":"zonal", "SInice":"meridional"},
     "dataset_description": "Parameters include sea-ice velocity in the zonal and meridional directions [SIuice, SIvice].",
     "filename" : "SEA_ICE_VELOCITY",
     "dimension" : "2D",
@@ -101,6 +107,8 @@
    {
     "name": "Gent-McWilliams ocean bolus velocity",
     "fields": "EVELSTAR, NVELSTAR, WVELSTAR",
+    "field_components": {"EVELSTAR":{"x":"UVELSTAR", "y":"VVELSTAR"}, "NVELSTAR":{"x":"UVELSTAR", "y":"VVELSTAR"}},
+    "field_orientations": {"EVELSTAR":"zonal", "NVELSTAR":"meridional"},
     "dataset_description" : "Parameters include the Gent-McWilliams ocean bolus velocity in the zonal, meridional, and vertical directions [EVELSTAR, NVELSTAR, WVELSTAR].",
     "filename" : "OCEAN_BOLUS_VELOCITY",
     "dimension" : "3D",

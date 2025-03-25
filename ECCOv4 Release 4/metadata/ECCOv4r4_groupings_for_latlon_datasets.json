@@ -36,6 +36,8 @@
    {
     "name": "atmosphere surface temperature, humidity, wind, and pressure",
     "fields": "EXFatemp, EXFaqh, EXFewind, EXFnwind, EXFwspee, EXFpress",
+    "field_components": {"EXFewind":{"x":"EXFuwind", "y":"EXFvwind"}, "EXFnwind":{"x":"EXFuwind", "y":"EXFvwind"}},
+    "field_orientations": {"EXFewind":"zonal", "EXFnwind":"meridional"},      
     "product": "latlon",
     "filename" : "ATM_SURFACE_TEMP_HUM_WIND_PRES",
     "dimension" : "2D",
@@ -52,6 +54,8 @@
    {
     "name" : "ocean and sea-ice surface stress",
     "fields" : "EXFtaue, EXFtaun, oceTAUE, oceTAUN",
+    "field_components": {"EXFtaue":{"x":"EXFtaux", "y":"EXFtauy"}, "EXFtaun":{"x":"EXFtaux", "y":"EXFtauy"}, "oceTAUE":{"x":"oceTAUX", "y":"oceTAUY"}, "oceTAUN":{"x":"oceTAUX", "y":"oceTAUY"}},
+    "field_orientations": {"EXFtaue":"zonal", "EXFtaun":"meridional", "oceTAUE":"zonal", "oceTAUN":"meridional"},    
     "product": "latlon",
     "filename" : "OCEAN_AND_ICE_SURFACE_STRESS",
     "dimension" : "2D",
@@ -68,6 +72,8 @@
    {
     "name": "sea-ice velocity",
     "fields":"SIeice, SInice",
+    "field_components": {"SIeice":{"x":"SIuice", "y":"SIvice"}, "SInice":{"x":"SIuice", "y":"SIvice"}},
+    "field_orientations": {"SIeice":"zonal", "SInice":"meridional"},
     "product": "latlon",
     "filename" : "SEA_ICE_VELOCITY",
     "dimension" : "2D",
@@ -103,6 +109,8 @@
    {
     "name": "Gent-McWilliams ocean bolus velocity",
     "fields": "EVELSTAR, NVELSTAR, WVELSTAR",
+    "field_components": {"EVELSTAR":{"x":"UVELSTAR", "y":"VVELSTAR"}, "NVELSTAR":{"x":"UVELSTAR", "y":"VVELSTAR"}},
+    "field_orientations": {"EVELSTAR":"zonal", "NVELSTAR":"meridional"},
     "product": "latlon",
     "filename" : "OCEAN_BOLUS_VELOCITY",
     "dimension" : "3D",
