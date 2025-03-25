@@ -112,6 +112,7 @@
    {
       "name": "XC_bnds",
       "long_name": "longitudes of tracer grid cell corners",
+      "units": "degrees_east",
       "comment": "Bounds array follows CF conventions. XC_bnds[i,j,0] = 'southwest' corner (j-1, i-1), XC_bnds[i,j,1] = 'southeast' corner (j-1, i+1), XC_bnds[i,j,2] = 'northeast' corner (j+1, i+1), XC_bnds[i,j,3]  = 'northwest' corner (j+1, i-1). Note: 'southwest', 'southeast', northwest', and 'northeast' do not correspond to geographic orientation but are used for convenience to describe the computational grid. See MITgcm dcoumentation for details.",
       "grid_dimension": "2D 3D",
       "coverage_content_type": "coordinate"
@@ -119,6 +120,7 @@
    {
       "name": "YC_bnds",
       "long_name": "latitudes of tracer grid cell corners",
+      "units": "degrees_north",
       "comment": "Bounds array follows CF conventions. YC_bnds[i,j,0] = 'southwest' corner (j-1, i-1), YC_bnds[i,j,1] = 'southeast' corner (j-1, i+1), YC_bnds[i,j,2] = 'northeast' corner (j+1, i+1), YC_bnds[i,j,3]  = 'northwest' corner (j+1, i-1). Note: 'southwest', 'southeast', northwest', and 'northeast' do not correspond to geographic orientation but are used for convenience to describe the computational grid. See MITgcm dcoumentation for details.",
       "grid_dimension": "2D 3D",
       "coverage_content_type": "coordinate"
