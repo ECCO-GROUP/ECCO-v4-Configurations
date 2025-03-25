@@ -92,15 +92,13 @@
    {
     "name": "ocean velocity",
     "fields": "EVEL, NVEL, WVELMASS",
+    "field_components": {"EVEL":{"x":"UVEL", "y":"VVEL"}, "NVEL":{"x":"UVEL", "y":"VVEL"}},
+    "field_orientations": {"EVEL":"zonal", "NVEL":"meridional"},
     "product": "latlon",
     "variable_rename" : "WVELMASS:WVEL",
     "filename" : "OCEAN_VELOCITY",
     "dimension" : "3D",
-    "frequency" : "AVG_DAY, AVG_MON",
-    "vector_inputs_old": "UVEL,VVEL:EVEL,NVEL",
-    "vector_inputs": {"UVEL":["EVEL", "NVEL"], "VVEL":["EVEL", "NVEL"]},
-    "vector_outputs_old": "EVEL:EAST,NVEL:NORTH",
-    "vector_outputs": {"EVEL":"EAST", "NVEL":"NORTH"}
+    "frequency" : "AVG_DAY, AVG_MON"
    },
    {
     "name": "Gent-McWilliams ocean bolus velocity",
