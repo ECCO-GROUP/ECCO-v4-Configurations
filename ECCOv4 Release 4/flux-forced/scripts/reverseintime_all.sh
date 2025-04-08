@@ -12,8 +12,8 @@
 # 227640 ==> 168 
 # 227808 ==> 0
 
-#Usage: sh -xv reverseintime_all.sh" 
-#Usage: or sh -xv reverseintime_all.sh XYZ,"
+#Usage: bash -xv reverseintime_all.sh" 
+#Usage: or bash -xv reverseintime_all.sh XYZ,"
 #Usage:  where XYZ is a different time step for one of the 7-day mean file." 
 
 if [ $# -eq 0 ]; then
@@ -41,7 +41,7 @@ if [ ! -d "${dirout}" ]; then
 fi
 
 cd ${dirout}
-sh -x ../../reverseintime.sh ${var1} ${dirin}  0 ${maxtimestep}
+bash -x ../../reverseintime.sh ${var1} ${dirin}  0 ${maxtimestep}
 cd ..
 done
 
