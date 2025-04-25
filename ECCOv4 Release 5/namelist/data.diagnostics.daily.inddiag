@@ -706,11 +706,13 @@ frequency(184) = -86400.0,
 timePhase(184) = 43200.0,
 fields(1,184) = 'OBP',
 filename(184) = 'diags/OBP_day_snap/OBP_day_snap',
+fileFlags(184) = 'D       ',
 #
 frequency(185) = -86400.0,
 timePhase(185) = 43200.0,
 fields(1,185) = 'OBPGMAP',
 filename(185) = 'diags/OBPGMAP_day_snap/OBPGMAP_day_snap',
+fileFlags(185) = 'D       ',
 #
 frequency(186) = -86400.0,
 timePhase(186) = 43200.0,
