@@ -382,7 +382,7 @@ c---------
      &        gencost_barfile(kgen)(1:13).EQ.'m_boxmean_obp') then
            if (gencost_barfile(kgen)(1:17).EQ.'m_boxmean_eta_dyn') then
             tmpfld=m_eta_dyn(i,j,bi,bj)
-           else if (gencost_barfile(kgen)(1:13).EQ.'m_boxmean_eta_dyn')
+           else if (gencost_barfile(kgen)(1:13).EQ.'m_boxmean_eta')
      &      then
             tmpfld=m_eta(i,j,bi,bj)
            else if (gencost_barfile(kgen)(1:17).EQ.'m_boxmean_obpgmap')
