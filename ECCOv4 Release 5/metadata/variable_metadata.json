@@ -481,7 +481,7 @@
       "direction": " >0 increases horizontal velocity in the +x direction (UVEL)",
       "GCMD_keywords" : "EARTH SCIENCE > OCEANS > OCEAN WINDS > WIND STRESS",
       "grid_dimension": "2D",
-      "grid_location": "u",
+      "grid_location": "c",
       "coverage_content_type": "modelResult"
    },
    {
@@ -494,7 +494,7 @@
       "direction": " >0 increases horizontal velocity in the +y direction (VVEL)",
       "GCMD_keywords" : "EARTH SCIENCE > OCEANS > OCEAN WINDS > WIND STRESS",
       "grid_dimension": "2D",
-      "grid_location": "v",
+      "grid_location": "c",
       "coverage_content_type": "modelResult"
    },
    {
@@ -506,7 +506,7 @@
       "comments_2": "Note: ECCO V4r5 is forced with wind stress (see EXFtaux) not vector winds converted to wind stress using bulk formulae. EXFuwind is calculated by converting wind stress to vector wind using bulk formulae.",
       "GCMD_keywords" : "EARTH SCIENCE > OCEANS > OCEAN WINDS > SURFACE WINDS",
       "grid_dimension": "2D",
-      "grid_location": "u",
+      "grid_location": "c",
       "coverage_content_type": "modelResult"
    },
    {
@@ -518,7 +518,7 @@
       "comments_2": "Note: ECCO V4r5 is forced with wind stress (see EXFtauy) not vector winds converted to wind stress using bulk formulae. EXFvwind is calculated by converting wind stress to vector wind using bulk formulae.",
       "GCMD_keywords" : "EARTH SCIENCE > OCEANS > OCEAN WINDS > SURFACE WINDS",
       "grid_dimension": "2D",
-      "grid_location": "v",
+      "grid_location": "c",
       "coverage_content_type": "modelResult"
    },
    {
