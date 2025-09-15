@@ -7,7 +7,7 @@ DFrI_TH:
 and is easy to process implicitly (vertical flux function of vertical gradient)
 like any vertical diffusivity contribution; this is the case when implicitDiffusion=.TRUE.
 
-*. with useGMRedi= True, the 3rd component (from Kwz) is added to "DFrE_???" when using implicitDiffusion=.True. (implictDiffusion = True with V4r4)
+*. with useGMRedi= True, the 3rd component (from Kwz) is added to "DFrE_???" when using implicitDiffusion=.True. (implictDiffusion = True with V4r5)
 
 DFrE_TH: 
 ================
@@ -23,6 +23,6 @@ evaluated explicitly (i.e., forward in time)
 * These terms (Kwx & Kwy) are due to the Redi tensor but are increased by some GM 
 contributions when using the Skew-flux form (GM_AdvForm = .FALSE., i.e, the default).
 
-* with useGMRedi= True, the 3rd component (from Kwz) is added to "DFrE_???" when using implicitDiffusion=.False. (implictDiffusion = True with V4r4)
+* with useGMRedi= True, the 3rd component (from Kwz) is added to "DFrE_???" when using implicitDiffusion=.False. (implictDiffusion = True with V4r5)
 
 

@@ -1,9 +1,9 @@
 
 
-ECCO V4r4 Dataset Description Template
+ECCO V4r5 Dataset Description Template
 ======================================
 
-This dataset provides {time average} {parameter names} {grid variation} from the {release name}. {extra parameter description} {ECCO V4r4 Description}
+This dataset provides {time average} {parameter names} {grid variation} from the {release name}. {extra parameter description} {ECCO V4r5 Description}
 
 
 
@@ -25,12 +25,12 @@ This dataset provides {time average} {parameter names} {grid variation} from the
 		** leave blank for 1D fields
 
 
-{release name} = "ECCO Version 4 Release 4 (V4r4) ocean and sea-ice state estimate"
+{release name} = "ECCO Version 4 Release 4 (V4r5) ocean and sea-ice state estimate"
 
 
-{ECCO V4r4 Description} = ** note in V4r4 netcdf files I used 'of the 1-degree global' **
+{ECCO V4r5 Description} = ** note in V4r5 netcdf files I used 'of the 1-degree global' **
 
-Estimating the Circulation and Climate of the Ocean (ECCO) state estimates are dynamically and kinematically-consistent reconstructions of the three-dimensional, time-evolving ocean, sea-ice, and surface atmospheric states. ECCO V4r4 is a free-running solution of a global, nominally 1-degree configuration of the MIT general circulation model (MITgcm) that has been fit to observations in a least-squares sense. Observational data constraints used in V4r4 include sea surface height (SSH) from satellite altimeters [ERS-1/2, TOPEX/Poseidon, GFO, ENVISAT, Jason-1,2,3, CryoSat-2, and SARAL/AltiKa]; sea surface temperature (SST) from satellite radiometers [AVHRR], sea surface salinity (SSS) from the Aquarius satellite radiometer/scatterometer, ocean bottom pressure (OBP) from the GRACE satellite gravimeter; sea ice concentration from satellite radiometers [SSM/I and SSMIS], and in-situ ocean temperature and salinity measured with conductivity-temperature-depth (CTD) sensors and expendable bathythermographs (XBTs) from several programs [e.g., WOCE, GO-SHIP, Argo, and others] and platforms [e.g., research vessels, gliders, moorings, ice-tethered profilers, and instrumented pinnipeds]. V4r4 covers the period 1992-01-01T12:00:00 to 2018-01-01T00:00:00.
+Estimating the Circulation and Climate of the Ocean (ECCO) state estimates are dynamically and kinematically-consistent reconstructions of the three-dimensional, time-evolving ocean, sea-ice, and surface atmospheric states. ECCO V4r5 is a free-running solution of a global, nominally 1-degree configuration of the MIT general circulation model (MITgcm) that has been fit to observations in a least-squares sense. Observational data constraints used in V4r5 include sea surface height (SSH) from satellite altimeters [ERS-1/2, TOPEX/Poseidon, GFO, ENVISAT, Jason-1,2,3, CryoSat-2, and SARAL/AltiKa]; sea surface temperature (SST) from satellite radiometers [AVHRR], sea surface salinity (SSS) from the Aquarius satellite radiometer/scatterometer, ocean bottom pressure (OBP) from the GRACE satellite gravimeter; sea-ice concentration from satellite radiometers [SSM/I and SSMIS], and in-situ ocean temperature and salinity measured with conductivity-temperature-depth (CTD) sensors and expendable bathythermographs (XBTs) from several programs [e.g., WOCE, GO-SHIP, Argo, and others] and platforms [e.g., research vessels, gliders, moorings, ice-tethered profilers, and instrumented pinnipeds]. V4r5 covers the period 1992-01-01T12:00:00 to 2020-01-01T00:00:00.
 
 
 EXAMPLES:
@@ -38,18 +38,18 @@ EXAMPLES:
 
 2D and 3D fields
 ----------------
-This dataset provides monthly-averaged ocean mixed layer depth on the lat-lon-cap 90 (llc90) native model grid from the ECCO Version 4 Release 4 (V4r4) ocean and sea-ice state estimate. 
+This dataset provides monthly-averaged ocean mixed layer depth on the lat-lon-cap 90 (llc90) native model grid from the ECCO Version 4 Release 4 (V4r5) ocean and sea-ice state estimate. 
 
-This dataset provides daily-averaged ocean bottom pressure interpolated to a regular 0.5-degree grid from the ECCO Version 4 Release 4 (V4r4) ocean and sea-ice state estimate.
+This dataset provides daily-averaged ocean bottom pressure interpolated to a regular 0.5-degree grid from the ECCO Version 4 Release 4 (V4r5) ocean and sea-ice state estimate.
 
-This dataset provides instantaneous ocean bottom pressure and model ocean bottom pressure anomaly on the lat-lon-cap 90 (llc90) native model grid from the ECCO Version 4 Release 4 (V4r4) ocean and sea-ice state estimate. 
+This dataset provides instantaneous ocean bottom pressure and model ocean bottom pressure anomaly on the lat-lon-cap 90 (llc90) native model grid from the ECCO Version 4 Release 4 (V4r5) ocean and sea-ice state estimate. 
 
 1-D fields
 ----------
-This dataset provides daily-averaged global mean sea level from the ECCO Version 4 Release 4 (V4r4) ocean and sea-ice state estimate. 
+This dataset provides daily-averaged global mean sea level from the ECCO Version 4 Release 4 (V4r5) ocean and sea-ice state estimate. 
 
-This dataset provides monthly-averaged global mean sea level from the ECCO Version 4 Release 4 (V4r4) ocean and sea-ice state estimate.
+This dataset provides monthly-averaged global mean sea level from the ECCO Version 4 Release 4 (V4r5) ocean and sea-ice state estimate.
 
 Extra parameter description
 ---------------------------
-This dataset provides geometric parameters for the lat-lon-cap 90 (llc90) native model grid from the ECCO Version 4 Release 4 (V4r4) ocean and sea-ice state estimate. Parameters include grid cell face areas and side lengths; horizontal and vertical coordinates of grid cell centers and corners; horizontal grid rotation angles; and domain geometry including bathymetry and land/ocean masks.
+This dataset provides geometric parameters for the lat-lon-cap 90 (llc90) native model grid from the ECCO Version 4 Release 5 (V4r5) ocean and sea-ice state estimate. Parameters include grid cell face areas and side lengths; horizontal and vertical coordinates of grid cell centers and corners; horizontal grid rotation angles; and domain geometry including bathymetry and land/ocean masks.
