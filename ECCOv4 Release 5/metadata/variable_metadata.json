@@ -1043,7 +1043,7 @@
       "name": "UVELMASS",
       "long_name": "Horizontal velocity in the model +x direction per unit area of the grid cell 'u' face",
       "units": "m s-1",
-      "comments_1": "Horizontal velocity in the model +x direction averaged over the area of the tracer grid cell 'u' face on the native model grid ('u' grid cell face area = drF dyG). Accounts for partial cells (hFacW < 1) and for time-varying grid cell thickness (z* coordinate system). Volume flux in +x = UVELMASS drF dyG.",
+      "comments_1": "Horizontal velocity in the model +x direction averaged over the time-varying area of the tracer grid cell 'u' face on the native model grid. Accounts for partial cells (hFacW < 1) and for time-varying grid cell thickness (z* coordinate system). The volume flux in +x = UVELMASS drF dyG.",
       "comments_2": "Note: in the Arakawa-C grid, horizontal velocities are staggered relative to the tracer cells. Positive UVELMASS(i,j,k) corresponds to +x fluxes through the 'u' face of the tracer cell at (i,j,k). UVELMASS can be used for volume flux calculations because it accounts for the grid cell thicknesses variations in the +x direction (hFacW) with time (z* coordinate system). Also, the model +x direction does not necessarily correspond to the geographical east-west direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles. See VVELMASS and WVELMASS",
       "direction": ">0 increases volume",
       "GCMD_keywords" : "EARTH SCIENCE > OCEANS > OCEAN CIRCULATION, EARTH SCIENCE > OCEANS > OCEAN CIRCULATION > OCEAN CURRENTS",
@@ -1054,8 +1054,8 @@
    {
       "name": "VVELMASS",
       "long_name": "Horizontal velocity in the model +y direction per unit area of the grid cell 'v' face",
-      "units": "m s-1 m3 m-3",
-      "comments_1": "Horizontal velocity in the model +y direction averaged over the area of the tracer grid cell 'v' face on the native model grid ('v' grid cell face area = drF dxG). Accounts for partial cells (hFacS < 1) and for time-varying grid cell thickness (z* coordinate system). Volume flux in +y = VVELMASS drF dxG.",
+      "units": "m s-1",
+      "comments_1": "Horizontal velocity in the model +y direction averaged over the time-varying area of the tracer grid cell 'v' face on the native model grid. Accounts for partial cells (hFacS < 1) and for time-varying grid cell thickness (z* coordinate system). The volume flux in +y = VVELMASS drF dxG.",
       "comments_2": "Note: in the Arakawa-C grid, horizontal velocities are staggered relative to the tracer cells. Positive VVELMASS(i,j,k) corresponds to +y fluxes through the 'v' face of the tracer cell at (i,j,k). VVELMASS can be used for volume flux calculations because it accounts for grid cell thicknesses variations in the +y direction (hFacS) with time (z* coordinate system). Also, the model +y direction does not necessarily correspond to the geographical north-south direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles. See UVELMASS and WVELMASS.",
       "direction": ">0 increases volume",
       "GCMD_keywords" : "EARTH SCIENCE > OCEANS > OCEAN CIRCULATION, EARTH SCIENCE > OCEANS > OCEAN CIRCULATION > OCEAN CURRENTS",
@@ -1066,7 +1066,7 @@
    },
    {
       "name": "WVELMASS",
-      "long_name": "Grid cell face-averaged vertical velocity in the model +z direction.",
+      "long_name": "Vertical velocity in the model +z direction per unit area of the grid cell 'w' face'.",
       "units": "m s-1",
       "standard_name": "upward_sea_water_velocity",
       "comments_1": "Vertical velocity in the +z direction at the top 'w' face of the tracer cell on the native model grid. Volume flux in +z = WVELMASS drA.",
