@@ -132,7 +132,7 @@
     "name": "ocean three-dimensional volume fluxes",
     "fields": "UVELMASS, VVELMASS, WVELMASS",
     "dataset_description" : "Parameters include the three dimensional ocean volume fluxes in the model x, y, and z-directions. Volume fluxes are calculated by multiplying ocean velocities with wet grid cell areas (i.e., horizontal fluxes account for partial cells and the time-varying vertical coordinate).",
-    "filename" : "OCEAN_VOLUME_FLUX",
+    "filename" : "OCEAN_3D_VOLUME_FLUX",
     "dimension" : "3D",
     "frequency" : "AVG_DAY, AVG_MON"
    },
@@ -140,7 +140,7 @@
     "name": "ocean three-dimensional potential temperature fluxes",
     "fields":"ADVx_TH, DFxE_TH, ADVy_TH, DFyE_TH, ADVr_TH, DFrE_TH, DFrI_TH",
     "dataset_description" : "Parameters include the three dimensional advective and diffusive ocean potential temperature fluxes in the model x, y, and z-directions. Horizontal fluxes account for partial cells and the time-varying vertical coordinate.",
-    "filename" : "OCEAN_TEMPERATURE_FLUX",
+    "filename" : "OCEAN_3D_TEMPERATURE_FLUX",
     "dimension" : "3D",
     "frequency" : "AVG_DAY, AVG_MON"
    },
@@ -148,7 +148,7 @@
     "name": "ocean three-dimensional salinity fluxes",
     "fields":"ADVx_SLT, DFxE_SLT, ADVy_SLT, DFyE_SLT, ADVr_SLT, DFrE_SLT, DFrI_SLT, oceSPtnd",
     "dataset_description" : "Parameters include the three dimensional advective and diffusive ocean salinity fluxes in the model x, y, and z-directions. Horizontal fluxes account for partial cells and the time-varying vertical coordinate.",
-    "filename" : "OCEAN_SALINITY_FLUX",
+    "filename" : "OCEAN_3D_SALINITY_FLUX",
     "dimension" : "3D",
     "frequency" : "AVG_DAY, AVG_MON"
    },
