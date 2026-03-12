@@ -275,7 +275,7 @@ ecco_production_filestr_grid_label:
 ## Filename string of the PODAAC metadata to use (must be a CSV). Assumes file exists in /processing/metadata/{ecco_version}/
 ## String
 # gjm comment: until a better convention is established:
-podaac_metadata_filename: 'PODAAC_dataset_table_V4r5_20230103.csv'
+podaac_metadata_filename: 'PODAAC_dataset_table_V4r6_prelim.csv'
 #
 ## Name of processing code file to import. Assumes it has a function named "generate_netcdfs" which
 ## accepts the payload defined in master_script.py
