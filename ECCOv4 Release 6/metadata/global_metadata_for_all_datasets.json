@@ -134,7 +134,7 @@
    {
       "name": "history",
       "type": "s",
-      "value": "ECCO V4r6, preliminary granule generation test 2026-03-12"
+      "value": "REPLACED_BY_EDP_CONFIG_YAML"
    },
    {
       "name": "id",
@@ -144,7 +144,7 @@
    {
       "name": "identifier_product_doi",
       "type": "s",
-      "value": "TBD_DOI"   
+      "value": "TBD_BY_GRANULE"   
    }
    {
       "name": "identifier_product_doi_authority",
@@ -199,27 +199,27 @@
    {
       "name": "product_name",
       "type": "s",
-      "value": "TBD_FILENAME"
+      "value": "TBD_BY_GRANULE"
    },
    {
       "name": "product_time_coverage_end",
       "type": "s",
-      "value": "2020-01-01T00:00:00"
+      "value": "REPLACED_BY_EDP_CONFIG_YAML"
    },
    {
       "name": "product_time_coverage_start",
       "type": "s",
-      "value": "1992-01-01T12:00:00"
+      "value": "REPLACED_BY_EDP_CONFIG_YAML"
    },
    {
       "name": "product_version",
       "type": "s",
-      "value": "Version 4, Release 5"
+      "value": "REPLACED_BY_EDP_CONFIG_YAML"
    },
    {
       "name": "program",
       "type": "s",
-      "value": "NASA Physical Oceanography; Cryosphere; and Modeling, Analysis, and Prediction (MAP)"
+      "value": "NASA Integrated Modeling Virtual Institute (IMVI), Physical Oceanography, and Cryosphere"
    },
    {
       "name": "project",
@@ -264,7 +264,7 @@
    {
       "name": "source",
       "type": "s",
-      "value": "ECCO V4 state estimates are produced by fitting a free-running solution of the MITgcm to satellite and in situ observational data in a least squares sense using the adjoint method."
+      "value": "REPLACED_BY_EDP_CONFIG_YAML"
    },
    {
       "name": "standard_name_vocabulary",
@@ -274,26 +274,26 @@
    {
       "name": "project_summary",
       "type": "s",
-      "value": "Estimating the Circulation and Climate of the Ocean (ECCO) state estimates are dynamically and kinematically-consistent reconstructions of the three-dimensional, time-evolving ocean, sea-ice, and surface atmospheric states. ECCO V4r6 is a free-running solution of a global, nominally 1-degree configuration of the MIT general circulation model (MITgcm) that has been fit to observations in a least-squares sense. Observational data constraints used in V4r6 include sea surface height (SSH) from satellite altimeters [ERS-1/2, TOPEX/Poseidon, GFO, ENVISAT, Jason-1,2,3, CryoSat-2, and SARAL/AltiKa]; sea surface temperature (SST) from satellite radiometers [AVHRR], sea surface salinity (SSS) from the Aquarius satellite radiometer/scatterometer, ocean bottom pressure (OBP) from the GRACE satellite gravimeter; sea-ice concentration from satellite radiometers [SSM/I and SSMIS], and in-situ ocean temperature and salinity measured with conductivity-temperature-depth (CTD) sensors and expendable bathythermographs (XBTs) from several programs [e.g., WOCE, GO-SHIP, Argo, and others] and platforms [e.g., research vessels, gliders, moorings, ice-tethered profilers, and instrumented pinnipeds]. V4r6 covers the period 1992-01-01T12:00:00 to 2026-01-01T00:00:00."
+      "value": "TBD_BY_GRANULE"
    },
    {
       "name": "time_coverage_end",
       "type": "s",
-      "value": "TBD_DATASET"
+      "value": "TBD_BY_GRANULE"
    },
    {
       "name": "time_coverage_start",
       "type": "s",
-      "value": "TBD_DATASET"
+      "value": "TBD_BY_GRANULE"
    },
    {
       "name": "title",
       "type": "s",
-      "value": "TBD_DATASET"
+      "value": "TBD_BY_GRANULE"
    },
    {
       "name": "uuid",
       "type": "s",
-      "value": "TBD_DATASET"
+      "value": "TBD_BY_GRANULE"
    }
 ]
