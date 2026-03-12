@@ -1,0 +1,204 @@
+2024-04-04
+
+Instructions on how to reproduce ECCO Version 4 Release 5 (V4r5) 
+ extension 01/2020-09/2022. GMSL is being corrected on the fly.
+
+1. Get the code 
+mkdir WORKINGDIR
+cd WORKINGDIR
+
+git clone https://github.com/MITgcm/MITgcm.git -b checkpoint68g
+
+cd MITgcm
+mkdir -p ECCOV4/release5_ext
+cd ECCOV4/release5_ext
+git clone https://github.com/ECCO-GROUP/ECCO-v4-Configurations.git
+mv ECCO-v4-Configurations/ECCOv4\ Release\ 5/code .
+mv ECCO-v4-Configurations/ECCOv4\ Release\ 5/namelist .
+
+# add/link a new package slr_corr (created by Michael Wood) to correct GMSL on the fly
+cd ../../pkg
+ln -s ../ECCOV4/release5_ext/ECCO-v4-Configurations/ECCOv4\ Release\ 5/extension/code/slr_corr .
+cd ../ECCOV4/release5_ext
+# a few routines related to the slr_corr package 
+cp -p ECCO-v4-Configurations/ECCOv4\ Release\ 5/extension/code/* code/
+
+2. Get the input files from ECCO Drive
+Note: Skip to Step 3 if you are reproducing V4r5 extension on NASA NAS Pleiades, 
+as the input files are already available on Pleiades.
+The input files can also be accessed on ECCO Drive at:
+https://ecco.jpl.nasa.gov/drive/files/Version4/Release5/other/staging/release5_ext/input/.
+Use the following wget command to download the input files:
+wget --user=YOURUSERNAME --password=YOURPASSWORD -r -nc -np -nH --cut-dirs=7 \
+https://ecco.jpl.nasa.gov/drive/files/Version4/Release5/other/staging/release5_ext/input 
+(For more instructions on using wget to download files from ECCO Drive, visit 
+https://ecco-group.org/docs/wget_download_multiple_files_and_directories.pdf) 
+
+3. Compile
+module purge
+module load comp-intel/2020.4.304
+module load mpi-hpe/mpt
+module load hdf4/4.2.12
+module load hdf5/1.8.18_mpt
+module load netcdf/4.4.1.1_mpt
+module list
+
+mkdir build
+cd build
+../../../tools/genmake2 -mods=../code -optfile=../code/linux_amd64_ifort+mpi_ice_nas.20220310 -mpi
+make depend
+make all
+cd ..
+
+4. Run 
+Put one of the following two example scripts into a file, e.g., run_script.csh and qsub run_script.csh.
+4a is an example run script for using existing input files on Pleiades (i.e., skip Step 2), while
+4b is for using input files downloaded from ECCO Drive. The two run scripts are essentially
+the same; the main difference reflects the different directory structures.
+
+4a. Example run script for using existing input files on Pleiades  
+#PBS -S /bin/csh
+#PBS -l select=3:ncpus=40:model=sky_ele
+#PBS -l walltime=48:00:00
+#PBS -j oe
+#PBS -o ./
+#PBS -m bea
+
+limit stacksize unlimited
+module purge
+module load comp-intel/2020.4.304
+module load mpi-hpe/mpt
+module load hdf4/4.2.12
+module load hdf5/1.8.18_mpt
+module load netcdf/4.4.1.1_mpt
+module load python3/3.9.12
+module list
+
+setenv FORT_BUFFERED 1
+setenv MPI_BUFS_PER_PROC 128
+setenv MPI_DISPLAY_SETTINGS
+setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${HOME}/lib
+unsetenv MPI_IB_RECV_MSGS
+unsetenv MPI_UD_RECV_MSGS
+
+set nprocs  = 113
+set basedir = ./
+set inputdir = /nobackup/owang/runs/V4r5/PO.DAAC/ancillary_data/ancillary_data_orig/
+set inputdir_ext = /nobackup/owang/runs/V4r5/V4r5_ext_2020_2022_Sep/reproduction/
+
+if ( -d ${basedir}/run) then
+ echo 'Directory "run" exists.'
+ echo 'Please rename/remove it and re-submit the job.'
+ exit 1
+endif
+
+mkdir ${basedir}/run
+cd ${basedir}/run
+
+# link the name list files used in extension first and then those used in V4r5. DO NOT CHANGE THE ORDER
+ln -s ${inputdir_ext}/namelist/* .
+ln -s ../namelist/* .
+
+# link other input files
+ln -s ${inputdir}/input_init/* .
+ln -s ${inputdir}/misc/tools/mkdir_subdir_diags.py .
+ln -s ${inputdir}/data_constraints/data_error/*/* .
+ln -s ${inputdir}/data_constraints/*/* .
+ln -s ${inputdir}/input_forcing/other/*.bin .
+ln -s ${inputdir}/input_forcing/control_weights/* .
+ln -s ${inputdir}/native_grid_files/tile*.mitgrid .
+
+# use the pickup files from the end of Year 2019
+unlink pickup.0000000001.data
+unlink pickup_ggl90.0000000001.data
+unlink pickup_seaice.0000000001.data
+
+ln -s ${inputdir_ext}/input_init/pickup.0000245436.data pickup.0000000001.data
+ln -s ${inputdir_ext}/input_init/pickup_ggl90.0000245436.data pickup_ggl90.0000000001.data
+ln -s ${inputdir_ext}/input_init/pickup_seaice.0000245436.data pickup_seaice.0000000001.data
+
+# also link observation-based GMSL that is needed for on-the-fly GMSL correction
+ln -s ${inputdir_ext}/input_init/GMSL_TPJAOS_5.1_202001_GIAapplied_meter_60d_smoothed_v4_fitv2.bin .
+
+# link merra2 forcing
+ln -s /nobackup/hzhang1/forcing/merra2/SLP*_???? .
+# link mean adjusted merra2 foring
+ln -s /nobackup/owang/ECCO/input/forcing/merra2/adj2v4r4mean/*_adj2v4r4_???? .
+
+python mkdir_subdir_diags.py
+cp -p ../build/mitgcmuv .
+mpiexec -np ${nprocs} /u/scicon/tools/bin/mbind.x ./mitgcmuv
+
+4b. Example run script for using input files downloaded from ECCO Drive
+#PBS -S /bin/csh
+#PBS -l select=3:ncpus=40:model=sky_ele
+#PBS -l walltime=48:00:00
+#PBS -j oe
+#PBS -o ./
+#PBS -m bea
+
+limit stacksize unlimited
+module purge
+module load comp-intel/2020.4.304
+module load mpi-hpe/mpt
+module load hdf4/4.2.12
+module load hdf5/1.8.18_mpt
+module load netcdf/4.4.1.1_mpt
+module load python3/3.9.12
+module list
+
+setenv FORT_BUFFERED 1
+setenv MPI_BUFS_PER_PROC 128
+setenv MPI_DISPLAY_SETTINGS
+setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${HOME}/lib
+unsetenv MPI_IB_RECV_MSGS
+unsetenv MPI_UD_RECV_MSGS
+
+set nprocs  = 113
+set basedir = ./
+set inputdir = ../input/ancillary_data_orig/
+set inputdir_ext = ../input/
+
+if ( -d ${basedir}/run) then
+ echo 'Directory "run" exists.'
+ echo 'Please rename/remove it and re-submit the job.'
+ exit 1
+endif
+
+mkdir ${basedir}/run
+cd ${basedir}/run
+
+# link the name list files used in extension first and then those used in V4r5. DO NOT CHANGE THE ORDER
+ln -s ${inputdir_ext}/namelist/* .
+ln -s ../namelist/* .
+
+# link other input files
+ln -s ${inputdir}/input_init/* .
+ln -s ${inputdir}/misc/tools/mkdir_subdir_diags.py .
+ln -s ${inputdir}/data_constraints/data_error/*/* .
+ln -s ${inputdir}/data_constraints/*/* .
+ln -s ${inputdir}/input_forcing/other/*.bin .
+ln -s ${inputdir}/input_forcing/control_weights/* .
+ln -s ${inputdir}/native_grid_files/tile*.mitgrid .
+
+# use the pickup files from the end of Year 2019
+unlink pickup.0000000001.data
+unlink pickup_ggl90.0000000001.data
+unlink pickup_seaice.0000000001.data
+
+ln -s ${inputdir_ext}/input_init/pickup.0000245436.data pickup.0000000001.data
+ln -s ${inputdir_ext}/input_init/pickup_ggl90.0000245436.data pickup_ggl90.0000000001.data
+ln -s ${inputdir_ext}/input_init/pickup_seaice.0000245436.data pickup_seaice.0000000001.data
+
+# also link observation-based GMSL that is needed for on-the-fly GMSL correction
+ln -s ${inputdir_ext}/input_init/GMSL_TPJAOS_5.1_202001_GIAapplied_meter_60d_smoothed_v4_fitv2.bin .
+
+# link merra2 forcing
+ln -s ${inputdir_ext}/input_forcing/merra2/SLP*_???? .
+# link mean adjusted merra2 foring
+ln -s ${inputdir_ext}/input_forcing/merra2/adj2v4r4mean/*_adj2v4r4_???? .
+
+python mkdir_subdir_diags.py
+cp -p ../build/mitgcmuv .
+mpiexec -np ${nprocs} /u/scicon/tools/bin/mbind.x ./mitgcmuv
+

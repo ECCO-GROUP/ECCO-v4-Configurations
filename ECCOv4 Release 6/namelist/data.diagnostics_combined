@@ -1,0 +1,1523 @@
+ &diagnostics_list 
+    dumpatlast = .TRUE., 
+
+#---
+frequency(1) = 86400.0,
+timePhase(1) = 43200.0,
+fields(1,1)  = 'SSH',
+filename(1)  = 'diags/SSH_day_mean/SSH_day_mean',
+
+#---
+frequency(2) = 86400.0,
+timePhase(2) = 43200.0,
+fields(1,2)  = 'SSHIBC',
+filename(2)  = 'diags/SSHIBC_day_mean/SSHIBC_day_mean',
+
+#---
+frequency(3) = 86400.0,
+timePhase(3) = 43200.0,
+fields(1,3)  = 'SSHNOIBC',
+filename(3)  = 'diags/SSHNOIBC_day_mean/SSHNOIBC_day_mean',
+
+#---
+frequency(4) = 86400.0,
+timePhase(4) = 43200.0,
+fields(1,4)  = 'ETAN',
+filename(4)  = 'diags/ETAN_day_mean/ETAN_day_mean',
+
+#---
+frequency(5) = 86400.0,
+timePhase(5) = 43200.0,
+fields(1,5)  = 'OBP',
+filename(5)  = 'diags/OBP_day_mean/OBP_day_mean',
+fileFlags(5) = 'D       ',
+
+#---
+frequency(6) = 86400.0,
+timePhase(6) = 43200.0,
+fields(1,6)  = 'OBPGMAP',
+filename(6)  = 'diags/OBPGMAP_day_mean/OBPGMAP_day_mean',
+fileFlags(6) = 'D       ',
+
+#---
+frequency(7) = 86400.0,
+timePhase(7) = 43200.0,
+fields(1,7)  = 'PHIBOT',
+filename(7)  = 'diags/PHIBOT_day_mean/PHIBOT_day_mean',
+
+#---
+frequency(8) = 86400.0,
+timePhase(8) = 43200.0,
+fields(1,8)  = 'EXFpreci',
+filename(8)  = 'diags/EXFpreci_day_mean/EXFpreci_day_mean',
+
+#---
+frequency(9) = 86400.0,
+timePhase(9) = 43200.0,
+fields(1,9)  = 'EXFevap',
+filename(9)  = 'diags/EXFevap_day_mean/EXFevap_day_mean',
+
+#---
+frequency(10) = 86400.0,
+timePhase(10) = 43200.0,
+fields(1,10)  = 'EXFroff',
+filename(10)  = 'diags/EXFroff_day_mean/EXFroff_day_mean',
+
+#---
+frequency(11) = 86400.0,
+timePhase(11) = 43200.0,
+fields(1,11)  = 'SIsnPrcp',
+filename(11)  = 'diags/SIsnPrcp_day_mean/SIsnPrcp_day_mean',
+
+#---
+frequency(12) = 86400.0,
+timePhase(12) = 43200.0,
+fields(1,12)  = 'EXFempmr',
+filename(12)  = 'diags/EXFempmr_day_mean/EXFempmr_day_mean',
+
+#---
+frequency(13) = 86400.0,
+timePhase(13) = 43200.0,
+fields(1,13)  = 'oceFWflx',
+filename(13)  = 'diags/oceFWflx_day_mean/oceFWflx_day_mean',
+
+#---
+frequency(14) = 86400.0,
+timePhase(14) = 43200.0,
+fields(1,14)  = 'SIatmFW',
+filename(14)  = 'diags/SIatmFW_day_mean/SIatmFW_day_mean',
+
+#---
+frequency(15) = 86400.0,
+timePhase(15) = 43200.0,
+fields(1,15)  = 'SFLUX',
+filename(15)  = 'diags/SFLUX_day_mean/SFLUX_day_mean',
+
+#---
+frequency(16) = 86400.0,
+timePhase(16) = 43200.0,
+fields(1,16)  = 'SIacSubl',
+filename(16)  = 'diags/SIacSubl_day_mean/SIacSubl_day_mean',
+
+#---
+frequency(17) = 86400.0,
+timePhase(17) = 43200.0,
+fields(1,17)  = 'SIrsSubl',
+filename(17)  = 'diags/SIrsSubl_day_mean/SIrsSubl_day_mean',
+
+#---
+frequency(18) = 86400.0,
+timePhase(18) = 43200.0,
+fields(1,18)  = 'SIfwThru',
+filename(18)  = 'diags/SIfwThru_day_mean/SIfwThru_day_mean',
+
+#---
+frequency(19) = 86400.0,
+timePhase(19) = 43200.0,
+fields(1,19)  = 'EXFhl',
+filename(19)  = 'diags/EXFhl_day_mean/EXFhl_day_mean',
+
+#---
+frequency(20) = 86400.0,
+timePhase(20) = 43200.0,
+fields(1,20)  = 'EXFhs',
+filename(20)  = 'diags/EXFhs_day_mean/EXFhs_day_mean',
+
+#---
+frequency(21) = 86400.0,
+timePhase(21) = 43200.0,
+fields(1,21)  = 'EXFlwdn',
+filename(21)  = 'diags/EXFlwdn_day_mean/EXFlwdn_day_mean',
+
+#---
+frequency(22) = 86400.0,
+timePhase(22) = 43200.0,
+fields(1,22)  = 'EXFswdn',
+filename(22)  = 'diags/EXFswdn_day_mean/EXFswdn_day_mean',
+
+#---
+frequency(23) = 86400.0,
+timePhase(23) = 43200.0,
+fields(1,23)  = 'EXFqnet',
+filename(23)  = 'diags/EXFqnet_day_mean/EXFqnet_day_mean',
+
+#---
+frequency(24) = 86400.0,
+timePhase(24) = 43200.0,
+fields(1,24)  = 'oceQnet',
+filename(24)  = 'diags/oceQnet_day_mean/oceQnet_day_mean',
+
+#---
+frequency(25) = 86400.0,
+timePhase(25) = 43200.0,
+fields(1,25)  = 'SIatmQnt',
+filename(25)  = 'diags/SIatmQnt_day_mean/SIatmQnt_day_mean',
+
+#---
+frequency(26) = 86400.0,
+timePhase(26) = 43200.0,
+fields(1,26)  = 'TFLUX',
+filename(26)  = 'diags/TFLUX_day_mean/TFLUX_day_mean',
+
+#---
+frequency(27) = 86400.0,
+timePhase(27) = 43200.0,
+fields(1,27)  = 'EXFswnet',
+filename(27)  = 'diags/EXFswnet_day_mean/EXFswnet_day_mean',
+
+#---
+frequency(28) = 86400.0,
+timePhase(28) = 43200.0,
+fields(1,28)  = 'EXFlwnet',
+filename(28)  = 'diags/EXFlwnet_day_mean/EXFlwnet_day_mean',
+
+#---
+frequency(29) = 86400.0,
+timePhase(29) = 43200.0,
+fields(1,29)  = 'oceQsw',
+filename(29)  = 'diags/oceQsw_day_mean/oceQsw_day_mean',
+
+#---
+frequency(30) = 86400.0,
+timePhase(30) = 43200.0,
+fields(1,30)  = 'SIaaflux',
+filename(30)  = 'diags/SIaaflux_day_mean/SIaaflux_day_mean',
+
+#---
+frequency(31) = 86400.0,
+timePhase(31) = 43200.0,
+fields(1,31)  = 'EXFatemp',
+filename(31)  = 'diags/EXFatemp_day_mean/EXFatemp_day_mean',
+
+#---
+frequency(32) = 86400.0,
+timePhase(32) = 43200.0,
+fields(1,32)  = 'EXFaqh',
+filename(32)  = 'diags/EXFaqh_day_mean/EXFaqh_day_mean',
+
+#---
+frequency(33) = 86400.0,
+timePhase(33) = 43200.0,
+fields(1,33)  = 'EXFuwind',
+filename(33)  = 'diags/EXFuwind_day_mean/EXFuwind_day_mean',
+
+#---
+frequency(34) = 86400.0,
+timePhase(34) = 43200.0,
+fields(1,34)  = 'EXFvwind',
+filename(34)  = 'diags/EXFvwind_day_mean/EXFvwind_day_mean',
+
+#---
+frequency(35) = 86400.0,
+timePhase(35) = 43200.0,
+fields(1,35)  = 'EXFwspee',
+filename(35)  = 'diags/EXFwspee_day_mean/EXFwspee_day_mean',
+
+#---
+frequency(36) = 86400.0,
+timePhase(36) = 43200.0,
+fields(1,36)  = 'EXFpress',
+filename(36)  = 'diags/EXFpress_day_mean/EXFpress_day_mean',
+
+#---
+frequency(37) = 86400.0,
+timePhase(37) = 43200.0,
+fields(1,37)  = 'MXLDEPTH',
+filename(37)  = 'diags/MXLDEPTH_day_mean/MXLDEPTH_day_mean',
+
+#---
+frequency(38) = 86400.0,
+timePhase(38) = 43200.0,
+fields(1,38)  = 'EXFtaux',
+filename(38)  = 'diags/EXFtaux_day_mean/EXFtaux_day_mean',
+
+#---
+frequency(39) = 86400.0,
+timePhase(39) = 43200.0,
+fields(1,39)  = 'EXFtauy',
+filename(39)  = 'diags/EXFtauy_day_mean/EXFtauy_day_mean',
+
+#---
+frequency(40) = 86400.0,
+timePhase(40) = 43200.0,
+fields(1,40)  = 'oceTAUX',
+filename(40)  = 'diags/oceTAUX_day_mean/oceTAUX_day_mean',
+
+#---
+frequency(41) = 86400.0,
+timePhase(41) = 43200.0,
+fields(1,41)  = 'oceTAUY',
+filename(41)  = 'diags/oceTAUY_day_mean/oceTAUY_day_mean',
+
+#---
+frequency(42) = 86400.0,
+timePhase(42) = 43200.0,
+fields(1,42)  = 'SIarea',
+filename(42)  = 'diags/SIarea_day_mean/SIarea_day_mean',
+
+#---
+frequency(43) = 86400.0,
+timePhase(43) = 43200.0,
+fields(1,43)  = 'SIheff',
+filename(43)  = 'diags/SIheff_day_mean/SIheff_day_mean',
+
+#---
+frequency(44) = 86400.0,
+timePhase(44) = 43200.0,
+fields(1,44)  = 'SIhsnow',
+filename(44)  = 'diags/SIhsnow_day_mean/SIhsnow_day_mean',
+
+#---
+frequency(45) = 86400.0,
+timePhase(45) = 43200.0,
+fields(1,45)  = 'sIceLoad',
+filename(45)  = 'diags/sIceLoad_day_mean/sIceLoad_day_mean',
+
+#---
+frequency(46) = 86400.0,
+timePhase(46) = 43200.0,
+fields(1,46)  = 'SIuice',
+filename(46)  = 'diags/SIuice_day_mean/SIuice_day_mean',
+
+#---
+frequency(47) = 86400.0,
+timePhase(47) = 43200.0,
+fields(1,47)  = 'SIvice',
+filename(47)  = 'diags/SIvice_day_mean/SIvice_day_mean',
+
+#---
+frequency(48) = 86400.0,
+timePhase(48) = 43200.0,
+fields(1,48)  = 'ADVxHEFF',
+filename(48)  = 'diags/ADVxHEFF_day_mean/ADVxHEFF_day_mean',
+
+#---
+frequency(49) = 86400.0,
+timePhase(49) = 43200.0,
+fields(1,49)  = 'ADVyHEFF',
+filename(49)  = 'diags/ADVyHEFF_day_mean/ADVyHEFF_day_mean',
+
+#---
+frequency(50) = 86400.0,
+timePhase(50) = 43200.0,
+fields(1,50)  = 'ADVxSNOW',
+filename(50)  = 'diags/ADVxSNOW_day_mean/ADVxSNOW_day_mean',
+
+#---
+frequency(51) = 86400.0,
+timePhase(51) = 43200.0,
+fields(1,51)  = 'ADVySNOW',
+filename(51)  = 'diags/ADVySNOW_day_mean/ADVySNOW_day_mean',
+
+#---
+frequency(52) = 86400.0,
+timePhase(52) = 43200.0,
+fields(1,52)  = 'GM_PsiX',
+filename(52)  = 'diags/GM_PsiX_day_mean/GM_PsiX_day_mean',
+
+#---
+frequency(53) = 86400.0,
+timePhase(53) = 43200.0,
+fields(1,53)  = 'GM_PsiY',
+filename(53)  = 'diags/GM_PsiY_day_mean/GM_PsiY_day_mean',
+
+#---
+frequency(54) = 86400.0,
+timePhase(54) = 43200.0,
+fields(1,54)  = 'UVELMASS',
+filename(54)  = 'diags/UVELMASS_day_mean/UVELMASS_day_mean',
+
+#---
+frequency(55) = 86400.0,
+timePhase(55) = 43200.0,
+fields(1,55)  = 'VVELMASS',
+filename(55)  = 'diags/VVELMASS_day_mean/VVELMASS_day_mean',
+
+#---
+frequency(56) = 86400.0,
+timePhase(56) = 43200.0,
+fields(1,56)  = 'WVELMASS',
+filename(56)  = 'diags/WVELMASS_day_mean/WVELMASS_day_mean',
+
+#---
+frequency(57) = 86400.0,
+timePhase(57) = 43200.0,
+fields(1,57)  = 'ADVx_TH',
+filename(57)  = 'diags/ADVx_TH_day_mean/ADVx_TH_day_mean',
+
+#---
+frequency(58) = 86400.0,
+timePhase(58) = 43200.0,
+fields(1,58)  = 'DFxE_TH',
+filename(58)  = 'diags/DFxE_TH_day_mean/DFxE_TH_day_mean',
+
+#---
+frequency(59) = 86400.0,
+timePhase(59) = 43200.0,
+fields(1,59)  = 'ADVy_TH',
+filename(59)  = 'diags/ADVy_TH_day_mean/ADVy_TH_day_mean',
+
+#---
+frequency(60) = 86400.0,
+timePhase(60) = 43200.0,
+fields(1,60)  = 'DFyE_TH',
+filename(60)  = 'diags/DFyE_TH_day_mean/DFyE_TH_day_mean',
+
+#---
+frequency(61) = 86400.0,
+timePhase(61) = 43200.0,
+fields(1,61)  = 'ADVr_TH',
+filename(61)  = 'diags/ADVr_TH_day_mean/ADVr_TH_day_mean',
+
+#---
+frequency(62) = 86400.0,
+timePhase(62) = 43200.0,
+fields(1,62)  = 'DFrE_TH',
+filename(62)  = 'diags/DFrE_TH_day_mean/DFrE_TH_day_mean',
+
+#---
+frequency(63) = 86400.0,
+timePhase(63) = 43200.0,
+fields(1,63)  = 'DFrI_TH',
+filename(63)  = 'diags/DFrI_TH_day_mean/DFrI_TH_day_mean',
+
+#---
+frequency(64) = 86400.0,
+timePhase(64) = 43200.0,
+fields(1,64)  = 'ADVx_SLT',
+filename(64)  = 'diags/ADVx_SLT_day_mean/ADVx_SLT_day_mean',
+
+#---
+frequency(65) = 86400.0,
+timePhase(65) = 43200.0,
+fields(1,65)  = 'DFxE_SLT',
+filename(65)  = 'diags/DFxE_SLT_day_mean/DFxE_SLT_day_mean',
+
+#---
+frequency(66) = 86400.0,
+timePhase(66) = 43200.0,
+fields(1,66)  = 'ADVy_SLT',
+filename(66)  = 'diags/ADVy_SLT_day_mean/ADVy_SLT_day_mean',
+
+#---
+frequency(67) = 86400.0,
+timePhase(67) = 43200.0,
+fields(1,67)  = 'DFyE_SLT',
+filename(67)  = 'diags/DFyE_SLT_day_mean/DFyE_SLT_day_mean',
+
+#---
+frequency(68) = 86400.0,
+timePhase(68) = 43200.0,
+fields(1,68)  = 'ADVr_SLT',
+filename(68)  = 'diags/ADVr_SLT_day_mean/ADVr_SLT_day_mean',
+
+#---
+frequency(69) = 86400.0,
+timePhase(69) = 43200.0,
+fields(1,69)  = 'DFrE_SLT',
+filename(69)  = 'diags/DFrE_SLT_day_mean/DFrE_SLT_day_mean',
+
+#---
+frequency(70) = 86400.0,
+timePhase(70) = 43200.0,
+fields(1,70)  = 'DFrI_SLT',
+filename(70)  = 'diags/DFrI_SLT_day_mean/DFrI_SLT_day_mean',
+
+#---
+frequency(71) = 86400.0,
+timePhase(71) = 43200.0,
+fields(1,71)  = 'oceSPtnd',
+filename(71)  = 'diags/oceSPtnd_day_mean/oceSPtnd_day_mean',
+
+#---
+frequency(72) = 86400.0,
+timePhase(72) = 43200.0,
+fields(1,72)  = 'oceSPflx',
+filename(72)  = 'diags/oceSPflx_day_mean/oceSPflx_day_mean',
+
+#---
+frequency(73) = 86400.0,
+timePhase(73) = 43200.0,
+fields(1,73)  = 'oceSPDep',
+filename(73)  = 'diags/oceSPDep_day_mean/oceSPDep_day_mean',
+
+#---
+frequency(74) = 86400.0,
+timePhase(74) = 43200.0,
+fields(1,74)  = 'THETA',
+filename(74)  = 'diags/THETA_day_mean/THETA_day_mean',
+
+#---
+frequency(75) = 86400.0,
+timePhase(75) = 43200.0,
+fields(1,75)  = 'SALT',
+filename(75)  = 'diags/SALT_day_mean/SALT_day_mean',
+
+#---
+frequency(76) = 86400.0,
+timePhase(76) = 43200.0,
+fields(1,76)  = 'RHOAnoma',
+filename(76)  = 'diags/RHOAnoma_day_mean/RHOAnoma_day_mean',
+
+#---
+frequency(77) = 86400.0,
+timePhase(77) = 43200.0,
+fields(1,77)  = 'DRHODR',
+filename(77)  = 'diags/DRHODR_day_mean/DRHODR_day_mean',
+
+#---
+frequency(78) = 86400.0,
+timePhase(78) = 43200.0,
+fields(1,78)  = 'PHIHYD',
+filename(78)  = 'diags/PHIHYD_day_mean/PHIHYD_day_mean',
+
+#---
+frequency(79) = 86400.0,
+timePhase(79) = 43200.0,
+fields(1,79)  = 'PHIHYDcR',
+filename(79)  = 'diags/PHIHYDcR_day_mean/PHIHYDcR_day_mean',
+
+#---
+frequency(80) = 86400.0,
+timePhase(80) = 43200.0,
+fields(1,80)  = 'UVEL',
+filename(80)  = 'diags/UVEL_day_mean/UVEL_day_mean',
+
+#---
+frequency(81) = 86400.0,
+timePhase(81) = 43200.0,
+fields(1,81)  = 'VVEL',
+filename(81)  = 'diags/VVEL_day_mean/VVEL_day_mean',
+
+#---
+frequency(82) = 86400.0,
+timePhase(82) = 43200.0,
+fields(1,82)  = 'WVELMASS',
+filename(82)  = 'diags/WVELMASS_day_mean/WVELMASS_day_mean',
+
+#---
+frequency(83) = 86400.0,
+timePhase(83) = 43200.0,
+fields(1,83)  = 'UVELSTAR',
+filename(83)  = 'diags/UVELSTAR_day_mean/UVELSTAR_day_mean',
+
+#---
+frequency(84) = 86400.0,
+timePhase(84) = 43200.0,
+fields(1,84)  = 'VVELSTAR',
+filename(84)  = 'diags/VVELSTAR_day_mean/VVELSTAR_day_mean',
+
+#---
+frequency(85) = 86400.0,
+timePhase(85) = 43200.0,
+fields(1,85)  = 'WVELSTAR',
+filename(85)  = 'diags/WVELSTAR_day_mean/WVELSTAR_day_mean',
+
+#---
+frequency(86) = 86400.0,
+timePhase(86) = 43200.0,
+fields(1,86)  = 'TOTUTEND',
+filename(86)  = 'diags/TOTUTEND_day_mean/TOTUTEND_day_mean',
+
+#---
+frequency(87) = 86400.0,
+timePhase(87) = 43200.0,
+fields(1,87)  = 'Um_Cori',
+filename(87)  = 'diags/Um_Cori_day_mean/Um_Cori_day_mean',
+
+#---
+frequency(88) = 86400.0,
+timePhase(88) = 43200.0,
+fields(1,88)  = 'Um_Advec',
+filename(88)  = 'diags/Um_Advec_day_mean/Um_Advec_day_mean',
+
+#---
+frequency(89) = 86400.0,
+timePhase(89) = 43200.0,
+fields(1,89)  = 'Um_Diss',
+filename(89)  = 'diags/Um_Diss_day_mean/Um_Diss_day_mean',
+
+#---
+frequency(90) = 86400.0,
+timePhase(90) = 43200.0,
+fields(1,90)  = 'Um_Ext',
+filename(90)  = 'diags/Um_Ext_day_mean/Um_Ext_day_mean',
+
+#---
+frequency(91) = 86400.0,
+timePhase(91) = 43200.0,
+fields(1,91)  = 'Um_dPhiX',
+filename(91)  = 'diags/Um_dPhiX_day_mean/Um_dPhiX_day_mean',
+
+#---
+frequency(92) = 86400.0,
+timePhase(92) = 43200.0,
+fields(1,92)  = 'AB_gU',
+filename(92)  = 'diags/AB_gU_day_mean/AB_gU_day_mean',
+
+#---
+frequency(93) = 86400.0,
+timePhase(93) = 43200.0,
+fields(1,93)  = 'Um_ImplD',
+filename(93)  = 'diags/Um_ImplD_day_mean/Um_ImplD_day_mean',
+
+#---
+frequency(94) = 86400.0,
+timePhase(94) = 43200.0,
+fields(1,94)  = 'Um_AdvZ3',
+filename(94)  = 'diags/Um_AdvZ3_day_mean/Um_AdvZ3_day_mean',
+
+#---
+frequency(95) = 86400.0,
+timePhase(95) = 43200.0,
+fields(1,95)  = 'Um_AdvRe',
+filename(95)  = 'diags/Um_AdvRe_day_mean/Um_AdvRe_day_mean',
+
+#---
+frequency(96) = 86400.0,
+timePhase(96) = 43200.0,
+fields(1,96)  = 'Um_dKEdx',
+filename(96)  = 'diags/Um_dKEdx_day_mean/Um_dKEdx_day_mean',
+
+#---
+frequency(97) = 86400.0,
+timePhase(97) = 43200.0,
+fields(1,97)  = 'Um_Diss2',
+filename(97)  = 'diags/Um_Diss2_day_mean/Um_Diss2_day_mean',
+
+#---
+frequency(98) = 86400.0,
+timePhase(98) = 43200.0,
+fields(1,98)  = 'Um_Diss4',
+filename(98)  = 'diags/Um_Diss4_day_mean/Um_Diss4_day_mean',
+
+#---
+frequency(99) = 86400.0,
+timePhase(99) = 43200.0,
+fields(1,99)  = 'UBotDrag',
+filename(99)  = 'diags/UBotDrag_day_mean/UBotDrag_day_mean',
+
+#---
+frequency(100) = 86400.0,
+timePhase(100) = 43200.0,
+fields(1,100)  = 'USidDrag',
+filename(100)  = 'diags/USidDrag_day_mean/USidDrag_day_mean',
+
+#---
+frequency(101) = 86400.0,
+timePhase(101) = 43200.0,
+fields(1,101)  = 'UShIDrag',
+filename(101)  = 'diags/UShIDrag_day_mean/UShIDrag_day_mean',
+
+#---
+frequency(102) = 86400.0,
+timePhase(102) = 43200.0,
+fields(1,102)  = 'TOTVTEND',
+filename(102)  = 'diags/TOTVTEND_day_mean/TOTVTEND_day_mean',
+
+#---
+frequency(103) = 86400.0,
+timePhase(103) = 43200.0,
+fields(1,103)  = 'Vm_Cori',
+filename(103)  = 'diags/Vm_Cori_day_mean/Vm_Cori_day_mean',
+
+#---
+frequency(104) = 86400.0,
+timePhase(104) = 43200.0,
+fields(1,104)  = 'Vm_Advec',
+filename(104)  = 'diags/Vm_Advec_day_mean/Vm_Advec_day_mean',
+
+#---
+frequency(105) = 86400.0,
+timePhase(105) = 43200.0,
+fields(1,105)  = 'Vm_Diss',
+filename(105)  = 'diags/Vm_Diss_day_mean/Vm_Diss_day_mean',
+
+#---
+frequency(106) = 86400.0,
+timePhase(106) = 43200.0,
+fields(1,106)  = 'Vm_Ext',
+filename(106)  = 'diags/Vm_Ext_day_mean/Vm_Ext_day_mean',
+
+#---
+frequency(107) = 86400.0,
+timePhase(107) = 43200.0,
+fields(1,107)  = 'Vm_dPhiY',
+filename(107)  = 'diags/Vm_dPhiY_day_mean/Vm_dPhiY_day_mean',
+
+#---
+frequency(108) = 86400.0,
+timePhase(108) = 43200.0,
+fields(1,108)  = 'AB_gV',
+filename(108)  = 'diags/AB_gV_day_mean/AB_gV_day_mean',
+
+#---
+frequency(109) = 86400.0,
+timePhase(109) = 43200.0,
+fields(1,109)  = 'Vm_ImplD',
+filename(109)  = 'diags/Vm_ImplD_day_mean/Vm_ImplD_day_mean',
+
+#---
+frequency(110) = 86400.0,
+timePhase(110) = 43200.0,
+fields(1,110)  = 'Vm_AdvZ3',
+filename(110)  = 'diags/Vm_AdvZ3_day_mean/Vm_AdvZ3_day_mean',
+
+#---
+frequency(111) = 86400.0,
+timePhase(111) = 43200.0,
+fields(1,111)  = 'Vm_AdvRe',
+filename(111)  = 'diags/Vm_AdvRe_day_mean/Vm_AdvRe_day_mean',
+
+#---
+frequency(112) = 86400.0,
+timePhase(112) = 43200.0,
+fields(1,112)  = 'Vm_dKEdy',
+filename(112)  = 'diags/Vm_dKEdy_day_mean/Vm_dKEdy_day_mean',
+
+#---
+frequency(113) = 86400.0,
+timePhase(113) = 43200.0,
+fields(1,113)  = 'Vm_Diss2',
+filename(113)  = 'diags/Vm_Diss2_day_mean/Vm_Diss2_day_mean',
+
+#---
+frequency(114) = 86400.0,
+timePhase(114) = 43200.0,
+fields(1,114)  = 'Vm_Diss4',
+filename(114)  = 'diags/Vm_Diss4_day_mean/Vm_Diss4_day_mean',
+
+#---
+frequency(115) = 86400.0,
+timePhase(115) = 43200.0,
+fields(1,115)  = 'VBotDrag',
+filename(115)  = 'diags/VBotDrag_day_mean/VBotDrag_day_mean',
+
+#---
+frequency(116) = 86400.0,
+timePhase(116) = 43200.0,
+fields(1,116)  = 'VSidDrag',
+filename(116)  = 'diags/VSidDrag_day_mean/VSidDrag_day_mean',
+
+#---
+frequency(117) = 86400.0,
+timePhase(117) = 43200.0,
+fields(1,117)  = 'VShIDrag',
+filename(117)  = 'diags/VShIDrag_day_mean/VShIDrag_day_mean',
+
+#---
+frequency(118) = 86400.0,
+timePhase(118) = 43200.0,
+fields(1,118)  = 'SHIfwFlx',
+filename(118)  = 'diags/SHIfwFlx_day_mean/SHIfwFlx_day_mean',
+
+#---
+frequency(119) = 86400.0,
+timePhase(119) = 43200.0,
+fields(1,119)  = 'SHIhtFlx',
+filename(119)  = 'diags/SHIhtFlx_day_mean/SHIhtFlx_day_mean',
+
+#---
+frequency(120) = 86400.0,
+timePhase(120) = 43200.0,
+fields(1,120)  = 'ICFfwFlx',
+filename(120)  = 'diags/ICFfwFlx_day_mean/ICFfwFlx_day_mean',
+
+#---
+frequency(121) = 86400.0,
+timePhase(121) = 43200.0,
+fields(1,121)  = 'ICFhtFlx',
+filename(121)  = 'diags/ICFhtFlx_day_mean/ICFhtFlx_day_mean',
+
+#---
+frequency(122) = 86400.0,
+timePhase(122) = 43200.0,
+fields(1,122)  = 'SIFao',
+filename(122)  = 'diags/SIFao_day_mean/SIFao_day_mean',
+
+#---
+frequency(123) = 86400.0,
+timePhase(123) = 43200.0,
+fields(1,123)  = 'SIFionet',
+filename(123)  = 'diags/SIFionet_day_mean/SIFionet_day_mean',
+
+#---
+frequency(124) = 86400.0,
+timePhase(124) = 43200.0,
+fields(1,124)  = 'SIFianet',
+filename(124)  = 'diags/SIFianet_day_mean/SIFianet_day_mean',
+
+#---
+frequency(125) = 86400.0,
+timePhase(125) = 43200.0,
+fields(1,125)  = 'SIFmi',
+filename(125)  = 'diags/SIFmi_day_mean/SIFmi_day_mean',
+
+#---
+frequency(126) = 86400.0,
+timePhase(126) = 43200.0,
+fields(1,126)  = 'SIFFlood',
+filename(126)  = 'diags/SIFFlood_day_mean/SIFFlood_day_mean',
+
+#---
+frequency(127) = 86400.0,
+timePhase(127) = 43200.0,
+fields(1,127)  = 'SIsnAccR',
+filename(127)  = 'diags/SIsnAccR_day_mean/SIsnAccR_day_mean',
+
+#---
+frequency(128) = 86400.0,
+timePhase(128) = 43200.0,
+fields(1,128)  = 'SIsnmltS',
+filename(128)  = 'diags/SIsnmltS_day_mean/SIsnmltS_day_mean',
+
+#---
+frequency(129) = 86400.0,
+timePhase(129) = 43200.0,
+fields(1,129)  = 'SIgamma',
+filename(129)  = 'diags/SIgamma_day_mean/SIgamma_day_mean',
+
+#---
+frequency(130) = 2635200.0,
+fields(1,130)  = 'SSH',
+filename(130)  = 'diags/SSH_mon_mean/SSH_mon_mean',
+
+#---
+frequency(131) = 2635200.0,
+fields(1,131)  = 'SSHIBC',
+filename(131)  = 'diags/SSHIBC_mon_mean/SSHIBC_mon_mean',
+
+#---
+frequency(132) = 2635200.0,
+fields(1,132)  = 'SSHNOIBC',
+filename(132)  = 'diags/SSHNOIBC_mon_mean/SSHNOIBC_mon_mean',
+
+#---
+frequency(133) = 2635200.0,
+fields(1,133)  = 'ETAN',
+filename(133)  = 'diags/ETAN_mon_mean/ETAN_mon_mean',
+
+#---
+frequency(134) = 2635200.0,
+fields(1,134)  = 'OBP',
+filename(134)  = 'diags/OBP_mon_mean/OBP_mon_mean',
+fileFlags(134) = 'D       ',
+
+#---
+frequency(135) = 2635200.0,
+fields(1,135)  = 'OBPGMAP',
+filename(135)  = 'diags/OBPGMAP_mon_mean/OBPGMAP_mon_mean',
+fileFlags(135) = 'D       ',
+
+#---
+frequency(136) = 2635200.0,
+fields(1,136)  = 'PHIBOT',
+filename(136)  = 'diags/PHIBOT_mon_mean/PHIBOT_mon_mean',
+
+#---
+frequency(137) = 2635200.0,
+fields(1,137)  = 'EXFpreci',
+filename(137)  = 'diags/EXFpreci_mon_mean/EXFpreci_mon_mean',
+
+#---
+frequency(138) = 2635200.0,
+fields(1,138)  = 'EXFevap',
+filename(138)  = 'diags/EXFevap_mon_mean/EXFevap_mon_mean',
+
+#---
+frequency(139) = 2635200.0,
+fields(1,139)  = 'EXFroff',
+filename(139)  = 'diags/EXFroff_mon_mean/EXFroff_mon_mean',
+
+#---
+frequency(140) = 2635200.0,
+fields(1,140)  = 'SIsnPrcp',
+filename(140)  = 'diags/SIsnPrcp_mon_mean/SIsnPrcp_mon_mean',
+
+#---
+frequency(141) = 2635200.0,
+fields(1,141)  = 'EXFempmr',
+filename(141)  = 'diags/EXFempmr_mon_mean/EXFempmr_mon_mean',
+
+#---
+frequency(142) = 2635200.0,
+fields(1,142)  = 'oceFWflx',
+filename(142)  = 'diags/oceFWflx_mon_mean/oceFWflx_mon_mean',
+
+#---
+frequency(143) = 2635200.0,
+fields(1,143)  = 'SIatmFW',
+filename(143)  = 'diags/SIatmFW_mon_mean/SIatmFW_mon_mean',
+
+#---
+frequency(144) = 2635200.0,
+fields(1,144)  = 'SFLUX',
+filename(144)  = 'diags/SFLUX_mon_mean/SFLUX_mon_mean',
+
+#---
+frequency(145) = 2635200.0,
+fields(1,145)  = 'SIacSubl',
+filename(145)  = 'diags/SIacSubl_mon_mean/SIacSubl_mon_mean',
+
+#---
+frequency(146) = 2635200.0,
+fields(1,146)  = 'SIrsSubl',
+filename(146)  = 'diags/SIrsSubl_mon_mean/SIrsSubl_mon_mean',
+
+#---
+frequency(147) = 2635200.0,
+fields(1,147)  = 'SIfwThru',
+filename(147)  = 'diags/SIfwThru_mon_mean/SIfwThru_mon_mean',
+
+#---
+frequency(148) = 2635200.0,
+fields(1,148)  = 'EXFhl',
+filename(148)  = 'diags/EXFhl_mon_mean/EXFhl_mon_mean',
+
+#---
+frequency(149) = 2635200.0,
+fields(1,149)  = 'EXFhs',
+filename(149)  = 'diags/EXFhs_mon_mean/EXFhs_mon_mean',
+
+#---
+frequency(150) = 2635200.0,
+fields(1,150)  = 'EXFlwdn',
+filename(150)  = 'diags/EXFlwdn_mon_mean/EXFlwdn_mon_mean',
+
+#---
+frequency(151) = 2635200.0,
+fields(1,151)  = 'EXFswdn',
+filename(151)  = 'diags/EXFswdn_mon_mean/EXFswdn_mon_mean',
+
+#---
+frequency(152) = 2635200.0,
+fields(1,152)  = 'EXFqnet',
+filename(152)  = 'diags/EXFqnet_mon_mean/EXFqnet_mon_mean',
+
+#---
+frequency(153) = 2635200.0,
+fields(1,153)  = 'oceQnet',
+filename(153)  = 'diags/oceQnet_mon_mean/oceQnet_mon_mean',
+
+#---
+frequency(154) = 2635200.0,
+fields(1,154)  = 'SIatmQnt',
+filename(154)  = 'diags/SIatmQnt_mon_mean/SIatmQnt_mon_mean',
+
+#---
+frequency(155) = 2635200.0,
+fields(1,155)  = 'TFLUX',
+filename(155)  = 'diags/TFLUX_mon_mean/TFLUX_mon_mean',
+
+#---
+frequency(156) = 2635200.0,
+fields(1,156)  = 'EXFswnet',
+filename(156)  = 'diags/EXFswnet_mon_mean/EXFswnet_mon_mean',
+
+#---
+frequency(157) = 2635200.0,
+fields(1,157)  = 'EXFlwnet',
+filename(157)  = 'diags/EXFlwnet_mon_mean/EXFlwnet_mon_mean',
+
+#---
+frequency(158) = 2635200.0,
+fields(1,158)  = 'oceQsw',
+filename(158)  = 'diags/oceQsw_mon_mean/oceQsw_mon_mean',
+
+#---
+frequency(159) = 2635200.0,
+fields(1,159)  = 'SIaaflux',
+filename(159)  = 'diags/SIaaflux_mon_mean/SIaaflux_mon_mean',
+
+#---
+frequency(160) = 2635200.0,
+fields(1,160)  = 'EXFatemp',
+filename(160)  = 'diags/EXFatemp_mon_mean/EXFatemp_mon_mean',
+
+#---
+frequency(161) = 2635200.0,
+fields(1,161)  = 'EXFaqh',
+filename(161)  = 'diags/EXFaqh_mon_mean/EXFaqh_mon_mean',
+
+#---
+frequency(162) = 2635200.0,
+fields(1,162)  = 'EXFuwind',
+filename(162)  = 'diags/EXFuwind_mon_mean/EXFuwind_mon_mean',
+
+#---
+frequency(163) = 2635200.0,
+fields(1,163)  = 'EXFvwind',
+filename(163)  = 'diags/EXFvwind_mon_mean/EXFvwind_mon_mean',
+
+#---
+frequency(164) = 2635200.0,
+fields(1,164)  = 'EXFwspee',
+filename(164)  = 'diags/EXFwspee_mon_mean/EXFwspee_mon_mean',
+
+#---
+frequency(165) = 2635200.0,
+fields(1,165)  = 'EXFpress',
+filename(165)  = 'diags/EXFpress_mon_mean/EXFpress_mon_mean',
+
+#---
+frequency(166) = 2635200.0,
+fields(1,166)  = 'MXLDEPTH',
+filename(166)  = 'diags/MXLDEPTH_mon_mean/MXLDEPTH_mon_mean',
+
+#---
+frequency(167) = 2635200.0,
+fields(1,167)  = 'EXFtaux',
+filename(167)  = 'diags/EXFtaux_mon_mean/EXFtaux_mon_mean',
+
+#---
+frequency(168) = 2635200.0,
+fields(1,168)  = 'EXFtauy',
+filename(168)  = 'diags/EXFtauy_mon_mean/EXFtauy_mon_mean',
+
+#---
+frequency(169) = 2635200.0,
+fields(1,169)  = 'oceTAUX',
+filename(169)  = 'diags/oceTAUX_mon_mean/oceTAUX_mon_mean',
+
+#---
+frequency(170) = 2635200.0,
+fields(1,170)  = 'oceTAUY',
+filename(170)  = 'diags/oceTAUY_mon_mean/oceTAUY_mon_mean',
+
+#---
+frequency(171) = 2635200.0,
+fields(1,171)  = 'SIarea',
+filename(171)  = 'diags/SIarea_mon_mean/SIarea_mon_mean',
+
+#---
+frequency(172) = 2635200.0,
+fields(1,172)  = 'SIheff',
+filename(172)  = 'diags/SIheff_mon_mean/SIheff_mon_mean',
+
+#---
+frequency(173) = 2635200.0,
+fields(1,173)  = 'SIhsnow',
+filename(173)  = 'diags/SIhsnow_mon_mean/SIhsnow_mon_mean',
+
+#---
+frequency(174) = 2635200.0,
+fields(1,174)  = 'sIceLoad',
+filename(174)  = 'diags/sIceLoad_mon_mean/sIceLoad_mon_mean',
+
+#---
+frequency(175) = 2635200.0,
+fields(1,175)  = 'SIuice',
+filename(175)  = 'diags/SIuice_mon_mean/SIuice_mon_mean',
+
+#---
+frequency(176) = 2635200.0,
+fields(1,176)  = 'SIvice',
+filename(176)  = 'diags/SIvice_mon_mean/SIvice_mon_mean',
+
+#---
+frequency(177) = 2635200.0,
+fields(1,177)  = 'ADVxHEFF',
+filename(177)  = 'diags/ADVxHEFF_mon_mean/ADVxHEFF_mon_mean',
+
+#---
+frequency(178) = 2635200.0,
+fields(1,178)  = 'ADVyHEFF',
+filename(178)  = 'diags/ADVyHEFF_mon_mean/ADVyHEFF_mon_mean',
+
+#---
+frequency(179) = 2635200.0,
+fields(1,179)  = 'ADVxSNOW',
+filename(179)  = 'diags/ADVxSNOW_mon_mean/ADVxSNOW_mon_mean',
+
+#---
+frequency(180) = 2635200.0,
+fields(1,180)  = 'ADVySNOW',
+filename(180)  = 'diags/ADVySNOW_mon_mean/ADVySNOW_mon_mean',
+
+#---
+frequency(181) = 2635200.0,
+fields(1,181)  = 'GM_PsiX',
+filename(181)  = 'diags/GM_PsiX_mon_mean/GM_PsiX_mon_mean',
+
+#---
+frequency(182) = 2635200.0,
+fields(1,182)  = 'GM_PsiY',
+filename(182)  = 'diags/GM_PsiY_mon_mean/GM_PsiY_mon_mean',
+
+#---
+frequency(183) = 2635200.0,
+fields(1,183)  = 'UVELMASS',
+filename(183)  = 'diags/UVELMASS_mon_mean/UVELMASS_mon_mean',
+
+#---
+frequency(184) = 2635200.0,
+fields(1,184)  = 'VVELMASS',
+filename(184)  = 'diags/VVELMASS_mon_mean/VVELMASS_mon_mean',
+
+#---
+frequency(185) = 2635200.0,
+fields(1,185)  = 'WVELMASS',
+filename(185)  = 'diags/WVELMASS_mon_mean/WVELMASS_mon_mean',
+
+#---
+frequency(186) = 2635200.0,
+fields(1,186)  = 'ADVx_TH',
+filename(186)  = 'diags/ADVx_TH_mon_mean/ADVx_TH_mon_mean',
+
+#---
+frequency(187) = 2635200.0,
+fields(1,187)  = 'DFxE_TH',
+filename(187)  = 'diags/DFxE_TH_mon_mean/DFxE_TH_mon_mean',
+
+#---
+frequency(188) = 2635200.0,
+fields(1,188)  = 'ADVy_TH',
+filename(188)  = 'diags/ADVy_TH_mon_mean/ADVy_TH_mon_mean',
+
+#---
+frequency(189) = 2635200.0,
+fields(1,189)  = 'DFyE_TH',
+filename(189)  = 'diags/DFyE_TH_mon_mean/DFyE_TH_mon_mean',
+
+#---
+frequency(190) = 2635200.0,
+fields(1,190)  = 'ADVr_TH',
+filename(190)  = 'diags/ADVr_TH_mon_mean/ADVr_TH_mon_mean',
+
+#---
+frequency(191) = 2635200.0,
+fields(1,191)  = 'DFrE_TH',
+filename(191)  = 'diags/DFrE_TH_mon_mean/DFrE_TH_mon_mean',
+
+#---
+frequency(192) = 2635200.0,
+fields(1,192)  = 'DFrI_TH',
+filename(192)  = 'diags/DFrI_TH_mon_mean/DFrI_TH_mon_mean',
+
+#---
+frequency(193) = 2635200.0,
+fields(1,193)  = 'ADVx_SLT',
+filename(193)  = 'diags/ADVx_SLT_mon_mean/ADVx_SLT_mon_mean',
+
+#---
+frequency(194) = 2635200.0,
+fields(1,194)  = 'DFxE_SLT',
+filename(194)  = 'diags/DFxE_SLT_mon_mean/DFxE_SLT_mon_mean',
+
+#---
+frequency(195) = 2635200.0,
+fields(1,195)  = 'ADVy_SLT',
+filename(195)  = 'diags/ADVy_SLT_mon_mean/ADVy_SLT_mon_mean',
+
+#---
+frequency(196) = 2635200.0,
+fields(1,196)  = 'DFyE_SLT',
+filename(196)  = 'diags/DFyE_SLT_mon_mean/DFyE_SLT_mon_mean',
+
+#---
+frequency(197) = 2635200.0,
+fields(1,197)  = 'ADVr_SLT',
+filename(197)  = 'diags/ADVr_SLT_mon_mean/ADVr_SLT_mon_mean',
+
+#---
+frequency(198) = 2635200.0,
+fields(1,198)  = 'DFrE_SLT',
+filename(198)  = 'diags/DFrE_SLT_mon_mean/DFrE_SLT_mon_mean',
+
+#---
+frequency(199) = 2635200.0,
+fields(1,199)  = 'DFrI_SLT',
+filename(199)  = 'diags/DFrI_SLT_mon_mean/DFrI_SLT_mon_mean',
+
+#---
+frequency(200) = 2635200.0,
+fields(1,200)  = 'oceSPtnd',
+filename(200)  = 'diags/oceSPtnd_mon_mean/oceSPtnd_mon_mean',
+
+#---
+frequency(201) = 2635200.0,
+fields(1,201)  = 'oceSPflx',
+filename(201)  = 'diags/oceSPflx_mon_mean/oceSPflx_mon_mean',
+
+#---
+frequency(202) = 2635200.0,
+fields(1,202)  = 'oceSPDep',
+filename(202)  = 'diags/oceSPDep_mon_mean/oceSPDep_mon_mean',
+
+#---
+frequency(203) = 2635200.0,
+fields(1,203)  = 'THETA',
+filename(203)  = 'diags/THETA_mon_mean/THETA_mon_mean',
+
+#---
+frequency(204) = 2635200.0,
+fields(1,204)  = 'SALT',
+filename(204)  = 'diags/SALT_mon_mean/SALT_mon_mean',
+
+#---
+frequency(205) = 2635200.0,
+fields(1,205)  = 'RHOAnoma',
+filename(205)  = 'diags/RHOAnoma_mon_mean/RHOAnoma_mon_mean',
+
+#---
+frequency(206) = 2635200.0,
+fields(1,206)  = 'DRHODR',
+filename(206)  = 'diags/DRHODR_mon_mean/DRHODR_mon_mean',
+
+#---
+frequency(207) = 2635200.0,
+fields(1,207)  = 'PHIHYD',
+filename(207)  = 'diags/PHIHYD_mon_mean/PHIHYD_mon_mean',
+
+#---
+frequency(208) = 2635200.0,
+fields(1,208)  = 'PHIHYDcR',
+filename(208)  = 'diags/PHIHYDcR_mon_mean/PHIHYDcR_mon_mean',
+
+#---
+frequency(209) = 2635200.0,
+fields(1,209)  = 'UVEL',
+filename(209)  = 'diags/UVEL_mon_mean/UVEL_mon_mean',
+
+#---
+frequency(210) = 2635200.0,
+fields(1,210)  = 'VVEL',
+filename(210)  = 'diags/VVEL_mon_mean/VVEL_mon_mean',
+
+#---
+frequency(211) = 2635200.0,
+fields(1,211)  = 'WVELMASS',
+filename(211)  = 'diags/WVELMASS_mon_mean/WVELMASS_mon_mean',
+
+#---
+frequency(212) = 2635200.0,
+fields(1,212)  = 'UVELSTAR',
+filename(212)  = 'diags/UVELSTAR_mon_mean/UVELSTAR_mon_mean',
+
+#---
+frequency(213) = 2635200.0,
+fields(1,213)  = 'VVELSTAR',
+filename(213)  = 'diags/VVELSTAR_mon_mean/VVELSTAR_mon_mean',
+
+#---
+frequency(214) = 2635200.0,
+fields(1,214)  = 'WVELSTAR',
+filename(214)  = 'diags/WVELSTAR_mon_mean/WVELSTAR_mon_mean',
+
+#---
+frequency(215) = 2635200.0,
+fields(1,215)  = 'TOTUTEND',
+filename(215)  = 'diags/TOTUTEND_mon_mean/TOTUTEND_mon_mean',
+
+#---
+frequency(216) = 2635200.0,
+fields(1,216)  = 'Um_Cori',
+filename(216)  = 'diags/Um_Cori_mon_mean/Um_Cori_mon_mean',
+
+#---
+frequency(217) = 2635200.0,
+fields(1,217)  = 'Um_Advec',
+filename(217)  = 'diags/Um_Advec_mon_mean/Um_Advec_mon_mean',
+
+#---
+frequency(218) = 2635200.0,
+fields(1,218)  = 'Um_Diss',
+filename(218)  = 'diags/Um_Diss_mon_mean/Um_Diss_mon_mean',
+
+#---
+frequency(219) = 2635200.0,
+fields(1,219)  = 'Um_Ext',
+filename(219)  = 'diags/Um_Ext_mon_mean/Um_Ext_mon_mean',
+
+#---
+frequency(220) = 2635200.0,
+fields(1,220)  = 'Um_dPhiX',
+filename(220)  = 'diags/Um_dPhiX_mon_mean/Um_dPhiX_mon_mean',
+
+#---
+frequency(221) = 2635200.0,
+fields(1,221)  = 'AB_gU',
+filename(221)  = 'diags/AB_gU_mon_mean/AB_gU_mon_mean',
+
+#---
+frequency(222) = 2635200.0,
+fields(1,222)  = 'Um_ImplD',
+filename(222)  = 'diags/Um_ImplD_mon_mean/Um_ImplD_mon_mean',
+
+#---
+frequency(223) = 2635200.0,
+fields(1,223)  = 'Um_AdvZ3',
+filename(223)  = 'diags/Um_AdvZ3_mon_mean/Um_AdvZ3_mon_mean',
+
+#---
+frequency(224) = 2635200.0,
+fields(1,224)  = 'Um_AdvRe',
+filename(224)  = 'diags/Um_AdvRe_mon_mean/Um_AdvRe_mon_mean',
+
+#---
+frequency(225) = 2635200.0,
+fields(1,225)  = 'Um_dKEdx',
+filename(225)  = 'diags/Um_dKEdx_mon_mean/Um_dKEdx_mon_mean',
+
+#---
+frequency(226) = 2635200.0,
+fields(1,226)  = 'Um_Diss2',
+filename(226)  = 'diags/Um_Diss2_mon_mean/Um_Diss2_mon_mean',
+
+#---
+frequency(227) = 2635200.0,
+fields(1,227)  = 'Um_Diss4',
+filename(227)  = 'diags/Um_Diss4_mon_mean/Um_Diss4_mon_mean',
+
+#---
+frequency(228) = 2635200.0,
+fields(1,228)  = 'UBotDrag',
+filename(228)  = 'diags/UBotDrag_mon_mean/UBotDrag_mon_mean',
+
+#---
+frequency(229) = 2635200.0,
+fields(1,229)  = 'USidDrag',
+filename(229)  = 'diags/USidDrag_mon_mean/USidDrag_mon_mean',
+
+#---
+frequency(230) = 2635200.0,
+fields(1,230)  = 'UShIDrag',
+filename(230)  = 'diags/UShIDrag_mon_mean/UShIDrag_mon_mean',
+
+#---
+frequency(231) = 2635200.0,
+fields(1,231)  = 'TOTVTEND',
+filename(231)  = 'diags/TOTVTEND_mon_mean/TOTVTEND_mon_mean',
+
+#---
+frequency(232) = 2635200.0,
+fields(1,232)  = 'Vm_Cori',
+filename(232)  = 'diags/Vm_Cori_mon_mean/Vm_Cori_mon_mean',
+
+#---
+frequency(233) = 2635200.0,
+fields(1,233)  = 'Vm_Advec',
+filename(233)  = 'diags/Vm_Advec_mon_mean/Vm_Advec_mon_mean',
+
+#---
+frequency(234) = 2635200.0,
+fields(1,234)  = 'Vm_Diss',
+filename(234)  = 'diags/Vm_Diss_mon_mean/Vm_Diss_mon_mean',
+
+#---
+frequency(235) = 2635200.0,
+fields(1,235)  = 'Vm_Ext',
+filename(235)  = 'diags/Vm_Ext_mon_mean/Vm_Ext_mon_mean',
+
+#---
+frequency(236) = 2635200.0,
+fields(1,236)  = 'Vm_dPhiY',
+filename(236)  = 'diags/Vm_dPhiY_mon_mean/Vm_dPhiY_mon_mean',
+
+#---
+frequency(237) = 2635200.0,
+fields(1,237)  = 'AB_gV',
+filename(237)  = 'diags/AB_gV_mon_mean/AB_gV_mon_mean',
+
+#---
+frequency(238) = 2635200.0,
+fields(1,238)  = 'Vm_ImplD',
+filename(238)  = 'diags/Vm_ImplD_mon_mean/Vm_ImplD_mon_mean',
+
+#---
+frequency(239) = 2635200.0,
+fields(1,239)  = 'Vm_AdvZ3',
+filename(239)  = 'diags/Vm_AdvZ3_mon_mean/Vm_AdvZ3_mon_mean',
+
+#---
+frequency(240) = 2635200.0,
+fields(1,240)  = 'Vm_AdvRe',
+filename(240)  = 'diags/Vm_AdvRe_mon_mean/Vm_AdvRe_mon_mean',
+
+#---
+frequency(241) = 2635200.0,
+fields(1,241)  = 'Vm_dKEdy',
+filename(241)  = 'diags/Vm_dKEdy_mon_mean/Vm_dKEdy_mon_mean',
+
+#---
+frequency(242) = 2635200.0,
+fields(1,242)  = 'Vm_Diss2',
+filename(242)  = 'diags/Vm_Diss2_mon_mean/Vm_Diss2_mon_mean',
+
+#---
+frequency(243) = 2635200.0,
+fields(1,243)  = 'Vm_Diss4',
+filename(243)  = 'diags/Vm_Diss4_mon_mean/Vm_Diss4_mon_mean',
+
+#---
+frequency(244) = 2635200.0,
+fields(1,244)  = 'VBotDrag',
+filename(244)  = 'diags/VBotDrag_mon_mean/VBotDrag_mon_mean',
+
+#---
+frequency(245) = 2635200.0,
+fields(1,245)  = 'VSidDrag',
+filename(245)  = 'diags/VSidDrag_mon_mean/VSidDrag_mon_mean',
+
+#---
+frequency(246) = 2635200.0,
+fields(1,246)  = 'VShIDrag',
+filename(246)  = 'diags/VShIDrag_mon_mean/VShIDrag_mon_mean',
+
+#---
+frequency(247) = 2635200.0,
+fields(1,247)  = 'SHIfwFlx',
+filename(247)  = 'diags/SHIfwFlx_mon_mean/SHIfwFlx_mon_mean',
+
+#---
+frequency(248) = 2635200.0,
+fields(1,248)  = 'SHIhtFlx',
+filename(248)  = 'diags/SHIhtFlx_mon_mean/SHIhtFlx_mon_mean',
+
+#---
+frequency(249) = 2635200.0,
+fields(1,249)  = 'ICFfwFlx',
+filename(249)  = 'diags/ICFfwFlx_mon_mean/ICFfwFlx_mon_mean',
+
+#---
+frequency(250) = 2635200.0,
+fields(1,250)  = 'ICFhtFlx',
+filename(250)  = 'diags/ICFhtFlx_mon_mean/ICFhtFlx_mon_mean',
+
+#---
+frequency(251) = 2635200.0,
+fields(1,251)  = 'SIFao',
+filename(251)  = 'diags/SIFao_mon_mean/SIFao_mon_mean',
+
+#---
+frequency(252) = 2635200.0,
+fields(1,252)  = 'SIFionet',
+filename(252)  = 'diags/SIFionet_mon_mean/SIFionet_mon_mean',
+
+#---
+frequency(253) = 2635200.0,
+fields(1,253)  = 'SIFianet',
+filename(253)  = 'diags/SIFianet_mon_mean/SIFianet_mon_mean',
+
+#---
+frequency(254) = 2635200.0,
+fields(1,254)  = 'SIFmi',
+filename(254)  = 'diags/SIFmi_mon_mean/SIFmi_mon_mean',
+
+#---
+frequency(255) = 2635200.0,
+fields(1,255)  = 'SIFFlood',
+filename(255)  = 'diags/SIFFlood_mon_mean/SIFFlood_mon_mean',
+
+#---
+frequency(256) = 2635200.0,
+fields(1,256)  = 'SIsnAccR',
+filename(256)  = 'diags/SIsnAccR_mon_mean/SIsnAccR_mon_mean',
+
+#---
+frequency(257) = 2635200.0,
+fields(1,257)  = 'SIsnmltS',
+filename(257)  = 'diags/SIsnmltS_mon_mean/SIsnmltS_mon_mean',
+
+#---
+frequency(258) = 2635200.0,
+fields(1,258)  = 'SIgamma',
+filename(258)  = 'diags/SIgamma_mon_mean/SIgamma_mon_mean',
+
+#---
+frequency(259) = -86400.0,
+timePhase(259) = 43200.0,
+fields(1,259)  = 'SSH',
+filename(259)  = 'diags/SSH_day_snap/SSH_day_snap',
+
+#---
+frequency(260) = -86400.0,
+timePhase(260) = 43200.0,
+fields(1,260)  = 'SSHIBC',
+filename(260)  = 'diags/SSHIBC_day_snap/SSHIBC_day_snap',
+
+#---
+frequency(261) = -86400.0,
+timePhase(261) = 43200.0,
+fields(1,261)  = 'SSHNOIBC',
+filename(261)  = 'diags/SSHNOIBC_day_snap/SSHNOIBC_day_snap',
+
+#---
+frequency(262) = -86400.0,
+timePhase(262) = 43200.0,
+fields(1,262)  = 'ETAN',
+filename(262)  = 'diags/ETAN_day_snap/ETAN_day_snap',
+
+#---
+frequency(263) = -86400.0,
+timePhase(263) = 43200.0,
+fields(1,263)  = 'OBP',
+filename(263)  = 'diags/OBP_day_snap/OBP_day_snap',
+fileFlags(263) = 'D       ',
+
+#---
+frequency(264) = -86400.0,
+timePhase(264) = 43200.0,
+fields(1,264)  = 'OBPGMAP',
+filename(264)  = 'diags/OBPGMAP_day_snap/OBPGMAP_day_snap',
+fileFlags(264) = 'D       ',
+
+#---
+frequency(265) = -86400.0,
+timePhase(265) = 43200.0,
+fields(1,265)  = 'PHIBOT',
+filename(265)  = 'diags/PHIBOT_day_snap/PHIBOT_day_snap',
+
+#---
+frequency(266) = -86400.0,
+timePhase(266) = 43200.0,
+fields(1,266)  = 'THETA',
+filename(266)  = 'diags/THETA_day_snap/THETA_day_snap',
+
+#---
+frequency(267) = -86400.0,
+timePhase(267) = 43200.0,
+fields(1,267)  = 'SALT',
+filename(267)  = 'diags/SALT_day_snap/SALT_day_snap',
+
+#---
+frequency(268) = -86400.0,
+timePhase(268) = 43200.0,
+fields(1,268)  = 'SIarea',
+filename(268)  = 'diags/SIarea_day_snap/SIarea_day_snap',
+
+#---
+frequency(269) = -86400.0,
+timePhase(269) = 43200.0,
+fields(1,269)  = 'SIheff',
+filename(269)  = 'diags/SIheff_day_snap/SIheff_day_snap',
+
+#---
+frequency(270) = -86400.0,
+timePhase(270) = 43200.0,
+fields(1,270)  = 'SIhsnow',
+filename(270)  = 'diags/SIhsnow_day_snap/SIhsnow_day_snap',
+
+#---
+frequency(271) = -86400.0,
+timePhase(271) = 43200.0,
+fields(1,271)  = 'sIceLoad',
+filename(271)  = 'diags/sIceLoad_day_snap/sIceLoad_day_snap',
+
+#---
+frequency(272) = -86400.0,
+timePhase(272) = 43200.0,
+fields(1,272)  = 'SIuice',
+filename(272)  = 'diags/SIuice_day_snap/SIuice_day_snap',
+
+#---
+frequency(273) = -86400.0,
+timePhase(273) = 43200.0,
+fields(1,273)  = 'SIvice',
+filename(273)  = 'diags/SIvice_day_snap/SIvice_day_snap',
+
+  /
+
+ &DIAG_STATIS_PARMS
+
+  /
