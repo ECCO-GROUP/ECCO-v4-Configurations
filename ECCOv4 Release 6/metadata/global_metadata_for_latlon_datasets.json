@@ -1,0 +1,19 @@
+[
+   {
+      "name": "comment",
+      "type": "s",
+      "value": "Fields provided on a regular lat-lon grid. They have been mapped to the regular lat-lon grid from the original ECCO lat-lon-cap 90 (llc90) native model grid."
+   },
+   {
+      "name": "geospatial_lat_resolution",
+      "type": "f",
+      "value": 0.5,
+      "grid_dimension":"2D 3D"
+   },
+   {
+      "name": "geospatial_lon_resolution",
+      "type": "f",
+      "value": 0.5,
+      "grid_dimension":"2D 3D"
+   }
+]

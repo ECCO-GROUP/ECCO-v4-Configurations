@@ -1,0 +1,21 @@
+* created new time metadata for 1D, 2D, and 3D datasets
+* removed time metadata from coordinate_metadata_for_latlon_datasets.json
+* changed "comp" to "component" in SBO metadata variable long names "variable metadata for 1D datasets"
+* changed V4r4 to V4r5 and Version 4 Release 4 to V4r5
+* removed the "standard_name" from SSH and added "sea_surface_height_above_geoid" to "SSHNOIBC"
+* changed some grouping names 
+-- replaced "along the model x-direction" with "in the model x-direction"
+-- replaced "tendency" with "tendencies" to be consistent with "fluxes" 
+-- simplified to "ocean three-dimensional parameterized mixing coefficients",
+-- simplified to "sea surface height", "ocean temperature and salinity", "ocean bottom pressure"
+* removed references from global_metadata_for_all_datasets because we still don't have the synopsis
+   {
+      "name": "references",
+      "type": "s",
+      "value": "ECCO Consortium, Fukumori, I., Wang, O., Fenty, I., Forget, G., Heimbach, P., & Ponte, R. M. 2020. Synopsis of the ECCO Central Production Global Ocean and Sea-Ice State Estimate (Version 4 Release 4). doi:10.5281/zenodo.3765928"
+   },
+* renamed coordinate_metadata_for_native_datasets.json to spatial_coordinate_metadata_for_native_datasets.json
+* removed time related metadata from spatial_coordinate_metadata_for_native_datasets
+* cleaned up some of the descriptions of the geometry metadata for latlon and native
+
+Gregory, J. M., and Coauthors, 2019: Concepts and Terminology for Sea Level: Mean, Variability and Change, Both Local and Global. Surv Geophys, 40, 1251–1289, https://doi.org/10.1007/s10712-019-09525-z.
