@@ -75,6 +75,7 @@
 # Time stepping parameters
  &PARM03
  nIter0=1,
+#nTimeSteps=61355,
 #2 lev2 for testing:
 #nTimeSteps=8,
 #3month
@@ -94,7 +95,18 @@
 #26yr 
 #nTimeSteps=227903,
 #28yr
- nTimeSteps=245423,
+#nTimeSteps=245423,
+#31yr (1992-2022)
+#nTimeSteps=271739,
+#32yr (1992-2023)
+#nTimeSteps=280487,
+#12Z 1992/1/1 to 12Z 2024/12/31 - 1
+#nTimeSteps=289271,
+#12Z 1992/1/1 to 0Z 2025/12/1 - 1
+#nTimeSteps=297299,
+#12Z 1992/1/1 to 12Z 2025/12/31 - 1
+nTimeSteps=298031,
+
 #60 years
 #nTimeSteps=525985,
 #
@@ -141,7 +153,7 @@
 
 # Input datasets
  &PARM05
- diffKrFile='total_diffkr_r009bit11.bin',
+ diffKrFile='xx_diffkr.effective.V4r5',
  adTapeDir='tapes',
  bathyFile      ='BATHY_ICE_SHELF_CAVITY_PLUS_ICE_FRONT_LLC_0090.bin',
  hydrogThetaFile='T_OWPv1_M_eccollc_90x50.bin',
