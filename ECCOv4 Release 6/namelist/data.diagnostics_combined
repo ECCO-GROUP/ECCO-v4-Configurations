@@ -1428,93 +1428,93 @@ filename(258)  = 'diags/SIgamma_mon_mean/SIgamma_mon_mean',
 frequency(259) = -86400.0,
 timePhase(259) = 43200.0,
 fields(1,259)  = 'SSH',
-filename(259)  = 'diags/SSH_day_snap/SSH_day_snap',
+filename(259)  = 'diags/SSH_snap/SSH_snap',
 
 #---
 frequency(260) = -86400.0,
 timePhase(260) = 43200.0,
 fields(1,260)  = 'SSHIBC',
-filename(260)  = 'diags/SSHIBC_day_snap/SSHIBC_day_snap',
+filename(260)  = 'diags/SSHIBC_snap/SSHIBC_snap',
 
 #---
 frequency(261) = -86400.0,
 timePhase(261) = 43200.0,
 fields(1,261)  = 'SSHNOIBC',
-filename(261)  = 'diags/SSHNOIBC_day_snap/SSHNOIBC_day_snap',
+filename(261)  = 'diags/SSHNOIBC_snap/SSHNOIBC_snap',
 
 #---
 frequency(262) = -86400.0,
 timePhase(262) = 43200.0,
 fields(1,262)  = 'ETAN',
-filename(262)  = 'diags/ETAN_day_snap/ETAN_day_snap',
+filename(262)  = 'diags/ETAN_snap/ETAN_snap',
 
 #---
 frequency(263) = -86400.0,
 timePhase(263) = 43200.0,
 fields(1,263)  = 'OBP',
-filename(263)  = 'diags/OBP_day_snap/OBP_day_snap',
+filename(263)  = 'diags/OBP_snap/OBP_snap',
 fileFlags(263) = 'D       ',
 
 #---
 frequency(264) = -86400.0,
 timePhase(264) = 43200.0,
 fields(1,264)  = 'OBPGMAP',
-filename(264)  = 'diags/OBPGMAP_day_snap/OBPGMAP_day_snap',
+filename(264)  = 'diags/OBPGMAP_snap/OBPGMAP_snap',
 fileFlags(264) = 'D       ',
 
 #---
 frequency(265) = -86400.0,
 timePhase(265) = 43200.0,
 fields(1,265)  = 'PHIBOT',
-filename(265)  = 'diags/PHIBOT_day_snap/PHIBOT_day_snap',
+filename(265)  = 'diags/PHIBOT_snap/PHIBOT_snap',
 
 #---
 frequency(266) = -86400.0,
 timePhase(266) = 43200.0,
 fields(1,266)  = 'THETA',
-filename(266)  = 'diags/THETA_day_snap/THETA_day_snap',
+filename(266)  = 'diags/THETA_snap/THETA_snap',
 
 #---
 frequency(267) = -86400.0,
 timePhase(267) = 43200.0,
 fields(1,267)  = 'SALT',
-filename(267)  = 'diags/SALT_day_snap/SALT_day_snap',
+filename(267)  = 'diags/SALT_snap/SALT_snap',
 
 #---
 frequency(268) = -86400.0,
 timePhase(268) = 43200.0,
 fields(1,268)  = 'SIarea',
-filename(268)  = 'diags/SIarea_day_snap/SIarea_day_snap',
+filename(268)  = 'diags/SIarea_snap/SIarea_snap',
 
 #---
 frequency(269) = -86400.0,
 timePhase(269) = 43200.0,
 fields(1,269)  = 'SIheff',
-filename(269)  = 'diags/SIheff_day_snap/SIheff_day_snap',
+filename(269)  = 'diags/SIheff_snap/SIheff_snap',
 
 #---
 frequency(270) = -86400.0,
 timePhase(270) = 43200.0,
 fields(1,270)  = 'SIhsnow',
-filename(270)  = 'diags/SIhsnow_day_snap/SIhsnow_day_snap',
+filename(270)  = 'diags/SIhsnow_snap/SIhsnow_snap',
 
 #---
 frequency(271) = -86400.0,
 timePhase(271) = 43200.0,
 fields(1,271)  = 'sIceLoad',
-filename(271)  = 'diags/sIceLoad_day_snap/sIceLoad_day_snap',
+filename(271)  = 'diags/sIceLoad_snap/sIceLoad_snap',
 
 #---
 frequency(272) = -86400.0,
 timePhase(272) = 43200.0,
 fields(1,272)  = 'SIuice',
-filename(272)  = 'diags/SIuice_day_snap/SIuice_day_snap',
+filename(272)  = 'diags/SIuice_snap/SIuice_snap',
 
 #---
 frequency(273) = -86400.0,
 timePhase(273) = 43200.0,
 fields(1,273)  = 'SIvice',
-filename(273)  = 'diags/SIvice_day_snap/SIvice_day_snap',
+filename(273)  = 'diags/SIvice_snap/SIvice_snap',
 
   /
 
