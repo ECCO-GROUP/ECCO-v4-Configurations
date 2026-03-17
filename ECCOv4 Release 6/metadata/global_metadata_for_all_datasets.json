@@ -145,12 +145,12 @@
       "name": "identifier_product_doi",
       "type": "s",
       "value": "TBD_BY_GRANULE"   
-   }
+   },
    {
       "name": "identifier_product_doi_authority",
       "type": "s",
       "value": "org.doi"
-   }
+   },
    {
       "name": "institution",
       "type": "s",
