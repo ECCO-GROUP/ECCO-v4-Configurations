@@ -42,6 +42,7 @@
    {
     "name" : "ocean mixed layer depth",
     "fields" : "MXLDEPTH",
+    "dataset_description": "TBC",
     "filename" : "OCEAN_MIXED_LAYER_DEPTH",
     "dimension" : "2D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -110,7 +111,6 @@
     "filename" : "OCEAN_MIXING_COEFFS",
     "dimension" : "3D",
     "frequency" : "TIME-INVARIANT"
-    
    },
    {
     "name": "sea-ice and snow horizontal volume fluxes",
@@ -166,61 +166,70 @@
     "fields": "TOTUTEND, Um_Cori, Um_Advec, Um_Diss, Um_Ext, Um_dPhiX, AB_gU, Um_ImplD",
     "dataset_description" : "Parameters include XYZ.",
     "filename" : "OCEAN_3D_MOMENTUM_TEND_X",
-    "dimension" : "3D"
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
    },
    {
     "name": "ocean three-dimensional advective momentum tendency terms in the model x-direction",
     "fields": "Um_AdvZ3, Um_AdvRe, Um_dKEdx",
     "dataset_description" : "Parameters include XYZ.",
     "filename" : "OCEAN_3D_MOMENTUM_ADV_TEND_X",
-    "dimension" : "3D"
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
    },
    {
     "name": "ocean three-dimensional dissipative momentum tendency terms in the model x-direction",
     "fields": "Um_Diss2, Um_Diss4, UBotDrag, USidDrag, UShIDrag",
     "dataset_description" : "Parameters include XYZ.",
     "filename" : "OCEAN_3D_MOMENTUM_DISS_TEND_X",
-    "dimension" : "3D"
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
    },
    {
     "name": "ocean three-dimensional momentum tendencies in the model y-direction",
     "fields": "TOTVTEND, Vm_Cori, Vm_Advec, Vm_Diss, Vm_Ext, Vm_dPhiY, AB_gV, Vm_ImplD",
     "dataset_description" : "Parameters include XYZ.",
     "filename" : "OCEAN_3D_MOMENTUM_TEND_Y",
-    "dimension" : "3D"
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
    },
    {
     "name": "ocean three-dimensional advective momentum tendency terms in the model y-direction",
     "fields": "Vm_AdvZ3, Vm_AdvRe, Vm_dKEdy",
     "dataset_description" : "Parameters include XYZ.",
     "filename" : "OCEAN_3D_MOMENTUM_ADV_TEND_Y",
-    "dimension" : "3D"
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
    },
    {
     "name": "ocean three-dimensional dissipative momentum tendency terms in the model y-direction",
     "fields": "Vm_Diss2, Vm_Diss4, VBotDrag, VSidDrag, VShIDrag",
     "dataset_description" : "Parameters include XYZ.",
     "filename" : "OCEAN_3D_MOMENTUM_DISS_TEND_Y",
-    "dimension" : "3D"
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
    },
    {
     "name": "ice-shelf freshwater and heat fluxes",
     "fields": "SHIfwFlx, SHIhtFlx",
     "dataset_description" : "Parameters include XYZ.",
     "filename" : "ICE_SHELF_FLUX",
-    "dimension" : "2D"
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
    },
    {
     "name": "ice-front freshwater and heat fluxes",
     "fields": "ICFfwFlx, ICFhtFlx",
     "dataset_description" : "Parameters include XYZ.",
     "filename" : "ICE_FRONT_FLUX",
-    "dimension" : "3D"
+    "dimension" : "3D",
+    "frequency" : "AVG_DAY, AVG_MON"
    },
    {
     "name": "sea-ice thermodynamic budget",
     "fields": "SIFao, SIFionet, SIFianet, SIFmi, SIFFlood, SIsnAccR, SIsnmltS, SIgamma",
     "filename" : "SEA_ICE_THERMO_BUDG",
-    "dimension" : "2D"
+    "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
    }
 ]
