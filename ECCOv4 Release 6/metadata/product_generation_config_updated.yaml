@@ -53,11 +53,11 @@ read_grid: False
 # =================================================================================================
 
 # Short label of ECCO product version/release (str, 'Vxry'):
-ecco_version: 'V4r5'
+ecco_version: 'V4r6'
 
 ## Long label of ECCO product version/release
 ## String
-product_version: 'Version 4, Release 5'
+product_version: 'Version 4, Release 6'
 #
 ## String
 #array_precision: 'float32'
@@ -77,7 +77,7 @@ model_start_time: '1992-01-01T12:00:00'
 
 # Model end date and time, in ISO Date Time format (str,
 # 'YYYY-MM-DDThh:mm:ss'):
-model_end_time: '2020-01-01T00:00:00'
+model_end_time: '2026-01-01T00:00:00'
 
 # Number of simulation time steps per granule time increment (e.g., 3600 for one
 # second time steps with granule_time increments of one hour) (int):
@@ -92,7 +92,7 @@ model_timestep_units: 'h'
 ## Number of vertical of 3D fields
 ## Assumes only 1 vertical level for 2D files.
 ## Int
-#num_vertical_levels: 50
+num_vertical_levels: 50
 #
 ## Maximum model depth (meters) 
 ## Double
@@ -104,7 +104,7 @@ geospatial_vertical_min: -6134.5
 #
 ## Resolution of the lat-lon grid used for transformation
 ## Float
-#latlon_grid_resolution: 0.5
+latlon_grid_resolution: 0.5
 #
 #
 ## Numerical value for effective grid cell radius to use when mapping from model grid to lat-lon grid 
@@ -120,7 +120,7 @@ geospatial_vertical_min: -6134.5
 ## lat/lon bounds for transformation grid
 ## [lon_min, lat_max, lon_max, lat_min]
 ## List of floats
-#latlon_grid_area_extent: [-180.0, 90.0, 180.0, -90.0]
+latlon_grid_area_extent: [-180.0, 90.0, 180.0, -90.0]
 #
 #
 ## =================================================================================================
@@ -174,7 +174,7 @@ geospatial_vertical_min: -6134.5
 ## Absolute directory path string for the ECCO grid directory (must include all necessary grids and files)
 ## Default: ECCO-Dataset-Production/processing/ecco_grids/{ecco_version}/
 ## String
-#ecco_grid_dir: ''
+ecco_grid_dir: '/home/jpluser/efs-mount-point/ifenty/grids/grid_ECCOV4r5'
 #
 ## Absolute directory path string for the ECCO grid mds directory (must include all necessary grids and files)
 ## Default: ECCO-Dataset-Production/processing/ecco_grids/{ecco_version}/
@@ -246,6 +246,7 @@ geospatial_vertical_min: -6134.5
 # Name of ECCO grid NetCDF file, assumed to be in location defined by task
 # list's 'ecco_grid_dir' field:
 ecco_native_grid_filename: 'GRID_GEOMETRY_ECCO_V4r5_native_llc0090.nc'
+ecco_grid_filename: 'GRID_GEOMETRY_ECCO_V4r5_native_llc0090.nc'
 # gjm end.
 #
 ## Tail string for filename of processed files for 1D grid.
@@ -256,12 +257,12 @@ ecco_native_grid_filename: 'GRID_GEOMETRY_ECCO_V4r5_native_llc0090.nc'
 ## Tail string for filename of processed files for latlon grid.
 ## "_ECCO_{ecco_version}_{grid_type}_" will be prepended during processing.
 ## String
-#filename_tail_latlon: '0p50deg.nc'
+filename_tail_latlon: '0p50deg.nc'
 #
 ## Tail string for filename of processed files for native grid.
 ## "_ECCO_{ecco_version}_{grid_type}" will be prepended during processing.
 ## String
-#filename_tail_native: 'llc0090.nc'
+filename_tail_native: 'llc0090.nc'
 
 # Configurable ECCO Production filestring components (used in the context of
 # production filestrings of the form:
@@ -270,6 +271,22 @@ ecco_native_grid_filename: 'GRID_GEOMETRY_ECCO_V4r5_native_llc0090.nc'
 ecco_production_filestr_grid_label:
     latlon: '0p50deg'
     native: 'llc0090'
+
+
+# variable-level NetCDF4 compression encodings:
+netcdf4_compression_encodings:
+    zlib        : True
+    complevel   : 5
+    shuffle     : True
+
+# per PO.DAAC request, possible coordinate names to be included with
+# variable encodings (runtime-determined):
+variable_coordinates_as_encoded_attributes: ['latitude','longitude','tile','time','XC','XG','YC','YG','Z','Zp1','Zl','Zu']
+
+# Assigned DOI prefix (ref. https://www.doi.org/):
+doi_authority: 'org.doi'
+doi_prefix: '10.5067'
+
 
 #
 ## Filename string of the PODAAC metadata to use (must be a CSV). Assumes file exists in /processing/metadata/{ecco_version}/
@@ -289,7 +306,7 @@ podaac_metadata_filename: 'PODAAC_dataset_table_V4r6_prelim.csv'
 #
 ## History string to include with global metadata
 ## String
-history: 'NetCDF files produced for PO.DAAC distribution 2024-10-13'
+history: 'V4r6 test files produced 2026-03-17'
 #
 ## References string to include with global metadata
 ## String
