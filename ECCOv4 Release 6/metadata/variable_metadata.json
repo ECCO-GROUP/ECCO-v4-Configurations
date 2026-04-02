@@ -1116,10 +1116,10 @@
       "coverage_content_type": "modelResult"
    },
    {
-      "name": "Um_dPHdx",
-      "long_name": "Momentum tendency in the model +x direction",
+      "name": "Um_dPhiX",
+      "long_name": "U momentum tendency from the full pressure gradient",
       "units": "m s-2",
-      "comments_1": "Momentum tendency in the +x direction due to the hydrostatic pressure gradient at the 'u' face of the native model grid cell ",
+      "comments_1": "U momentum tendency due to the full pressure gradient in the model +x direction ",
       "comments_2": "Note: the model +x direction does not necessarily correspond to the geographical east-west direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.",
       "GCMD_keywords" : "",
       "grid_dimension": "3D",
@@ -1127,14 +1127,90 @@
       "coverage_content_type": "modelResult"
    },
    {
-      "name": "Vm_dPHdy",
-      "long_name": "Momentum tendency in the model +y direction",
+      "name": "Vm_dPhiY",
+      "long_name": "V momentum tendency from full pressure gradient",
       "units": "m s-2",
-      "comments_1": "Momentum tendency in the +y direction due to the hydrostatic pressure gradient at the 'v' face of the native model grid cell ",
+      "comments_1": "V momentum tendency due to the full pressure gradient in the model +y direction ",
       "comments_2": "Note: the model +y direction does not necessarily correspond to the geographical north-south direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.",
       "GCMD_keywords" : "",
       "grid_dimension": "3D",
       "grid_location": "v",
       "coverage_content_type": "modelResult"
-   }
+   },
+   {
+      "name": "TOTUTEND",
+      "long_name": "U momentum tendency",
+      "units": "m s-2",
+      "comments_1": "U momentum tendency from all contributions",
+      "comments_2": "Note: the MITgcm diagnostic package outputs TOTUTEND with units of 'm s-1 day-1', we divide by 86400 to convert the units to m s-2.",
+      "GCMD_keywords" : "",
+      "grid_dimension": "3D",
+      "grid_location": "u",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "TOTVTEND",
+      "long_name": "V momentum tendency",
+      "units": "m s-2",
+      "comments_1": "V momentum tendency from all contributions",
+      "comments_2": "Note: the MITgcm diagnostic package outputs TOTVTEND with units of 'm s-1 day-1', we divide by 86400 to convert the units to m s-2.",
+      "GCMD_keywords" : "",
+      "grid_dimension": "3D",
+      "grid_location": "v",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "UBotDrag",
+      "long_name": "U momentum tendency from bottom drag",
+      "units": "m s-2",
+      "comments_1": "U momentum tendency due to the bottom drag from flow in the +x direction",
+      "comments_2": "Note: the model +x direction does not necessarily correspond to the geographical east-west direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.",
+      "GCMD_keywords" : "",
+      "grid_dimension": "3D",
+      "grid_location": "u",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "VBotDrag",
+      "long_name": "V momentum tendency from implicit part of the pressure gradient",
+      "units": "m s-2",
+      "comments_1": "V momentum tendency due to the implicit part of the pressure gradient in the model +y direction ",
+      "comments_2": "Note: the model +y direction does not necessarily correspond to the geographical north-south direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.",
+      "GCMD_keywords" : "",
+      "grid_dimension": "3D",
+      "grid_location": "v",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "VISrI_Um",
+      "long_name": "Vertical flux of u momentum from the implicit vertical viscosity",
+      "units": "m4 s-2",
+      "comments_1": "Do not use to close the momentum budget because one would need to divide its vertical divergence by the grid cell volume, and the grid cell volume changes with time in the z* coordinate system. Instead, use the term Um_ImplD: the vertical divergence of VISrI_Um divided by the time-varying grid cell volume.",
+      "comments_2": "",
+      "GCMD_keywords" : "",
+      "grid_dimension": "3D",
+      "grid_location": "u",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "VISrI_Vm",
+      "long_name": "Vertical flux of v momentum from the implicit vertical viscosity",
+      "units": "m4 s-2",
+      "comments_1": "Do not use to close the momentum budget because one would need to divide its vertical divergence by the grid cell volume, and the grid cell volume changes with time in the z* coordinate system. Instead, use the term Vm_ImplD: the vertical divergence of VISrI_Vm divided by the time-varying grid cell volume.",
+      "comments_2": "",
+      "GCMD_keywords" : "",
+      "grid_dimension": "3D",
+      "grid_location": "v",
+      "coverage_content_type": "modelResult"
+   },
+
+ 'UBotDrag'
+ 'UShIDrag' 'USidDrag' 'Um_AdvRe' 'Um_AdvZ3' 'Um_Advec' 'Um_Cori'
+ 'Um_Diss' 'Um_Diss2' 'Um_Diss4' 'Um_Ext' 'Um_ImplD' 'Um_dKEdx' 
+ 'VBotDrag' 'VShIDrag' 'VSidDrag' 'Vm_AdvRe'
+ 'Vm_AdvZ3' 'Vm_Advec' 'Vm_Cori' 'Vm_Diss' 'Vm_Diss2' 'Vm_Diss4' 'Vm_Ext'
+ 'Vm_ImplD' 'Vm_dKEdy'  'botTauX' 'botTauY' 
+
+
+
 ]
