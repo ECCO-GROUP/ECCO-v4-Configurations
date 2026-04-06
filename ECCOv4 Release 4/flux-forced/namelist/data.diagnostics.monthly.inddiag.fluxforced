@@ -292,6 +292,79 @@ filename(95) = 'diags/OBPGMAP_mon_mean/OBPGMAP_mon_mean',
 frequency(96) = 2635200.0,
 fields(1,96) = 'EXFpress',
 filename(96) = 'diags/EXFpress_mon_mean/EXFpress_mon_mean',
+#-- Momentum budget diagnostics
+#---
+frequency(101) = 2635200.0,
+fields(1,101) = 'TOTUTEND',
+filename(101) = 'diags/TOTUTEND_mon_mean/TOTUTEND_mon_mean',
+#---
+frequency(102) = 2635200.0,
+fields(1,102) = 'TOTVTEND',
+filename(102) = 'diags/TOTVTEND_mon_mean/TOTVTEND_mon_mean',
+#---
+frequency(103) = 2635200.0,
+fields(1,103) = 'Um_Cori',
+filename(103) = 'diags/Um_Cori_mon_mean/Um_Cori_mon_mean',
+#---
+frequency(104) = 2635200.0,
+fields(1,104) = 'Vm_Cori',
+filename(104) = 'diags/Vm_Cori_mon_mean/Vm_Cori_mon_mean',
+#---
+frequency(105) = 2635200.0,
+fields(1,105) = 'Um_Advec',
+filename(105) = 'diags/Um_Advec_mon_mean/Um_Advec_mon_mean',
+#---
+frequency(106) = 2635200.0,
+fields(1,106) = 'Vm_Advec',
+filename(106) = 'diags/Vm_Advec_mon_mean/Vm_Advec_mon_mean',
+#---
+frequency(107) = 2635200.0,
+fields(1,107) = 'Um_Diss',
+filename(107) = 'diags/Um_Diss_mon_mean/Um_Diss_mon_mean',
+#---
+frequency(108) = 2635200.0,
+fields(1,108) = 'Vm_Diss',
+filename(108) = 'diags/Vm_Diss_mon_mean/Vm_Diss_mon_mean',
+#---
+frequency(109) = 2635200.0,
+fields(1,109) = 'Um_Ext',
+filename(109) = 'diags/Um_Ext_mon_mean/Um_Ext_mon_mean',
+#---
+frequency(110) = 2635200.0,
+fields(1,110) = 'Vm_Ext',
+filename(110) = 'diags/Vm_Ext_mon_mean/Vm_Ext_mon_mean',
+#---
+frequency(111) = 2635200.0,
+fields(1,111) = 'AB_gU',
+filename(111) = 'diags/AB_gU_mon_mean/AB_gU_mon_mean',
+#---
+frequency(112) = 2635200.0,
+fields(1,112) = 'AB_gV',
+filename(112) = 'diags/AB_gV_mon_mean/AB_gV_mon_mean',
+#---
+frequency(144) = 2635200.0,
+fields(1,144) = 'Um_dPHdx',
+filename(144) = 'diags/Um_dPHdx_mon_mean/Um_dPHdx_mon_mean',
+#---
+frequency(145) = 2635200.0,
+fields(1,145) = 'Vm_dPHdy',
+filename(145) = 'diags/Vm_dPHdy_mon_mean/Vm_dPHdy_mon_mean',
+#---
+frequency(148) = 2635200.0,
+fields(1,148) = 'Um_Impl',
+filename(148) = 'diags/Um_Impl_mon_mean/Um_Impl_mon_mean',
+#---
+frequency(149) = 2635200.0,
+fields(1,149) = 'Vm_Impl',
+filename(149) = 'diags/Vm_Impl_mon_mean/Vm_Impl_mon_mean',
+#---
+frequency(152) = 2635200.0,
+fields(1,152) = 'Um_dPsdx',
+filename(152) = 'diags/Um_dPsdx_mon_mean/Um_dPsdx_mon_mean',
+#---
+frequency(153) = 2635200.0,
+fields(1,153) = 'Vm_dPsdy',
+filename(153) = 'diags/Vm_dPsdy_mon_mean/Vm_dPsdy_mon_mean',
 #---
   /
 #
