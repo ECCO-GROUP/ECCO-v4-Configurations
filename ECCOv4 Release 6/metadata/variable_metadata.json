@@ -191,30 +191,6 @@
       "coverage_content_type": "modelResult"
    },
    {
-      "name": "DFxEHEFF",
-      "long_name": "Lateral diffusive flux of sea-ice thickness in the model +x direction.",
-      "units": "m3 s-1",
-      "comments_1": "Lateral diffusive flux of grid cell mean sea-ice thickness (HEFF) in the +x direction through the 'u' face of the tracer cell on the native model grid",
-      "comments_2": "Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells. Positive DFxEHEFF(i_g,j) corresponds to +x fluxes through the 'u' face of the tracer cell at (i,j,k=0). Also, the model +x direction does not necessarily correspond to the geographical east-west direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.",
-      "direction": ">0 increases mean sea-ice thickness (HEFF)",
-      "GCMD_keywords" : "EARTH SCIENCE > CRYOSPHERE > SEA ICE > SEA ICE MOTION",
-      "grid_dimension": "3D",
-      "grid_location": "u",
-      "coverage_content_type": "modelResult"
-   },
-   {
-      "name": "DFxESNOW",
-      "long_name": "Lateral diffusive flux of snow thickness in the model +x direction",
-      "units": "m3 s-1",
-      "comments_1": "Lateral diffusive flux of grid cell mean snow thickness (HSNOW) in the +x direction through the 'u' face of the tracer cell on the native model grid",
-      "comments_2": "Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells. Positive DFxESNOW(i_g,j) corresponds to +x fluxes through the 'u' face of the tracer cell at (i,j,k=0). Also, the model +x direction does not necessarily correspond to the geographical east-west direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.",
-      "direction": ">0 increases mean snow thickness (HSNOW)",
-      "GCMD_keywords" : "EARTH SCIENCE > CRYOSPHERE > SEA ICE > SEA ICE MOTION",
-      "grid_dimension": "3D",
-      "grid_location": "u",
-      "coverage_content_type": "modelResult"
-   },
-   {
       "name": "DFyE_SLT",
       "long_name": "Lateral diffusive flux of salinity in the model +y direction",
       "units": "1e-3 m3 s-1",
@@ -234,30 +210,6 @@
       "comments_2": "Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells. Positive DFyE_TH(i,j_g,k) corresponds to +y fluxes through the 'v' face of the tracer cell at (i,j,k). Also, the model +y direction does not necessarily correspond to the geographical north-south direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.",
       "direction": ">0 increases potential temperature (THETA)",
       "GCMD_keywords": "EARTH SCIENCE > OCEANS > OCEAN HEAT BUDGET > HEAT FLUX",
-      "grid_dimension": "3D",
-      "grid_location": "v",
-      "coverage_content_type": "modelResult"
-   },
-   {
-      "name": "DFyEHEFF",
-      "long_name": "Lateral diffusive flux of sea-ice thickness in the model +y direction.",
-      "units": "m3 s-1",
-      "comments_1": "Lateral diffusive flux of grid cell mean sea-ice thickness (HEFF) in the +y direction through the 'v' face of the tracer cell on the native model grid",
-      "comments_2": "Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells. Positive DFyEHEFF(i,j_g) corresponds to +y fluxes through the 'v' face of the tracer cell at (i,j,k=0). Also, the model +y direction does not necessarily correspond to the geographical north-south direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.",
-      "direction": ">0 increases mean sea-ice thickness (HEFF)",
-      "GCMD_keywords" : "EARTH SCIENCE > CRYOSPHERE > SEA ICE > SEA ICE MOTION",
-      "grid_dimension": "3D",
-      "grid_location": "v",
-      "coverage_content_type": "modelResult"
-   },
-   {
-      "name": "DFyESNOW",
-      "long_name": "Lateral diffusive flux of snow thickness in the model +y direction",
-      "units": "m3 s-1",
-      "comments_1": "Lateral diffusive flux of grid cell mean snow thickness (HSNOW) in the +y direction through the 'v' face of the tracer cell on the native model grid",
-      "comments_2": "Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells. Positive DFyESNOW(i,j_g,k) corresponds to +y fluxes through the 'v' face of the tracer cell at (i,j,k=0). Also, the model +y direction does not necessarily correspond to the geographical north-south direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.",
-      "direction": ">0 increases mean snow thickness (HSNOW)",
-      "GCMD_keywords" : "EARTH SCIENCE > CRYOSPHERE > SEA ICE > SEA ICE MOTION",
       "grid_dimension": "3D",
       "grid_location": "v",
       "coverage_content_type": "modelResult"
@@ -579,11 +531,11 @@
    },
    {
       "name": "MXLDEPTH",
-      "long_name": "Mixed-layer depth diagnosed using the temperature difference criterion of Kara et al., 2000",
+      "long_name": "Mixed-layer depth diagnosed using the density criterion of Kara et al., 2000",
       "units": "m",
       "standard_name": "ocean_mixed_layer_thickness",
-      "comments_1": "Mixed-layer depth as determined by the depth where waters are first 0.8 degrees Celsius colder than the surface. See Kara et al. (JGR, 2000). ",
-      "comments_2": "Note: the Kara et al. criterion may not be appropriate for some applications. If needed, mixed layer depth can be calculated using different criteria. See vertical density stratification (DRHODR) and density anomaly (RHOAnoma).",
+      "comments_1": "Depth level where potential density exceeds the surface potential density + delta rho, with delta rho = alpha(surface layer) * 0.8 degrees Celsius. See Kara et al. (JGR, 2000). ",
+      "comments_2": "Note: the Kara et al. (2000) criterion is not appropriate for all applications. Users should calculate their own mixed layer depths as needed using vertical stratification (DRHODR) and/or density anomaly (RHOAnoma).",
       "GCMD_keywords" : "EARTH SCIENCE > OCEANS > OCEAN CIRCULATION > OCEAN MIXED LAYER",
       "grid_dimension": "2D",
       "grid_location": "c",
@@ -591,7 +543,7 @@
    },
    {
       "name": "OBP",
-      "long_name": "Ocean bottom pressure given as equivalent water thickness",
+      "long_name": "Ocean bottom pressure provided as equivalent water thickness",
       "units": "m",
       "comments_1": "OBP excludes the contribution from global mean atmospheric pressure and is therefore suitable for comparisons with GRACE data products",
       "comments_2": "OBP is calculated as follows. First, calculate ocean hydrostatic bottom pressure anomaly, PHIBOT; PHIBOT = $p_b/rhoConst - g H$, where $p_b$ is ocean hydrostatic bottom pressure, $rhoConst$ is a reference density (1029 kg m-3), $g$ is acceleration due to gravity (9.81 m s-2), and $H$ is a reference ocean depth, the distance from the liquid ocean surface at rest to the seafloor. $p_b$ is the vertical integral of $g \rho dz^*$, where $\rho$ is density (density anomaly + reference density) and $dz^{*}$ is the time-varying grid cell thickness. Then, OBP = PHIBOT/g + C, where C is the sum of two corrections: 1) global mean steric sea level changes related to density changes in the Boussinesq volume-conserving model (Greatbatch correction, see sterGloH) and 2) global mean atmospheric pressure variations. Use OBP for comparisons with ocean bottom pressure data products that have been corrected for global mean atmospheric pressure variations. GRACE data typically ARE corrected for global mean atmospheric pressure variations. In contrast, ocean bottom pressure gauge data typically ARE NOT corrected for global mean atmospheric pressure variations.",
@@ -601,11 +553,33 @@
       "coverage_content_type": "modelResult"
    },
    {
+      "name": "OBPAnoma",
+      "long_name": "Ocean bottom pressure anomaly provided as equivalent water thickness",
+      "units": "m",
+      "comments_1": "OBPAnoma is calculated as OBP minus the 2005-2010 mean of OBP at each grid cell. See OBP for details.",
+      "comments_2": "",
+      "GCMD_keywords" : "EARTH SCIENCE > OCEANS > OCEAN PRESSURE, EARTH SCIENCE > OCEANS > OCEAN PRESSURE > WATER PRESSURE",
+      "grid_dimension": "2D",
+      "grid_location": "c",
+      "coverage_content_type": "modelResult"
+   },   
+   {
       "name": "OBPGMAP",
-      "long_name": "Ocean bottom pressure given as equivalent water thickness, includes global mean atmospheric pressure",
+      "long_name": "Ocean bottom pressure provided as equivalent water thickness, includes global mean atmospheric pressure",
       "units": "m",
       "comments_1": "OBPGMAP includes the contribution from global mean atmospheric pressure and is therefore suitable for comparisons with ocean bottom pressure gauge data products.",
       "comments_2": "OBPGMAP is calculated as follows. First, we calculate ocean hydrostatic bottom pressure anomaly, PHIBOT; PHIBOT = $p_b/rhoConst - g H$, where $p_b$ = model ocean hydrostatic bottom pressure, rhoConst = reference density (1029 kg m-3), $g$ is acceleration due to gravity (9.81 m s-2), and $H$ is a reference ocean depth, the distance from the liquid ocean surface at rest to the seafloor. $p_b$ is the vertical integral of $g \rho dz^{*}$, where $\rho$ is density (density anomaly + reference density) and $dz^{*}$ is the time-varying grid cell thickness. Then, OBPGMAP = PHIBOT/g + a correction for global mean steric sea level changes related to density changes in the Boussinesq volume-conserving model (Greatbatch correction, see sterGloH). Use OBPGMAP for comparisons with ocean bottom pressure data products that have NOT been corrected for global mean atmospheric pressure variations. GRACE data typically ARE corrected for global mean atmospheric pressure variations. In contrast, ocean bottom pressure gauge data typically ARE NOT corrected for global mean atmospheric pressure variations.",
+      "GCMD_keywords" : "EARTH SCIENCE > OCEANS > OCEAN PRESSURE, EARTH SCIENCE > OCEANS > OCEAN PRESSURE > WATER PRESSURE",
+      "grid_dimension": "2D",
+      "grid_location": "c",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "OBPGMAPA",
+      "long_name": "Ocean bottom pressure anomaly provided as equivalent water thickness, includes global mean atmospheric pressure",
+      "units": "m",
+      "comments_1": "OBPGMAPA is calculated as OBPGMAP minus the 2005-2010 mean of OBP at each grid cell. See OBPGMAP for details.",
+      "comments_2": "",
       "GCMD_keywords" : "EARTH SCIENCE > OCEANS > OCEAN PRESSURE, EARTH SCIENCE > OCEANS > OCEAN PRESSURE > WATER PRESSURE",
       "grid_dimension": "2D",
       "grid_location": "c",
@@ -1506,5 +1480,41 @@
       "direction": ">0 increases vVel",
       "internal note": "available diagnostics code is |VV     MR|",      
       "coverage_content_type": "modelResult"
-   }
+   },
+   {
+      "name": "momKE",
+      "long_name": "kinetic energy associated with horizontal velocities",
+      "units": "m2 s-2",
+      "comments_1": "Kinetic energy of the ocean calculated as momKE(i,j) = 0.25 * (U(i_g,j)**2 + U(i_g+1,j)**2 + V(i,j_g)**2 + V(i,j_g+1)**2)",
+      "comments_2": "MITgcm KEscheme=0 used here calculates kinetic energy at tracer cell centers by averaging the kinetic energy contributions from the four surrounding velocity points. Alternative formulations are possible (see mom_calc_ke.F).",
+      "GCMD_keywords" : "",
+      "grid_dimension": "3D",
+      "grid_location": "c",
+      "internal note": "available diagnostics code is |SMR     MR|",      
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "momHDiv",
+      "long_name": "divergence of horizontal velocities",
+      "units": "s-1",
+      "comments_1": "Divergence of the horizontal velocities calculated as hDiv(i,j) = 1/rA(i,j) * ( U(i_g+1,j) dyG(i_g+1,j) - U(i_g,j) dyG(i_g,j) ) + ( V(i,j_g+1) dxG (i,j_g+1) - V(i,j_g) dxG(i,j_g) ).",
+      "comments_2": "MITgcm hDivScheme=2 used here includes the troubling comment 'This discretization takes into account the fractional areas to the lopping. Whether we should do this is not clear!' (see mom_calc_hdiv.F).",
+      "GCMD_keywords" : "",
+      "grid_dimension": "3D",
+      "grid_location": "c",
+      "internal note": "available diagnostics code is |SMR     MR|",      
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "momVort3",
+      "long_name": "vertical component of relative vorticity",
+      "units": "s-1",
+      "comments_1": "The vertical component of relative vorticity is calculated as momVort3(i_g,j_g) = ( V(i,j_g) dyC(i,j_g) - V(i-1,j_g) dyC(i-1,j_g)  - U(i_g,j) dxC(i_g,j) + U(i_g,j-1) dxC(i_g,j-1) ) / rAz(i_g,j_g).",
+      "comments_2": "momVort3 is naturally located at grid cell corners (i_g, j_g). The calculation is a bit different at face corners (see mom_calc_relvort3.F).",
+      "GCMD_keywords" : "",
+      "grid_dimension": "3D",
+      "grid_location": "z",
+      "internal note": "available diagnostics code is |SZR     MR|",      
+      "coverage_content_type": "modelResult"
+   }   
 ]

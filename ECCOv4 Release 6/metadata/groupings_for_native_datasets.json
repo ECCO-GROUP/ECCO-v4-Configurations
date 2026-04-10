@@ -10,7 +10,7 @@
    {
     "name" : "ocean bottom pressure",
     "fields": "OBP, OBPGMAP, OBPAnoma, OBPGMAPA, PHIBOT",
-    "dataset_description": "Parameters include ocean bottom pressure with [OBPGMAP] and without [OBP] the contribution from atmospheric pressure loading, their anomalies with respect to their 2005-2010 means [OBPGMAPA, OBPAnoma], and hydrostatic ocean bottom pressure anomaly [PHIBOT]. Note: ocean bottom pressure fields are provided in terms of equivalent water height.",
+    "dataset_description": "Parameters include ocean bottom pressure with and without the contribution from atmospheric pressure loading [OBPGMAP, OBP], ocean bottom pressure anomalies with respect to their 2005-2010 means [OBPGMAPA, OBPAnoma], and hydrostatic ocean bottom pressure anomaly [PHIBOT]. Note: ocean bottom pressure fields are provided in terms of equivalent water height.",
     "filename" : "OCEAN_BOTTOM_PRESSURE",
     "dimension" : "2D",
     "frequency" : "AVG_DAY, AVG_MON, SNAP"
@@ -18,15 +18,15 @@
    {
     "name": "ocean and sea-ice surface freshwater fluxes",
     "fields": "EXFpreci, EXFevap, EXFroff, EXFempmr, oceFWflx, SIatmFW, SFLUX, SIacSubl, SIrsSubl, SIfwThru, SIsnPrcp",
-    "dataset_description": "Parameters include freshwater flxues from precipitation, evaporation, runoff, and sublimation across the air/ocean interface [EXFpreci, EXFevap, EXFroff, EXFempmr] and air/sea-ice interface [SIatmFW, SIacSubl, SIrsSubl, SIfwThru, SIsnPrcp]; and total freshwater fluxes across the ocean surface [oceFWflx, SFLUX].",
+    "dataset_description": "Parameters include freshwater fluxes from precipitation, evaporation, runoff, and sublimation across the air/ocean interface [EXFpreci, EXFevap, EXFroff, EXFempmr] and air/sea-ice interface [SIatmFW, SIacSubl, SIrsSubl, SIfwThru, SIsnPrcp]; and total freshwater fluxes across the ocean surface [oceFWflx, SFLUX].",
     "filename" : "OCEAN_AND_ICE_SURFACE_FW_FLUX",
     "dimension" : "2D",
     "frequency" : "AVG_DAY, AVG_MON"
    },
    {
     "name": "ocean and sea-ice surface heat fluxes",
-    "fields": "EXFhl, EXFhs, EXFlwdn, EXFlwnet, EXFswdn, EXFswnet, EXFqnet, SIatmQnt, SIaaflux, oceQnet, oceQsw, TFLUX",
-    "dataset_description": "Parameters include latent, sensible, and short- and longwave radiative heat fluxes across the air/ocean interface [EXFhl, EXFhs, EXFlwdn, EXFlwnet, EXFswdn, EXFswnet, EXFqnet] and air/sea-ice interface [SIatmQnt, SIaaflux]; and total net heat fluxes across the ocean surface [oceQnet, oceQsw, TFLUX].",
+    "fields": "EXFhl, EXFhs,  EXFswdn, EXFlwdn, EXFswnet, EXFlwnet, EXFqnet, SIatmQnt, SIaaflux, oceQnet, oceQsw, TFLUX",
+    "dataset_description": "Parameters include latent, sensible, downwelling short- and longwave radiative heat fluxes across the air/open ocean interface [EXFhl, EXFhs, EXFswdn, EXFlwdn], net shortwave, longwave, and total heat fluxes across the air/open ocean interface [EXFswnet, EXFlwnet,EXFqnet], heat fluxes across air/ocean + sea-ice interface [SIatmQnt, SIaaflux]; and the net total heat flux and net shortwave flux integrated across the entire ocean surface [oceQnet, oceQsw, TFLUX].",
     "filename" : "OCEAN_AND_ICE_SURFACE_HEAT_FLUX",
     "dimension" : "2D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -42,7 +42,7 @@
    {
     "name" : "ocean mixed layer depth",
     "fields" : "MXLDEPTH",
-    "dataset_description": "TBC",
+    "dataset_description": "Provides MXLDEPTH, a 2D ocean mixed layer field diagnosed using the potential density criterion of Kara et al. (2000). The mixed layer depth is defined as the depth where potential density exceeds the surface potential density + delta rho, where delta rho = alpha(surface layer) * 0.8 degrees Celsius. Users can calculate their own mixed layer depth as needed using vertical stratification (DRHODR) and/or density anomaly (RHOAnoma) fields provided in the OCEAN_DENS_STRAT_PRESS dataset.",
     "filename" : "OCEAN_MIXED_LAYER_DEPTH",
     "dimension" : "2D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -50,7 +50,7 @@
    {
     "name" : "ocean and sea-ice surface stress",
     "fields" : "EXFtaux, EXFtauy, oceTAUX, oceTAUY",
-    "dataset_description": "Parameters include surface wind stress at the top of the ocean and sea-ice [EXFtaux, EXFtauy] and total ocean surface stress [oceTAUX, oceTAUY] in the model x and y-directions. Total ocean surface stress includes contributions from winds and sea-ice drag.",
+    "dataset_description": "Parameters include surface wind stress at the top of the ocean and sea-ice [EXFtaux, EXFtauy] and total ocean surface stress [oceTAUX, oceTAUY] in the model x and y-directions. Total ocean surface stress includes contributions from wind stress and sea-ice drag.",
     "filename" : "OCEAN_AND_ICE_SURFACE_STRESS",
     "dimension" : "2D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -82,7 +82,7 @@
    {
     "name": "ocean density, stratification, and hydrostatic pressure",
     "fields": "RHOAnoma, DRHODR, PHIHYD, PHIHYDcR",
-    "dataset_description" : "Parameters include seawater density [RHOAnoma], vertical stratification [DRHODR], and hydrostatic pressure considering fixed and time-varying vertical coordinate [PHIHYD, PHIHYDcR].",
+    "dataset_description" : "Parameters include seawater density anomaly [RHOAnoma], vertical stratification [DRHODR], and hydrostatic pressure calculated using fixed and time-varying vertical coordinates [PHIHYD, PHIHYDcR].",
     "filename" : "OCEAN_DENS_STRAT_PRESS",
     "dimension" : "3D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -90,7 +90,7 @@
    {
     "name": "ocean velocity",
     "fields": "UVEL, VVEL, WVELMASS",
-    "dataset_description" : "Parameters include ocean velocity in the model x, y, and z-directions [UVEL, VVLE, WVEL].",    
+    "dataset_description" : "Parameters include ocean velocity in the model x, y, and z-directions [UVEL, VVEL, WVEL].",    
     "variable_rename" : "WVELMASS:WVEL",
     "filename" : "OCEAN_VELOCITY",
     "dimension" : "3D",
@@ -228,8 +228,17 @@
    {
     "name": "sea-ice thermodynamic budget",
     "fields": "SIFao, SIFionet, SIFianet, SIFmi, SIFFlood, SIsnAccR, SIsnmltS, SIgamma",
+    "dataset_description" : "Parameters include XYZ.",
     "filename" : "SEA_ICE_THERMO_BUDG",
     "dimension" : "2D",
+    "frequency" : "AVG_DAY, AVG_MON"
+   },
+   {
+    "name": "ocean relative vorticity, horizontal divergence, and kinetic energy",
+    "fields": "momVort3, momHDiv, momKE",
+    "dataset_description" : "Parameters include the vertical component of relative vorticity [momVort3], the divergence of horizontal velocity [momHDiv], and the kinetic energy [momKE].",
+    "filename" : "OCEAN_3D_VORT_DIV_KE",
+    "dimension" : "3D",
     "frequency" : "AVG_DAY, AVG_MON"
    }
 ]
