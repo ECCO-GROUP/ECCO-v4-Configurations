@@ -78,8 +78,8 @@
     74 |PHIHYD  | 50 |       |SMR     MR|m^2/s^2         |Hydrostatic Pressure Pot.(p/rho) Anomaly
     75 |PHIHYDSQ| 50 |       |SMRP    MR|m^4/s^4         |Square of Hyd. Pressure Pot.(p/rho) Anomaly
     76 |PHIBOT  |  1 |       |SM      M1|m^2/s^2         |Bottom Pressure Pot.(p/rho) Anomaly
-    77 |OBP     |  1 |       |SM      M1|m^2/s^2         |Ocean Bottom Pressure
-    78 |OBPGMAP |  1 |       |SM      M1|m^2/s^2         |Ocean Bottom Pressure Including Global Mean Atmospheric Pressure
+    77 |OBP     |  1 |       |SM      M1|m               |Ocean Bottom Pressure
+    78 |OBPGMAP |  1 |       |SM      M1|m               |Ocean Bottom Pressure Including Global Mean Atmospheric Pressure
     79 |PHIBOTSQ|  1 |       |SM P    M1|m^4/s^4         |Square of Bottom Pressure Pot.(p/rho) Anomaly
     80 |PHI_SURF|  1 |       |SM      M1|m^2/s^2         |Surface Dynamical Pressure Pot.(p/rho)
     81 |PHIHYDcR| 50 |       |SMR     MR|m^2/s^2         |Hydrostatic Pressure Pot.(p/rho) Anomaly @ const r
