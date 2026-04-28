@@ -17,10 +17,11 @@
    },
    {
     "name": "ocean and sea-ice surface freshwater fluxes",
-    "fields": "EXFpreci, EXFevap, EXFroff, EXFempmr, oceFWflx, SIatmFW, SFLUX, SIacSubl, SIrsSubl, SIfwThru, SIsnPrcp",
-    "dataset_description": "Parameters include freshwater fluxes from precipitation, evaporation, runoff, and sublimation across the air/ocean interface [EXFpreci, EXFevap, EXFroff, EXFempmr] and air/sea-ice interface [SIatmFW, SIacSubl, SIrsSubl, SIfwThru, SIsnPrcp]; and total freshwater fluxes across the ocean surface [oceFWflx, SFLUX].",
+    "fields": "EXFpreci, EXFevap, EXFroff, EXFempmr, oceFWflx, SIatmFW, SFLUX, SIfwThru",
+    "dataset_description": "Parameters include freshwater fluxes from precipitation, evaporation, runoff, and sublimation across the air/ocean interface [EXFpreci, EXFevap, EXFroff, EXFempmr] and air/sea-ice interface [SIatmFW, SIfwThru]; and total freshwater fluxes across the ocean surface [oceFWflx, SFLUX].",
     "filename" : "OCEAN_AND_ICE_SURFACE_FW_FLUX",
     "dimension" : "2D",
+    "internal_note" : "SIacSubl, SIrsSubl, and SIsnPrcp are removed for v4r6 because they are not used in the seaice_growth_adx model.",
     "frequency" : "AVG_DAY, AVG_MON"
    },
    {
@@ -48,9 +49,9 @@
     "frequency" : "AVG_DAY, AVG_MON"
    },
    {
-    "name" : "ocean and sea-ice surface stress",
-    "fields" : "EXFtaux, EXFtauy, oceTAUX, oceTAUY",
-    "dataset_description": "Parameters include surface wind stress at the top of the ocean and sea-ice [EXFtaux, EXFtauy] and total ocean surface stress [oceTAUX, oceTAUY] in the model x and y-directions. Total ocean surface stress includes contributions from wind stress and sea-ice drag.",
+    "name" : "ocean and sea-ice stress",
+    "fields" : "EXFtaux, EXFtauy, oceTAUX, oceTAUY, botTauX, botTauY",
+    "dataset_description": "Parameters include surface wind stress at the top of the ocean and sea-ice [EXFtaux, EXFtauy], total ocean surface stress [oceTAUX, oceTAUY], and bottom stress [botTauX, botTauY] in the model x and y-directions. Total ocean surface stress includes contributions from wind stress and sea-ice drag.",
     "filename" : "OCEAN_AND_ICE_SURFACE_STRESS",
     "dimension" : "2D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -164,7 +165,7 @@
    {
     "name": "ocean three-dimensional momentum tendency terms in the model x-direction",
     "fields": "TOTUTEND, Um_Cori, Um_Advec, Um_Diss, Um_Ext, Um_dPhiX, AB_gU, Um_ImplD",
-    "dataset_description" : "Parameters include XYZ.",
+    "dataset_description" : "Parameters include the total momentum tendency [TOTUTEND], and its components: Coriolis [Um_Cori], advection [Um_Advec], dissipation [Um_Diss], external forcing [Um_Ext], pressure gradient [Um_dPhiX], Adams-Bashforth term [AB_gU], and implicit dissipation [Um_ImplD] in the model x-direction.",
     "filename" : "OCEAN_3D_MOMENTUM_TEND_X",
     "dimension" : "3D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -172,7 +173,7 @@
    {
     "name": "ocean three-dimensional advective momentum tendency terms in the model x-direction",
     "fields": "Um_AdvZ3, Um_AdvRe, Um_dKEdx",
-    "dataset_description" : "Parameters include XYZ.",
+    "dataset_description" : "Parameters include the advective momentum tendency components in the model x-direction: vertical advection [Um_AdvZ3], advection of relative velocity [Um_AdvRe], and the gradient of kinetic energy [Um_dKEdx].",
     "filename" : "OCEAN_3D_MOMENTUM_ADV_TEND_X",
     "dimension" : "3D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -180,7 +181,7 @@
    {
     "name": "ocean three-dimensional dissipative momentum tendency terms in the model x-direction",
     "fields": "Um_Diss2, Um_Diss4, UBotDrag, USidDrag, UShIDrag",
-    "dataset_description" : "Parameters include XYZ.",
+    "dataset_description" : "Parameters include the dissipative momentum tendency components in the model x-direction: biharmonic dissipation [Um_Diss2, Um_Diss4], bottom drag [UBotDrag], side drag [USidDrag], and sea-ice drag [UShIDrag].",
     "filename" : "OCEAN_3D_MOMENTUM_DISS_TEND_X",
     "dimension" : "3D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -188,7 +189,7 @@
    {
     "name": "ocean three-dimensional momentum tendencies in the model y-direction",
     "fields": "TOTVTEND, Vm_Cori, Vm_Advec, Vm_Diss, Vm_Ext, Vm_dPhiY, AB_gV, Vm_ImplD",
-    "dataset_description" : "Parameters include XYZ.",
+    "dataset_description" : "Parameters include the total momentum tendency [TOTVTEND], and its components: Coriolis [Vm_Cori], advection [Vm_Advec], dissipation [Vm_Diss], external forcing [Vm_Ext], pressure gradient [Vm_dPhiY], Adams-Bashforth term [AB_gV], and implicit dissipation [Vm_ImplD] in the model y-direction.",
     "filename" : "OCEAN_3D_MOMENTUM_TEND_Y",
     "dimension" : "3D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -196,7 +197,7 @@
    {
     "name": "ocean three-dimensional advective momentum tendency terms in the model y-direction",
     "fields": "Vm_AdvZ3, Vm_AdvRe, Vm_dKEdy",
-    "dataset_description" : "Parameters include XYZ.",
+    "dataset_description" : "Parameters include the advective momentum tendency components in the model y-direction: vertical advection [Vm_AdvZ3], advection of relative velocity [Vm_AdvRe], and the gradient of kinetic energy [Vm_dKEdy].",
     "filename" : "OCEAN_3D_MOMENTUM_ADV_TEND_Y",
     "dimension" : "3D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -204,7 +205,7 @@
    {
     "name": "ocean three-dimensional dissipative momentum tendency terms in the model y-direction",
     "fields": "Vm_Diss2, Vm_Diss4, VBotDrag, VSidDrag, VShIDrag",
-    "dataset_description" : "Parameters include XYZ.",
+    "dataset_description" : "Parameters include the dissipative momentum tendency components in the model y-direction: biharmonic dissipation [Vm_Diss2, Vm_Diss4], bottom drag [VBotDrag], side drag [VSidDrag], and sea-ice drag [VShIDrag].",
     "filename" : "OCEAN_3D_MOMENTUM_DISS_TEND_Y",
     "dimension" : "3D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -212,7 +213,7 @@
    {
     "name": "ice-shelf freshwater and heat fluxes",
     "fields": "SHIfwFlx, SHIhtFlx",
-    "dataset_description" : "Parameters include XYZ.",
+    "dataset_description" : "Parameters include freshwater [SHIfwFlx] and heat [SHIhtFlx] fluxes from ice shelves.",
     "filename" : "ICE_SHELF_FLUX",
     "dimension" : "2D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -220,15 +221,15 @@
    {
     "name": "ice-front freshwater and heat fluxes",
     "fields": "ICFfwFlx, ICFhtFlx",
-    "dataset_description" : "Parameters include XYZ.",
+    "dataset_description" : "Parameters include freshwater [ICFfwFlx] and heat [ICFhtFlx] fluxes from ice fronts.",
     "filename" : "ICE_FRONT_FLUX",
     "dimension" : "3D",
     "frequency" : "AVG_DAY, AVG_MON"
    },
    {
     "name": "sea-ice thermodynamic budget",
-    "fields": "SIFao, SIFionet, SIFianet, SIFmi, SIFFlood, SIsnAccR, SIsnmltS, SIgamma",
-    "dataset_description" : "Parameters include XYZ.",
+    "fields": "SIFao, SIFionet, SIFianet, SIFmi, SIFFlood, SIsnAccR, SIsnmltS, SIgamma, SIgmacnt",
+    "dataset_description" : "Parameters include heat fluxes associated with the sea ice thermodynamic budget including the air/open-ocean flux [SIFao], net ice conductive flux [SIFionet], net ice-atmosphere flux [SIFianet], ice-ocean flux [SIFmi]; mean ice thickness tendency from snow flooding [SIFFlood], snow accumulation and melt rate [SIsnAccR, SIsnmltS]; and a heat flux scaling term that prevents negative sea-ice mass [SIgamma] and a counter which increments whenever the scaling term is needed [SIgmacnt].",
     "filename" : "SEA_ICE_THERMO_BUDG",
     "dimension" : "2D",
     "frequency" : "AVG_DAY, AVG_MON"
