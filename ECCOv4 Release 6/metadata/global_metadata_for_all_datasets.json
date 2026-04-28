@@ -164,7 +164,7 @@
    {
       "name": "keywords",
       "type": "s",
-      "value": "EARTH SCIENCE SERVICES > MODELS > EARTH SCIENCE REANALYSES/ASSIMILATION MODELS"
+      "value": "PLATFORMS > OTHER > MODELS > OCEAN STATE ESTIMATION, EARTH SCIENCE SERVICES > MODELS > EARTH SCIENCE REANALYSES/ASSIMILATION MODELS"
    },
    {
       "name": "keywords_vocabulary",
@@ -254,7 +254,7 @@
    {
       "name": "platform",
       "type": "s",
-      "value": "ERS-1/2, TOPEX/Poseidon, Geosat Follow-On (GFO), ENVISAT, Jason-1, Jason-2, CryoSat-2, SARAL/AltiKa, Jason-3, AVHRR, Aquarius, SSM/I, SSMIS, GRACE, DTU17MDT, Argo, WOCE, GO-SHIP, MEOP, Ice Tethered Profilers (ITP)"
+      "value": "ERS-1/2, TOPEX/Poseidon, Geosat Follow-On (GFO), ENVISAT, Jason-1, Jason-2, CryoSat-2, SARAL/AltiKa, Jason-3, AVHRR, Aquarius, SSM/I, SSMIS, GRACE, GRACE Follow-On, DTU17MDT, Argo, WOCE, GO-SHIP, MEOP, Ice Tethered Profilers (ITP)"
    },
    {
       "name": "references",
