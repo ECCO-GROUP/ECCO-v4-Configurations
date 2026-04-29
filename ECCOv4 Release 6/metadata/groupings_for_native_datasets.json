@@ -10,15 +10,15 @@
    {
     "name" : "ocean bottom pressure",
     "fields": "OBP, OBPGMAP, OBPAnoma, OBPGMAPA, PHIBOT",
-    "dataset_description": "Parameters include ocean bottom pressure with and without the contribution from atmospheric pressure loading [OBPGMAP, OBP], ocean bottom pressure anomalies with respect to their 2005-2010 means [OBPGMAPA, OBPAnoma], and hydrostatic ocean bottom pressure anomaly [PHIBOT]. Note: ocean bottom pressure fields are provided in terms of equivalent water height.",
+    "dataset_description": "Parameters include ocean bottom pressure with and without the contribution from atmospheric pressure loading [OBPGMAP, OBP], ocean bottom pressure anomalies with respect to their 2005-2010 means [OBPGMAPA, OBPAnoma], and hydrostatic ocean bottom pressure anomaly [PHIBOT]. Bottom pressure fields are provided in terms of equivalent water height.",
     "filename" : "OCEAN_BOTTOM_PRESSURE",
     "dimension" : "2D",
     "frequency" : "AVG_DAY, AVG_MON, SNAP"
    },
    {
     "name": "ocean and sea-ice surface freshwater fluxes",
-    "fields": "EXFpreci, EXFevap, EXFroff, EXFempmr, oceFWflx, SIatmFW, SFLUX, SIfwThru",
-    "dataset_description": "Parameters include freshwater fluxes from precipitation, evaporation, runoff, and sublimation across the air/ocean interface [EXFpreci, EXFevap, EXFroff, EXFempmr] and air/sea-ice interface [SIatmFW, SIfwThru]; and total freshwater fluxes across the ocean surface [oceFWflx, SFLUX].",
+    "fields": "EXFpreci, EXFevap, EXFroff, EXFempmr, oceFWflx, oceSflux, SIatmFW, SFLUX, SIfwThru",
+    "dataset_description": "Parameters include freshwater fluxes from precipitation, evaporation, runoff, and sublimation across the air/ocean interface [EXFpreci, EXFevap, EXFroff, EXFempmr] and air/sea-ice interface [SIatmFW, SIfwThru]; total freshwater fluxes across the ocean surface [oceFWflx]; and total salt flux and the net salt flux into the uppermost ocean grid cell [SFLUX, oceSflux].",
     "filename" : "OCEAN_AND_ICE_SURFACE_FW_FLUX",
     "dimension" : "2D",
     "internal_note" : "SIacSubl, SIrsSubl, and SIsnPrcp are removed for v4r6 because they are not used in the seaice_growth_adx model.",
@@ -26,7 +26,7 @@
    },
    {
     "name": "ocean and sea-ice surface heat fluxes",
-    "fields": "EXFhl, EXFhs,  EXFswdn, EXFlwdn, EXFswnet, EXFlwnet, EXFqnet, SIatmQnt, SIaaflux, oceQnet, oceQsw, TFLUX",
+    "fields": "EXFhl, EXFhs, EXFswdn, EXFlwdn, EXFswnet, EXFlwnet, EXFqnet, SIatmQnt, SIaaflux, oceQnet, oceQsw, TFLUX",
     "dataset_description": "Parameters include latent, sensible, downwelling short- and longwave radiative heat fluxes across the air/open ocean interface [EXFhl, EXFhs, EXFswdn, EXFlwdn], net shortwave, longwave, and total heat fluxes across the air/open ocean interface [EXFswnet, EXFlwnet,EXFqnet], heat fluxes across air/ocean + sea-ice interface [SIatmQnt, SIaaflux]; and the net total heat flux and net shortwave flux integrated across the entire ocean surface [oceQnet, oceQsw, TFLUX].",
     "filename" : "OCEAN_AND_ICE_SURFACE_HEAT_FLUX",
     "dimension" : "2D",
@@ -34,8 +34,8 @@
    },
    {
     "name": "atmosphere surface state",
-    "fields": "EXFatemp, EXFaqh, EXFpress, EXFuwind, EXFvwind, EXFwspee",
-    "dataset_description": "Parameters include atmosphere temperature [EXFatemp], humidity [EXFaqh], pressure [EXFpress], winds in the model x and y-directions [EXFuwind, EXFvwind], and total wind speed [EXFwspee].",
+    "fields": "EXFatemp, EXFaqh, EXFpress, atmPload, EXFuwind, EXFvwind, EXFwspee",
+    "dataset_description": "Parameters include atmosphere temperature [EXFatemp], humidity [EXFaqh], pressure and pressure anomaly [EXFpress, atmPload], winds in the model x and y-directions [EXFuwind, EXFvwind], and total wind speed [EXFwspee].",
     "filename" : "ATM_SURFACE_TEMP_HUM_WIND_PRES",
     "dimension" : "2D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -43,15 +43,15 @@
    {
     "name" : "ocean mixed layer depth",
     "fields" : "MXLDEPTH",
-    "dataset_description": "Provides MXLDEPTH, a 2D ocean mixed layer field diagnosed using the potential density criterion of Kara et al. (2000). The mixed layer depth is defined as the depth where potential density exceeds the surface potential density + delta rho, where delta rho = alpha(surface layer) * 0.8 degrees Celsius. Users can calculate their own mixed layer depth as needed using vertical stratification (DRHODR) and/or density anomaly (RHOAnoma) fields provided in the OCEAN_DENS_STRAT_PRESS dataset.",
+    "dataset_description": "Provides MXLDEPTH, a 2D ocean mixed layer field diagnosed using the potential density criterion of Kara et al. (2000). The mixed layer depth is defined here as the depth where potential density exceeds the surface potential density + delta rho, where delta rho = alpha(surface layer) * 0.8 degrees Celsius. Users can calculate mixed layer depth using different criteria as needed using the vertical stratification (DRHODR) or density anomaly (RHOAnoma) fields provided in the OCEAN_DENS_STRAT_PRESS dataset.",
     "filename" : "OCEAN_MIXED_LAYER_DEPTH",
     "dimension" : "2D",
     "frequency" : "AVG_DAY, AVG_MON"
    },
    {
-    "name" : "ocean and sea-ice stress",
+    "name" : "ocean and sea-ice surface and bottom stress",
     "fields" : "EXFtaux, EXFtauy, oceTAUX, oceTAUY, botTauX, botTauY",
-    "dataset_description": "Parameters include surface wind stress at the top of the ocean and sea-ice [EXFtaux, EXFtauy], total ocean surface stress [oceTAUX, oceTAUY], and bottom stress [botTauX, botTauY] in the model x and y-directions. Total ocean surface stress includes contributions from wind stress and sea-ice drag.",
+    "dataset_description": "Parameters include surface wind stress at the top of the ocean and sea-ice [EXFtaux, EXFtauy], total ocean surface stress [oceTAUX, oceTAUY], and ocean bottom stress [botTauX, botTauY] in the model x and y-directions. Total ocean surface stress includes contributions from wind stress and sea-ice drag.",
     "filename" : "OCEAN_AND_ICE_SURFACE_STRESS",
     "dimension" : "2D",
     "frequency" : "AVG_DAY, AVG_MON"
@@ -109,7 +109,7 @@
     "name": "ocean three-dimensional parameterized mixing coefficients",
     "fields": "DIFFKR, KAPGM, KAPREDI",
     "dataset_description" : "Parameters include the time-invariant, three-dimensional coefficients for vertical diffusivity [DIFFKR], Gent-McWilliams cross-isopycnal diffusivity [KAPGM], and Redi along-isopycnal diffusivity [KAPREDI].",    
-    "filename" : "OCEAN_MIXING_COEFFS",
+    "filename" : "OCEAN_3D_MIXING_COEFFS",
     "dimension" : "3D",
     "frequency" : "TIME-INVARIANT"
    },
