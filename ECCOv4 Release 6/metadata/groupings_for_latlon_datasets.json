@@ -33,7 +33,7 @@
    },
    {
     "name": "atmosphere surface state",
-    "fields": "EXFatemp, EXFaqh, EXFpress, atmPload, EXFuwind, EXFvwind, EXFwspee",
+    "fields": "EXFatemp, EXFaqh, EXFpress, atmPload, EXFewind, EXFnwind, EXFwspee",
     "field_components": {"EXFewind":{"x":"EXFuwind", "y":"EXFvwind"}, "EXFnwind":{"x":"EXFuwind", "y":"EXFvwind"}},
     "field_orientations": {"EXFewind":"zonal", "EXFnwind":"meridional"},    
     "dataset_description": "Parameters include atmosphere temperature [EXFatemp], humidity [EXFaqh], pressure and pressure anomaly [EXFpress, atmPload], meridional and zonal winds [EXFewind, EXFnwind], and total wind speed [EXFwspee].",

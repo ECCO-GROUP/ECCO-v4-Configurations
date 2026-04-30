@@ -304,7 +304,7 @@
       "name": "ETAN",
       "long_name": "Model sea level anomaly",
       "units": "m",
-      "comments_1": "Model sea level anomaly WITHOUT corrections for global mean density (steric) changes, inverted barometer effect, or volume displacement due to submerged sea-ice and snow  ",
+      "comments_1": "Model sea level anomaly WITHOUT corrections for global mean density (steric) changes, inverted barometer effect, or volume displacement due to submerged sea-ice and snow.",
       "comments_2": "Note: ETAN should NOT be used for comparisons with altimetry data products because ETAN is NOT corrected for (a) global mean steric sea level changes related to density changes in the Boussinesq volume-conserving model (Greatbatch correction, see sterGloH) nor (b) sea level displacement due to submerged sea-ice and snow (see sIceLoad). These corrections ARE made for the variables SSH and SSHNOIBC.",
       "GCMD_keywords": "EARTH SCIENCE > OCEANS > SEA SURFACE TOPOGRAPHY > SEA SURFACE HEIGHT",
       "grid_dimension": "2D",
