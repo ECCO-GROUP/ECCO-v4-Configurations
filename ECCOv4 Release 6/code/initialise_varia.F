@@ -90,7 +90,11 @@ C     == Global variables ==
 #ifdef ALLOW_AUTODIFF
 # include "GRID.h"
 # include "FFIELDS.h"
-# include "CTRL_FIELDS.h"
+C# include "CTRL_FIELDS.h"
+# if ( defined ALLOW_CTRL && defined ALLOW_GENTIM2D_CONTROL && !defined ALLOW_TAPENADE )
+#  include "CTRL_SIZE.h"
+#  include "ctrl_dummy.h"
+# endif
 # if (defined ALLOW_SHELFICE) && (defined ALLOW_GENARR2D_CONTROL)
 #  include "SHELFICE.h"
 # endif
@@ -128,6 +132,15 @@ CEOP
       nIter0 = NINT( (startTime-baseTime)/deltaTClock )
 #endif /* ALLOW_AUTODIFF */
 
+C Storing phi0surf has been moved from before 
+C calling S/R INI_FIELDS to here, as 
+C phi0surf may get modified in S/R INI_DEPTHS
+C if ALLOW_DEPTH_CONTROL is defined. 
+C Currently, ALLOW_DEPTH_CONTROL is not defined.
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE phi0surf = tapelev_init, key = 1
+#endif
+
 #ifdef ALLOW_DEPTH_CONTROL
 C--   Intialize the depth for TAF/TAMC
       CALL INI_DEPTHS( myThid )
@@ -162,9 +175,6 @@ C     are set here. Fields are either set to default or read from
 C     stored files.
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_CALL('INI_FIELDS',myThid)
-#endif
-#ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE phi0surf = tapelev_init, key = 1
 #endif
       CALL INI_FIELDS( myThid )
 
@@ -216,18 +226,13 @@ C--   Initialize variable data for packages
       IF (debugMode) CALL DEBUG_CALL('PACKAGES_INIT_VARIABLES',myThid)
 #endif
 #ifdef ALLOW_AUTODIFF_TAMC
-# ifdef NONLIN_FRSURF
-CADJ STORE recip_hFacC = tapelev_init, key = 1
-# endif
-# if (defined ALLOW_SHELFICE) && (defined ALLOW_GENARR2D_CONTROL)
-CADJ STORE shelficeFreshwaterFlux = tapelev_init, key = 1
-CADJ STORE shelficeHeatFlux = tapelev_init, key = 1
-#  ifndef SHI_ALLOW_GAMMAFRICT
-CADJ STORE shiTransCoeffT = tapelev_init, key = 1
-CADJ STORE shiTransCoeffS = tapelev_init, key = 1
-#  else
-CADJ STORE shiCDragFld = tapelev_init, key = 1
-#  endif
+C# ifdef NONLIN_FRSURF
+CCADJ STORE recip_hFacC = tapelev_init, key = 1
+C# endif
+# ifdef ALLOW_GENTIM2D_CONTROL
+C     It not clear, why this is needed and hopefully we will find a
+C     better way to avoid the recomputation warning.
+CADJ STORE xx_gentim2d_dummy = dummytape, key = 1
 # endif
 #endif
       CALL PACKAGES_INIT_VARIABLES( myThid )

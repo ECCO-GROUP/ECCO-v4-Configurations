@@ -225,22 +225,22 @@ cph Initial wind stress adjustments are too vigorous.
       xx_wspeed_file     = 'xx_wspeed'
 #endif
 
-      if ( gencount0 .LE. 2 .AND. (
-#ifdef CTRL_SKIP_FIRST_TWO_ATM_REC_ALL
-     &       xx_gen_file(1:6) .EQ. xx_aqh_file  .OR.
-     &       xx_gen_file(1:8) .EQ. xx_atemp_file .OR.
-     &       xx_gen_file(1:9) .EQ. xx_precip_file .OR.
-     &       xx_gen_file(1:9) .EQ. xx_lwdown_file .OR.
-     &       xx_gen_file(1:9) .EQ. xx_swdown_file .OR.
-     &       xx_gen_file(1:9) .EQ. xx_wspeed_file .OR.
-#endif
-     &       xx_gen_file(1:7) .EQ. xx_tauu_file .OR.
-     &       xx_gen_file(1:7) .EQ. xx_tauv_file ) .AND.
-     &     ( xx_genperiod .NE. zeroRL ) ) then
-         doCtrlUpdate = .FALSE.
-      else
+C      if ( gencount0 .LE. 2 .AND. (
+C#ifdef CTRL_SKIP_FIRST_TWO_ATM_REC_ALL
+C     &       xx_gen_file(1:6) .EQ. xx_aqh_file  .OR.
+C     &       xx_gen_file(1:8) .EQ. xx_atemp_file .OR.
+C     &       xx_gen_file(1:9) .EQ. xx_precip_file .OR.
+C     &       xx_gen_file(1:9) .EQ. xx_lwdown_file .OR.
+C     &       xx_gen_file(1:9) .EQ. xx_swdown_file .OR.
+C     &       xx_gen_file(1:9) .EQ. xx_wspeed_file .OR.
+C#endif
+C     &       xx_gen_file(1:7) .EQ. xx_tauu_file .OR.
+C     &       xx_gen_file(1:7) .EQ. xx_tauv_file ) .AND.
+C     &     ( xx_genperiod .NE. zeroRL ) ) then
+C         doCtrlUpdate = .FALSE.
+C      else
          doCtrlUpdate = .TRUE.
-      endif
+C      endif
       if ( xx_gen_file(1:7) .EQ. xx_tauu_file .OR.
      &     xx_gen_file(1:7) .EQ. xx_tauv_file ) then
          gensign = -1.

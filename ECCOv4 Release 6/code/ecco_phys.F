@@ -2,8 +2,11 @@
 #ifdef ALLOW_SHELFICE
 # include "SHELFICE_OPTIONS.h"
 #endif
+#ifdef ALLOW_SEAICE
+# include "SEAICE_OPTIONS.h"
+#endif
 
-      subroutine ecco_phys( myThid )
+      SUBROUTINE ECCO_PHYS( myTime, myIter, myThid )
 
 c     ==================================================================
 c     SUBROUTINE ecco_phys
@@ -34,19 +37,25 @@ c     == global variables ==
 #if (defined ALLOW_GENCOST_CONTRIBUTION) && (defined ALLOW_SHELFICE)
 # include "SHELFICE.h"
 #endif
+#ifdef ALLOW_SEAICE
+#  include "SEAICE_SIZE.h"
+#  include "SEAICE.h"
+#  include "SEAICE_PARAMS.h"
+#endif
 
 c     == routine arguments ==
 
-      integer myThid
+      _RL     myTime
+      INTEGER myIter, myThid
 
 c     == local variables ==
 
-      integer bi,bj
-      integer i,j,k
-      integer jmin,jmax
-      integer imin,imax
+      INTEGER bi,bj
+      INTEGER i,j,k
+      INTEGER jmin,jmax
+      INTEGER imin,imax
 #ifdef ALLOW_GENCOST_CONTRIBUTION
-      integer kgen, kgen3d, itr
+      INTEGER kgen, kgen3d, itr
       _RL areavolTile(nSx,nSy), areavolGlob
       _RL tmpfld, tmpvol, tmpmsk, tmpmsk2, tmpmskW, tmpmskS
 #endif
@@ -71,12 +80,36 @@ c- note defined with overlap here, not needed, but more efficient
       _RL RHOInSituLoc(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL VOLsumTile(nSx,nSy),RHOsumTile(nSx,nSy)
 #endif
+#ifdef ALLOW_SEAICE
+      _RL tmprecip_area,  tmphsnowact, tmpheffact
+      _RL area_reg_sq
+#endif
+      _RL maskC_col(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
 c need to include halos for find_rho_2d
       iMin = 1-OLx
       iMax = sNx+OLx
       jMin = 1-OLy
       jMax = sNy+OLy
+
+#ifdef ALLOW_SEAICE
+      area_reg_sq = SEAICE_area_reg * SEAICE_area_reg
+#endif
+
+      DO bj=myByLo(myThid),myByHi(myThid)
+       DO bi=myBxLo(myThid),myBxHi(myThid)
+            do j = jmin,jmax
+              do i =  imin,imax
+                if ((Ro_surf(i,j,bi,bj)-R_low(i,j,bi,bj)).GT.0. _d 0)
+     &           then
+                 maskC_col(i,j,bi,bj) = 1. _d 0 
+                else
+                 maskC_col(i,j,bi,bj) = 0. _d 0 
+                endif
+              enddo
+            enddo
+       ENDDO
+      ENDDO
 
 #ifdef ALLOW_PSBAR_STERIC
 
@@ -144,9 +177,9 @@ c    &                       SQUEEZE_RIGHT, myThid )
             do i =  1,sNx
               PLOADsumTile(bi,bj)=PLOADsumTile(bi,bj)+
      &          pload(i,j,bi,bj)*
-     &          maskC(i,j,1,bi,bj)*rA(i,j,bi,bj)
+     &          maskC_col(i,j,bi,bj)*rA(i,j,bi,bj)
               AREAsumTile(bi,bj)=AREAsumTile(bi,bj)+
-     &          maskC(i,j,1,bi,bj)*rA(i,j,bi,bj)
+     &          maskC_col(i,j,bi,bj)*rA(i,j,bi,bj)
             enddo
           enddo
         enddo
@@ -166,50 +199,70 @@ c    &                       SQUEEZE_RIGHT, myThid )
 C calculte total sea level including inverse barometer (IB) effect if
 C  there is air pressure forcing
                 m_eta(i,j,bi,bj)=
-     &                etan(i,j,bi,bj)
+     &                ( etan(i,j,bi,bj)
 #ifdef ATMOSPHERIC_LOADING
      &                +sIceLoad(i,j,bi,bj)*sIceLoadFacLoc
 #endif
 #ifdef ALLOW_PSBAR_STERIC
-     &                +sterGloH * maskC(i,j,1,bi,bj)
+     &                +sterGloH * maskC_col(i,j,bi,bj)
 #endif
+     &                ) * maskC_col(i,j,bi,bj)
 
 C calculte total ocean bottom pressure including air pressure if
 C  there is any.
                 m_bp(i,j,bi,bj)=
-     &                phiHydLow(i,j,bi,bj)
+     &                ( phiHydLow(i,j,bi,bj)
 #ifdef ALLOW_PSBAR_STERIC
 C add back the correction due to the global mean steric ssh change,
 C     i.e. sterGloH computed in ecco_phys.F (units converted from m to m2/s2)
-     &                 +sterGloH * gravity * maskC(i,j,1,bi,bj)
+     &                 +sterGloH * gravity 
 #endif
+     &                ) * maskC_col(i,j,bi,bj)
 
 #ifdef ATMOSPHERIC_LOADING
 #ifdef ALLOW_IB_CORR
 C calculate IB correction m_eta_ib (in m)
                 m_eta_ib(i,j,bi,bj)=
      &           (ploadbar-pload(i,j,bi,bj))*tmpfac
-     &           * maskC(i,j,1,bi,bj)
+     &           * maskC_col(i,j,bi,bj)
 C calculte dynamic sea level for comparison with altimetry data (in m)
                 m_eta_dyn(i,j,bi,bj)=
      &           m_eta(i,j,bi,bj) - m_eta_ib(i,j,bi,bj)
 
 C calculate GRACE-equvivalent ocean bottom pressure (in m2/s2)
                 m_bp_nopabar(i,j,bi,bj)=
-     &                phiHydLow(i,j,bi,bj)
+     &                ( phiHydLow(i,j,bi,bj)
 #ifdef ALLOW_PSBAR_STERIC
 C add back the correction due to the global mean steric ssh change,
 C     i.e. sterGloH computed in ecco_phys.F (units converted from m to m2/s2)
-     &                 +(sterGloH * gravity
+     &                 + sterGloH * gravity
      &                 - ploadbar * recip_rhoConst
-     &                ) * maskC(i,j,1,bi,bj)
 #endif
+     &                ) * maskC_col(i,j,bi,bj)
 #endif
 #endif
               enddo
             enddo
         enddo
       enddo
+
+#ifdef ALLOW_DIAGNOSTICS
+      IF ( useDiagnostics .AND. myIter.GE.0 ) THEN
+        CALL DIAGNOSTICS_FILL( m_eta, 'SSHNOIBC', 0,1, 0,1,1, myThid )
+        CALL DIAGNOSTICS_SCALE_FILL( m_bp, recip_gravity, 1,
+     &                         'OBPGMAP ', 0,1, 0,1,1, myThid )
+#ifdef ATMOSPHERIC_LOADING
+#ifdef ALLOW_IB_CORR
+        CALL DIAGNOSTICS_FILL( m_eta_ib,
+     &                         'SSHIBC  ', 0,1, 0,1,1, myThid )
+        CALL DIAGNOSTICS_FILL( m_eta_dyn,
+     &                         'SSH     ', 0,1, 0,1,1, myThid )
+        CALL DIAGNOSTICS_SCALE_FILL( m_bp_nopabar, recip_gravity, 1,
+     &                         'OBP     ', 0,1, 0,1,1, myThid )
+#endif /* ALLOW_IB_CORR */
+#endif /* ATMOSPHERIC_LOADING */
+      ENDIF
+#endif /* ALLOW_DIAGNOSTICS */
 
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
@@ -263,6 +316,28 @@ cts ---
        enddo
       enddo
       areavolGlob=0. _d 0
+
+#ifdef ALLOW_SEAICE
+      IF (gencost_barfile(kgen)(1:11).EQ.'m_freeboard') THEN
+       do bj=myByLo(myThid),myByHi(myThid)
+        do bi=myBxLo(myThid),myBxHi(myThid)
+         do j = 1,sNy
+          do i =  1,sNx
+            tmprecip_area = 1. _d 0/SQRT(area(i,j,bi,bj)*area(i,j,bi,bj)
+     &       + area_reg_sq)
+            tmphsnowact = hsnow(I,J,bi,bj) * tmprecip_area
+            tmpheffact  = heff(I,J,bi,bj) * tmprecip_area
+            gencost_storefld(i,j,bi,bj,kgen) =
+     &       ( ( tmphsnowact + tmpheffact ) -
+     &         ( tmphsnowact * SEAICE_rhoSnow +
+     &           tmpheffact * SEAICE_rhoIce ) * recip_rhoConst ) *
+     &       maskC(i,j,1,bi,bj)
+          enddo
+         enddo
+        enddo
+       enddo
+      ENDIF
+#endif
 
       do bj=myByLo(myThid),myByHi(myThid)
        do bi=myBxLo(myThid),myBxHi(myThid)
@@ -329,7 +404,7 @@ c
           tmpfld  = 0. _d 0
           tmpmsk2 = 0. _d 0
           if (gencost_barfile(kgen)(1:13).EQ.'m_boxmean_eta') then
-            tmpmsk=maskC(i,j,1,bi,bj)*gencost_mskCsurf(i,j,bi,bj,kgen)
+            tmpmsk=maskC_col(i,j,bi,bj)*gencost_mskCsurf(i,j,bi,bj,kgen)
             tmpfld = m_eta(i,j,bi,bj)
 #if (defined ATMOSPHERIC_LOADING) && (defined ALLOW_IB_CORR)
             if (gencost_barfile(kgen)(1:17).EQ.'m_boxmean_eta_dyn') then
