@@ -1,0 +1,8 @@
+{
+  "native": {
+    "description_template": "This dataset provides geometric parameters for the lat-lon-cap {llc_grid_size} ({llc_code}) native model grid from the ECCO {product_version} ocean and sea-ice state estimate. Parameters include areas and lengths of grid cell sides; horizontal and vertical coordinates of grid cell centers and corners; grid rotation angles; and global domain geometry including bathymetry and land/ocean masks."
+  },
+  "latlon": {
+    "description_template": "This dataset provides geometric parameters for the regular {latlon_grid_resolution}-degree lat-lon grid from the ECCO {product_version} ({ecco_version}) ocean and sea-ice state estimate. Parameters include areas and lengths of grid cell sides and the horizontal and vertical coordinates of grid cell centers and corners. Additional information related to the global domain geometry (e.g., bathymetry and land/ocean masks) are also included. However, users should note these domain geometry fields are approximations because they have been interpolated from the ECCO lat-lon-cap {llc_grid_size} ({llc_code}) native model grid."
+  }
+}
