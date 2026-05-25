@@ -25,8 +25,8 @@
    {
       "name": "ocean_column_thickness",
       "long_name": "ocean column thickness",
-      "comments_1": "Distance between the seafloor and sea surface. Normally equivalent to Depth, but beneath ice shelves the ocean column thickness is the distance between the seafloor and the ceiling of the ice shelf cavity.",
-      "comments_2": "Note: the MITgcm writes ocean column thickness to 'Depth.data', which makes sense because ocean column thickness was equivalent to seafloor depth when the model did not have ice shelf cavities.",
+      "comments_1": "Distance between the seafloor and sea surface. Ocean column thickness is equivalent to seafloor depth when the model does not have ice shelf cavities.",
+      "comments_2": "Note: the MITgcm output file 'Depth.data' provides ocean column thickness. Model seafloor depth is calculated offline to account for ice shelf cavities.",
       "units": "m",
       "GCMD_keywords" : "",
       "grid_dimension": "2D",
