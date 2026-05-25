@@ -103,7 +103,7 @@
     "dataset_description" : "Parameters include the Gent-McWilliams ocean bolus velocity in the model x, y, and z-directions [UVELSTAR, VVELSTAR, WVELSTAR].",
     "filename" : "OCEAN_BOLUS_VELOCITY",
     "dimension" : "3D",
-    "frequency" : "AVG_DAY, AVG_MON, SNAP"
+    "frequency" : "AVG_DAY, AVG_MON"
    },
    {
     "name": "ocean three-dimensional parameterized mixing coefficients",
@@ -111,7 +111,7 @@
     "dataset_description" : "Parameters include the time-invariant, three-dimensional coefficients for vertical diffusivity [DIFFKR], Gent-McWilliams cross-isopycnal diffusivity [KAPGM], and Redi along-isopycnal diffusivity [KAPREDI].",    
     "filename" : "OCEAN_3D_MIXING_COEFFS",
     "dimension" : "3D",
-    "frequency" : "TIME-INVARIANT"
+    "frequency" : "TIME_INVARIANT"
    },
    {
     "name": "sea-ice and snow horizontal volume fluxes",
