@@ -120,6 +120,6 @@
     "dataset_description" : "Parameters include the time-invariant, three-dimensional coefficients for vertical diffusivity [DIFFKR], Gent-McWilliams cross-isopycnal diffusivity [KAPGM], and Redi along-isopycnal diffusivity [KAPREDI].",    
     "filename" : "OCEAN_3D_MIXING_COEFFS",
     "dimension" : "3D",
-    "frequency" : "TIME-INVARIANT"
+    "frequency" : "TIME_INVARIANT"
    }
 ]
