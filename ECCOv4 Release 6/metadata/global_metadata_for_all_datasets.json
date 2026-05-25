@@ -226,6 +226,11 @@
       "type": "s",
       "value": "Estimating the Circulation and Climate of the Ocean (ECCO)"
    },
+ {
+      "name": "project_summary",
+      "type": "s",
+      "value": "REPLACED_BY_EDP_CONFIG_YAML"
+   },
    {
       "name": "publisher_email",
       "type": "s",
@@ -272,9 +277,9 @@
       "value": "NetCDF Climate and Forecast (CF) Metadata Convention"
    },
    {
-      "name": "project_summary",
+      "name": "summary",
       "type": "s",
-      "value": "TBD_BY_GRANULE"
+      "value": "ADDED_PROGRAMMATICALLY_FROM_CONFIG_YAML_AND_GROUPING_METADATA"
    },
    {
       "name": "time_coverage_end",
