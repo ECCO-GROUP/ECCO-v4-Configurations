@@ -226,6 +226,16 @@
       "coverage_content_type": "modelResult"
    },
    {
+      "name": "cavity_mask",
+      "long_name": "boolean mask indicating presence of ice-shelf cavity",
+      "comments_1": "True if there is a wet tracer grid cells (hFacC > 0) beneath a floating ice-shelf. False otherwise.",
+      "comments_2": "",
+      "GCMD_keywords" : "",
+      "grid_dimension": "2D",
+      "grid_location": "c",
+      "coverage_content_type": "modelResult"
+   },   
+   {
       "name": "maskC",
       "long_name": "wet/dry boolean mask for tracer grid cell",
       "comments_1": "True for wet tracer grid cells (hFacC > 0), otherwise False. Although hFacC varies though time, MaskC is time invariant. Cells will never close if starting open and will never open if starting closed: hFacC(i,j,k,t) > 0 for all t, if hFacC(i,j,k,t=0) and hFacC(i,j,k,t) = 0 for all t, if hFacC(i,j,k,t=0) = 0.",
@@ -235,6 +245,16 @@
       "grid_location": "c",
       "coverage_content_type": "modelResult"
    },
+   {
+      "name": "maskC_wet_in_column",
+      "long_name": "boolean mask indicating presence of an ocean wet point in the column",
+      "comments_1": "Note: wet point may be in a ice-shelf cavity, beneath a floating ice-shelf. True if there is at least one wet tracer grid cell (hFacC > 0) in the column, otherwise False.",
+      "comments_2": "",
+      "GCMD_keywords" : "",
+      "grid_dimension": "2D",
+      "grid_location": "c",
+      "coverage_content_type": "modelResult"
+   },   
    {
       "name": "maskW",
       "long_name": "wet/dry boolean mask for 'west' face of tracer grid cell",
