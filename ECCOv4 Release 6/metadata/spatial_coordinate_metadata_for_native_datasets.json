@@ -2,7 +2,7 @@
    {
       "name": "i",
       "long_name": "grid index in x for variables at tracer and 'v' locations",
-      "comment": "In the Arakawa C-grid system, tracer (e.g., THETA) and 'v' variables (e.g., VVEL) have the same x coordinate on the model grid.",
+      "comment": "In our convention, tracer (e.g., THETA) and 'v' variables (e.g., VVEL) share the same i coordinate.",
       "axis": "X",
       "grid_dimension": "2D 3D",
       "coverage_content_type": "coordinate"
@@ -10,14 +10,14 @@
    {
       "name": "i_g",
       "long_name": "grid index in x for variables at 'u' and 'g' locations",
-      "comment": "In the Arakawa C-grid system, 'u' (e.g., UVEL) and 'g' variables (e.g., XG) have the same x coordinate on the model grid.",
+      "comment": "In our convention, 'u' (e.g., UVEL) and 'g' variables (e.g., XG) share the same i_g coordinate.",
       "grid_dimension": "2D 3D",
       "coverage_content_type": "coordinate"
    },
    {
       "name": "j",
       "long_name": "grid index in y for variables at tracer and 'u' locations",
-      "comment": "In the Arakawa C-grid system, tracer (e.g., THETA) and 'u' variables (e.g., UVEL) have the same y coordinate on the model grid.",
+      "comment": "In our convention, tracer (e.g., THETA) and 'u' variables (e.g., UVEL) share the same j coordinate.",
       "axis": "Y",
       "grid_dimension": "2D 3D",
       "coverage_content_type": "coordinate"
@@ -25,7 +25,7 @@
    {
       "name": "j_g",
       "long_name": "grid index in y for variables at 'v' and 'g' locations",
-      "comment": "In the Arakawa C-grid system, 'v' (e.g., VVEL) and 'g' variables (e.g., XG) have the same y coordinate.",
+      "comment": "In our convention, 'v' (e.g., VVEL) and 'g' variables (e.g., XG) share the same j_g coordinate.",
       "grid_dimension": "2D 3D",
       "coverage_content_type": "coordinate"
    },
@@ -68,18 +68,54 @@
       "name": "XC",
       "standard_name": "longitude",
       "long_name": "longitude of tracer grid cell center",
-      "comment": "nonuniform grid spacing",
+      "comment": "Nonuniform grid spacing",
       "units": "degrees_east",
       "bounds": "XC_bnds",
       "grid_dimension": "2D 3D",
       "coverage_content_type": "coordinate"
    },
    {
+      "name": "XU",
+      "standard_name": "longitude",
+      "long_name": "approximate longitude of 'u' grid point",
+      "comment": "Constructed by averaging longitudes of tracer grid cell corners on either side of 'u' grid points. Nonuniform grid spacing. Useful for plotting 'u' variables (e.g., UVEL).",
+      "units": "degrees_east",
+      "grid_dimension": "2D 3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "XV",
+      "standard_name": "longitude",
+      "long_name": "approximate longitude of 'v' grid point",
+      "comment": "Constructed by averaging longitudes of tracer grid cell corners on either side of 'v' grid points. Nonuniform grid spacing. Useful for plotting 'v' variables (e.g., VVEL).",
+      "units": "degrees_east",
+      "grid_dimension": "2D 3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "YU",
+      "standard_name": "latitude",
+      "long_name": "approximate latitude of 'u' grid point",
+      "comment": "Constructed by averaging latitudes of tracer grid cell corners on either side of 'u' grid points. Nonuniform grid spacing. Useful for plotting 'u' variables (e.g., UVEL).",
+      "units": "degrees_north",
+      "grid_dimension": "2D 3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "YV",
+      "standard_name": "latitude",
+      "long_name": "approximate latitude of 'v' grid point",
+      "comment": "Constructed by averaging latitudes of tracer grid cell corners on either side of 'v' grid points. Nonuniform grid spacing. Useful for plotting 'v' variables (e.g., VVEL).",
+      "units": "degrees_north",
+      "grid_dimension": "2D 3D",
+      "coverage_content_type": "coordinate"
+   },       
+   {
       "name": "YC",
       "standard_name": "latitude",
       "long_name": "latitude of tracer grid cell center",
       "units": "degrees_north",
-      "comment": "nonuniform grid spacing",
+      "comment": "Nonuniform grid spacing",
       "bounds": "YC_bnds",
       "grid_dimension": "2D 3D",
       "coverage_content_type": "coordinate"
@@ -115,7 +151,25 @@
       "units": "degrees_north",
       "grid_dimension": "2D 3D",
       "coverage_content_type": "coordinate"
-   },      
+   },
+   {
+      "name": "XGG",
+      "standard_name": "longitude",
+      "long_name": "longitude of tracer grid cell corners",
+      "comment": "Similar to XG, but includes one extra row and column to provide longitudes of all four corners of tracer grid cells. Useful for plotting tracer cells as polygons. Note: 'southwest' and 'southeast' do not correspond to geographic orientation but are used for convenience to describe the computational grid. See MITgcm documentation for details.",
+      "units": "degrees_east",
+      "grid_dimension": "2D 3D",
+      "coverage_content_type": "coordinate"
+   },
+   {
+      "name": "YGG",
+      "standard_name": "latitude",
+      "long_name": "latitude of tracer grid cell corners",
+      "comment": "Similar to YG, but includes one extra row and column to provide latitudes of all four corners of tracer grid cells. Useful for plotting tracer cells as polygons. Note: 'southwest' and 'southeast' do not correspond to geographic orientation but are used for convenience to describe the computational grid. See MITgcm documentation for details.",
+      "units": "degrees_north",
+      "grid_dimension": "2D 3D",
+      "coverage_content_type": "coordinate"
+   },        
    {
       "name": "Z",
       "standard_name": "depth",
