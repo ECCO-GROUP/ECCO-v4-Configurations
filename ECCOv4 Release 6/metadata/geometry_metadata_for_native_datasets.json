@@ -228,7 +228,7 @@
    {
       "name": "cavity_mask",
       "long_name": "boolean mask indicating presence of ice-shelf cavity",
-      "comments_1": "True if there is a wet tracer grid cells (hFacC > 0) beneath a floating ice-shelf. False otherwise.",
+      "comments_1": "True if there is a wet tracer grid cell (hFacC > 0) beneath a floating ice-shelf. False otherwise.",
       "comments_2": "",
       "GCMD_keywords" : "",
       "grid_dimension": "2D",
@@ -273,6 +273,105 @@
       "GCMD_keywords" : "",
       "grid_dimension": "3D",
       "grid_location": "v",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "ocean_ice_id",
+      "long_name": "2D integer mask indicating land, open ocean, grounded ice, and floating ice-shelf grid cells",
+      "units": "1",
+      "comments_1": "2D integer mask with values of 0, 1, 2, 3 corresponding to grid cells that are land, open ocean, grounded ice, or floating ice-shelves, respectively. Open-ocean grid cells are wet at the surface. Grounded ice grid cells are in contact with the seafloor and may have a vertical face in contact with a wet grid cell. Floating ice-shelf grid cells have one or more wet grid cells (hFacC > 0) beneath the surface.",
+      "comments_2": "",
+      "GCMD_keywords" : "",
+      "grid_dimension": "2D",
+      "grid_location": "c",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "mask2dSHI",
+      "long_name": "2D mask indicating the presence of an ocean grid cell in contact with a floating ice-shelf somewhere in the water column",
+      "units": "1",
+      "comments_1": "Ocean grid cells in contact with floating ice-shelves can exchange heat and freshwater with the ice. This mask is useful for identifying regions of ocean-ice shelf interaction.",
+      "comments_2": "Ocean grid cells in contact with floating ice shelves exchange heat and volume across their 'top' faces.",
+      "GCMD_keywords" : "",
+      "grid_dimension": "2D",
+      "grid_location": "c",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "mask3dSHI",
+      "long_name": "3D mask indicating whether an ocean grid cell is in contact with a floating ice-shelf",
+      "units": "1",
+      "comments_1": "Ocean grid cells in contact with floating ice-shelves can exchange heat and freshwater with the ice. This mask is useful for identifying regions of ocean-ice shelf interaction.",
+      "comments_2": "Ocean grid cells in contact with floating ice shelves exchange heat and volume across their 'top' faces.",
+      "GCMD_keywords" : "",
+      "grid_dimension": "3D",
+      "grid_location": "c",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "mask2dSHIICF",
+      "long_name": "2D mask indicating the presence of an ocean grid cell in contact with a floating ice-shelf or an ice front somewhere in the water column",
+      "units": "1",
+      "comments_1": "Ocean grid cells in contact with floating ice-shelves or ice fronts can exchange heat and freshwater with the ice. This mask is useful for identifying regions of ocean-ice shelf interaction.",
+      "comments_2": "Ocean grid cells in contact with floating ice shelves exchange heat and volume across their 'top' faces whereas ocean grid cells in contact with ice fronts exchange across the 'west' or 'south' faces.",
+      "GCMD_keywords" : "",
+      "grid_dimension": "2D",
+      "grid_location": "c",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "mask3dSHIICF",
+      "long_name": "3D mask indicating whether an ocean grid cell is in contact with a floating ice-shelf or an ice front",
+      "units": "1",
+      "comments_1": "Ocean grid cells in contact with floating ice-shelves or ice fronts can exchange heat and freshwater with the ice. This mask is useful for identifying regions of ocean-ice shelf interaction.",
+      "comments_2": "Ocean grid cells in contact with floating ice shelves exchange heat and volume across their 'top' faces whereas ocean grid cells in contact with ice fronts exchange across the 'west' or 'south' faces.",
+      "GCMD_keywords" : "",
+      "grid_dimension": "3D",
+      "grid_location": "c",
+      "coverage_content_type": "modelResult"
+   },   
+   {
+      "name": "mask2dICF",
+      "long_name": "2D mask indicating the presence of an ocean grid cell in contact with an ice front somewhere in the water column",
+      "units": "1",
+      "comments_1": "Ocean grid cells in contact with ice fronts can exchange heat and freshwater with the ice. This mask is useful for identifying regions of ocean-ice front interaction.",
+      "comments_2": "Ocean grid cells in contact with ice fronts exchange heat and volume across their 'west' or 'south' faces.",
+      "GCMD_keywords" : "",
+      "grid_dimension": "2D",
+      "grid_location": "c",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "mask3dICF",
+      "long_name": "3D mask indicating whether an ocean grid cell is in contact with an ice front",
+      "units": "1",
+      "comments_1": "Ocean grid cells in contact with ice fronts can exchange heat and freshwater with the ice. This mask is useful for identifying regions of ocean-ice front interaction.",
+      "comments_2": "Ocean grid cells in contact with ice fronts exchange heat and volume across their 'west' or 'south' faces.",
+      "GCMD_keywords" : "",
+      "grid_dimension": "3D",
+      "grid_location": "c",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "R_icefront",
+      "long_name": "deepest depth where an ocean grid cell is in contact with an ice-front in the water column",
+      "comments_1": "",
+      "comments_2": "",
+      "units": "m",
+      "GCMD_keywords" : "",
+      "grid_dimension": "2D",
+      "grid_location": "c",
+      "coverage_content_type": "modelResult"
+   },  
+   {
+      "name": "K_icefront",
+      "long_name": "vertical model index of the deepest wet ocean grid cell in contact with an ice-front in the water column",
+      "comments_1": "",
+      "comments_2": "",
+      "units": "1",
+      "GCMD_keywords" : "",
+      "grid_dimension": "2D",
+      "grid_location": "c",
       "coverage_content_type": "modelResult"
    }
 ]
