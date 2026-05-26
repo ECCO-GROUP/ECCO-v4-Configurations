@@ -122,6 +122,7 @@
       "long_name": "depth of tracer grid cell center",
       "comment": "Non-uniform vertical spacing.",
       "units": "m",
+      "axis": "Z",
       "positive": "up",
       "bounds": "Z_bnds",
       "grid_dimension":"3D",
