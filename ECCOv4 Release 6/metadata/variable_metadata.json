@@ -309,7 +309,8 @@
       "GCMD_keywords": "EARTH SCIENCE > OCEANS > SEA SURFACE TOPOGRAPHY > SEA SURFACE HEIGHT",
       "grid_dimension": "2D",
       "grid_location": "c",
-      "coverage_content_type": "modelResult"
+      "coverage_content_type": "modelResult",
+      "land_mask_override": "maskC_wet_in_column"
    },
    {
       "name": "EXFaqh",
@@ -684,7 +685,8 @@
       "GCMD_keywords": "EARTH SCIENCE > OCEANS > OCEAN PRESSURE, EARTH SCIENCE > OCEANS > OCEAN PRESSURE > WATER PRESSURE",
       "grid_dimension": "2D",
       "grid_location": "c",
-      "coverage_content_type": "modelResult"
+      "coverage_content_type": "modelResult",
+      "land_mask_override": "maskC_wet_in_column"
    },
    {
       "name": "OBPAnoma",
@@ -695,7 +697,8 @@
       "GCMD_keywords": "EARTH SCIENCE > OCEANS > OCEAN PRESSURE, EARTH SCIENCE > OCEANS > OCEAN PRESSURE > WATER PRESSURE",
       "grid_dimension": "2D",
       "grid_location": "c",
-      "coverage_content_type": "modelResult"
+      "coverage_content_type": "modelResult",
+      "land_mask_override": "maskC_wet_in_column"
    },
    {
       "name": "OBPGMAP",
@@ -706,7 +709,8 @@
       "GCMD_keywords": "EARTH SCIENCE > OCEANS > OCEAN PRESSURE, EARTH SCIENCE > OCEANS > OCEAN PRESSURE > WATER PRESSURE",
       "grid_dimension": "2D",
       "grid_location": "c",
-      "coverage_content_type": "modelResult"
+      "coverage_content_type": "modelResult",
+      "land_mask_override": "maskC_wet_in_column"
    },
    {
       "name": "OBPGMAPA",
@@ -717,7 +721,8 @@
       "GCMD_keywords": "EARTH SCIENCE > OCEANS > OCEAN PRESSURE, EARTH SCIENCE > OCEANS > OCEAN PRESSURE > WATER PRESSURE",
       "grid_dimension": "2D",
       "grid_location": "c",
-      "coverage_content_type": "modelResult"
+      "coverage_content_type": "modelResult",
+      "land_mask_override": "maskC_wet_in_column"
    },
    {
       "name": "oceFWflx",
@@ -842,7 +847,8 @@
       "GCMD_keywords": "EARTH SCIENCE > OCEANS > OCEAN PRESSURE, EARTH SCIENCE > OCEANS > OCEAN PRESSURE > WATER PRESSURE",
       "grid_dimension": "2D",
       "grid_location": "c",
-      "coverage_content_type": "modelResult"
+      "coverage_content_type": "modelResult",
+      "land_mask_override": "maskC_wet_in_column"
    },
    {
       "name": "PHIHYD",
@@ -1167,7 +1173,8 @@
       "GCMD_keywords": "EARTH SCIENCE > OCEANS > SEA SURFACE TOPOGRAPHY > SEA SURFACE HEIGHT",
       "grid_dimension": "2D",
       "grid_location": "c",
-      "coverage_content_type": "modelResult"
+      "coverage_content_type": "modelResult",
+      "land_mask_override": "maskC_wet_in_column"
    },
    {
       "name": "SSHIBC",
@@ -1178,7 +1185,9 @@
       "GCMD_keywords": "EARTH SCIENCE > OCEANS > SEA SURFACE TOPOGRAPHY > SEA SURFACE HEIGHT",
       "grid_dimension": "2D",
       "grid_location": "c",
-      "coverage_content_type": "modelResult"
+      "coverage_content_type": "modelResult",
+      "land_mask_override": "maskC_wet_in_column"
+
    },
    {
       "name": "SSHNOIBC",
@@ -1190,7 +1199,8 @@
       "GCMD_keywords": "EARTH SCIENCE > OCEANS > SEA SURFACE TOPOGRAPHY > SEA SURFACE HEIGHT",
       "grid_dimension": "2D",
       "grid_location": "c",
-      "coverage_content_type": "modelResult"
+      "coverage_content_type": "modelResult",
+      "land_mask_override": "maskC_wet_in_column"
    },
    {
       "name": "TFLUX",
