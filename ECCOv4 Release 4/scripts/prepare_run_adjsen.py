@@ -725,7 +725,7 @@ nx = 90
 kkk0=15-1
 kkk1=20-1
 
-idx_objmask = maskC * (XC>=120) * (YC<=151) * (YC>=5) * (YC<=16) 
+idx_objmask = maskC * (XC>=120) * (XC<=151) * (YC>=5) * (YC<=16) 
 # Mask out vertical level range
 idx_objmask[0:kkk0] = False
 idx_objmask[kkk1+1:,:] = False
