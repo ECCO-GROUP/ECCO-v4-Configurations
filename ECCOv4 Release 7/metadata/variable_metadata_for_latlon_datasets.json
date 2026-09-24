@@ -1,0 +1,163 @@
+[
+   {
+      "name": "oceTAUE",
+      "long_name": "Zonal (east-west) ocean surface stress",
+      "units": "N m-2",
+      "standard_name": "surface_downward_eastward_stress",
+      "comments_1": "Zonal (east-west) component of ocean surface stress due to wind and sea-ice",
+      "comments_2": "Note: oceTAUE is calculated by interpolating the model's x and y components of ocean surface stress (oceTAUX and oceTAUY) to tracer cell centers and then finding the zonal component of the interpolated vectors.",
+      "direction": " >0 increases eastward velocity (EVEL)",
+      "GCMD_keywords" : "EARTH SCIENCE > OCEANS > OCEAN WINDS > WIND STRESS",
+      "grid_dimension":"2D",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "oceTAUN",
+      "long_name": "Meridional (north-south) ocean surface stress",
+      "units": "N m-2",
+      "standard_name": "surface_downward_northward_stress",
+      "comments_1": "Meridional (north-south) component of ocean surface stress due to wind and sea-ice",
+      "comments_2": "Note: oceTAUN is calculated by interpolating the model's x and y components of ocean surface stress (oceTAUX and oceTAUY) to tracer cell centers and then finding the meridional component of the interpolated vectors.",
+      "direction": " >0 increases northward velocity (NVEL)",
+      "GCMD_keywords" : "EARTH SCIENCE > OCEANS > OCEAN WINDS > WIND STRESS",
+      "grid_dimension":"2D",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "EXFewind",
+      "long_name": "Zonal (east-west) wind speed",
+      "units": "m s-1",
+      "standard_name": "eastward_wind",
+      "comments_1": "Zonal (east-west) component of ocean surface wind",
+      "comments_2": "Note: EXFewind is calculated by interpolating the model's x and y components of wind velocity (EXFuwind and EXFvwind) to tracer cell centers and then finding the zonal component of the interpolated vectors. ECCO V4r4 is forced with wind stress (see EXFtaux, EXFtauy), not vector winds + bulk formulae. EXFewind is calculated by converting wind stress to vector wind using bulk formulae.",
+      "GCMD_keywords" : "EARTH SCIENCE > ATMOSPHERE > ATMOSPHERIC WINDS > SURFACE WINDS > WIND SPEED",
+      "grid_dimension":"2D",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "EXFnwind",
+      "long_name": "Meridional (north-south) wind speed",
+      "units": "m s-1",
+      "standard_name": "northward_wind",
+      "comments_1": "Meridional (north-south) component of ocean surface wind",
+      "comments_2": "Note: EXFnwind is calculated by interpolating the model's x and y components of wind velocity (EXFuwind and EXFvwind) to tracer cell centers and then finding the meridional component of the interpolated vectors. ECCO V4r4 is forced with wind stress (see EXFtaux, EXFtauy), not vector winds + bulk formulae.  EXFnwind is calculated by converting wind stress to vector wind using bulk formulae.",
+      "GCMD_keywords" : "EARTH SCIENCE > ATMOSPHERE > ATMOSPHERIC WINDS > SURFACE WINDS > WIND SPEED",
+      "grid_dimension":"2D",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "EXFtaue",
+      "long_name": "Zonal (east-west) wind stress",
+      "units": "N m-2",
+      "standard_name": "surface_downward_eastward_stress",
+      "comments_1": "Zonal (east-west) component of wind stress",
+      "comments_2": "Note: EXFtaue is the zonal wind stress applied to the ocean and sea-ice. When sea-ice is present, the total zonal stress applied to the ocean surface is NOT EXFtaue, but a combination of the wind stress in the open water fraction (EXFtaue) and a stress from sea-ice in the ice-covered fraction (see oceTAUE). EXFtaue is calculated by interpolating the model's x and y components of wind stress (EXFtaux and EXFtauy) to tracer cell centers and then finding the zonal component of the interpolated vectors. It is NOT recommended to use EXFtaue and EXFtaun for momentum budget calculations because interpolating EXFtaux and EXFtauy from the model grid to the lat-lon grid introduces errors. For momentum fluxes to the ocean surface see oceTAUx and oceTAUy.",
+      "direction": " >0 increases eastward velocity (EVEL)",
+      "GCMD_keywords" : "EARTH SCIENCE > OCEANS > OCEAN WINDS > WIND STRESS",
+      "grid_dimension":"2D",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "EXFtaun",
+      "long_name": "Meridional (north-south) wind stress",
+      "units": "N m-2",
+      "standard_name": "surface_downward_northward_stress",
+      "comments_1": "Meridional (north-south) component of wind stress",
+      "comments_2": "Note: EXFtaun is the stress applied to the ocean and sea-ice. When sea-ice is present, the total meridional stress applied to the ocean surface is NOT EXFtaun, but a combination of the wind stress in the open water fraction (EXFtaun) and a stress from sea-ice in the ice-covered fraction (see oceTAUN).  EXFtaun is calculated by interpolating the model's x and y components of wind stress (EXFtaux and EXFtauy) to tracer cell centers and then determining the meridional component of the interpolated vectors. It is NOT recommended to use EXFtaue and EXFtaun for momentum budget calculations because interpolating EXFtaux and EXFtauy from the model grid to the lat-lon grid introduces errors. For momentum fluxes to the ocean surface see oceTAUx and oceTAUy.",
+      "direction": " >0 increases northward velocity (NVEL)",
+      "GCMD_keywords" : "EARTH SCIENCE > OCEANS > OCEAN WINDS > WIND STRESS",
+      "grid_dimension":"2D",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "SIeice",
+      "long_name": "Zonal (east-west) sea-ice velocity",
+      "units": "m s-1",
+      "standard_name": "eastward_sea_ice_velocity",
+      "comments_1": "Zonal (east-west) componet of sea-ice velocity",
+      "comments_2": "Note: mask with SIarea to remove nonzero values where ice is absent. SIeice is calculated by interpolating the model's x and y components of sea-ice velocity (SIuice and SIvice) to tracer cell centers and then finding the zonal component of the interpolated vectors. It is NOT recommended to use SIuice and SIvice for sea-ice volume budget calculations because interpolating SIuice and SIvice from the model grid to the lat-lon grid introduces errors. Perform sea-ice mass budget calculations with ADVxHEFF, ADVyHEFF, DFxHEFF, and DFyHEFF on the native model grid.",
+      "GCMD_keywords" : "EARTH SCIENCE > CRYOSPHERE > SEA ICE > SEA ICE MOTION",
+      "grid_dimension":"2D",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "SInice",
+      "long_name": "Meridional (north-south) sea-ice velocity",
+      "units": "m s-1",
+      "standard_name": "northward_sea_ice_velocity",
+      "comments_1": "Meridional (north-south) component of sea-ice velocity",
+      "comments_2": "Note: mask with SIarea to remove nonzero values where ice is absent. SInice is calculated by interpolating the model's x and y components of sea-ice velocity (SIuice and SIvice) to tracer cell centers and then finding the meridional component of the interpolated vectors. It is NOT recommended to use SIuice and SIvice for sea-ice volume budget calculations because interpolating SIuice and SIvice from the model grid to the lat-lon grid introduces errors. Perform sea-ice mass budget calculations with ADVxHEFF, ADVyHEFF, DFxHEFF, and DFyHEFF on the native model grid.",
+      "GCMD_keywords" : "EARTH SCIENCE > CRYOSPHERE > SEA ICE > SEA ICE MOTION",
+      "grid_dimension":"2D",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "EVEL",
+      "long_name": "Zonal (east-west) velocity",
+      "units": "m s-1",
+      "standard_name": "eastward_sea_water_velocity",
+      "comments_1": "Zonal (east-west) component of ocean velocity",
+      "comments_2": "Note: EVEL is calculated by interpolating the model's x and y components of ocean velocity (UVEL and VVEL)to tracer cell centers and then finding the zonal component of the interpolated vectors. It is not recommended to use EVEL and NVEL for volume budget calculations because interpolating UVEL and VVEL from the model grid to the lat-lon grid introduces errors. Perform volume budget calculations with UVELMASS and VVELMASS on the native model grid.",
+      "GCMD_keywords" : "EARTH SCIENCE > OCEANS > OCEAN CIRCULATION, EARTH SCIENCE > OCEANS > OCEAN CIRCULATION > OCEAN CURRENTS",
+      "grid_dimension":"3D",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "NVEL",
+      "long_name": "Meridional (north-south) velocity",
+      "units": "m s-1",
+      "standard_name": "northward_sea_water_velocity",
+      "comments_1": "Meridional (north-south) component of ocean velocity",
+      "comments_2": "Note: NVEL is calculated by interpolating the model's x and y components of ocean velocity (UVEL and VVEL) to tracer cell centers and then finding the meridional component of the interpolated vectors. It is not recommended to use EVEL and NVEL for volume budget calculations because interpolating UVEL and VVEL from the model grid to the lat-lon grid introduces errors. Perform volume budget calculations with UVELMASS and VVELMASS on the native model grid.",
+      "GCMD_keywords" : "EARTH SCIENCE > OCEANS > OCEAN CIRCULATION, EARTH SCIENCE > OCEANS > OCEAN CIRCULATION > OCEAN CURRENTS",
+      "grid_dimension":"3D",
+      "coverage_content_type": "modelResult"
+   },   
+   {
+      "name": "WVEL",
+      "long_name": "Vertical velocity",
+      "units": "m s-1",
+      "standard_name": "upward_sea_water_velocity",
+      "comments_1": "Vertical velocity in the +z direction at the top face of the grid cell",
+      "comments_2": "Note: in the Arakawa-C grid used in ECCO V4r4, vertical velocities are staggered relative to the tracer cell centers with values at the TOP and BOTTOM faces of each grid cell.",
+      "direction": ">0 decreases volume",
+      "GCMD_keywords" : "EARTH SCIENCE > OCEANS > OCEAN CIRCULATION, EARTH SCIENCE > OCEANS > OCEAN CIRCULATION > OCEAN CURRENTS",
+      "internal note": "wvel is the same as wvel mass. wvel, uvel, and vvel are grouped in the 'ocean velocity' dataset. wvelmass, uvelmass, and vvelmass are grouped in the 'ocean volume fluxes' dataset.",
+      "grid_dimension":"3D",
+      "grid_location": "c",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "EVELSTAR",
+      "long_name": "Gent-McWilliams zonal (east-west) bolus velocity",
+      "units": "m s-1",
+      "standard_name": "eastward_sea_water_velocity_due_to_parameterized_mesoscale_eddies",
+      "comments_1": "Zonal (east-west) component of the Gent-McWilliams bolus ocean velocity",
+      "comments_2": "Note: EVELSTAR is calculated by interpolating the model's x and y components of GM bolus ocean velocity (UVELSTAR and VVELSTAR) to tracer cell centers and then finding the zonal components of the interpolated vectors. One should take care when interpreting bolus velocities interpolated from the ECCO native model grid because interpolating from the model grid to the lat-lon grid introduces errors. Some closed buget calculations require bolus velocity terms on the native model grid.",
+      "GCMD_keywords" : "EARTH SCIENCE > OCEANS > OCEAN CIRCULATION, EARTH SCIENCE > OCEANS > OCEAN CIRCULATION > OCEAN CURRENTS",
+      "grid_dimension":"3D",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "NVELSTAR",
+      "long_name": "Gent-McWilliams meridional (north-south) bolus velocity",
+      "units": "m s-1",
+      "standard_name": "northward_sea_water_velocity_due_to_parameterized_mesoscale_eddies",
+      "comments_1": "Meridional (north-south) component of the Gent-McWilliams bolus ocean velocity",
+      "comments_2": "Note: NVELSTAR is calculated by interpolating the model's x and y components of GM bolus ocean velocity (UVELSTAR and VVELSTAR) to tracer cell centers and then finding the meridional components of the interpolated vectors.  One should take care when interpreting bolus velocities interpolated from the ECCO native model grid because interpolating from the model grid to the lat-lon grid introduces errors. Some closed buget calculations require bolus velocity terms on the native model grid",
+      "GCMD_keywords" : "EARTH SCIENCE > OCEANS > OCEAN CIRCULATION, EARTH SCIENCE > OCEANS > OCEAN CIRCULATION > OCEAN CURRENTS",
+      "grid_dimension":"3D",
+      "coverage_content_type": "modelResult"
+   },   
+   {
+      "name": "WVELSTAR",
+      "long_name": "Gent-McWilliams vertical bolus velocity",
+      "units": "m s-1",
+      "standard_name": "upward_sea_water_velocity_due_to_parameterized_mesoscale_eddies",
+      "comments_1": "Vertical component of the Gent-McWilliams bolus ocean velocity",
+      "comments_2": "Note: in the Arakawa-C grid used in ECCO V4r4, vertical velocities are staggered relative to the tracer cell centers with values at the TOP and BOTTOM faces of each grid cell.",
+      "GCMD_keywords" : "EARTH SCIENCE > OCEANS > OCEAN CIRCULATION, EARTH SCIENCE > OCEANS > OCEAN CIRCULATION > OCEAN CURRENTS",
+      "grid_dimension":"3D",
+      "coverage_content_type": "modelResult"
+   }
+]

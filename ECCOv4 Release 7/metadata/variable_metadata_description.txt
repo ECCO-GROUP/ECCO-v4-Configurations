@@ -1,0 +1,940 @@
+ADVr_SLT: Vertical advective flux of salinity
+==================================================================================
+Vertical advective flux of salinity (SALT) in the +z direction through the top 'w' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, vertical flux quantities are staggered relative to the tracer cells with indexing such that +ADVr_SLT(i,j,k_l) corresponds to upward +z fluxes through the top 'w' face of the tracer cell at (i,j,k). Salinity defined using CF convention 'Sea water salinity is the salt content of sea water, often on the Practical Salinity Scale of 1978. However, the unqualified term 'salinity' is generic and does not necessarily imply any particular method of calculation. The units of salinity are dimensionless and the units attribute should normally be given as 1e-3 or 0.001 i.e. parts per thousand.' see https://cfconventions.org/Data/cf-standard-names/73/build/cf-standard-name-table.html
+
+Units: 1e-3 m3 s-1
+Dimension: 3D
+
+
+ADVr_TH: Vertical advective flux of potential temperature
+==================================================================================
+Vertical advective flux of potential temperature (THETA) in the +z direction through the top 'w' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, vertical flux quantities are staggered relative to the tracer cells with indexing such that +ADVr_TH(i,j,k_l) corresponds to upward +z fluxes through the top 'w' face of the tracer cell at (i,j,k)
+
+Units: degree_C m3 s-1
+Dimension: 3D
+
+
+ADVx_SLT: Lateral advective flux of salinity in the model +x direction
+==================================================================================
+Lateral advective flux of salinity (SALT) in the +x direction through the 'u' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells with indexing such that +ADVx_SLT(i_g,j,k) corresponds to +x fluxes through the 'u' face of the tracer cell at (i,j,k). Also, the model +x direction does not necessarily correspond to the geographical east-west direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles. Salinity defined using CF convention 'Sea water salinity is the salt content of sea water, often on the Practical Salinity Scale of 1978. However, the unqualified term 'salinity' is generic and does not necessarily imply any particular method of calculation. The units of salinity are dimensionless and the units attribute should normally be given as 1e-3 or 0.001 i.e. parts per thousand.' see https://cfconventions.org/Data/cf-standard-names/73/build/cf-standard-name-table.html
+
+Units: 1e-3 m3 s-1
+Dimension: 3D
+
+
+ADVx_TH: Lateral advective flux of potential temperature in the model +x direction
+==================================================================================
+Lateral advective flux of potential temperature (THETA) in the +x direction through the 'u' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells with indexing such that +ADVx_TH(i_g,j,k) corresponds to +x fluxes through the 'u' face of the tracer cell at (i,j,k). Also, the model +x direction does not necessarily correspond to the geographical east-west direction because the x and y axes of the model's lat-lon-cap (llc) curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.
+
+Units: degree_C m3 s-1
+Dimension: 3D
+
+
+ADVxHEFF: Lateral advective flux of sea-ice thickness in the model +x direction
+==================================================================================
+Lateral advective flux of grid cell mean sea-ice thickness (HEFF) in the +x direction through the 'u' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells with indexing such that +ADVxHEFF(i_g,j) corresponds to +x fluxes through the 'u' face of the tracer cell at (i,j,k=0). Also, the model +x direction does not necessarily correspond to the geographical east-west direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.
+
+Units: m3 s-1
+Dimension: 3D
+
+
+ADVxSNOW: Lateral advective flux of snow thickness in the model +x direction
+==================================================================================
+Lateral advective flux of grid cell mean snow thickness (HSNOW) in the +x direction through the 'u' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells with indexing such that +ADVxSNOW(i_g,j) corresponds to +x fluxes through the 'u' face of the tracer cell at (i,j,k=0). Also, the model +x direction does not necessarily correspond to the geographical east-west direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.
+
+Units: m3 s-1
+Dimension: 3D
+
+
+ADVy_SLT: Lateral advective flux of salinity in the model +y direction
+==================================================================================
+Lateral advective flux of salinity (SALT) in the +y direction through the 'v' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells with indexing such that +ADVy_SLT(i,j_g,k) corresponds to +y fluxes through the 'v' face of the tracer cell at (i,j,k). Also, the model +y direction does not necessarily correspond to the geographical north-south direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles. Salinity defined using CF convention 'Sea water salinity is the salt content of sea water, often on the Practical Salinity Scale of 1978. However, the unqualified term 'salinity' is generic and does not necessarily imply any particular method of calculation. The units of salinity are dimensionless and the units attribute should normally be given as 1e-3 or 0.001 i.e. parts per thousand.' see https://cfconventions.org/Data/cf-standard-names/73/build/cf-standard-name-table.html
+
+Units: 1e-3 m3 s-1
+Dimension: 3D
+
+
+ADVy_TH: Lateral advective flux of potential temperature in the model +y direction
+==================================================================================
+Lateral advective flux of potential temperature (THETA) in the +y direction through the 'v' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells with indexing such that +ADVy_TH(i,j_g,k) corresponds to +y fluxes through the 'v' face of the tracer cell at (i,j,k). Also, the model +y direction does not necessarily correspond to the geographical north-south direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.
+
+Units: degree_C m3 s-1
+Dimension: 3D
+
+
+ADVyHEFF: Lateral advective flux of sea-ice thickness in the model +y direction
+==================================================================================
+Lateral advective flux of grid cell mean sea-ice thickness (HEFF) in the +y direction through the 'v' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells with indexing such that +ADVyHEFF(i,j_g) corresponds to +y fluxes through the 'v' face of the tracer cell at (i,j,k=0). Also, the model +y direction does not necessarily correspond to the geographical north-south direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.
+
+Units: m3 s-1
+Dimension: 3D
+
+
+ADVySNOW: Lateral advective flux of snow thickness in the model +y direction
+==================================================================================
+Lateral advective flux of grid cell mean snow thickness (HSNOW) in the +y direction through the 'v' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells with indexing such that +ADVySNOW(i,j_g) corresponds to +y fluxes through the 'v' face of the tracer cell at (i,j,k=0). Also, the model +y direction does not necessarily correspond to the geographical north-south direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.
+
+Units: m3 s-1
+Dimension: 3D
+
+
+DFrE_SLT: Vertical diffusive flux of salinity (explicit term)
+==================================================================================
+The explicit term of the vertical diffusive flux of salinity (SALT) in the +z direction through the top 'w' face of the tracer cell on the native model grid. In the ECCO V4r4 model, an implicit scheme is used to calculate vertical diffusive tracer fluxes due to background diffusivity and the Kwz component of the GM-Redi tensor (vertical flux as a function of vertical gradient) while an explicit scheme is used to calculate the vertical diffusive fluxes from the Kwx and Kwy components of the GM-Redi tensor (vertical flux as a function of horizontal gradient). Both implicit and explicit components of vertical diffusive flux of salinity are provided.
+
+Note: in the Arakawa-C grid, vertical flux quantities are staggered relative to the tracer cells with indexing such that +DFrE_SLT(i,j,k_l) corresponds to upward +z fluxes through the top 'w' face of the tracer cell at (i,j,k). Salinity defined using CF convention 'Sea water salinity is the salt content of sea water, often on the Practical Salinity Scale of 1978. However, the unqualified term 'salinity' is generic and does not necessarily imply any particular method of calculation. The units of salinity are dimensionless and the units attribute should normally be given as 1e-3 or 0.001 i.e. parts per thousand.' see https://cfconventions.org/Data/cf-standard-names/73/build/cf-standard-name-table.html
+
+Units: 1e-3 m3 s-1
+Dimension: 3D
+
+
+DFrE_TH: Vertical diffusive flux of potential temperature (explicit term)
+==================================================================================
+The explicit term of the vertical diffusive flux of potential temperature (THETA) in the +z direction through the top 'w' face of the tracer cell on the native model grid. In the ECCO V4r4 model, an implicit scheme is used to calculate vertical diffusive tracer fluxes due to background diffusivity and the Kwz component of the GM-Redi tensor (vertical flux as a function of vertical gradient) while an explicit scheme is used to calculate the vertical diffusive fluxes from the Kwx and Kwy components of the GM-Redi tensor (vertical flux as a function of horizontal gradient). Both implicit and explicit components of vertical diffusive flux of potential temperature are provided.
+
+Note: in the Arakawa-C grid, vertical flux quantities are staggered relative to the tracer cells with indexing such that +DFrE_TH(i,j,k_l) corresponds to upward +z fluxes through the top 'w' face of the tracer cell at (i,j,k).
+
+Units: degree_C m3 s-1
+Dimension: 3D
+
+
+DFrI_SLT: Vertical diffusive flux of salinity (implicit term)
+==================================================================================
+The implicit term of the vertical diffusive flux of salinity (SALT) in the +z direction through the top 'w' face of the tracer cell on the native model grid. In the ECCO V4r4 model, an implicit scheme is used to calculate vertical diffusive tracer fluxes due to background diffusivity and the Kwz component of the GM-Redi tensor (vertical flux as a function of vertical gradient) while an explicit scheme is used to calculate the vertical diffusive fluxes from the Kwx and Kwy components of the GM-Redi tensor (vertical flux as a function of horizontal gradient). Both implicit and explicit components of vertical diffusive flux of salinity are provided.
+
+Note: in the Arakawa-C grid, vertical flux quantities are staggered relative to the tracer cells with indexing such that +DFrI_SLT(i,j,k_l) corresponds to upward +z fluxes through the top face 'w' of the tracer cell at (i,j,k). Salinity defined using CF convention 'Sea water salinity is the salt content of sea water, often on the Practical Salinity Scale of 1978. However, the unqualified term 'salinity' is generic and does not necessarily imply any particular method of calculation. The units of salinity are dimensionless and the units attribute should normally be given as 1e-3 or 0.001 i.e. parts per thousand.' see https://cfconventions.org/Data/cf-standard-names/73/build/cf-standard-name-table.html
+
+Units: 1e-3 m3 s-1
+Dimension: 3D
+
+
+DFrI_TH: Vertical diffusive flux of potential temperature (implicit term)
+==================================================================================
+The implicit term of the vertical diffusive flux of potential temperature (THETA) in the +z direction through the top 'w' face of the tracer cell on the native model grid. In the ECCO V4r4 model, an implicit scheme is used to calculate vertical diffusive tracer fluxes due to background diffusivity and the Kwz component of the GM-Redi tensor (vertical flux as a function of vertical gradient) while an explicit scheme is used to calculate the vertical diffusive fluxes from the Kwx and Kwy components of the GM-Redi tensor (vertical flux as a function of horizontal gradient). Both implicit and explicit components of vertical diffusive flux of potential temperature are provided.
+
+Note: in the Arakawa-C grid, vertical flux quantities are staggered relative to the tracer cells with indexing such that +DFrI_TH(i,j,k_l) corresponds to upward +z fluxes through the top 'w' face of the tracer cell at (i,j,k)
+
+Units: degree_C m3 s-1
+Dimension: 3D
+
+
+DFxE_SLT: Lateral diffusive flux of salinity in the model +x direction
+==================================================================================
+Lateral diffusive flux of salinity (SALT) in the +x direction through the 'u' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells with indexing such that +DFxE_SLT(i_g,j,k) corresponds to +x fluxes through the 'u' face of the tracer cell at (i,j,k). Also, the model +x direction does not necessarily correspond to the geographical east-west direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles. Salinity defined using CF convention 'Sea water salinity is the salt content of sea water, often on the Practical Salinity Scale of 1978. However, the unqualified term 'salinity' is generic and does not necessarily imply any particular method of calculation. The units of salinity are dimensionless and the units attribute should normally be given as 1e-3 or 0.001 i.e. parts per thousand.' see https://cfconventions.org/Data/cf-standard-names/73/build/cf-standard-name-table.html
+
+Units: 1e-3 m3 s-1
+Dimension: 3D
+
+
+DFxE_TH: Lateral diffusive flux of potential temperature in the model +x direction
+==================================================================================
+Lateral diffusive flux of potential temperature (THETA) in the +x direction through the 'u' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells with indexing such that +DFxE_TH(i_g,j,k) corresponds to +x fluxes through the 'u' face of the tracer cell at (i,j,k). Also, the model +x direction does not necessarily correspond to the geographical east-west direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.
+
+Units: degree_C m3 s-1
+Dimension: 3D
+
+
+DFxEHEFF: Lateral diffusive flux of sea-ice thickness in the model +x direction.
+==================================================================================
+Lateral diffusive flux of grid cell mean sea-ice thickness (HEFF) in the +x direction through the 'u' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells with indexing such that +DFxEHEFF(i_g,j) corresponds to +x fluxes through the 'u' face of the tracer cell at (i,j,k=0). Also, the model +x direction does not necessarily correspond to the geographical east-west direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.
+
+Units: m3 s-1
+Dimension: 3D
+
+
+DFxESNOW: Lateral diffusive flux of snow thickness in the model +x direction
+==================================================================================
+Lateral diffusive flux of grid cell mean snow thickness (HSNOW) in the +x direction through the 'u' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells with indexing such that +DFxESNOW(i_g,j) corresponds to +x fluxes through the 'u' face of the tracer cell at (i,j,k=0). Also, the model +x direction does not necessarily correspond to the geographical east-west direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.
+
+Units: m3 s-1
+Dimension: 3D
+
+
+DFyE_SLT: Lateral diffusive flux of salinity in the model +y direction
+==================================================================================
+Lateral diffusive flux of salinity (SALT) in the +y direction through the 'v' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells with indexing such that +DFyE_SLT(i,j_g,k) corresponds to +y fluxes through the 'v' face of the tracer cell at (i,j,k). Also, the model +y direction does not necessarily correspond to the geographical north-south direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles. Salinity defined using CF convention 'Sea water salinity is the salt content of sea water, often on the Practical Salinity Scale of 1978. However, the unqualified term 'salinity' is generic and does not necessarily imply any particular method of calculation. The units of salinity are dimensionless and the units attribute should normally be given as 1e-3 or 0.001 i.e. parts per thousand.' see https://cfconventions.org/Data/cf-standard-names/73/build/cf-standard-name-table.html
+
+Units: 1e-3 m3 s-1
+Dimension: 3D
+
+
+DFyE_TH: Lateral diffusive flux of potential temperature in the model +y direction.
+==================================================================================
+Lateral diffusive flux of potential temperature (THETA) in the +y direction through the 'v' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells with indexing such that +DFyE_TH(i,j_g,k) corresponds to +y fluxes through the 'v' face of the tracer cell at (i,j,k). Also, the model +y direction does not necessarily correspond to the geographical north-south direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.
+
+Units: degree_C m3 s-1
+Dimension: 3D
+
+
+DFyEHEFF: Lateral diffusive flux of sea-ice thickness in the model +y direction.
+==================================================================================
+Lateral diffusive flux of grid cell mean sea-ice thickness (HEFF) in the +y direction through the 'v' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells with indexing such that +DFyEHEFF(i,j_g) corresponds to +y fluxes through the 'v' face of the tracer cell at (i,j,k=0). Also, the model +y direction does not necessarily correspond to the geographical north-south direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.
+
+Units: m3 s-1
+Dimension: 3D
+
+
+DFyESNOW: Lateral diffusive flux of snow thickness in the model +y direction
+==================================================================================
+Lateral diffusive flux of grid cell mean snow thickness (HSNOW) in the +y direction through the 'v' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, horizontal flux quantities are staggered relative to the tracer cells with indexing such that +DFyESNOW(i,j_g,k) corresponds to +y fluxes through the 'v' face of the tracer cell at (i,j,k=0). Also, the model +y direction does not necessarily correspond to the geographical north-south direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.
+
+Units: m3 s-1
+Dimension: 3D
+
+
+DIFFKR: Vertical diffusivity
+==================================================================================
+Background vertical diffusion coefficient for temperature and salinity. Total vertical diffusivity includes background diffusivity plus contributions from the GGL90 vertical mixing and the Gent-McWilliams/Redi parameterizations.
+
+Note: DIFFKR is a model control variable and has been optimized from a spatially-invariant first-guess value of 1e-5 m2 s-1.
+
+Units: m2 s-1
+Dimension: 3D
+
+
+DRHODR: Density stratification
+==================================================================================
+Density stratification: d(sigma) d z-1
+
+Note: density computations are done with in-situ density. The vertical derivatives of in-situ density and locally-referenced potential density are identical  The equation of state is a modified UNESCO formula by Jackett and McDougall (1995), which uses the model variable potential temperature as input assuming a horizontally and temporally constant pressure of $p_0=-g ho_{0} z$.
+
+Units: kg m-3 m-1
+Dimension: 3D
+
+
+ETAN: Model sea level anomaly
+==================================================================================
+Model sea level anomaly WITHOUT corrections for global mean density (steric) changes, inverted barometer effect, or volume displacement due to submerged sea-ice and snow  
+
+Note: ETAN should NOT be used for comparisons with altimetry data products because ETAN is NOT corrected for (a) global mean steric sea level changes related to density changes in the Boussinesq volume-conserving model (Greatbatch correction, see sterGloH) nor (b) sea level displacement due to submerged sea-ice and snow (see sIceLoad). These corrections ARE made for the variables SSH and SSHNOIBC.
+
+Units: m
+Dimension: 2D
+
+
+EXFaqh: Atmosphere surface (2 m) specific humidity 
+==================================================================================
+Surface (2 m) specific humidity over open water
+
+Note: sum of ERA-Interim surface specific humidity and the control adjustment from ocean state estimation.
+
+Units: kg kg-1
+Dimension: 2D
+
+
+EXFatemp: Atmosphere surface (2 m) air temperature 
+==================================================================================
+Surface (2 m) air temperature over open water
+
+Note: sum of ERA-Interim surface air temperature and the control adjustment from ocean state estimation.
+
+Units: degree_K
+Dimension: 2D
+
+
+EXFempmr: Open ocean net surface freshwater flux from precipitation, evaporation, and runoff
+==================================================================================
+Net surface freshwater flux from precipitation, evaporation, and runoff per unit area in open water (not covered by sea-ice). Excludes freshwater fluxes involving sea-ice and snow.
+
+Note: calculated as EXFevap-EXFpreci-EXFroff.
+
+Units: m s-1
+Dimension: 2D
+
+
+EXFevap: Open ocean evaporation rate
+==================================================================================
+Evaporation rate per unit area of open water (not covered by sea-ice).
+
+Note: calculated using the bulk formula following Large and Yeager (2004) NCAR/TN-460+STR.
+
+Units: m s-1
+Dimension: 2D
+
+
+EXFhl: Open ocean air-sea latent heat flux
+==================================================================================
+Air-sea latent heat flux per unit area of open water (not covered by sea-ice).
+
+Note: calculated from the bulk formula following Large and Yeager (2004) NCAR/TN-460+STR.
+
+Units: W m-2
+Dimension: 2D
+
+
+EXFhs: Open ocean air-sea sensible heat flux
+==================================================================================
+Air-sea sensible heat flux per unit area of open water (not covered by sea-ice).
+
+Note: calculated from the bulk formula following Large and Yeager (2004) NCAR/TN-460+STR.
+
+Units: W m-2
+Dimension: 2D
+
+
+EXFlwdn: Downward longwave radiative flux
+==================================================================================
+Downward longwave radiative flux
+
+Note: sum of ERA-Interim downward longwave radiation and the control adjustment from ocean state estimation.
+
+Units: W m-2
+Dimension: 2D
+
+
+EXFlwnet: Net open ocean longwave radiative flux
+==================================================================================
+Net longwave radiative flux per unit area of open water (not covered by sea-ice).
+
+Note: net longwave radiation over open water calculated from downward longwave radiation (EXFlwdn) and upward longwave radiation from ocean and sea-ice thermal emission (Stefan-Boltzman law).
+
+Units: W m-2
+Dimension: 2D
+
+
+EXFpreci: Precipitation rate
+==================================================================================
+Precipitation rate
+
+Note: sum of ERA-Interim precipitation and the control adjustment from ocean state estimation.
+
+Units: m s-1
+Dimension: 2D
+
+
+EXFpress: Atmosphere surface pressure
+==================================================================================
+Atmospheric pressure field at sea level
+
+Note: ERA-Interim atmospheric pressure, with air tides removed using a variety of methods. Not adjusted by the ocean state estimation.
+
+Units: N m-2
+Dimension: 2D
+
+
+EXFqnet: Open ocean net air-sea heat flux
+==================================================================================
+Net air-sea heat flux (turbulent and radiative) per unit area of open water (not covered by sea-ice).
+
+Note: net upward heat flux over open water, calculated as EXFlwnet+EXFswnet-EXFlh-EXFhs.
+
+Units: W m-2
+Dimension: 2D
+
+
+EXFroff: River runoff
+==================================================================================
+River runoff freshwater flux
+
+Note: not adjusted by the optimization.
+
+Units: m s-1
+Dimension: 2D
+
+
+EXFswdn: Downwelling shortwave radiative flux
+==================================================================================
+Downward shortwave radiative flux
+
+Note: sum of ERA-Interim downward shortwave radiation and the control adjustment from ocean state estimation.
+
+Units: W m-2
+Dimension: 2D
+
+
+EXFswnet: Open ocean net shortwave radiative flux
+==================================================================================
+Net shortwave radiative flux per unit area of open water (not covered by sea-ice).
+
+Note: net shortwave radiation over open water calculated from downward shortwave flux (EXFswdn) and ocean surface albdeo.
+
+Units: W m-2
+Dimension: 2D
+
+
+EXFtaux: Wind stress in the model +x direction
+==================================================================================
+Wind stress in the +x direction at the tracer cell on the native model grid
+
+Note: EXFtaux is the stress applied to the ice-free ocean surface and sea-ice covered surface. When sea-ice is present, the total stress applied to the ocean surface in the +x direction is NOT EXFtaux, but a combination of EXFtaux wind stress in the open water fraction and a stress from sea-ice in the ice-covered fraction (see oceTAUX). EXFtaux is the sum of ERA-Interim stress and the control adjustment from ocean state estimation.
+
+Units: N m-2
+Dimension: 2D
+
+
+EXFtauy: Wind stress in the model +y direction
+==================================================================================
+Wind stress in the +y direction at the tracer cell on the native model grid
+
+Note: EXFtauy is the stress applied to the ice-free ocean surface and sea-ice covered surface. When sea-ice is present, the total stress applied to the ocean surface in the +y direction is NOT EXFtauy, but a combination of EXFtauy wind stress in the open water fraction and a stress from sea-ice in the ice-covered fraction (see oceTAUY). EXFtaux is the sum of ERA-Interim stress and the control adjustment from ocean state estimation.
+
+Units: N m-2
+Dimension: 2D
+
+
+EXFuwind: Wind speed at 10m in the model +x direction
+==================================================================================
+Wind speed at 10m in the +x direction at the tracer cell on the native model grid
+
+Note: ECCO v4r4 is forced with wind stress (see EXFtaux) not vector winds converted to wind stress using bulk formulae. EXFuwind is calculated by converting wind stress to vector wind using bulk formulae.
+
+Units: m s-1
+Dimension: 2D
+
+
+EXFvwind: Wind speed at 10m in the model +y direction
+==================================================================================
+Wind speed at 10m in the +y direction at the tracer cell on the native model grid
+
+Note: ECCO v4r4 is forced with wind stress (see EXFtauy) not vector winds converted to wind stress using bulk formulae. EXFvwind is calculated by converting wind stress to vector wind using bulk formulae.
+
+Units: m s-1
+Dimension: 2D
+
+
+EXFwspee: Wind speed
+==================================================================================
+10-m wind speed magnitude (>= 0 ) over open water. Only used for the calculation of air-sea fluxes using bulk formulae.
+
+Note: not adjusted by the ocean state estimation and not necesarily consistent with EXFuwind and EXFvwind because EXFuwind and EXFvwind are calculated from EXFtaux and EXFtauy using bulk formulae. EXFwspee != sqrt(EXFuwind**2 + EXFvwind**2.
+
+Units: m s-1
+Dimension: 2D
+
+
+GM_PsiX: Gent-Mcwilliams bolus transport streamfunction in the model +x direction
+==================================================================================
+Gent-Mcwilliams bolus transport streamfunction 'u' component
+
+any comments welcome
+
+Units: m2 s-1
+Dimension: 3D
+
+
+GM_PsiY: Gent-Mcwilliams bolus transport streamfunction in the model +y direction
+==================================================================================
+Gent-Mcwilliams bolus transport streamfunction 'v' component
+
+any comments welcome
+
+Units: m2 s-1
+Dimension: 3D
+
+
+KAPGM: Gent-McWilliams diffusivity
+==================================================================================
+Gent-McWilliams diffusivity coefficient as described in Gent and McWilliams (1990, JPO)
+
+Note: KAPGM is a model control variable and has been optimized from a spatially invariant first guess of 1e3 m2 s-1.
+
+Units: m2 s-1
+Dimension: 3D
+
+
+KAPREDI: Along-isopycnal diffusivity
+==================================================================================
+Redi along-isopycnal diffusivity coefficient as described in Redi (1982, JPO)
+
+Note: KAPREDI is a model control variable and has been optimized from a spatially invariant first guess of 1e3 m2 s-1.
+
+Units: m2 s-1
+Dimension: 3D
+
+
+MXLDEPTH: Mixed-layer depth diagnosed using the temperature difference criterion of Kara et al., 2000
+==================================================================================
+Mixed-layer depth as determined by the depth where waters are first 0.8 degrees Celsius colder than the surface. See Kara et al. (JGR, 2000). 
+
+Note: the Kara et al. criterion may not be appropriate for some applications. If needed, mixed layer depth can be calculated using different criteria. See vertical density stratification (DRHODR) and density anomaly (RHOAnoma).
+
+Units: m
+Dimension: 2D
+
+
+OBP: Ocean bottom pressure given as equivalent water thickness
+==================================================================================
+OBP excludes the contribution from global mean atmospheric pressure and is therefore suitable for comparisons with GRACE data products
+
+OBP is calculated as follows. First, we calculate ocean hydrostatic bottom pressure anomaly, PHIBOT, with PHIBOT = p_b/rhoConst - gH(t), where p_b = model ocean hydrostatic bottom pressure, rhoConst = reference density (1029 kg m-3), g is acceleration due to gravity (9.81 m s-2), and H(t) is model depth at time t. Then, OBP = PHIBOT/g + corrections for i) global mean steric sea level changes related to density changes in the Boussinesq volume-conserving model (Greatbatch correction, see sterGloH) and ii) global mean atmospheric pressure variations. Use OBP for comparisons with ocean bottom pressure data products that have been corrected for global mean atmospheric pressure variations. GRACE data typically ARE corrected for global mean atmospheric pressure variations. In contrast, ocean bottom pressure gauge data typically ARE NOT corrected for global mean atmospheric pressure variations.
+
+Units: m
+Dimension: 2D
+
+
+OBPGMAP: Ocean bottom pressure given as equivalent water thickness, includes global mean atmospheric pressure
+==================================================================================
+OBPGMAP includes the contribution from global mean atmospheric pressure and is therefore suitable for comparisons with ocean bottom pressure gauge data products.
+
+OBPGMAP is calculated as follows. First, we calculate ocean hydrostatic bottom pressure anomaly, PHIBOT, with PHIBOT = p_b/rhoConst - gH(t), where p_b = model ocean hydrostatic bottom pressure, rhoConst = reference density (1029 kg m-3), g is acceleration due to gravity (9.81 m s-2), and H(t) is model depth at time t. Then, OBPGMAP= PHIBOT/g + corrections for global mean steric sea level changes related to density changes in the Boussinesq volume-conserving model (Greatbatch correction, see sterGloH). Use OBPGMAP for comparisons with ocean bottom pressure data products that have NOT been corrected for global mean atmospheric pressure variations. GRACE data typically ARE corrected for global mean atmospheric pressure variations. In contrast, ocean bottom pressure gauge data typically ARE NOT corrected for global mean atmospheric pressure variations.
+
+Units: m
+Dimension: 2D
+
+
+oceFWflx: Net freshwater flux into the ocean
+==================================================================================
+Net freshwater flux into the ocean including contributions from runoff, evaporation, precipitation, and mass exchange with sea-ice due to melting and freezing and snow melting
+
+Note: oceFWflx does NOT include freshwater fluxes between the atmosphere and sea-ice and snow. The variable 'SIatmFW' accounts for freshwater fluxes out of the combined ocean+sea-ice+snow reservoir.
+
+Units: kg m-2 s-1
+Dimension: 2D
+
+
+oceQnet: Net heat flux into the ocean surface
+==================================================================================
+Net heat flux into the ocean surface from all processes: air-sea turbulent and radiative fluxes and turbulent and conductive fluxes between the ocean and sea-ice and snow.
+
+Note: oceQnet does not include the change in ocean heat content due to changing ocean ocean mass (oceFWflx). Mass fluxes from evaporation, precipitation, and runoff (EXFempmr) happen at the same temperature as the ocean surface temperature. Consequently, EmPmR does not change ocean surface temperature. Conversely, mass fluxes due to sea-ice thickening/thinning and snow melt in the model are assumed to happen at a fixed 0C. Consequently, mass fluxes due to phase changes between seawater and sea-ice and snow induce a heat flux when the ocean surface temperaure is not 0C. The variable TFLUX does include the change in ocean heat content due to changing ocean mass.
+
+Units: W m-2
+Dimension: 2D
+
+
+oceQsw: Net shortwave radiative flux across the ocean surface
+==================================================================================
+Net shortwave radiative flux across the ocean surface
+
+Note: Shortwave radiation penetrates below the surface grid cell.
+
+Units: W m-2
+Dimension: 2D
+
+
+oceSPDep: Salt plume depth
+==================================================================================
+Depth of parameterized salt plumes formed due to brine rejection during sea-ice formation.
+
+
+
+Units: m
+Dimension: 2D
+
+
+oceSPflx: Net salt flux into the ocean due to brine rejection
+==================================================================================
+Net salt flux into the ocean due to brine rejection during sea-ice formation.
+
+Note: units are grams of salt per square meter per second, not salinity per square meter per second.
+
+Units: g m-2 s-1
+Dimension: 2D
+
+
+oceSPtnd: Salt tendency due to the vertical transport of salt in high-salinity brine plumes
+==================================================================================
+Salt tendency due to the vertical transport of salt in high-salinity brine plumes
+
+Note: units are grams of salt per square meter per second, not salinity per square meter per second.
+
+Units: g m-2 s-1
+Dimension: 2D
+
+
+oceTAUX: Ocean surface stress in the model +x direction
+==================================================================================
+Ocean surface stress due to wind and sea-ice in the +x direction centered over the 'u' side of the the native model grid
+
+Note: in the Arakawa-C grid, wind stress acts on horizontal velocities which are staggered relative to the tracer cells with indexing such that +oceTAUX(i_g,j) corresponds to +x momentum fluxes at 'u' edge of the tracer cell at (i,j,k=0). Also, the model +x direction does not necessarily correspond to the geographical east-west direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.
+
+Units: N m-2
+Dimension: 2D
+
+
+oceTAUY: Ocean surface stress in the model +y direction
+==================================================================================
+Ocean surface stress due to wind and sea-ice in the +y direction centered over the 'v' side of the the native model grid
+
+Note: in the Arakawa-C grid, wind stress acts on horizontal velocities which are staggered relative to the tracer cells with indexing such that +oceTAUY(i_g,j) corresponds to +y momentum fluxes at 'v' edge of the tracer cell at (i,j,k=0). Also, the model +y direction does not necessarily correspond to the geographical north-south direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.
+
+Units: N m-2
+Dimension: 2D
+
+
+PHIBOT: Ocean hydrostatic bottom pressure anomaly
+==================================================================================
+PHIBOT = p_b / rhoConst - g H(t), where p_b = hydrostatic ocean bottom pressure, rhoConst = reference density (1029 kg m-3), g is acceleration due to gravity (9.81 m s-2), and H(t) is model depth at time t. Units: p:[kg m-1 s-2], rhoConst:[kg m-3], g:[m s-2], H(t):[m]
+
+Note: includes atmospheric pressure loading. PHIBOT accounts for the model's time-varying grid cell thickness (z* coordinate system). PHIBOT is NOT corrected for global mean steric sea level changes related to density changes in the Boussinesq volume-conserving model (Greatbatch correction, see sterGloH), and therefore should NOT be used for comparisons with ocean bottom pressure data. Instead, see OBPGMAP and OBP. 
+
+Units: m2 s-2
+Dimension: 2D
+
+
+PHIHYD: Ocean hydrostatic pressure anomaly
+==================================================================================
+PHIHYD = p(k) / rhoConst - g z*(k,t), where p = hydrostatic ocean pressure at depth level k, rhoConst = reference density (1029 kg m-3), g is acceleration due to gravity (9.81 m s-2), and z*(k,t) is model depth at level k and time t. Units: p:[kg m-1 s-2], rhoConst:[kg m-3], g:[m s-2], H(t):[m].
+
+Note: includes atmospheric pressure loading. Quantity referred to in some contexts as hydrostatic pressure anomaly. PHIBOT accounts for the model's time-varying grid cell thickness (z* coordinate system). See PHIHYDcR for hydrostatic pressure potential anomaly calculated using time-invariant grid cell thicknesses. PHIHYD is NOT corrected for global mean steric sea level changes related to density changes in the Boussinesq volume-conserving model (Greatbatch correction, see sterGloH). 
+
+Units: m2 s-2
+Dimension: 3D
+
+
+PHIHYDcR: Ocean hydrostatic pressure anomaly at constant depths
+==================================================================================
+PHIHYD = p(k) / rhoConst - g z(k,t), where p = hydrostatic ocean pressure at depth level k, rhoConst = reference density (1029 kg m-3), g is acceleration due to gravity (9.81 m s-2), and z(k,t) is fixed model depth at level k. Units: p:[kg m-1 s-2], rhoConst:[kg m-3], g:[m s-2], H(t):[m].
+
+Note: includes atmospheric pressure loading. Quantity referred to in some contexts as hydrostatic pressure potential anomaly. PHIHYDcR is calculated with respect to the model's initial, time-invariant grid cell thicknesses. See PHIHYD for hydrostatic pressure anomaly calculated using model's time-variable grid cell thicknesses (z* coordinate system). PHIHYDcR is is NOT corrected for global mean steric sea level changes related to density changes in the Boussinesq volume-conserving model (Greatbatch correction, see sterGloH). 
+
+Units: m2 s-2
+Dimension: 3D
+
+
+RHOAnoma: In-situ seawater density anomaly
+==================================================================================
+In-situ seawater density anomaly relative to the reference density, rhoConst. rhoConst = 1029 kg m-3.
+
+
+
+Units: kg m-3
+Dimension: 3D
+
+
+SALT: Salinity
+==================================================================================
+Defined using CF convention 'Sea water salinity is the salt content of sea water, often on the Practical Salinity Scale of 1978. However, the unqualified term 'salinity' is generic and does not necessarily imply any particular method of calculation. The units of salinity are dimensionless and the units attribute should normally be given as 1e-3 or 0.001 i.e. parts per thousand.' see https://cfconventions.org/Data/cf-standard-names/73/build/cf-standard-name-table.html
+
+
+
+Units: 1e-3
+Dimension: 3D
+
+
+SFLUX: Rate of change of total ocean salinity per m2 accounting for mass fluxes.
+==================================================================================
+The rate of change of total ocean salinity due to freshwater fluxes across the liquid surface and the addition or removal of mass
+
+Note: the global area integral of SFLUX matches the time-derivative of total ocean salinity (psu s-1). Unlike oceFWflx, SFLUX includes the contribution to the total ocean salinity from changing ocean mass (e.g. from the addition or removal of freshwater in oceFWflx). 
+
+Units: g m-2 s-1
+Dimension: 2D
+
+
+SIacSubl: Freshwater flux to the atmosphere due to sublimation-deposition of snow or ice
+==================================================================================
+Freshwater flux to the atmosphere due to sublimation-deposition of snow or ice
+
+Positive values imply sublimation from ice/snow to vapor, negative values imply deposition from atmospheric moisture
+
+Units: kg m-2 s-1
+Dimension: 2D
+
+
+SIarea: Sea-ice concentration
+==================================================================================
+Fraction of ocean grid cell covered with sea-ice [0 to 1]. CF Standard Name Table v73:  'Area fraction' is the fraction of a grid cell's horizontal area that has some characteristic of interest. It is evaluated as the area of interest divided by the grid cell area. It may be expressed as a fraction, a percentage, or any other dimensionless representation of a fraction. Sea ice area fraction is area of the sea surface occupied by sea ice. It is also called 'sea ice concentration'. 'Sea ice' means all ice floating in the sea which has formed from freezing sea water, rather than by other processes such as calving of land ice to form icebergs. https://cfconventions.org/Data/cf-standard-names/73/build/cf-standard-name-table.html
+
+Defined using CF Standard Name Table v73: 'Area fraction' is the fraction of a grid cell's horizontal area that has some characteristic of interest. It is evaluated as the area of interest divided by the grid cell area. It may be expressed as a fraction, a percentage, or any other dimensionless representation of a fraction. Sea ice area fraction is area of the sea surface occupied by sea ice. It is also called 'sea ice concentration'. 'Sea ice' means all ice floating in the sea which has formed from freezing sea water and precipitation, rather than by other processes such as calving of land ice to form icebergs. https://cfconventions.org/Data/cf-standard-names/73/build/cf-standard-name-table.html
+
+Units: 1
+Dimension: 2D
+
+
+SIatmFW: Net freshwater flux into the open ocean, sea-ice, and snow
+==================================================================================
+Net freshwater flux into the combined liquid ocean, sea-ice, and snow reservoirs from the atmosphere and runoff.
+
+Note: freshwater fluxes BETWEEN the liquid ocean and sea-ice or snow reservoirs do not contribute to SIatmFW. SIatmFW counts all fluxes to/from the atmosphere that change the TOTAL freshwater stored in the combined liquid ocean, sea-ice, and snow reservoirs.
+
+Units: kg m-2 s-1
+Dimension: 2D
+
+
+SIatmQnt: Net upward heat flux to the atmosphere
+==================================================================================
+Net upward heat flux to the atmosphere across open water and sea-ice or snow surfaces.
+
+Note: nonzero SIatmQnt may not be associated with a change in ocean potential temperature due to sea-ice growth or melting. To calculate total ocean heat content changes use the variable TFLUX which also accounts for changing ocean mass (e.g. oceFWflx).
+
+Units: W m-2
+Dimension: 2D
+
+
+sIceLoad: Average sea-ice and snow mass per unit area
+==================================================================================
+Total mass of sea-ice and snow in a model grid cell averaged over model grid cell area
+
+Note: sIceLoad is used to correct model sea level anomaly, ETAN, to calculate dynamic sea surface height, SSH, and sea surface height without the inverted barometer (IB correction), SSHNOIBC. In the model, sea-ice is treated as floating above the sea level with ETAN tracing the location of the ocean-ice interface. Consequently, sea-ice growth in the model lowers ETAN and sea-ice melting raises ETAN. Dynamic sea surface height is obtained by correcting ETAN by the weight of ice and snow directly above following Archimedes’ principle.
+
+Units: kg m-2
+Dimension: 2D
+
+
+SIheff: Area-averaged sea-ice thickness
+==================================================================================
+Sea-ice thickness averaged over the entire model grid cell, including open water where sea-ice thickness is zero
+
+Note: sea-ice thickness over the ICE-COVERED fraction of the grid cell is SIheff/SIarea
+
+Units: m
+Dimension: 2D
+
+
+SIhsnow: Area-averaged snow thickness
+==================================================================================
+Snow thickness averaged over the entire model grid cell, including open water where snow thickness is zero
+
+Note: snow thickness over the ICE-COVERED fraction of the grid cell is SIhsnow/SIarea
+
+Units: m
+Dimension: 2D
+
+
+SIsnPrcp: Snow precipitation on sea-ice
+==================================================================================
+Snow precipitation rate over sea-ice, averaged over the entire model grid cell.
+
+
+
+Units: kg m-2 s-1
+Dimension: 2D
+
+
+SIaaflux: Conservative ocean and sea-ice advective heat flux adjustment
+==================================================================================
+Heat flux associated with the temperature difference between sea surface temperature and sea-ice (assume 0 degree C in the model)
+
+Note: heat flux needed to melt/freeze sea-ice at 0 degC to sea water at the ocean surface (at sea surface temperature), excluding the latent heat of fusion.
+
+Units: W m-2
+Dimension: 2D
+
+
+SIfwThru: Precipitation through sea-ice
+==================================================================================
+Precipitation over sea-ice covered regions reaching ocean through sea-ice
+
+Note: Precipitation over sea-ice covered regions that directly reaches ocean through the sea-ice. It is not due to melt of sea-ice/snow.
+
+Units: kg m-2 s-1
+Dimension: 2D
+
+
+SIrsSubl: Residual sublimation freshwater flux
+==================================================================================
+Residual freshwater flux by sublimation to remove water from or add water to ocean. When implied sublimation freshwater flux SIacSubl is larger than availabe sea-ice/snow, SIrsSubl is positive and water is removed from ocean
+
+Note: freshwater flux by sublimation that is to remove water from the ocean when it is positive.
+
+Units: kg m-2 s-1
+Dimension: 2D
+
+
+SIuice: Sea-ice velocity in the model +x direction 
+==================================================================================
+Horizontal sea-ice velocity in the +x direction at the 'u' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, horizontal velocities are staggered relative to the tracer cells with indexing such that +SIuice(i_g,j) corresponds to +x fluxes through the 'u' face of the tracer cell at (i,j,k=0). Also, the model +x direction does not necessarily correspond to the geographical east-west direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.
+
+Units: m s-1
+Dimension: 2D
+
+
+SIvice: Sea-ice velocity in the model +y direction 
+==================================================================================
+Horizontal sea-ice velocity in the +y direction at the 'v' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, horizontal velocities are staggered relative to the tracer cells with indexing such that +SIvice(i,j_g) corresponds to +y fluxes through the 'v' face of the tracer cell at (i,j,k=0). Also, the model +y direction does not necessarily correspond to the geographical north-south direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.
+
+Units: m s-1
+Dimension: 2D
+
+
+SSH: Dynamic sea surface height anomaly
+==================================================================================
+Dynamic sea surface height anomaly above the geoid, suitable for comparisons with altimetry sea surface height data products that apply the inverse barometer (IB) correction
+
+Note: SSH is calculated by correcting model sea level anomaly ETAN for three effects: a) global mean steric sea level changes related to density changes in the Boussinesq volume-conserving model (Greatbatch correction, see sterGloH), b) the inverted barometer (IB) effect (see SSHIBC) and c) sea level displacement due to sea-ice and snow pressure loading (see sIceLoad). SSH can be compared with the similarly-named SSH variable in previous ECCO products that did not include atmospheric pressure loading (e.g., Version 4 Release 3). Use SSHNOIBC for comparisons with altimetry data products that do NOT apply the IB correction.
+
+Units: m
+Dimension: 2D
+
+
+SSHIBC: The inverted barometer (IB) correction to sea surface height due to atmospheric pressure loading
+==================================================================================
+Not an SSH itself, but a correction to model sea level anomaly (ETAN) required to account for the static part of sea surface displacement by atmosphere pressure loading: SSH = SSHNOIBC - SSHIBC.
+
+Note: Use SSH for model-data comparisons with altimetry data products that DO apply the IB correction and SSHNOIBC for comparisons with altimetry data products that do NOT apply the IB correction.
+
+Units: m
+Dimension: 2D
+
+
+SSHNOIBC: Sea surface height anomaly without the inverted barometer (IB) correction
+==================================================================================
+Sea surface height anomaly above the geoid without the inverse barometer (IB) correction, suitable for comparisons with altimetry sea surface height data products that do NOT apply the inverse barometer (IB) correction
+
+Note: SSHNOIBC is calculated by correcting model sea level anomaly ETAN for two effects: a) global mean steric sea level changes related to density changes in the Boussinesq volume-conserving model (Greatbatch correction, see sterGloH), b) sea level displacement due to sea-ice and snow pressure loading (see sIceLoad). In ECCO Version 4 Release 4 the model is forced with atmospheric pressure loading. SSHNOIBC does not correct for the static part of the effect of atmosphere pressure loading on sea surface height (the so-called inverse barometer (IB) correction). Use SSH for comparisons with altimetry data products that DO apply the IB correction.
+
+Units: m
+Dimension: 2D
+
+
+TFLUX: Rate of change of ocean heat content per m2 accounting for mass fluxes.
+==================================================================================
+The rate of change of ocean heat content due to heat fluxes across the liquid surface and the addition or removal of mass. 
+
+Note: the global area integral of TFLUX and geothermal flux (geothermalFlux.bin) matches the time-derivative of ocean heat content (J/s). Unlike oceQnet, TFLUX includes the contribution to the ocean heat content from changing ocean mass (e.g. from oceFWflx).
+
+Units: W m-2
+Dimension: 2D
+
+
+THETA: Potential temperature 
+==================================================================================
+Sea water potential temperature is the temperature a parcel of sea water would have if moved adiabatically to sea level pressure.
+
+Note: the equation of state is a modified UNESCO formula by Jackett and McDougall (1995), which uses the model variable potential temperature as input assuming a horizontally and temporally constant pressure of $p_0=-g ho_{0} z$.
+
+Units: degree_C
+Dimension: 3D
+
+
+UVEL: Horizontal velocity in the model +x direction
+==================================================================================
+Horizontal velocity in the +x direction at the 'u' face of the tracer cell on the native model grid.
+
+Note: in the Arakawa-C grid, horizontal velocities are staggered relative to the tracer cells with indexing such that +UVEL(i_g,j,k) corresponds to +x fluxes through the 'u' face of the tracer cell at (i,j,k). Do NOT use UVEL for volume flux calculations because the model's grid cell thicknesses vary with time (z* coordinates); use UVELMASS instead. Also, the model +x direction does not necessarily correspond to the geographical east-west direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles. See EVEL and NVEL for zonal and meridional velocity.
+
+Units: m s-1
+Dimension: 3D
+
+
+VVEL: Horizontal velocity in the model +y direction
+==================================================================================
+Horizontal velocity in the +y direction at the 'v' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, horizontal velocities are staggered relative to the tracer cells with indexing such that +VVEL(i,j_g,k) corresponds to +y fluxes through the 'v' face of the tracer cell at (i,j,k). Do NOT use VVEL for volume flux calculations because the model's grid cell thicknesses vary with time (z* coordinates); use VVELMASS instead. Also, the model +y direction does not necessarily correspond to the geographical north-south direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles. See EVEL and NVEL for zonal and meridional velocity.
+
+Units: m s-1
+Dimension: 3D
+
+
+WVEL: Vertical velocity
+==================================================================================
+Vertical velocity in the +z direction at the top 'w' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, vertical velocities are staggered relative to the tracer cells with indexing such that +WVEL(i,j,k_l) corresponds to upward +z motion through the top 'w' face of the tracer cell at (i,j,k). WVEL is identical to WVELMASS.
+
+Units: m s-1
+Dimension: 3D
+
+
+UVELMASS: Horizontal velocity in the model +x direction per unit area of the grid cell 'u' face
+==================================================================================
+Horizontal velocity in the model +x direction averaged over the area of the tracer grid cell 'u' face on the native model grid ('u' grid cell face area = drF dyG). Accounts for partial cells (hFacW < 1) and for time-varying grid cell thickness (z* coordinate system). Volume flux in +x = UVELMASS drF dyG.
+
+Note: in the Arakawa-C grid, horizontal velocities are staggered relative to the tracer cells with indexing such that +UVELMASS(i,j,k) corresponds to +x fluxes through the 'u' face of the tracer cell at (i,j,k). UVELMASS can be used for volume flux calculations because it accounts for the grid cell thicknesses variations in the +x direction (hFacW) with time (z* coordinate system). Also, the model +x direction does not necessarily correspond to the geographical east-west direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles. See VVELMASS and WVELMASS
+
+Units: m s-1
+Dimension: 3D
+
+
+VVELMASS: Horizontal velocity in the model +y direction per unit area of the grid cell 'v' face
+==================================================================================
+Horizontal velocity in the model +y direction averaged over the area of the tracer grid cell 'v' face on the native model grid ('v' grid cell face area = drF dxG). Accounts for partial cells (hFacS < 1) and for time-varying grid cell thickness (z* coordinate system). Volume flux in +y = VVELMASS drF dxG.
+
+Note: in the Arakawa-C grid, horizontal velocities are staggered relative to the tracer cells with indexing such that +VVELMASS(i,j,k) corresponds to +y fluxes through the 'v' face of the tracer cell at (i,j,k). VVELMASS can be used for volume flux calculations because it accounts for grid cell thicknesses variations in the +y direction (hFacS) with time (z* coordinate system). Also, the model +y direction does not necessarily correspond to the geographical north-south direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles. See UVELMASS and WVELMASS.
+
+Units: m s-1 m3 m-3
+Dimension: 3D
+
+
+WVELMASS: Grid cell face-averaged vertical velocity in the model +z direction.
+==================================================================================
+Vertical velocity in the +z direction at the top 'w' face of the tracer cell on the native model grid. Volume flux in +z = WVELMASS drA.
+
+Note: in the Arakawa-C grid, vertical velocities are staggered relative to the tracer cells with indexing such that +WVELMASS(i,j,k) corresponds to upward +z motion through the top 'w' face of the tracer cell at (i,j,k). Unlike UVELMASS and VVELMASS, WVELMASS is not scaled by a time-varying open water fraction because the open water fraction of the 'w' face is always 1, thus WVELMASS is identical to WVEL.
+
+Units: m s-1
+Dimension: 3D
+
+
+UVELSTAR: Gent-McWilliams velocity in the model +x direction scaled by time-varying grid cell thickness
+==================================================================================
+Gent-McWilliams horizontal velocity in the +x direction at the 'u' face of the tracer cell on the native model grid
+
+Note: UVELSTAR is not a model diagnostic but is calculated offline: UVELSTAR = -d/dz GM_PsiX. In the Arakawa-C grid, horizontal velocities are staggered relative to the tracer cells with indexing such that +UVELSTAR(i_g,j,k) corresponds to +x tracer fluxes through the 'u' face of the tracer cell at (i,j,k). Also, the model +x direction does not necessarily correspond to the geographical east-west direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles. See EVELSTAR and NVELSTAR.
+
+Units: m s-1
+Dimension: 3D
+
+
+VVELSTAR: Gent-McWilliams velocity in the model +y direction scaled by time-varying grid cell thickness
+==================================================================================
+Gent-McWilliams horizontal velocity in the +y direction at the 'v' face of the tracer cell on the native model grid
+
+Note: VVELSTAR is not a model diagnostic but is calculated offline: VVELSTAR = -d/dz GM_PsiY. In the Arakawa-C grid, horizontal velocities are staggered relative to the tracer cells with indexing such that +VVELSTAR(i,j_g,k) corresponds to +y tracer fluxes through the 'v' face of the tracer cell at (i,j,k). Also, the model +y direction does not necessarily correspond to the geographical north-south direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles. See EVELSTAR and NVELSTAR.
+
+Units: m s-1
+Dimension: 3D
+
+
+WVELSTAR: Gent-McWilliams velocity in the model +z direction
+==================================================================================
+Gent-McWilliams vertical bolus velocity in the +z direction at the top 'w' face of the tracer cell on the native model grid
+
+Note: in the Arakawa-C grid, vertical velocities are staggered relative to the tracer cells with indexing such that +WVELSTAR(i,j,k_l) corresponds to upward +z motion through the top 'w' face of the tracer cell at (i,j,k).
+
+Units: m s-1
+Dimension: 3D
+
+
+Um_dPHdx: Momentum tendency in the model +x direction
+==================================================================================
+Momentum tendency in the +x direction due to the hydrostatic pressure gradient at the 'u' face of the native model grid cell 
+
+Note: the model +x direction does not necessarily correspond to the geographical east-west direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.
+
+Units: m s-2
+Dimension: 3D
+
+
+Vm_dPHdy: Momentum tendency in the model +y direction
+==================================================================================
+Momentum tendency in the +y direction due to the hydrostatic pressure gradient at the 'v' face of the native model grid cell 
+
+Note: the model +y direction does not necessarily correspond to the geographical north-south direction because the x and y axes of the model's curvilinear lat-lon-cap (llc) grid have arbitrary orientations which vary within and across tiles.
+
+Units: m s-2
+Dimension: 3D
+
+

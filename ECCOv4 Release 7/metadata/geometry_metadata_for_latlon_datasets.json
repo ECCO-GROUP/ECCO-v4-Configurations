@@ -1,0 +1,70 @@
+[   
+   {
+      "name": "Depth",
+      "standard_name" : "sea_floor_depth_below_geoid",
+      "long_name": "seafloor depth below ocean surface at rest interpolated from the model grid",
+      "comments_1": "Model seafloor depth corresponds to mean ocean depth below the geoid.",
+      "comments_2": "Note: the MITgcm implements 'partial cells' so model seafloor depths differ from the seafloor depth provided by the original input bathymetry data product.",
+      "units": "m",
+      "GCMD_keywords" : "",
+      "grid_dimension": "2D",
+      "grid_location": "c",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "area",
+      "standard_name" : "cell_area",
+      "long_name": "area of lat-lon grid cell",
+      "comments_1": "",
+      "comments_2": "",
+      "units": "m2",
+      "GCMD_keywords" : "",
+      "grid_dimension": "2D",
+      "grid_location": "c",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "drC",
+      "long_name": "distance between the lat-lon grid cell centers in the z-direction",
+      "units": "m",
+      "comments_1": "The first element corresponds to the distance between the depth of the center of the uppermost model grid cell and the surface.",
+      "comments_2": "",
+      "GCMD_keywords" : "",
+      "grid_dimension": "2D",
+      "grid_location": "w",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "drF",
+      "standard_name": "cell_thickness",
+      "long_name": "distance between the top and bottom faces of the lat-lon grid cells",
+      "units": "m",
+      "comments_1": "Nominal grid cell thickness.",
+      "comments_2": "",
+      "GCMD_keywords" : "",
+      "grid_dimension": "3D",
+      "grid_location": "c",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "hFacC",
+      "long_name": "vertical wet fraction of grid cell",
+      "units": "1",
+      "comments_1": "Grid cells may be fractionally closed in the vertical. The open vertical fraction is hFacC. The model allows for partially-filled cells to represent topographic variations more smoothly (hFacC < 1). Completely closed (dry) tracer grid cells have hFacC = 0.",
+      "comments_2": "Note: the lat-lon gridded hFacC is spatially-averaged from the hFacC field on the lat-lon-cap (llc90) model native grid. The total ocean volume of the ECCO V4 lat-lon gridded fields is within 0.05% of the total ocean volume of the native model grid fields.",
+      "GCMD_keywords" : "",
+      "grid_dimension": "3D",
+      "grid_location": "c",
+      "coverage_content_type": "modelResult"
+   },
+   {
+      "name": "maskC",
+      "long_name": "wet/dry boolean mask for grid cell",
+      "comments_1": "True for wet grid cells (hFacC > 0), otherwise False.",
+      "comments_2": "",
+      "GCMD_keywords" : "",
+      "grid_dimension": "3D",
+      "grid_location": "c",
+      "coverage_content_type": "modelResult"
+   }
+]

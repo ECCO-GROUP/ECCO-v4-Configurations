@@ -1,0 +1,7 @@
+[
+    {
+      "name": "comment",
+      "type": "s",
+      "value": "1D time series calculated from fields on the lat-lon-cap 90 (llc90) native grid used by ECCO V4 models."
+    }
+]
