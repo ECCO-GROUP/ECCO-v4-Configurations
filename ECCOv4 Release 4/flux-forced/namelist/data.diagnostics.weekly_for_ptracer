@@ -43,16 +43,16 @@
    filename(7) = 'diags/GM_PsiY_week_mean',
 #---
   frequency(8) = 604800.0,
-   fields(1:1,8) = 'uVel',
-   filename(8) = 'diags/uVel_week_mean',
+   fields(1:1,8) = 'UVEL',
+   filename(8) = 'diags/UVEL_week_mean',
 #---
   frequency(9) = 604800.0,
-   fields(1:1,9) = 'vVel',
-   filename(9) = 'diags/vVel_week_mean',
+   fields(1:1,9) = 'VVEL',
+   filename(9) = 'diags/VVEL_week_mean',
 #---
   frequency(10) = 604800.0,
-   fields(1:1,10) = 'wVel',
-   filename(10) = 'diags/wVel_week_mean',
+   fields(1:1,10) = 'WVEL',
+   filename(10) = 'diags/WVEL_week_mean',
 #---
   frequency(11) = 604800.0,
    fields(1:1,11) = 'GM_Kux',
