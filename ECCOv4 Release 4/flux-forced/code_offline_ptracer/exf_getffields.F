@@ -49,6 +49,12 @@ C     == global variables ==
 #if (defined (ALLOW_ECCO) && defined (ECCO_CTRL_DEPRECATED))
 #  include "ecco_cost.h"
 #endif
+#ifdef ALLOW_PTRACERS_EXF
+#include "PTRACERS_SIZE.h"
+#include "PTRACERS_PARAMS.h"
+#include "PTRACERS_START.h"
+#include "PTRACERS_FIELDS.h"
+#endif
 
 C     == routine arguments ==
       _RL     myTime
@@ -66,6 +72,11 @@ C     == local variables ==
 #if (defined (ALLOW_CTRL) && \
      defined (ALLOW_GENTIM2D_CONTROL))
       INTEGER iarr
+#endif
+#ifdef ALLOW_PTRACERS_EXF
+C     iTrc    :: tracer index
+      INTEGER iTrc
+      character*200 forctmpnm
 #endif
 
 C     == end of interface ==
@@ -441,6 +452,31 @@ C-    Runoff temperature
      I     myTime, myIter, myThid )
 #endif /* ALLOW_RUNOFTEMP */
 
+#ifdef ALLOW_PTRACERS_EXF
+      DO iTrc=1,PTRACERS_numInUse
+      forctmpnm='ZZZ'
+      WRITE(forctmpnm,'(A7,i3.3)') 'sfftrac',iTrc
+
+      CALL EXF_SET_FLD(
+     I     forctmpnm, sfftracfile(iTrc), sfftracmask(iTrc),
+     I     sfftracStartTime(iTrc), sfftracperiod(iTrc),
+     I     sfftracRepCycle(iTrc),
+     I     exf_inscal_sfftrac(iTrc),
+     I     sfftrac_exfremo_intercept(iTrc),
+     I     sfftrac_exfremo_slope(iTrc),
+     U     surfaceForcingPTr(:,:,:,:,iTrc),
+     U     surfaceForcingPTr0(:,:,:,:,iTrc),
+     U     surfaceForcingPTr1(:,:,:,:,iTrc),
+#ifdef USE_EXF_INTERPOLATION
+     I     sfftrac_lon0(iTrc), sfftrac_lon_inc(iTrc),
+     I     sfftrac_lat0(iTrc), sfftrac_lat_inc(:,iTrc),
+     I     sfftrac_nlon(iTrc), sfftrac_nlat(iTrc),
+     I     xC, yC, sfftrac_interpMethod(iTrc),
+#endif
+     I     myTime, myIter, myThid )
+      ENDDO
+#endif
+
 #ifdef ALLOW_SALTFLX
 C-    Salt flux
       CALL EXF_SET_FLD(
@@ -715,6 +751,16 @@ cdm #endif
            IF (xx_gentim2d_file(iarr)(1:9).EQ.'xx_runoff')
      &       runoff(i,j,bi,bj)=runoff(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
+#endif
+#ifdef ALLOW_PTRACERS_EXF
+      DO iTrc=1,PTRACERS_numInUse
+           forctmpnm='ZZZ'
+           WRITE(forctmpnm,'(A10,i3.3)') 'xx_sfftrac',iTrc
+           IF (xx_gentim2d_file(iarr)(1:13).EQ.forctmpnm)
+     &       surfaceForcingPTr(i,j,bi,bj,iTrc)=
+     &        surfaceForcingPTr(i,j,bi,bj,iTrc)+
+     &                         xx_gentim2d(i,j,bi,bj,iarr)
+      ENDDO
 #endif
 #ifdef EXF_READ_EVAP
            IF (xx_gentim2d_file(iarr)(1:7).EQ.'xx_evap')

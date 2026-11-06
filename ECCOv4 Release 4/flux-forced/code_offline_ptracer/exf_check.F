@@ -32,6 +32,12 @@ C     == Global variables ===
 
 #include "EXF_PARAM.h"
 #include "EXF_CONSTANTS.h"
+#ifdef ALLOW_PTRACERS_EXF
+#include "PTRACERS_SIZE.h"
+#include "PTRACERS_PARAMS.h"
+#include "PTRACERS_START.h"
+#include "PTRACERS_FIELDS.h"
+#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     myThid   :: my Thread Id number
@@ -41,6 +47,10 @@ C     !LOCAL VARIABLES:
 C     msgBuf   :: Informational/error message buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER errCount
+#ifdef ALLOW_PTRACERS_EXF
+C     iTracer    :: tracer index
+      INTEGER iTracer
+#endif
 CEOP
 
       _BEGIN_MASTER(myThid)
@@ -333,6 +343,17 @@ c     ENDIF
        ENDIF
       ENDIF
 
+#ifndef ALLOW_PTRACERS_EXF
+      DO iTracer=1,PTRACERS_num
+      IF ( sfftracfile(iTracer).NE.' ' ) THEN
+        WRITE(msgBuf,'(3A)') 'EXF_CHECK: Cannot read-in field ',
+     &    '"sfftrac" with #undef ALLOW_PTRACERS'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        errCount = errCount + 1
+      ENDIF
+      ENDDO
+#endif
+
       IF ( saltflxfile.NE.' ' ) THEN
 #ifndef ALLOW_SALTFLX
         WRITE(msgBuf,'(3A)') 'EXF_CHECK: Cannot read-in field ',
@@ -437,6 +458,14 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
      &     swflux_nlat, swflux_nlon, swflux_lon_inc, errCount, myThid )
       CALL EXF_CHECK_INTERP( 'runoff', runofffile, runoff_interpMethod,
      &     runoff_nlat, runoff_nlon, runoff_lon_inc, errCount, myThid )
+#ifdef ALLOW_PTRACERS_EXF
+      DO iTracer=1,PTRACERS_num
+      CALL EXF_CHECK_INTERP( 'sfftrac', sfftracfile(iTracer),
+     &     sfftrac_interpMethod(iTracer),
+     &     sfftrac_nlat(iTracer), sfftrac_nlon(iTracer),
+     &     sfftrac_lon_inc(iTracer), errCount, myThid )
+      ENDDO
+#endif
       CALL EXF_CHECK_INTERP( 'saltflx', saltflxfile,
      &         saltflx_interpMethod, saltflx_nlat,
      &         saltflx_nlon, saltflx_lon_inc, errCount, myThid )

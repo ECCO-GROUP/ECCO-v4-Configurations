@@ -47,6 +47,12 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "EXF_CONSTANTS.h"
+#ifdef ALLOW_PTRACERS_EXF
+#include "PTRACERS_SIZE.h"
+#include "PTRACERS_PARAMS.h"
+#include "PTRACERS_START.h"
+#include "PTRACERS_FIELDS.h"
+#endif
 #include "EXF_PARAM.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
@@ -62,6 +68,10 @@ C     !LOCAL VARIABLES:
       LOGICAL prtBlkLn, addBlkLn
       CHARACTER*1 blkLin
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+#ifdef ALLOW_PTRACERS_EXF
+C     iTracer    :: tracer index
+      INTEGER iTracer
+#endif
 CEOP
 
       _BEGIN_MASTER( myThid )
@@ -592,6 +602,41 @@ c      addBlkLn = .TRUE.
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT, myThid )
 #endif /* ALLOW_RUNOFF */
+
+C--   PTRACERS
+      IF ( prtBlkLn ) THEN
+       CALL PRINT_MESSAGE( blkLin, standardMessageUnit,
+     &                     SQUEEZE_RIGHT, myThid )
+       prtBlkLn = .FALSE.
+      ENDIF
+#ifdef ALLOW_PTRACERS_EXF
+      WRITE(msgBuf,'(A)')
+     &'// ALLOW_PTRACERS:                      defined'
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT, myThid )
+      DO iTracer=1,PTRACERS_num
+      IF ( sfftracfile(iTracer).NE.' ' ) THEN
+       CALL EXF_FLD_SUMMARY( 'Net upward Salt-Flux forcing',
+     I      sfftracfile(iTracer), sfftracRepCycle(iTracer),
+     I      sfftracperiod(iTracer),
+     I      sfftracStartTime(iTracer),
+     I      useExfYearlyFields, addBlkLn, myThid )
+#ifdef USE_EXF_INTERPOLATION
+       CALL EXF_PRINT_INTERP( 'sfftrac',
+     &  sfftrac_lon0(iTracer), sfftrac_lon_inc(iTracer),
+     &  sfftrac_lat0(iTracer), sfftrac_lat_inc(:,iTracer),
+     &  sfftrac_nlon(iTracer), sfftrac_nlat(iTracer),
+     &  sfftrac_interpMethod(iTracer), myThid )
+#endif
+       prtBlkLn = .TRUE.
+      ENDIF
+      ENDDO
+#else /* ALLOW_PTRACERS_EXF */
+      WRITE(msgBuf,'(A)')
+     &'// ALLOW_PTRACERS:                  NOT defined'
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT, myThid )
+#endif /* ALLOW_PTRACERS */
 
 C--   Salt-Flux
       IF ( prtBlkLn ) THEN

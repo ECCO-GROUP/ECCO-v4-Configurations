@@ -22,6 +22,12 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
+#ifdef ALLOW_PTRACERS_EXF
+#include "PTRACERS_SIZE.h"
+#include "PTRACERS_PARAMS.h"
+#include "PTRACERS_START.h"
+#include "PTRACERS_FIELDS.h"
+#endif
 #include "EXF_PARAM.h"
 #include "EXF_CONSTANTS.h"
 
@@ -39,6 +45,11 @@ C     errCount  :: error counter
       INTEGER errCount
 #ifdef USE_EXF_INTERPOLATION
       INTEGER j
+#endif
+#ifdef ALLOW_PTRACERS_EXF
+C     iTracer    :: tracer index
+      INTEGER iTracer
+      character*200 forctmpnm
 #endif
 
 #ifdef ALLOW_DEBUG
@@ -60,6 +71,11 @@ C     ' ' = no masking; 'c' = centered mask; 'w' = western mask; 's' = southern
       precipmask   = 'c'
       snowprecipmask='c'
       runoffmask   = 'c'
+#ifdef ALLOW_PTRACERS_EXF
+      DO iTracer=1,PTRACERS_num
+       sfftracmask(iTracer)   = 'c'
+      ENDDO
+#endif
       saltflxmask  = 'c'
       spflxmask  = 'c'
       IF ( stressIsOnCgrid ) THEN
@@ -315,6 +331,23 @@ C     from the beginning of the year.
      I                    myThid )
       ENDIF
 #endif /* ALLOW_RUNOFF */
+
+#ifdef ALLOW_PTRACERS_EXF
+      DO iTracer=1,PTRACERS_num
+      WRITE(forctmpnm,'(A7,i03)') 'sfftrac',iTracer
+      IF ( sfftracfile(iTracer) .NE. ' ' ) THEN
+# ifdef ALLOW_DEBUG
+       IF (debugMode) CALL DEBUG_CALL('GETFFIELD_START sfftrac',myThid)
+# endif
+       CALL EXF_GETFFIELD_START( useExfYearlyFields,
+     I                    'exf', forctmpnm, sfftracperiod(iTracer),
+     I                    sfftracstartdate1(iTracer),
+     I                    sfftracstartdate2(iTracer),
+     U                    sfftracStartTime(iTracer), errCount,
+     I                    myThid )
+      ENDIF
+      ENDDO
+#endif /* ALLOW_PTRACERS_EXF */
 
 #ifdef ALLOW_SALTFLX
       IF ( saltflxfile .NE. ' ' ) THEN
