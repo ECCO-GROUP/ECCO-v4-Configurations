@@ -1,0 +1,36 @@
+#
+# *********************
+# External Forcing Data
+# *********************
+# Example of an sfftrac forcing file with TWO time records, read via
+# the generic EXF periodic-interpolation path (fldPeriod > 0) rather
+# than the one-shot fldPeriod=0 path used in the single-record
+# example. Both records are identical (same constant-1 NINO3 mask),
+# and fldPeriod is set to 300 years -- far longer than this ~90-day
+# run -- so the model stays within the very first inter-record
+# interval the whole time and effectively sees a constant field,
+# exactly reproducing the single-record/period=0 example's result.
+# This demonstrates how to supply a *real* multi-record forcing file
+# (e.g. a seasonal or interannual cycle) instead of a one-time field.
+#
+ &EXF_NML_01
+ exf_iprec         = 32,
+ useExfCheckRange  = .FALSE.,
+ &
+
+ &EXF_NML_02
+ sfftracfile(1)     = 'sfftrac001_NINO3_const1_2rec.bin',
+ sfftracperiod(1)   = 9460800000.0,
+ sfftracstartdate1(1) = 0,
+ sfftracstartdate2(1) = 0,
+ &
+
+ &EXF_NML_03
+# Same scaling as the single-record example, for a directly
+# comparable result.
+ exf_inscal_sfftrac(1) = 1.0e-5,
+ &
+
+ &EXF_NML_04
+ sfftrac_interpMethod(1) = 0,
+ &

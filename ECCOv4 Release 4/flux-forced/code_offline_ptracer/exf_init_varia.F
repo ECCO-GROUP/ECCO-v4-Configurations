@@ -32,6 +32,11 @@ C     == global variables ==
 # include "PARAMS.h"
 # include "DYNVARS.h"
 #endif
+#ifdef ALLOW_PTRACERS_EXF
+#include "PTRACERS_SIZE.h"
+#include "PTRACERS_PARAMS.h"
+#include "PTRACERS_FIELDS.h"
+#endif
 
 C !INPUT/OUTPUT PARAMETERS:
 C     myThid         :: My Thread Id number
@@ -39,6 +44,11 @@ C     myThid         :: My Thread Id number
 
 C !LOCAL VARIABLES:
       INTEGER i,j,bi,bj
+#ifdef ALLOW_PTRACERS_EXF
+C     iTrc    :: tracer index
+      INTEGER iTrc
+      character*200 forctmpnm
+#endif
 CEOP
 
 C--   Initialise to zero intermediate fields (in common block)
@@ -363,6 +373,27 @@ C      will be over-written at first time-step when calling EXF_SET_UV.
      I     myThid )
 # endif /* ALLOW_RUNOFTEMP */
 #endif /* ALLOW_RUNOFF */
+
+#ifdef ALLOW_PTRACERS_EXF
+      DO iTrc=1,PTRACERS_numInUse
+      WRITE(forctmpnm,'(A7,i03)') 'sfftrac',iTrc
+
+      CALL EXF_INIT_FLD(
+     I     forctmpnm, sfftracfile(iTrc), sfftracmask(iTrc),
+     I     sfftracperiod(iTrc), exf_inscal_sfftrac(iTrc),
+     I     sfftracconst(iTrc),
+     O     surfaceForcingPTr(:,:,:,:,iTrc),
+     O     surfaceForcingPTr0(:,:,:,:,iTrc),
+     O     surfaceForcingPTr1(:,:,:,:,iTrc),
+# ifdef USE_EXF_INTERPOLATION
+     I     sfftrac_lon0(iTrc), sfftrac_lon_inc(iTrc),
+     I     sfftrac_lat0(iTrc), sfftrac_lat_inc(:,iTrc),
+     I     sfftrac_nlon(iTrc), sfftrac_nlat(iTrc),
+     I     xC, yC, sfftrac_interpMethod(iTrc),
+# endif
+     I     myThid )
+      ENDDO
+#endif /* ALLOW_PTRACERS_EXF */
 
 #ifdef ALLOW_SALTFLX
       CALL EXF_INIT_FLD(

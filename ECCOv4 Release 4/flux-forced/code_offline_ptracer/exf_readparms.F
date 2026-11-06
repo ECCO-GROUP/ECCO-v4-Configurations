@@ -57,6 +57,12 @@ C     == global variables ==
 # include "SET_GRID.h"
 #endif /* USE_EXF_INTERPOLATION */
 c#include "cal.h"
+#ifdef ALLOW_PTRACERS_EXF
+#include "PTRACERS_SIZE.h"
+#include "PTRACERS_PARAMS.h"
+#include "PTRACERS_START.h"
+#include "PTRACERS_FIELDS.h"
+#endif
 #include "EXF_PARAM.h"
 #include "EXF_CONSTANTS.h"
 
@@ -73,6 +79,10 @@ C     == local variables ==
       LOGICAL exf_verbose
       CHARACTER*(2) exf_yftype
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+#ifdef ALLOW_PTRACERS_EXF
+C     iTracer    :: tracer index
+      INTEGER iTracer
+#endif
 C     == end of interface ==
 
 C     Surface flux data.
@@ -115,6 +125,10 @@ C     Surface flux data.
      &         runofffile,    runoffstartdate1,    runoffstartdate2,
      &         runoffRepCycle,    runoffperiod,    runoffStartTime,
      &      runoftempfile,
+#ifdef ALLOW_PTRACERS_EXF
+     &         sfftracfile,    sfftracstartdate1,    sfftracstartdate2,
+     &         sfftracRepCycle,    sfftracperiod,    sfftracStartTime,
+#endif
      &        saltflxfile,   saltflxstartdate1,   saltflxstartdate2,
      &        saltflxRepCycle,   saltflxperiod,   saltflxStartTime,
      &        spflxfile,   spflxstartdate1,   spflxstartdate2,
@@ -161,6 +175,10 @@ C     Surface flux data.
      &     exf_inscal_sst,  exf_inscal_sss,
      &  exf_inscal_swflux,  exf_inscal_lwflux,   exf_inscal_precip,
      &  exf_inscal_runoff,  exf_inscal_apressure, exf_inscal_snowprecip,
+#ifdef ALLOW_PTRACERS_EXF
+     &  exf_inscal_sfftrac, sfftracconst,
+     &  sfftrac_exfremo_intercept, sfftrac_exfremo_slope,
+#endif
      &  exf_inscal_runoftemp, exf_inscal_saltflx, exf_inscal_spflx,
      &  exf_inscal_swdown,  exf_inscal_lwdown,
      & exf_inscal_climsst, exf_inscal_climsss,
@@ -234,6 +252,10 @@ C     Surface flux data.
      & precip_nlon, precip_nlat, precip_interpMethod,
      & runoff_lon0, runoff_lon_inc, runoff_lat0, runoff_lat_inc,
      & runoff_nlon, runoff_nlat, runoff_interpMethod,
+#ifdef ALLOW_PTRACERS_EXF
+     & sfftrac_lon0, sfftrac_lon_inc, sfftrac_lat0, sfftrac_lat_inc,
+     & sfftrac_nlon, sfftrac_nlat, sfftrac_interpMethod,
+#endif
      & saltflx_lon0, saltflx_lon_inc,
      & saltflx_lat0, saltflx_lat_inc,
      & saltflx_nlon, saltflx_nlat, saltflx_interpMethod,
@@ -450,6 +472,17 @@ C     Calendar data.
       runoftemp_exfremo_intercept = 0.0 _d 0
       runoftemp_exfremo_slope     = 0.0 _d 0
 
+#ifdef ALLOW_PTRACERS_EXF
+      DO iTracer=1,PTRACERS_num
+       sfftracstartdate1(iTracer)   = 0
+       sfftracstartdate2(iTracer)   = 0
+       sfftracperiod(iTracer)       = 0.0 _d 0
+       sfftracconst(iTracer)        = 0.0 _d 0
+       sfftrac_exfremo_intercept(iTracer) = 0.0 _d 0
+       sfftrac_exfremo_slope(iTracer) = 0.0 _d 0
+      ENDDO
+#endif
+
       saltflxstartdate1  = 0
       saltflxstartdate2  = 0
       saltflxperiod      = 0.0 _d 0
@@ -621,6 +654,11 @@ C     Data files.
       sfluxfile          = ' '
       runofffile         = ' '
       runoftempfile      = ' '
+#ifdef ALLOW_PTRACERS_EXF
+      DO iTracer=1,PTRACERS_num
+       sfftracfile(iTracer)   = ' '
+      ENDDO
+#endif
       saltflxfile        = ' '
       spflxfile          = ' '
       ustressfile        = ' '
@@ -650,6 +688,11 @@ C     Start Time.
       snowprecipStartTime= UNSET_RL
       sfluxStartTime     = UNSET_RL
       runoffStartTime    = UNSET_RL
+#ifdef ALLOW_PTRACERS_EXF
+      DO iTracer=1,PTRACERS_num
+       sfftracStartTime(iTracer)    = UNSET_RL
+      ENDDO
+#endif
       saltflxStartTime   = UNSET_RL
       spflxStartTime     = UNSET_RL
       ustressStartTime   = UNSET_RL
@@ -705,6 +748,11 @@ C     Input scaling factors.
       exf_inscal_evap      =  1. _d 0
       exf_inscal_apressure =  1. _d 0
       exf_inscal_runoff    =  1. _d 0
+#ifdef ALLOW_PTRACERS_EXF
+      DO iTracer=1,PTRACERS_num
+       exf_inscal_sfftrac(iTracer)    =  1. _d 0
+      ENDDO
+#endif
       exf_inscal_runoftemp =  1. _d 0
       exf_inscal_saltflx   =  1. _d 0
       exf_inscal_spflx     =  1. _d 0
@@ -742,6 +790,11 @@ C     model grid cell-center position (leading to trivial interpolation)
       sflux_lon0     = inp_lon0
       swflux_lon0    = inp_lon0
       runoff_lon0    = inp_lon0
+#ifdef ALLOW_PTRACERS_EXF
+      DO iTracer=1,PTRACERS_num
+       sfftrac_lon0(iTracer)    = inp_lon0
+      ENDDO
+#endif
       saltflx_lon0   = inp_lon0
       spflx_lon0     = inp_lon0
       atemp_lon0     = inp_lon0
@@ -765,6 +818,11 @@ C     model grid cell-center position (leading to trivial interpolation)
       hflux_lat0     = inp_lat0
       sflux_lat0     = inp_lat0
       runoff_lat0    = inp_lat0
+#ifdef ALLOW_PTRACERS_EXF
+      DO iTracer=1,PTRACERS_num
+       sfftrac_lat0(iTracer)    = inp_lat0
+      ENDDO
+#endif
       saltflx_lat0   = inp_lat0
       spflx_lat0     = inp_lat0
       swflux_lat0    = inp_lat0
@@ -793,6 +851,12 @@ C     model grid cell-center position (leading to trivial interpolation)
       swflux_nlat    = gridNy
       runoff_nlon    = gridNx
       runoff_nlat    = gridNy
+#ifdef ALLOW_PTRACERS_EXF
+      DO iTracer=1,PTRACERS_num
+       sfftrac_nlon(iTracer)    = gridNx
+       sfftrac_nlat(iTracer)    = gridNy
+      ENDDO
+#endif
       saltflx_nlon   = gridNx
       saltflx_nlat   = gridNy
       spflx_nlon     = gridNx
@@ -833,6 +897,11 @@ C     model grid cell-center position (leading to trivial interpolation)
       sflux_lon_inc     = inp_dLon
       swflux_lon_inc    = inp_dLon
       runoff_lon_inc    = inp_dLon
+#ifdef ALLOW_PTRACERS_EXF
+      DO iTracer=1,PTRACERS_num
+       sfftrac_lon_inc(iTracer)    = inp_dLon
+      ENDDO
+#endif
       saltflx_lon_inc   = inp_dLon
       spflx_lon_inc     = inp_dLon
       atemp_lon_inc     = inp_dLon
@@ -884,6 +953,11 @@ C     model grid cell-center position (leading to trivial interpolation)
         sflux_lat_inc(j)     = inp_dLat
         swflux_lat_inc(j)    = inp_dLat
         runoff_lat_inc(j)    = inp_dLat
+#ifdef ALLOW_PTRACERS_EXF
+      DO iTracer=1,PTRACERS_num
+        sfftrac_lat_inc(j,iTracer)    = inp_dLat
+      ENDDO
+#endif
         saltflx_lat_inc(j)   = inp_dLat
         spflx_lat_inc(j)     = inp_dLat
         atemp_lat_inc(j)     = inp_dLat
@@ -913,6 +987,11 @@ C     model grid cell-center position (leading to trivial interpolation)
       sflux_interpMethod     =  1
       swflux_interpMethod    =  1
       runoff_interpMethod    =  1
+#ifdef ALLOW_PTRACERS_EXF
+      DO iTracer=1,PTRACERS_num
+       sfftrac_interpMethod(iTracer)    =  1
+      ENDDO
+#endif
       saltflx_interpMethod   =  1
       spflx_interpMethod     =  1
       atemp_interpMethod     =  1
@@ -964,6 +1043,11 @@ C-    Set default fldRepeatCycle to repeatPeriod
       snowprecipRepCycle = repeatPeriod
       sfluxRepCycle      = repeatPeriod
       runoffRepCycle     = repeatPeriod
+#ifdef ALLOW_PTRACERS_EXF
+      DO iTracer=1,PTRACERS_num
+       sfftracRepCycle(iTracer)     = repeatPeriod
+      ENDDO
+#endif
       saltflxRepCycle    = repeatPeriod
       spflxRepCycle      = repeatPeriod
       ustressRepCycle    = repeatPeriod
